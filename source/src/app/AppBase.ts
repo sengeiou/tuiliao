@@ -26,7 +26,7 @@ export class AppBase implements OnInit {
     public static instapi: InstApi = null;
     public static memberapi: MemberApi = null;
     public static wechatApi: WechatApi = null;
-    public static UNICODE = "tthxb";
+    public static UNICODE = "tuiliao";
 
     public statusBarStyle = "X";//{DARK}
     public uploadpath: string = ApiConfig.getUploadPath();
@@ -47,7 +47,7 @@ export class AppBase implements OnInit {
     public keyt = "memberinfo99";
     public stat = "stat9";
 
-    public heading = "学榜";
+    public heading = "推料";
 
     public firseonshow = true;
     public scrolltop = 0;
