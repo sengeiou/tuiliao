@@ -1,14 +1,14 @@
-<ion-header>
 
-      <div class="lunbo">
-        <img [src]="uploadpath+'resource/'+res.title_pic"  style="width: 100%;height: 100%"/>
-      </div>
+
+    <ion-slides #slides style='width: 100vw;' (swipe)="swipeEvent($event)" loop="true" autoplay="2000" autoplayDisableOnInteraction="false" >
+        <ion-slide on-swipe-up="onSwipeUp()"><img [src]="uploadpath+'resource/'+res.title_pic" /></ion-slide>
+        <ion-slide on-swipe-up="onSwipeUp()"><img [src]="uploadpath+'resource/'+res.huiyuan" /></ion-slide>
+    </ion-slides>
       <div class="flex-row flex-center border-gray-2">
         <div class="margin-left-20 margin-right-20"><img src="{{uploadpath}}resource/{{res.kuaibao}}" class="icon-50"/></div>
         
         <div><span>最新最猛最火热的推荐尽在大赢家！！！</span>  </div>
       </div>
-</ion-header>
 
 <ion-content>
 

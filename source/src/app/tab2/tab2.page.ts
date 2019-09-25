@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { AppBase } from '../AppBase';
 import { Router } from '@angular/router';
 import {  ActivatedRoute, Params } from '@angular/router';
-import { NavController, ModalController, ToastController, AlertController, NavParams,IonSlides } from '@ionic/angular';
+import { NavController, ModalController, ToastController, AlertController, NavParams,IonSlides,IonSlide } from '@ionic/angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InstApi } from 'src/providers/inst.api';
 import { ProjectApi } from 'src/providers/project.api';
@@ -30,6 +30,23 @@ export class Tab2Page extends AppBase {
       
   }
 
+  @ViewChild(IonSlides) slides: IonSlides;
+ 
+
+  autoPlay() {
+    this.slides.startAutoplay();
+  }
+
+  swipeEvent(e){
+    this.autoPlay();
+  }
+
+
+  ionViewWillLeave() {
+    this.slides.stopAutoplay();
+  }
+
+
   onMyLoad(){
     //参数
     this.params;
@@ -40,6 +57,8 @@ export class Tab2Page extends AppBase {
   rec_time = ''
   isshow = false
   onMyShow(){
+
+    this.autoPlay()
 
     this.projectApi.footlist({}).then((footlist:any)=>{
       console.log(footlist)
@@ -67,6 +86,9 @@ export class Tab2Page extends AppBase {
 
   watchthis(list){
     console.log(list)
+    this.router.navigate(['newfootdetail'],{
+      queryParams: list
+    })
   }
 
   newRecom(event){
@@ -85,6 +107,7 @@ export class Tab2Page extends AppBase {
     this.isshow = true
     this.rec_time = ''
     this.footlist = []
+    this.teams = []
     console.log(event)
     event.target.classList.add('new-active')
     event.target.parentElement.parentElement.childNodes[0].childNodes[0].classList.remove('new-active')
@@ -112,11 +135,12 @@ export class Tab2Page extends AppBase {
           footlist[i].recom_time = footlist[i].recom_time
         }
 
-        if(footlist[i].recom_time <= this.nowTime){
-
+        if(footlist[i].recom_time < this.nowTime){
           this.footlist.push(footlist[i])
           for(let j=0;j<footlist[i].com_time.length;j++){
-            this.teams.push(footlist[i].com_time[j])
+          
+              this.teams.push(footlist[i].com_time[j])
+            
           }
 
         }
