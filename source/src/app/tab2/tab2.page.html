@@ -25,14 +25,14 @@
         </div>
     </div>
 
-    <div  *ngFor='let list of footlist;let i=index'>
+    <div  *ngFor='let list of footlist'>
       <div class="time-box text-center h4-5 margin-top-20" *ngIf='rec_time!=""'>
         {{rec_time}}
       </div>
       <div class="time-box text-center h4-5 margin-top-20" *ngIf='rec_time==""'>
           {{list.recom_time_dateformat}}
-        </div>
-      <table  class=" text-center" width='100%' cellspacing="0" cellpadding="0" >
+      </div>
+      <table  class="text-center" width='100%' cellspacing="0" cellpadding="0" >
         <thead class="bg-orange table-th ">
           <th>序号</th>
           <th>赛事</th>
@@ -40,18 +40,18 @@
           <th>客队</th>
           <th>推介</th>
         </thead>
-        <tbody>
-          <tr *ngFor='let item of list.com_time;let k=index' class="tr-border">
-            <td *ngIf='k==0' rowspan="2">NO.{{i+1}}</td>
-            <td *ngIf='k==0'>{{item.com_name}}</td>
-            <td *ngIf='k==1'>{{item.com_name}}</td>
-            <td *ngIf='k==0'>{{item.hostteam}}</td>
-            <td *ngIf='k==1'>{{item.hostteam}}</td>
-            <td *ngIf='k==0'>{{item.guestteam}}</td>
-            <td *ngIf='k==1'>{{item.guestteam}}</td>
+        <tbody *ngFor='let item of list.com_time;let i=index'>
+          <tr *ngFor='let lists of item.footteam;let k=index' class="tr-border h5">
+            <td *ngIf='k==0' rowspan="2" class="h5">NO.{{i+1}}</td>
+            <td *ngIf='k==0'>{{lists.com_name}}</td>
+            <td *ngIf='k==1'>{{lists.com_name}}</td>
+            <td *ngIf='k==0'>{{lists.hostteam}}</td>
+            <td *ngIf='k==1'>{{lists.hostteam}}</td>
+            <td *ngIf='k==0'>{{lists.guestteam}}</td>
+            <td *ngIf='k==1'>{{lists.guestteam}}</td>
             <td *ngIf='k==0 && isshow==false' rowspan="2"><a class="txt-red" (click)='watchthis(list)'>会员查看</a></td>
-            <td *ngIf='k==0 && isshow' style="border: none"><a class="txt-red" (click)='watchthis(list)'>{{item.result}}</a></td>
-            <td *ngIf='k==1 && isshow'><a class="txt-9" (click)='watchthis(list)'>{{item.result}}</a></td>
+            <td *ngIf='k==0 && isshow' style="border: none"><a class="txt-red" (click)='watchthis(list)'>{{lists.result}}</a></td>
+            <td *ngIf='k==1 && isshow'><a class="txt-9" (click)='watchthis(list)'>{{lists.result}}</a></td>
           </tr>
         </tbody>
       </table>

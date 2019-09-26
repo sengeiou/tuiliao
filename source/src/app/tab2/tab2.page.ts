@@ -30,21 +30,21 @@ export class Tab2Page extends AppBase {
       
   }
 
-  @ViewChild(IonSlides) slides: IonSlides;
+  // @ViewChild(IonSlides) slides: IonSlides;
  
 
-  autoPlay() {
-    this.slides.startAutoplay();
-  }
+  // autoPlay() {
+  //   this.slides.startAutoplay();
+  // }
 
-  swipeEvent(e){
-    this.autoPlay();
-  }
+  // swipeEvent(e){
+  //   this.autoPlay();
+  // }
 
 
-  ionViewWillLeave() {
-    this.slides.stopAutoplay();
-  }
+  // ionViewWillLeave() {
+  //   this.slides.stopAutoplay();
+  // }
 
 
   onMyLoad(){
@@ -58,7 +58,7 @@ export class Tab2Page extends AppBase {
   isshow = false
   onMyShow(){
 
-    this.autoPlay()
+    // this.autoPlay()
 
     this.projectApi.footlist({}).then((footlist:any)=>{
       console.log(footlist)
@@ -123,7 +123,9 @@ export class Tab2Page extends AppBase {
 
       month = month < 10 ? '0'+ month : month
       date = date < 10  ? '0'+ date : date
-      this.nowTime = year+ "-" + month + "-" + date;
+      // this.nowTime = year+ "-" + month + "-" + date;
+
+      this.nowTime = '2019-09-25'
 
       console.log(this.nowTime)
       for(let i=0;i<footlist.length;i++){
@@ -138,8 +140,10 @@ export class Tab2Page extends AppBase {
         if(footlist[i].recom_time < this.nowTime){
           this.footlist.push(footlist[i])
           for(let j=0;j<footlist[i].com_time.length;j++){
-          
-              this.teams.push(footlist[i].com_time[j])
+
+            for(let z=0;z<footlist[i].com_time[j].footteam.length;z++){
+              this.teams.push(footlist[i].com_time[j].footteam[z])
+            }
             
           }
 
