@@ -30,7 +30,7 @@ export class Tab2Page extends AppBase {
       
   }
 
-  @ViewChild('slide01',{static:true}) IonSlides; 
+  @ViewChild('slide01',{static:true}) slides: IonSlides; 
  
 
   onMyLoad(){
@@ -42,26 +42,16 @@ export class Tab2Page extends AppBase {
   teams = []
   rec_time = null
   isshow = false
+  imgs = null
+
+  ishuiyuan=false
 
   onMyShow(){
 
     // this.autoPlay()
-
+    
     this.projectApi.footlist({}).then((footlist:any)=>{
-      console.log(footlist)
-      // this.footlist = footlist
-
-      let day = new Date()
-      let year = day.getFullYear()
-      let  month :any = (day.getMonth()+1)
-      let date :any = day.getDate()
-
-      month = month < 10 ? '0'+ month : month
-      date = date < 10  ? '0'+ date : date
-      // this.nowTime = year+ "-" + month + "-" + date;
-
-      // this.rec_time = year+ "-" + month + "-" + date;
-      this.rec_time = '2019-09-26'
+     
       this.footlist = footlist.filter((item)=>{
         console.log(item)
         item.new = 'Y'
@@ -69,29 +59,46 @@ export class Tab2Page extends AppBase {
           item.com_date.splice(5,item.com_date.length-5)
         }
 
-        return item.recom_time > this.rec_time
+        for(let i=0;i<item.com_date.length;i++){
+          return item.com_date[i].zongresult=='W'
+        }
+
+
+      
       })
 
+      this.projectApi.lunbolist({name:'足智彩'}).then((lunbolist:any)=>{
+        console.log(lunbolist)
+        for(let j=0;j<lunbolist.length;j++){
+          this.imgs = lunbolist[j].banner
+        }
+
+        this.autoPlay()
+
+        console.log(this.imgs)
+      })
       
      
       console.log(this.footlist)
 
     })
-    
 
   }
 
   watchthis(list){
     console.log(list)
+
     this.router.navigate(['newfootdetail'],{
       queryParams: {
         id:list.id,
         new: list.new
       }
     })
+
   }
 
   newRecom(event){
+    this.footlist=null
     this.isshow = false
     console.log(event)
     event.target.classList.add('new-active')
@@ -101,12 +108,11 @@ export class Tab2Page extends AppBase {
 
   }
 
-  nowTime = null
 
   oldRecom(event){
     this.isshow = true
     this.teams = []
-    this.footlist = []
+    this.footlist =null
     console.log(event)
     event.target.classList.add('new-active')
     event.target.parentElement.childNodes[0].classList.remove('new-active')
@@ -115,17 +121,6 @@ export class Tab2Page extends AppBase {
       console.log(footlist)
       // this.footlist = footlist
       
-      let day = new Date()
-      let year = day.getFullYear()
-      let  month :any = (day.getMonth()+1)
-      let date :any = day.getDate()
-
-      month = month < 10 ? '0'+ month : month
-      date = date < 10  ? '0'+ date : date
-      // this.nowTime = year+ "-" + month + "-" + date;
-
-      // this.nowTime = '2019-09-26's
-
       this.footlist = footlist.filter((item)=>{
         item.new = 'N'
         console.log(item)
@@ -133,39 +128,33 @@ export class Tab2Page extends AppBase {
           item.com_date.splice(5,item.com_date.length-5)
         }
 
+        for(let i=0;i<item.com_date.length;i++){
+          return item.com_date[i].zongresult!='W'
+        }
         
-        // for(let k=0;k<item.com_date.length;k++){
-        //   if(item.com_date[k].result == 'Y'){
-        //     item.com_date[k].result = '命中'
-        //   }else if(item.com_date[k].result == 'N'){
-        //     item.com_date[k].result = '未中'
-        //   }
-
-        //   if(item.com_date[k].result2 == 'Y'){
-        //     item.com_date[k].result2 = '命中'
-        //   }else if(item.com_date[k].result2 == 'N'){
-        //     item.com_date[k].result2 = '未中'
-        //   }
-        // }
-
-
-        return item.recom_time <= this.rec_time
       })
-
-      
-
-      // for(let k=0;k<this.teams.length;k++){
-      //   if(this.teams[k].result == 'Y'){
-      //     this.teams[k].result = '命中'
-      //   }else if(this.teams[k].result == 'N'){
-      //     this.teams[k].result = '未中'
-      //   }
-      // }
 
 
       console.log(this.footlist)
     })
 
+  }
+
+  autoPlay() {
+    this.slides.startAutoplay();
+  }
+
+  swipeEvent(e){
+    this.autoPlay();
+  }
+
+
+  ionViewWillLeave() {
+    this.slides.stopAutoplay();
+  }
+
+  slideTouchEnd() {
+    this.slides.startAutoplay();
   }
 
 }

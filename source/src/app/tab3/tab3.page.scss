@@ -2,3 +2,68 @@
 @function rpx($px) {
     @return ($px * 100vw) / 750;
   }
+
+  .nav-box {
+    height: rpx(88);
+}
+
+.bg-y-o {
+  background: #FF9800;
+}
+
+.success {
+  display: inline-block;
+  width: rpx(120);
+  height: rpx(44);
+  background: #B7C2FB;
+  border-radius: rpx(20);
+  text-align: center;
+  line-height: rpx(44);
+  color: #3F51B5;
+  font-weight: bold;
+  margin-right: rpx(10);
+}
+
+.winningnum {
+  display: inline-block;
+  width: rpx(108);
+  height: rpx(44);
+  text-align: center;
+  line-height: rpx(44);
+  border-radius: rpx(20);
+  background: #FDB9BB;
+  color: #E51C23;
+  font-weight: bold;
+}
+
+.txt-red-r {
+  color: #E51C23;
+}
+
+.txt-gray-d {
+  color: #D2D2D2;
+}
+
+.content {
+  width: rpx(690);
+  // height: rpx(162);
+  padding-top: rpx(20);
+  span {
+    font-weight: bolder;
+    color: #8A8A8A;
+    margin-right: rpx(30);
+  }
+  
+}
+.texu {
+  position: absolute;
+  right: 6%
+}
+
+.txt-b-14 {
+  color: #143779;
+}
+
+.bor-bot-b {
+  border-bottom: rpx(2) solid #101010;
+}

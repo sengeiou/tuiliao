@@ -1,25 +1,18 @@
 
-
-    <!-- <div class="lunbo"  >
-        <img [src]="uploadpath+'resource/'+res.title_pic" />
-        <img [src]="uploadpath+'resource/'+res.huiyuan" /> -->
-
-        <ion-slides class="lunbo" pager="true"  [options]="slidesOpts"  #slide01  (ionSlideTouchEnd)= "slideTouchEnd()">
-          <!-- <ion-slide class="ion_slide" *ngFor="let item of slidesList"> -->
-
-            <img [src]="uploadpath+'resource/'+res.title_pic">
-            <img [src]="uploadpath+'resource/'+res.huiyuan" />
+<ion-content >
+        <ion-slides (swipe)="swipeEvent($event)"
+         #slide01  pager loop="true" autoplay="2000"  (ionSlideTouchEnd)= "slideTouchEnd()">
+              <ion-slide  *ngFor='let img of imgs'>
+                  <img src="{{uploadpath}}lunbo/{{img.lunbo}}">
+                </ion-slide>
         </ion-slides>
 
-          <!-- </ion-slide> -->
-    <!-- </div> -->
       <div class="flex-row flex-center bg-y nav-box bor_bot-b ">
-        <div class="margin-left-20 margin-right-20"><img src="{{uploadpath}}resource/{{res.kuaibao}}" class="icon-30"/></div>
+        <div class="margin-left-20 margin-right-20"><img src="{{uploadpath}}resource/{{res.kuaibao}}" class="icon-40"/></div>
         
         <div><span class="h5 txt-bold">最新最猛最火热的推荐尽在大赢家！！！</span>  </div>
       </div>
 
-<ion-content>
 
     <div class="flex-row text-center bor_bot-b">
       <button class="flex-1 new-active padding-tb txt-t-g h4" (click)='newRecom($event)'>最新推介</button>
@@ -30,37 +23,37 @@
       <div class="time-box text-center h4-5 txt-white txt-bold " >
         {{list.recom_time}}
       </div>
-      <table  class="text-center" width='100%' cellspacing="0" cellpadding="0" >
+      <table  class="text-center" width='100%'  style="table-layout:fixed;" cellspacing="0" cellpadding="0" >
         <thead class="bg-th table-th txt-white">
-          <th >序号</th>
-          <th>赛事</th>
-          <th>主队</th>
-          <th>客队</th>
-          <th>推介</th>
+          <th width="10%">序号</th>
+          <th width="20%">赛事</th>
+          <th width="30%">主队</th>
+          <th  width="30%">客队</th>
+          <th  width="15%">推介</th>
         </thead>
         <tbody  *ngFor='let item of list.com_date;let i=index'>
-          <tr  class="tr-border h5 txt-bold">
-            <td  class="h5">NO.{{i+1}}</td>
-            <td >
+          <tr  class="tr-border h5 txt-bold text-center">
+            <td  width="10%" class="h5">NO.{{i+1}}</td>
+            <td  width="20%">
                 <div>{{item.com_name_name}}</div>
                 <div>{{item.com_name2_name}}</div>
             </td>
-            <td >
+            <td  width="30%">
                 <div>{{item.hostteam_name}}</div>
                 <div>{{item.host2_name}}</div>
             </td>
-            <td >
+            <td  width="30%">
                 <div>{{item.guestteam_name}}</div>
                 <div>{{item.guest2_name}}</div>
             </td>
-            <td  *ngIf='isshow==false'>
-              <div><a  class="txt-red" (click)='watchthis(list)'>等待结果</a></div>
-              <div *ngIf='isshow'>
+            <td  width="10%" *ngIf='isshow==false'>
+              <span><a  class="txt-red" (click)='watchthis(list)'>等待<br>结果</a></span>
+              <!-- <div *ngIf='isshow'>
                   <a  class="txt-red" (click)='watchthis(list)'>{{item.result}}</a>
                   <a  class="txt-red" (click)='watchthis(list)'>{{item.result2}}</a>
-              </div>
+              </div> -->
             </td>
-            <td  *ngIf='isshow'>
+            <td  width="10%" *ngIf='isshow'>
                 <div>
                     <a  *ngIf='item.result=="Y"' class="txt-red" (click)='watchthis(list)'>命中</a>
                     <a  *ngIf='item.result=="N"'  class="txt-9" (click)='watchthis(list)'>未中</a>
@@ -72,6 +65,24 @@
               </td>
         </tbody>
       </table>
+    </div>
+
+    <div *ngIf='footlist==null'  class="zanwu">
+      <img src="{{uploadpath}}resource/{{res.zanwuneirong}}"/>
+      <div>
+          暂无推介<br>
+          敬请期待
+      </div>
+    </div>
+
+    <div class="modal-mask" *ngIf='ishuiyuan'></div>
+    <div class="modal-dialog" *ngIf='ishuiyuan'>
+          <img src="{{uploadpath}}resource/{{res.	huiyuan}}" />
+          <div>
+              <button class="btn2">尊享独家猛料</button>
+              <button class="btn1 ">立即开通VIP</button><br>
+              <button class="btn2 ">残忍拒绝</button>  
+          </div> 
     </div>
 
 </ion-content>

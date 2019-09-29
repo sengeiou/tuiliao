@@ -2,7 +2,12 @@
   @return ($px * 100vw) / 750;
 }
 
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
+
+
+.nav-box {
+  height: rpx(88);
+}
+
+.bg-y {
+  background: #FFD500;
 }

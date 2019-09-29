@@ -357,4 +357,21 @@ export class AppBase implements OnInit {
     backtotop(){
         //var bid=
     }
+
+    getchangedate(date){
+        return date.replace(/-/g,'/')
+    }
+
+    getchangedatetime(date){
+        date = date.slice(2,date.length-3)
+        return date.replace(/-/g,'/')
+    }
+
+    getchangetime(date){
+        date = date.slice(5,date.length-3)
+        return date.replace(/-/g,'/')
+    }
+    
+
+    
 }

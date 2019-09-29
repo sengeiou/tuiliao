@@ -6,12 +6,13 @@ import { NavController, ModalController, ToastController, AlertController, NavPa
 import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
+import { ProjectApi } from 'src/providers/project.api';
 
 @Component({
   selector: 'app-forcopy',
   templateUrl: './forcopy.page.html',
   styleUrls: ['./forcopy.page.scss'],
-  providers:[MemberApi]
+  providers:[MemberApi,ProjectApi]
 })
 export class ForcopyPage  extends AppBase {
 
@@ -22,7 +23,9 @@ export class ForcopyPage  extends AppBase {
     public alertCtrl: AlertController,
     public activeRoute: ActivatedRoute,
     public sanitizer: DomSanitizer,
-    public memberApi:MemberApi) {
+    public memberApi:MemberApi,
+    public projectApi:ProjectApi,
+    ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
       
@@ -32,7 +35,11 @@ export class ForcopyPage  extends AppBase {
     //参数
     this.params;
   }
+
+
   onMyShow(){
+
+    
 
   }
 }
