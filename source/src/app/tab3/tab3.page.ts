@@ -40,7 +40,7 @@ export class Tab3Page extends AppBase {
 
   onMyShow(){
 
-    this.projectApi.lunbolist({name:'足智彩'}).then((lunbolist:any)=>{
+    this.projectApi.lunbolist({name:'推介'}).then((lunbolist:any)=>{
       console.log(lunbolist)
       for(let j=0;j<lunbolist.length;j++){
         this.imgs = lunbolist[j].banner

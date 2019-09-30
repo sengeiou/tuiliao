@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'newfootdetail', loadChildren: './new-foot-detail/new-foot-detail.module#NewFootDetailPageModule' },
   { path: 'recomdetail', loadChildren: './recom-detail/recom-detail.module#RecomDetailPageModule' },
+  { path: 'pay-recom-detail', loadChildren: './pay-recom-detail/pay-recom-detail.module#PayRecomDetailPageModule' },
 ];
 @NgModule({
   imports: [

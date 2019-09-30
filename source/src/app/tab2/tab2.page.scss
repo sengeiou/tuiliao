@@ -8,10 +8,15 @@
 }
 
 .lunbo {
-    width: 100vw;
-    height: rpx(400);
+    width: 100vw; 
+    height: rpx(100)
 }
 
+.imgs{
+    width: rpx(750); 
+    height: rpx(100);
+}
+    
 .new-active {
     background: #79AF4E;
     color: #fff !important;
@@ -84,6 +89,9 @@ td:last-of-type {
 .bg-th {
     background: #8A8A8A;
 }
+
+
+
 
 .zanwu {
     width: 100vw;

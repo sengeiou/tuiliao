@@ -42,7 +42,7 @@ export class Tab1Page extends AppBase {
  imgs = null;
   onMyShow(){
 
-    this.projectApi.lunbolist({name:'足智彩'}).then((lunbolist:any)=>{
+    this.projectApi.lunbolist({name:'赛马'}).then((lunbolist:any)=>{
       console.log(lunbolist)
       for(let j=0;j<lunbolist.length;j++){
         this.imgs = lunbolist[j].banner
@@ -54,6 +54,27 @@ export class Tab1Page extends AppBase {
     })
 
   }
+
+  newRecom(event){
+ 
+    console.log(event)
+    event.target.classList.add('new-active')
+    event.target.parentElement.childNodes[1].classList.remove('new-active')
+    
+    this.onMyShow()
+
+  }
+
+
+  oldRecom(event){
+
+    console.log(event)
+    event.target.classList.add('new-active')
+    event.target.parentElement.childNodes[0].classList.remove('new-active')
+
+  
+  }
+
 
   autoPlay() {
     this.slides.startAutoplay();

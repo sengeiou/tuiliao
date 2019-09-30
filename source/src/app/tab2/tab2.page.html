@@ -1,11 +1,18 @@
 
+
+
+
+
 <ion-content >
-        <ion-slides (swipe)="swipeEvent($event)"
-         #slide01  pager loop="true" autoplay="2000"  (ionSlideTouchEnd)= "slideTouchEnd()">
-              <ion-slide  *ngFor='let img of imgs'>
-                  <img src="{{uploadpath}}lunbo/{{img.lunbo}}">
-                </ion-slide>
-        </ion-slides>
+
+
+    <ion-slides   (swipe)="swipeEvent($event)"
+    #slide01  pager loop="true" autoplay="2000"  (ionSlideTouchEnd)= "slideTouchEnd()">
+         <ion-slide  *ngFor='let img of imgs'>
+             <img src="{{uploadpath}}lunbo/{{img.lunbo}}"  class="">
+           </ion-slide>
+   </ion-slides>
+
 
       <div class="flex-row flex-center bg-y nav-box bor_bot-b ">
         <div class="margin-left-20 margin-right-20"><img src="{{uploadpath}}resource/{{res.kuaibao}}" class="icon-40"/></div>

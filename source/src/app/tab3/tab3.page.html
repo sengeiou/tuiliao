@@ -16,9 +16,9 @@
 
   <div *ngFor='let list of recomlist' class="margin-top-30 bor-bot-b" (click)='tiaozhuan(list.id)'>
     <div class="flex-row">
-      <div class="flex-1"><img src="{{uploadpath}}recommend/{{list.photo}}" class="icon-60 radius-50  margin-20"></div>
+      <div class="flex-1"><img src="{{uploadpath}}user/{{list.user_photo}}" class="icon-60 radius-50  margin-20"></div>
       <div class="flex-2 txt-bold">
-        <div class="h4-5 txt-bold margin-bottom-20">{{list.name}}</div>
+        <div class="h4-5 txt-bold margin-bottom-20">{{list.user_id_name}}</div>
         <span class="h6 success">{{list.success}}</span>
         <span class="h6 winningnum">{{list.winningnum}}</span>
       </div>
@@ -30,8 +30,8 @@
     <div class="margin-left-20 margin-bottom-20 h5 txt-bold">{{list.biaoti}}</div>
     <div class="bg-gray margin-left-20 content">
       <div class="padding-left-20 padding-bottom-20 h5" *ngFor='let item of list.latelycom'>
-        <span class="">{{item.name}}</span>
-        <span class="">{{item.hostteam}}VS{{item.guestteam}}</span>
+        <span class="">{{item.name_name}}</span>
+        <span class="">{{item.hostteam_name}}VS{{item.guestteam_name}}</span>
         <span class="texu">{{item.com_time}}</span>
       </div>
     </div>
