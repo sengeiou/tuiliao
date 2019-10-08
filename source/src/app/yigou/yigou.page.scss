@@ -1,0 +1,33 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+}
+
+.bg-nav {
+    background: #143779;
+    height: rpx(104);
+}
+
+.bg-gray-f0 {
+    width: 100vw;
+    height: 100vh;
+    background: #F0F2F5;
+    padding-top: rpx(40);
+}
+
+.yigou {
+    width: rpx(700);
+    height: rpx(230);
+    background: #ffffff;
+    border-radius: rpx(20);
+    padding-top: rpx(20);
+    margin: 0 auto;
+    padding-left: rpx(20);
+    position: relative;
+    .tuobiao {
+        position: absolute;
+        top: 40%;
+        border-radius: 50%;
+    }
+
+
+}

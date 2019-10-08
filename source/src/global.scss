@@ -177,6 +177,7 @@ textarea {
     background: #ffc200;
 }
 
+
 .bg-black {
     background: black;
 }
@@ -441,6 +442,10 @@ button[disabled][type=primary] {
     padding-left: rpx(50);
 }
 
+.padding-left-100{
+    padding-left: rpx(100);
+}
+
 .padding-top-5 {
     padding-top: rpx(5);
 }
@@ -521,6 +526,10 @@ button[disabled][type=primary] {
     margin: rpx(40);
 }
 
+.margin-top-10 {
+    margin-top: rpx(10);
+}
+
 .margin-top-20 {
     margin-top: rpx(20);
 }
@@ -593,12 +602,9 @@ button[disabled][type=primary] {
     height: rpx(150);
 }
 
-.margin-top-10 {
-    margin-top: rpx(20);
-}
 
 .margin-top-5 {
-    margin-top: rpx(10);
+    margin-top: rpx(5);
 }
 
 .margin-left-5 {
@@ -639,6 +645,10 @@ button[disabled][type=primary] {
 
 .margin-left-50 {
     margin-left: rpx(50);
+}
+
+.margin-left-70 {
+    margin-left: rpx(70);
 }
 
 .margin-right-15 {

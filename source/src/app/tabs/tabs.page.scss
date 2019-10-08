@@ -1,1 +1,11 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
 
+.tab_footer {
+    // color: #B9B9B9;
+    background: #F9F8F8;
+    // :active {
+    //     color: #000000;
+    // }
+}   

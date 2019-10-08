@@ -1,0 +1,89 @@
+<ion-header>
+  <div class="bg-nav txt-white">
+        <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+    <ion-title>推介详情</ion-title>
+  </div>
+</ion-header>
+
+<ion-content  >
+  <div  *ngFor='let list of footdetail'>
+    <div class="box1 flex-row bor_top-b">
+      <span class="flex-1 margin-left-20 h4-5 txt-white txt-bold">{{list.recom_time}}</span>
+      <span class="flex-1 h4-5 text-right margin-right-20 txt-white txt-bold" (click)='shouqi(list.id)'>
+         收起详情 
+          <img *ngIf='list.isshow==false && list.show==false' src="{{uploadpath}}resource/{{res.arrowright}}" class="icon-15 img-margin"/>
+          <img *ngIf='list.isshow && list.show' src="{{uploadpath}}resource/{{res.arrowbottom}}" class="icon-15 img-margin"/>
+      </span>
+    </div>
+    <div *ngIf='list.isshow && list.show'>
+      <div  *ngFor='let item of list.com_date;let i=index'>
+        <div class="flex-row text-center h4-5 txt-bold">
+          <div class="flex-1 bg-g-96">
+            <span class="txt-white">NO.{{i+1}}</span>
+            <ul class="bg-yy txt-4 h5 li-diyilie">
+              <li>时间</li>
+              <li>赛事</li>
+              <li>主队</li>
+              <li>客队</li>
+              <li>玩法</li>
+              <li>心水</li>
+              <li>赔率</li>
+              <li>2x1过关</li>
+              <li *ngIf='new=="N"'>赛果</li>
+              <li *ngIf='new=="N"'>结果</li>
+            </ul>
+          </div>
+          <div>
+            
+          </div>
+          <div class="flex-2 bg-g-96">
+            <div >
+              <span  class="txt-white bor-r-b" >第一场</span>
+              <ul  class="bg-white h5">
+                <li>{{item.foot_time}}</li>
+                <li>{{item.com_name_name}}</li>
+                <li>{{item.hostteam_name}}</li>
+                <li>{{item.guestteam_name}}</li>
+                <li>{{item.gamemethod_name}}</li>
+                <li class="txt-14">{{item.xinshui_name}}</li>
+                <li>{{item.odds}}</li>
+                <li><div class="texu">{{item.txo}}</div></li>
+                <li *ngIf='new=="N"'>{{item.com_result}}</li>
+                <li *ngIf='new=="N"'>
+                  <span *ngIf='item.result=="Y"' class="txt-red">命中</span>
+                  <span *ngIf='item.result=="N"' class="txt-9">未中</span>
+                  <img *ngIf='item.zongresult=="Y"' src="{{uploadpath}}resource/{{res.mingzhong}}" class="icon-60"/>
+                  <img *ngIf='item.zongresult=="N"' src="{{uploadpath}}resource/{{res.weizhong}}" class="icon-60" />
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="flex-2 bg-g-96" > 
+            <div >
+              <span  class="txt-white bor-r-b">第二场</span>
+              <ul  class="bg-white h5">
+                  <li>{{item.foot_time2}}</li>
+                  <li>{{item.com_name2_name}}</li>
+                  <li>{{item.host2_name}}</li>
+                  <li>{{item.guest2_name}}</li>
+                  <li>{{item.gamemethod_name}}</li>
+                  <li class="txt-14">{{item.xinshui2_name}}</li>
+                  <li >{{item.odds2}}</li>
+                  <li class="texu-bor"></li>
+                  <li *ngIf='new=="N"'>{{item.com_result2}}</li>
+                  <li *ngIf='new=="N"'>
+                    <span *ngIf='item.result2=="Y"' class="txt-red">命中</span>
+                    <span *ngIf='item.result2=="N"' class="txt-9">未中</span>
+                  </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+  
+    </div>
+    </div>
+    
+   </div>
+</ion-content>

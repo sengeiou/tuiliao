@@ -6,15 +6,14 @@ import { NavController, ModalController, ToastController, AlertController, NavPa
 import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
-import { ProjectApi } from 'src/providers/project.api';
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss'],
-  providers:[MemberApi,ProjectApi]
+  selector: 'app-login',
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
+  providers:[MemberApi]
 })
-export class TabsPage extends AppBase {
+export class LoginPage extends AppBase {
 
   constructor(public router: Router,
     public navCtrl: NavController,
@@ -23,9 +22,7 @@ export class TabsPage extends AppBase {
     public alertCtrl: AlertController,
     public activeRoute: ActivatedRoute,
     public sanitizer: DomSanitizer,
-    public memberApi:MemberApi,
-    public projectApi:ProjectApi,
-    ) {
+    public memberApi:MemberApi) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
       
@@ -35,11 +32,7 @@ export class TabsPage extends AppBase {
     //参数
     this.params;
   }
-
-
   onMyShow(){
-
-    
 
   }
 }

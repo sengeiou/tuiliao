@@ -9,12 +9,12 @@ import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss'],
+  selector: 'app-yigou',
+  templateUrl: './yigou.page.html',
+  styleUrls: ['./yigou.page.scss'],
   providers:[MemberApi,ProjectApi]
 })
-export class TabsPage extends AppBase {
+export class YigouPage extends AppBase {
 
   constructor(public router: Router,
     public navCtrl: NavController,
@@ -40,6 +40,13 @@ export class TabsPage extends AppBase {
   onMyShow(){
 
     
+  }
 
+  tiaozhuan() {
+    this.router.navigate(['pay-recom-detail'],{
+      queryParams:{
+        id: 2
+      }
+    })
   }
 }

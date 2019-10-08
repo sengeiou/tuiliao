@@ -52,6 +52,8 @@ export class AppBase implements OnInit {
     public firseonshow = true;
     public scrolltop = 0;
     public headerscroptshow = 0;
+    public static is_mongceng = false;
+    public static IsLogin = false;
 
     static Current = null;
     currentpage = "";
@@ -207,7 +209,7 @@ export class AppBase implements OnInit {
     navigate(pagename, param = {}, checkLogin = false) {
         if (checkLogin == true) {
             if (this.MemberInfo == null) {
-                this.navigate("mobilelogin");
+                this.navigate("login");
                 return;
             }
         }
@@ -341,7 +343,7 @@ export class AppBase implements OnInit {
     }
 
     tryLogin() {
-        this.showModal("MobileloginPage", {});
+        this.showModal("LoginPage", {});
     }
 
 
@@ -373,5 +375,13 @@ export class AppBase implements OnInit {
     }
     
 
-    
+    getDate(date){
+        let arr = date.split('-')
+        let newArr = []
+        for(let i=0;i<arr.length;i++){
+            newArr[arr.length-i] = arr[i]
+        }
+
+        return newArr.join("-").replace("-",'')
+    }
 }

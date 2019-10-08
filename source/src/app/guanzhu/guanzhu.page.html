@@ -1,0 +1,58 @@
+<ion-header>
+    <div class="bg-nav txt-white">
+          <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+          <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+      <ion-title>我的关注</ion-title>
+    </div>
+  </ion-header>
+
+<ion-content>
+  <div class="bg-gray-f0">
+
+      <div class="yigou" (click)='tiaozhuan()'>
+        <div class="flex-row">
+          <div class="flex-1">
+            <img src="{{uploadpath}}resource/{{res.mine}}" class="icon-40 tuobiao" />
+          </div>
+          <div class="flex-3 margin-top-60">
+              每日一推
+          </div>
+          <div class="flex-3 margin-top-20">
+              <div class="text-center margin-bottom-20">
+                  <img src="{{uploadpath}}resource/{{res.jian}}" class="jia"/>
+                  <span  class="quguan txt-bold">取关</span>
+              </div>
+              <div>
+                  <span class="h6 txt-gray-d2 margin-right-20">近期战绩</span>
+                  <span class="txt-red-e5 h2 txt-bold">90%</span>
+              </div>
+             
+          </div>
+        </div>
+      </div>
+
+      <div class="yigou" (click)='tiaozhuan()'>
+          <div class="flex-row">
+            <div class="flex-1">
+              <img src="{{uploadpath}}resource/{{res.mine}}" class="icon-40 tuobiao" />
+            </div>
+            <div class="flex-3 margin-top-60">
+                每日一推
+            </div>
+            <div class="flex-3 margin-top-20">
+                <div class="text-center margin-bottom-20">
+                    <img src="{{uploadpath}}resource/{{res.jian}}" class="jia"/>
+                    <span  class="quguan txt-bold">取关</span>
+                </div>
+                <div>
+                    <span class="h6 txt-gray-d2 margin-right-20">近期战绩</span>
+                    <span class="txt-red-e5 h2 txt-bold">90%</span>
+                </div>
+               
+            </div>
+          </div>
+        </div>
+
+  </div>
+  
+</ion-content>

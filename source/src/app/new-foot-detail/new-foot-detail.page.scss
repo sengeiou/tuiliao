@@ -1,0 +1,113 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+}
+
+.bg-nav {
+    background: #143779;
+    height: rpx(104);
+}
+
+.line-height-104 {
+    line-height: rpx(104);
+}
+
+.box1 {
+    height: rpx(92);
+    background: #444444;
+    line-height:  rpx(92);
+}
+
+
+.width-1 {
+    width: 20%;
+}
+
+.width-2 {
+    width: 40%;
+}
+
+.width-2 {
+    width: 40%;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    
+    li {
+        list-style: none;
+        // background: #ffffff !important;
+        width: 100%;
+        height: rpx(72);
+        line-height: rpx(72);
+        border-bottom: rpx(1) solid #000;
+        font-weight: bold;
+        border-left: rpx(1) solid #000;
+        position: relative;
+        img {
+            position: absolute;
+            left: 80%;
+            bottom: 10%;
+        }
+    }
+
+}
+
+.li-diyilie {
+    li{
+        border-left: rpx(1) solid #ccc !important;
+    }
+}
+
+
+
+.txt-4 {
+    color: #444444;
+}
+
+.bg-g-96{
+    background: #8A8A8A;
+    
+    span {
+        width: 100%;
+        height: rpx(72);
+        line-height: rpx(72);
+    }
+}
+
+span {
+    display: inline-block;
+}
+
+.img-margin {
+   margin-bottom: rpx(-5);
+}   
+
+.shouqi {
+    height: 0;
+}
+
+.shouqi:active {
+    height: 100VH;
+}
+
+.bg-yy{
+    background: #F7E3B0;
+}
+
+.texu-bor{
+    border-left:none !important;
+}
+
+.texu {
+    position: absolute;
+    left: 97%;
+}
+
+.txt-14 {
+    color: #143779;
+}
+
+.bor-r-b {
+    border-left: rpx(1) solid #000;
+}

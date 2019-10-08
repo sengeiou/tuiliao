@@ -1,0 +1,61 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+}
+
+.bg-nav {
+    background: #143779;
+    height: rpx(104);
+}
+
+.bg-gray-f0 {
+    width: 100vw;
+    height: 100vh;
+    background: #F0F2F5;
+    padding-top: rpx(40);
+}
+
+.yigou {
+    width: rpx(700);
+    height: rpx(200);
+    background: #ffffff;
+    border-radius: rpx(20);
+    padding-top: rpx(20);
+    margin: 0 auto;
+    margin-bottom: rpx(40);
+    padding-left: rpx(20);
+    position: relative;
+    .tuobiao {
+        position: absolute;
+        top: 30%;
+        border-radius: 50%;
+    }
+
+
+}
+
+.jia {
+    width: rpx(15);
+    height: rpx(15);
+    font-weight: bold;
+    position: absolute;
+    right: 26%;
+    top: 26%;
+  } 
+
+
+  .quguan {
+
+    background: #143779;
+    color: #fff;
+    padding: rpx(4) rpx(20) rpx(4) rpx(36);
+    border-radius: rpx(10);
+
+  }
+
+.txt-gray-d2 {
+    color: #D2D2D2;
+}
+
+.txt-red-e5 {
+    color: #E51C23;
+}

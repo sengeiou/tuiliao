@@ -1,0 +1,53 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+  .person {
+    width: 100vw;
+    height: rpx(182);
+    background: #143779;
+    div {}
+  }
+
+  .txt-gray-bf {
+    color:#BFBFBF;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    .info {
+      width: 100vw;
+      height: rpx(119);
+      line-height: rpx(119);
+      border-bottom: rpx(3) solid #F9F8F8;
+      position: relative;
+      .imgs {
+        position: absolute;
+        right: 9%;
+        top: 30%;
+      }
+
+      img {
+        vertical-align: middle;
+        
+      }
+
+      .tuobiao {
+        vertical-align: baseline;
+      }
+    }
+
+    .line {
+      width: 100vw;
+      height: rpx(6);
+      background: #F9F8F8;
+    }
+
+  }
+
+  .txt-blue-14 {
+    color: #143779;
+  }
+  

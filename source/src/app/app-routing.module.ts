@@ -7,6 +7,8 @@ const routes: Routes = [
   { path: 'newfootdetail', loadChildren: './new-foot-detail/new-foot-detail.module#NewFootDetailPageModule' },
   { path: 'recomdetail', loadChildren: './recom-detail/recom-detail.module#RecomDetailPageModule' },
   { path: 'pay-recom-detail', loadChildren: './pay-recom-detail/pay-recom-detail.module#PayRecomDetailPageModule' },
+  { path: 'yigou', loadChildren: './yigou/yigou.module#YigouPageModule' },
+  { path: 'guanzhu', loadChildren: './guanzhu/guanzhu.module#GuanzhuPageModule' },
 ];
 @NgModule({
   imports: [

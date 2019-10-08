@@ -20,26 +20,59 @@
     <button class="flex-1 new-active padding-tb txt-blue-14 h4" (click)='newRecom($event)'>最新推介</button>
     <button class="flex-1 padding-tb txt-blue-14 h4" (click)='oldRecom($event)'> 往期推介</button>
   </div>
-
   
-  <div>
-    <div class="time-box h4-5 bor_bot-b" >
-      <div class="h4-5 txt-white txt-bold padding-top-20 padding-bottom-20 text-center">赛马日：2019/08/12</div>
-      <div class="h6 txt-white txt-bold padding-left-30">说明：绿色框表示首选，黄色框表示备选，6中4即为全中</div>
+  
+  <div *ngIf='horselist!=null'>
+    <div style='width: 100vw; height:50px;'><img src="{{uploadpath}}resource/{{res.guanggao}}"/></div>
+    <div *ngFor='let list of horselist'>
+        <div class="time-box h4-5 bor_bot-b"  *ngIf='list.isnew=="是"'>
+          <div class="h4-5 txt-white txt-bold padding-top-20 padding-bottom-20 text-center">赛马日：{{list.horse_time}}</div>
+          <div class="h6 txt-white txt-bold padding-left-30">说明：绿色框表示首选，黄色框表示备选，6中4即为全中</div>
+        </div>
+        <div class="time-box2 h4-5 bor_bot-b" *ngIf='list.isnew=="否"'>
+          <div class="h4-5 txt-white txt-bold padding-top-20 padding-bottom-20 text-center">赛马日：{{list.horse_time}}</div>
+          <div class="h6 txt-white txt-bold padding-left-30">说明：绿色框表示首选，黄色框表示备选，6中4即为全中</div>
+          <div class="h6 txt-white txt-bold padding-left-100">红色字表示头3名，橙色字表示第4名</div>
+        </div>
+
+      <table class="" width='100%'>
+        <thead class="biaotou bor-bot-a h5">
+          <th>场&nbsp;&nbsp;&nbsp;次</th>
+          <th>推&nbsp;介&nbsp;马&nbsp;匹&nbsp;号&nbsp;码</th>
+          <th>命中率</th>
+        </thead>
+        <tbody *ngFor='let item of list.horse'>
+          <tr class="saima">
+            <td>第&nbsp;{{item.changci}}&nbsp;场</td>
+            <td class="flex-row">
+              <div class="icon-20 bg-green bor_bak txt-white h5 " [ngStyle]="{'color':item.onenumcolor}">{{item.onenum}}</div>
+              <div class="icon-20 bg-green bor_bak txt-white h5 " [ngStyle]="{'color':item.twonumcolor}">{{item.twonum}}</div>
+              <div class="icon-20 bg-green bor_bak txt-white h5 " [ngStyle]="{'color':item.threenumcolor}">{{item.threenum}}</div>
+              <div class="icon-20 bg-green bor_bak txt-white h5"  [ngStyle]="{'color':item.fournumcolor}">{{item.fournum}}</div>
+              <div class="icon-20 bg-orange bor_bak txt-white h5" [ngStyle]="{'color':item.fivenumcolor}">{{item.fivenum}}</div>
+              <div class="icon-20 bg-orange bor_bak txt-white h5" [ngStyle]="{'color':item.sixnumcolor}">{{item.sixnum}}</div>
+            </td>
+            <td *ngIf='item.hitrate!==""' class="txt-red">{{item.hitrate}}%</td>
+            <td *ngIf='item.hitrate==""' class="h6 txt-gray-8a">等待结果</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="footed">
+            <td>共&nbsp;10&nbsp;场</td>
+            <td>整体命中率</td>
+            <td>{{list.overallhitrate}}%</td>
+          </tr>
+        </tfoot>
+      </table>
+
     </div>
   </div>
 
-  <table class="" width='100%'>
-    <thead class="biaotou bor-bot-a">
-      <th>场次</th>
-      <th>推&nbsp;介&nbsp;马&nbsp;匹&nbsp;号&nbsp;码</th>
-      <th>命中率</th>
-    </thead>
-    <tbody>
-      <tr>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div *ngIf='horselist==null'   class="zanwu">
+      <img src="{{uploadpath}}resource/{{res.zanwuneirong}}"/>
+      <div class="txt-bold">
+          暂无推介, 敬请期待
+      </div>
+  </div>
 
 </ion-content>

@@ -9,12 +9,12 @@ import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 
 @Component({
-  selector: 'app-tabs',
-  templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss'],
+  selector: 'app-guanzhu',
+  templateUrl: './guanzhu.page.html',
+  styleUrls: ['./guanzhu.page.scss'],
   providers:[MemberApi,ProjectApi]
 })
-export class TabsPage extends AppBase {
+export class GuanzhuPage extends AppBase {
 
   constructor(public router: Router,
     public navCtrl: NavController,
