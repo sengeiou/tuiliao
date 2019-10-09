@@ -1,0 +1,23 @@
+<ion-header>
+    <div class="bg-nav txt-white">
+          <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+          <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+      <ion-title>帮助反馈</ion-title>
+    </div>
+  </ion-header>
+
+<ion-content>
+  <div class="">
+    <div class="liuyan"> 
+        <div class="top h5 txt-bold">
+         帮助反馈
+        </div>
+        <div class="">
+          <textarea  [(ngModel)]="content"  class="textarea h5" placeholder='此处输入您的宝贵意见...'></textarea>
+        </div>
+        <div (click)='send()' class="save h4-5 text-center txt-bold">
+            发送
+          </div>
+      </div>
+    </div>
+</ion-content>

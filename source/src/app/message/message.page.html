@@ -1,0 +1,24 @@
+<ion-header>
+    <div class="bg-nav txt-white">
+          <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+          <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+      <ion-title>消息通知</ion-title>
+    </div>
+  </ion-header>
+
+<ion-content>
+  <div class="bg-gray-f0">
+    <div class="msg" *ngFor='let item of messagelist'>
+      <div class="content flex-row">
+        <div class="flex-1 text-center margin-top-10">
+          <img *ngIf='item.mokuai_name=="赛马"' src="{{uploadpath}}resource/{{res.saima}}" class="icon-25"/>
+          <img *ngIf='item.mokuai_name=="足智彩"' src="{{uploadpath}}resource/{{res.zuzhicai}}" class="icon-25"/>
+          <img *ngIf='item.mokuai_name=="推介"' src="{{uploadpath}}resource/{{res.tuijian}}" class="icon-25"/>
+          <img *ngIf='item.mokuai_name==""' src="{{uploadpath}}resource/{{res.message}}" class="icon-25"/>
+        </div>
+        <div class="flex-5 h5 txt-bold margin-top-10">{{item.content}}</div>
+      </div>
+      <div class="time text-right h6 margin-right-20">{{item.updated_date}}</div>
+    </div>
+  </div>
+</ion-content>

@@ -6,7 +6,11 @@
     width: 100vw;
     height: rpx(182);
     background: #143779;
-    div {}
+    .touxiang {
+      position: absolute;
+      top: 15%;
+      left: 2%;
+    }
   }
 
   .txt-gray-bf {
@@ -23,6 +27,7 @@
       line-height: rpx(119);
       border-bottom: rpx(3) solid #F9F8F8;
       position: relative;
+      outline: none;
       .imgs {
         position: absolute;
         right: 9%;

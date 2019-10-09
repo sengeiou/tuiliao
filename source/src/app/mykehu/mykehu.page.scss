@@ -1,0 +1,39 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+  .yaoqingma {
+      width: 100vw;
+      height: rpx(116);
+      background: #fff;
+      padding-left: rpx(30);
+      line-height: rpx(116);
+      img {
+          vertical-align: middle;
+      }
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+        height: rpx(100);
+        padding-left: rpx(30);
+        background: #fff;
+        margin-bottom: rpx(6);
+        .qiubi {
+            line-height: rpx(100);
+        }
+    }
+}
+
+.yongjin {
+    width: 100vw;
+    height: rpx(116);
+    line-height: rpx(116);
+}
+
+.txt-green-25 {
+    color: #259B24;
+}

@@ -253,6 +253,10 @@ textarea {
     font-weight: bolder;
 }
 
+.txt-gray-8a {
+    color: #8A8A8A;
+}
+
 .txt-6 {
     color: #666;
 }
@@ -627,6 +631,10 @@ button[disabled][type=primary] {
     margin-right: rpx(40);
 }
 
+.margin-right-80 {
+    margin-right: rpx(80);
+}
+
 .margin-left-15 {
     margin-left: rpx(15);
 }
@@ -879,3 +887,25 @@ a {
 .hidden{
     display: none;
 }
+
+.bg-nav {
+    background: #143779;
+    height: rpx(104);
+}
+
+.bg-gray-f0 {
+    width: 100vw;
+    height: 100vh;
+    background: #F0F2F5;
+    // padding-top: rpx(40);
+}
+
+
+.txt-blue-14 {
+    color: #143779;
+  }
+
+  .lunbo {
+    width: 100vw;
+    height: rpx(400);
+  }

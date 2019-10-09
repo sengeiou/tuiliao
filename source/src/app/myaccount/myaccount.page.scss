@@ -1,0 +1,74 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+
+  .mine {
+      width: 100vw;
+      height: rpx(240);
+      background: #143779;
+      span {
+        line-height: rpx(120);
+      }
+      div {
+          position: relative;
+        .imgs {
+            position: absolute;
+            right: 16%;
+            top: 18%;
+        }
+      }
+      
+  }
+
+  .account {
+    height: rpx(92);
+    position: relative;
+    span {
+        line-height: rpx(92);
+        font-weight: bold;
+        color: #8A8A8A;
+    }
+   
+  }
+
+  .account-active {
+    span {
+        color: #101010;
+    }
+    .line {
+        width: rpx(86);
+        height: rpx(6);
+        background: #143779;
+        position: absolute;
+        left: 32%;
+        bottom: 10%;
+    }
+  }
+
+  ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+          height: rpx(100);
+          padding-left: rpx(40);
+          background: #fff;
+          margin-bottom: rpx(6);
+          .qiubi {
+              line-height: rpx(100);
+          }
+      }
+  }
+
+  .txt-gray-8a {
+      color: #8A8A8A;
+  }
+
+  .txt-red-e5 {
+      color: #E51C23;
+  }
+
+  .txt-green-25 {
+      color: #259B24;
+  }

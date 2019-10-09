@@ -1,9 +1,9 @@
 <ion-content>
     <ion-header>
-        <ion-slides (swipe)="swipeEvent($event)"
+        <ion-slides class="lunbo" (swipe)="swipeEvent($event)"
          #slide01  pager loop="true" autoplay="2000"  (ionSlideTouchEnd)= "slideTouchEnd()">
               <ion-slide  *ngFor='let img of imgs'>
-                  <img src="{{uploadpath}}lunbo/{{img.lunbo}}">
+                  <img style="object-fit: fill;width: 100vw"  src="{{uploadpath}}lunbo/{{img.lunbo}}">
                 </ion-slide>
         </ion-slides>
 

@@ -1,0 +1,38 @@
+
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+  .touzi {
+    width: 100vw;
+    height: rpx(490);
+    padding-top: rpx(40);
+    margin-bottom: rpx(10);
+    background: #ffffff;
+    .content {
+        width: rpx(690);
+        height: rpx(280);
+        background: #ECECEC;
+        margin: rpx(30) auto 0;
+        
+        div {
+            max-height: rpx(255);
+            overflow: auto;
+        }
+    }
+    .wenzi img{
+    vertical-align: middle;
+    margin-right: rpx(10);
+    }
+  }
+
+  .txt-gray-8a {
+      color: #8a8a8a;
+  }
+
+  .editfixed {
+      position: fixed;
+      bottom: rpx(80);
+      left: 80%;
+      outline: none;
+  }

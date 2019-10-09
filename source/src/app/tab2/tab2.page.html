@@ -6,10 +6,10 @@
 <ion-content >
 
 
-    <ion-slides   (swipe)="swipeEvent($event)"
+    <ion-slides class="lunbo"  (swipe)="swipeEvent($event)"
     #slide01  pager loop="true" autoplay="2000"  (ionSlideTouchEnd)= "slideTouchEnd()">
          <ion-slide  *ngFor='let img of imgs'>
-             <img src="{{uploadpath}}lunbo/{{img.lunbo}}"  class="">
+             <img style="object-fit: fill;width: 100vw"  src="{{uploadpath}}lunbo/{{img.lunbo}}"  class="">
            </ion-slide>
    </ion-slides>
 
@@ -30,7 +30,7 @@
       <div class="time-box text-center h4-5 txt-white txt-bold " >
         {{list.recom_time}}
       </div>
-      <table  class="text-center" width='100%'  style="table-layout:fixed;" cellspacing="0" cellpadding="0" >
+      <table (click)='watchthis(list)' class="text-center" width='100%'  style="table-layout:fixed;" cellspacing="0" cellpadding="0" >
         <thead class="bg-th table-th txt-white">
           <th width="10%">序号</th>
           <th width="20%">赛事</th>
@@ -54,7 +54,7 @@
                 <div>{{item.guest2_name}}</div>
             </td>
             <td  width="10%" *ngIf='isshow==false'>
-              <span><a  class="txt-red" (click)='watchthis(list)'>等待<br>结果</a></span>
+              <span><a  class="txt-red">等待<br>结果</a></span>
               <!-- <div *ngIf='isshow'>
                   <a  class="txt-red" (click)='watchthis(list)'>{{item.result}}</a>
                   <a  class="txt-red" (click)='watchthis(list)'>{{item.result2}}</a>
@@ -62,12 +62,12 @@
             </td>
             <td  width="10%" *ngIf='isshow'>
                 <div>
-                    <a  *ngIf='item.result=="Y"' class="txt-red" (click)='watchthis(list)'>命中</a>
-                    <a  *ngIf='item.result=="N"'  class="txt-9" (click)='watchthis(list)'>未中</a>
+                    <a  *ngIf='item.result=="Y"' class="txt-red">命中</a>
+                    <a  *ngIf='item.result=="N"'  class="txt-9">未中</a>
                 </div>
                 <div>
-                    <a  *ngIf='item.result2=="Y"'  class="txt-red" (click)='watchthis(list)'>命中</a>
-                    <a  *ngIf='item.result2=="N"' class="txt-9" (click)='watchthis(list)'>未中</a>
+                    <a  *ngIf='item.result2=="Y"'  class="txt-red">命中</a>
+                    <a  *ngIf='item.result2=="N"' class="txt-9">未中</a>
                 </div>
               </td>
         </tbody>

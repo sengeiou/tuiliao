@@ -360,21 +360,34 @@ export class AppBase implements OnInit {
         //var bid=
     }
 
+    // yyyy/mm/dd hh:ss:mm
     getchangedate(date){
         return date.replace(/-/g,'/')
     }
+    // yyyy/mm/dd
+    getdate(date){
+        date = date.slice(0,date.length-9)
+        return date.replace(/-/g,'/')
+    }
 
+    // yy/mm/dd hh  
     getchangedatetime(date){
         date = date.slice(2,date.length-3)
         return date.replace(/-/g,'/')
     }
 
+    // mm/dd hh:ss
     getchangetime(date){
         date = date.slice(5,date.length-3)
         return date.replace(/-/g,'/')
     }
-    
 
+    getchangemonthtime(date){
+        date = date.slice(5,date.length-3)
+        return date
+    }
+    
+    // dd-mm-yyyy
     getDate(date){
         let arr = date.split('-')
         let newArr = []
@@ -384,4 +397,6 @@ export class AppBase implements OnInit {
 
         return newArr.join("-").replace("-",'')
     }
+
+    
 }

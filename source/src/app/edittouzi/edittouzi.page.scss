@@ -1,0 +1,57 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+.liuyan {
+    width: rpx(700);
+    min-height: rpx(800);
+    background: rgba(255, 255, 255, 1);
+    border-radius: rpx(20);
+    border: 1px solid rgba(214, 215, 217, 1);
+    margin: 0 auto;
+    margin-top: rpx(100);
+  }
+  
+  .textarea {
+    padding-top: rpx(20);
+    padding-bottom: rpx(20);
+    padding-left: rpx(40);
+    padding-right: rpx(40);
+    min-height: rpx(600);
+    width: 100%;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #D6D7D9;
+    border-top: 1px solid #D6D7D9;
+    
+  }
+
+  .biaoti {
+
+    padding-top: rpx(20);
+    padding-bottom: rpx(20);
+    padding-left: rpx(40);
+    padding-right: rpx(40);
+    min-height: rpx(200);
+    border-bottom: 1px solid #D6D7D9;
+    border-top: 1px solid #D6D7D9;
+  }
+
+  .top {
+    padding-top: rpx(24);
+    padding-bottom: rpx(24);
+    padding-left: rpx(40);
+    padding-right: rpx(40);
+    background: #ECECEC;
+  }
+
+  .save {
+    padding-top: rpx(24);
+    padding-bottom: rpx(24);
+    padding-left: rpx(40);
+    padding-right: rpx(40);
+    // background: #143779;
+    color: #143779;
+    border-radius: 0 0 rpx(20) rpx(20);
+  }
+  

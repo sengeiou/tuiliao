@@ -9,6 +9,14 @@ const routes: Routes = [
   { path: 'pay-recom-detail', loadChildren: './pay-recom-detail/pay-recom-detail.module#PayRecomDetailPageModule' },
   { path: 'yigou', loadChildren: './yigou/yigou.module#YigouPageModule' },
   { path: 'guanzhu', loadChildren: './guanzhu/guanzhu.module#GuanzhuPageModule' },
+  { path: 'shoucang', loadChildren: './shoucang/shoucang.module#ShoucangPageModule' },
+  { path: 'touzi', loadChildren: './touzi/touzi.module#TouziPageModule' },
+  { path: 'edittouzi', loadChildren: './edittouzi/edittouzi.module#EdittouziPageModule' },
+  { path: 'myaccount', loadChildren: './myaccount/myaccount.module#MyaccountPageModule' },
+  { path: 'chongzhi', loadChildren: './chongzhi/chongzhi.module#ChongzhiPageModule' },
+  { path: 'fankui', loadChildren: './fankui/fankui.module#FankuiPageModule' },
+  { path: 'message', loadChildren: './message/message.module#MessagePageModule' },
+  { path: 'mykehu', loadChildren: './mykehu/mykehu.module#MykehuPageModule' },
 ];
 @NgModule({
   imports: [

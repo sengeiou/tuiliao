@@ -1,0 +1,40 @@
+<ion-header>
+    <div class="bg-nav txt-white">
+          <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+          <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+      <ion-title>我的客户</ion-title>
+    </div>
+  </ion-header>
+
+<ion-content>
+    <div class="bg-gray-f0">
+      <div class="yaoqingma flex-row">
+        <div class="flex-5 ">
+         <img src="{{uploadpath}}resource/{{res.erweima}}" class="icon-20"/>
+          <span class="margin-left-20 h5 txt-bold">我的邀请码</span>
+        </div>
+        <div class="flex-2 text-center h5 txt-bold">709394</div>
+      </div>
+
+      <div class="">
+        <div class="yongjin padding-left-30 txt-bold">佣金列表</div>
+        <ul>
+          <li class="flex-row">
+            <div class="flex-5">
+                <div class="h5 margin-10 txt-bold">张三</div>
+                <div class="h6 txt-gray-8a ">2019/08/12 15:00</div>
+            </div>
+            <div class="flex-2 qiubi txt-bold txt-green-25 h5"> +128球币</div>
+          </li>
+          <li class="flex-row">
+            <div class="flex-5">
+                <div class="h5 margin-10 txt-bold">张三</div>
+                <div class="h6 txt-gray-8a">2019/08/12 15:00</div>
+            </div>
+            <div class="flex-2 qiubi txt-green-25 h5 txt-bold"> +128球币</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+</ion-content>

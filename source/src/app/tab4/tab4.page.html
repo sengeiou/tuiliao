@@ -1,11 +1,11 @@
 <ion-header>
   <div class="flex-row person">
-    <div class="flex-1"><img src="" alt=""></div>
+    <div class="flex-1"><img src="{{uploadpath}}resource/{{res.touxiang}}" class="icon-60 radius-50 touxiang"/></div>
     <div class="flex-3">
       <div class="txt-white margin-top margin-bottom-10">name</div>
       <div class="txt-gray-bf h6">抱歉，您还不是会员</div>
     </div>
-    <div class="flex-1 margin-top-80 text-center">
+    <div class="flex-1 margin-top-80 text-center" routerLink='/myaccount'>
       <img src="{{uploadpath}}resource/{{res.arrowright}}" class="icon-15" />
     </div>
   </div>
@@ -19,7 +19,7 @@
         <span class="h2 txt-blue-14 margin-right-10">188</span>
         <span class="h6">球币</span>
       </div>
-      <div class="flex-2 text-center">
+      <div class="flex-2 text-center"  routerLink='/chongzhi'>
         <span class="h6">去充值</span>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
       </div>
@@ -39,7 +39,7 @@
         <img src="{{uploadpath}}resource/{{res.touzi}}" class="icon-20 margin-left-30 margin-right-20">
         <span class="h5">投资计划</span>
       </div>
-      <div class="flex-2 text-center">
+      <div class="flex-2 text-center" routerLink='/touzi'>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
       </div>
     </li>
@@ -48,7 +48,7 @@
         <img src="{{uploadpath}}resource/{{res.wodeshoucang}}" class="icon-20 margin-left-30 margin-right-20">
         <span class="h5">我的收藏</span>
       </div>
-      <div class="flex-2 text-center">
+      <div class="flex-2 text-center" routerLink='/shoucang'>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
       </div>
     </li>
@@ -67,7 +67,7 @@
         <img src="{{uploadpath}}resource/{{res.kehu}}" class="icon-20 margin-left-30 margin-right-20">
         <span class="h5">我的客户</span>
       </div>
-      <div class="flex-2 text-center">
+      <div class="flex-2 text-center" routerLink='/mykehu'>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
       </div>
     </li>
@@ -76,7 +76,7 @@
         <img src="{{uploadpath}}resource/{{res.xiaoxi}}" class="icon-20 margin-left-30 margin-right-20">
         <span class="h5">消息通知</span>
       </div>
-      <div class="flex-2 text-center">
+      <div class="flex-2 text-center" routerLink='/message'>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
       </div>
     </li>
@@ -95,7 +95,7 @@
         <img src="{{uploadpath}}resource/{{res.fankui}}" class="icon-20 margin-left-30 margin-right-20">
         <span class="h5">帮助反馈</span>
       </div>
-      <div class="flex-2 text-center">
+      <div class="flex-2 text-center" routerLink='/fankui'>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
       </div>
     </li>

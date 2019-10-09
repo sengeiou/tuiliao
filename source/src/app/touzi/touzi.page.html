@@ -1,0 +1,35 @@
+<ion-header>
+  <div class="bg-nav txt-white">
+        <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+    <ion-title>投资计划</ion-title>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="bg-gray-f0">
+
+    <div class="touzi" *ngFor='let item of investmentlist'>
+      <div class="txt-bold margin-left-30">{{item.name}}</div>
+      <div class="flex-row margin-left-30 margin-top-30">
+        <div class="flex-3 h6 txt-gray-8a">{{item.updated_date}}</div>
+        <div class="flex-1 h6 wenzi">
+          <img src="{{uploadpath}}resource/{{res.share}}" class="icon-20"/>分享
+        </div>
+        <div class="flex-1 h6 wenzi" (click)='delete(item)'>
+          <img src="{{uploadpath}}resource/{{res.delete}}" class="icon-20"/>删除
+        </div>
+      </div>
+      <div class="content" (click)='edit(item)'>
+          <div class="padding-30 txt-gray-8a txt-bold h5" >
+           {{item.content}}
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="editfixed" routerLink='/edittouzi'>
+    <img src="{{uploadpath}}resource/{{res.edit}}" class="icon-60"/>
+  </div>
+</ion-content>

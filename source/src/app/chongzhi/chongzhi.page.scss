@@ -1,0 +1,58 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+  ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  }
+  .qiubi {
+    width: 100vw;
+    height: rpx(626);
+    background: #fff;
+    padding-left: rpx(20);
+    .money {
+        width: rpx(340);
+        height: rpx(134);
+        border: rpx(2) solid #F0F2F5;
+        margin: rpx(20) rpx(20) rpx(20) 0;
+        line-height: rpx(134);
+        float: left;
+        border-radius: rpx(10);
+
+    }
+  }
+  .money-active { 
+    color: #143779 !important;
+    border: rpx(4) solid #143779 !important;
+  }
+
+  .txt-gray-bf {
+      color: #BFBFBF;
+  }
+
+  .wenxin{
+      width: rpx(132);
+      height: rpx(60);
+  }
+
+  .txt-gray-8a {
+      color: #8A8A8A;
+  }
+
+  .zhifu {
+      position: fixed;
+      bottom: 10%;
+      width: 100vw;
+      text-align: center;
+      .btn {
+          width: rpx(690);
+          height: rpx(80);
+          background: #143779;
+          color: #fff;
+          font-size: rpx(32);
+          border-radius: rpx(20);
+          margin-top: rpx(20);
+      }
+  }

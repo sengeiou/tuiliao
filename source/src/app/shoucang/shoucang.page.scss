@@ -1,11 +1,7 @@
+
 @function rpx($px) {
     @return ($px * 100vw) / 750;
-}
-
-.bg-nav {
-    background: #143779;
-    height: rpx(104);
-}
+  }
 
 .bg-gray-f0 {
     width: 100vw;
@@ -16,7 +12,7 @@
 
 .yigou {
     width: rpx(700);
-    height: rpx(230);
+    height: rpx(160);
     background: #ffffff;
     border-radius: rpx(20);
     padding-top: rpx(20);
@@ -24,11 +20,9 @@
     margin-bottom: rpx(40);
     padding-left: rpx(20);
     position: relative;
-    .tuobiao {
-        position: absolute;
-        top: 40%;
-        border-radius: 50%;
-    }
 
+}
 
+.txt-gray-8a {
+    color: #8A8A8A;
 }
