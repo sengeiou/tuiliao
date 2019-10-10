@@ -1,0 +1,45 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+.radius {
+    border-radius: rpx(40);
+  }
+  .height-133 {
+    height: rpx(266);
+  }
+  .height-120 {
+    height: rpx(240);
+  }
+  .height-110 {
+    height: rpx(220);
+  }
+  .height-1 {
+    height: rpx(2);
+  }
+  .height-92 {
+    height: rpx(184);
+  }
+  .pd {
+    padding-top: rpx(24);
+    padding-bottom: rpx(24);
+  }
+  .h10{
+    transform: scale(0.8);
+    font-size: rpx(20);
+  }
+  .height-70 {
+    height: rpx(140);
+  }
+  .bot{
+    // position: fixed;
+    // width: 100vw;
+    // bottom: px(74);
+  }
+  .height-40 {
+    height: rpx(80);
+  }
+  .opa{
+    opacity: 0.5;
+  }
+  

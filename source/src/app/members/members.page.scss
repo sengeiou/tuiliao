@@ -1,0 +1,28 @@
+
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+}
+
+ .account {
+    height: rpx(92);
+    position: relative;
+    span {
+        line-height: rpx(92);
+        font-weight: bold;
+    }
+   
+  }
+
+  .bg-gray-bf {
+      background: #BFBFBF;
+      th {
+        height: rpx(96);
+        line-height: rpx(96);
+      }
+  }
+
+  .tbtr {
+      background: #fff;
+      height: rpx(96);
+    
+  }

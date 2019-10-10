@@ -1,0 +1,110 @@
+<ion-header>
+    <div class="bg-nav txt-white">
+          <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+          <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+      <ion-title>设置</ion-title>
+    </div>
+  </ion-header>
+
+<ion-content>
+  <div>
+
+      <div class="margin-40">
+
+          <div >
+          <div class='h14'></div>
+          <div class="flex-row flex-center" >
+            <img [src]="uploadpath+'resource/'+res.gerenziliao" class="icon-22">
+            <div class="margin-left-20 flex-1 h5">个人资料</div>
+            <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
+          </div>
+    
+          <div class='rowtext'></div>
+        </div>
+    
+    
+          
+    
+          <div >
+              <div class='h34'></div>
+            <div class="flex-row flex-center">
+              <img [src]="uploadpath+'resource/'+res.zhanhaoanquan" class="icon-22">
+              <div class="margin-left-20 flex-1 h5">账号与安全</div>
+              <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
+            </div>
+            <div class='rowtext'></div>
+            
+          </div>
+<!--     
+          <div >
+              <div class='h34'></div>
+            <div class="flex-row flex-center">
+              <img [src]="uploadpath+'resource/'+res.xintongzhi" class="icon-22">
+              <div class="margin-left-20 flex-1 h5">新消息通知</div>
+              <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
+            </div>
+            <div class='rowtext'></div>
+          
+          </div> -->
+    
+          <div >
+              <div class='h34'></div>
+            <div class="flex-row flex-center" >
+              <img [src]="uploadpath+'resource/'+res.yinsi" class="icon-22">
+              <div class="margin-left-20 flex-1 h5">隐私</div>
+              <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
+            </div>
+            <div class='rowtext'></div>
+           
+          </div>
+    
+          <div >
+              <div class='h34'></div>
+            <div class="flex-row flex-center">
+              <img [src]="uploadpath+'resource/'+res.shezhi" class="icon-22">
+              <div class="margin-left-20 flex-1 h5">通用</div>
+              <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
+            </div>
+            <div class='rowtext'></div>
+           
+          </div>
+    
+          <!-- <div>
+              <div class='h34'></div>
+            <div class="flex-row flex-center">
+              <img [src]="uploadpath+'resource/'+res.guli" class="icon-22">
+              <div class="margin-left-20 flex-1 h5">鼓励一下</div>
+              <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
+            </div>
+            <div class='rowtext'></div>
+          
+          </div> -->
+    
+    
+          <!-- <div >
+              <div class='h34'></div>
+            <div class="flex-row flex-center">
+              <img [src]="uploadpath+'resource/'+res.guanyu" class="icon-22">
+              <div class="margin-left-20 flex-1 h5">关于斑斓</div>
+              <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
+            </div>
+            <div class='ss'></div>
+            <div class='rowtext'></div>
+          
+          </div>
+     -->
+          <div >
+              <div class='h34'></div>
+            <div class="flex-row flex-center">
+                <img [src]="uploadpath+'resource/'+res.tuichudenglu" class="icon-22">
+                <div class="margin-left-20 flex-1 h5" style="color:#E50303" (click)='logout()'>退出登录</div>
+                <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
+            </div>
+         
+            <div class='rowtext'></div>
+          
+          </div>
+
+  </div>
+  </div>
+</ion-content>
