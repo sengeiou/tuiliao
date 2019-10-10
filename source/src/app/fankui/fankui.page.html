@@ -7,17 +7,35 @@
   </ion-header>
 
 <ion-content>
-  <div class="">
-    <div class="liuyan"> 
-        <div class="top h5 txt-bold">
-         帮助反馈
+    <div class=" ">
+      <div class="height-80"></div>
+      <div class="flex-row flex-center ">
+        <div class="flex-1"></div>
+        <img src="{{uploadpath}}resource/{{res.qrcode}}" class="erweima" />
+        
+        <div class="flex-1"></div>
+      </div>
+      <div class="height-70"></div>
+      <div class="h4-6 text-center txt-bold">
+        客服微信
+      </div>
+      <div class="height-40"></div>
+      <div class="h5 ziti text padding-left-20 padding-right-20">
+        添加推料官方微信号，反馈您的意见和建议，我们会及时给您满意的答复。
+      </div>
+      <div class="height-50"></div>
+  
+      <div class="liuyan margin-left-40">
+        <div class="top h5">
+          留言
         </div>
         <div class="">
-          <textarea  [(ngModel)]="content"  class="textarea h5" placeholder='此处输入您的宝贵意见...'></textarea>
+          <ion-textarea  [(ngModel)]="content"  class="textarea h5" placeholder='请输入留言内容…'></ion-textarea>
         </div>
-        <div (click)='send()' class="save h4-5 text-center txt-bold">
-            发送
-          </div>
+        <div (click)="send()" class="top h4-5 text-center txt-bold" style="color:#735FFF">
+          发送
+        </div>
       </div>
     </div>
+
 </ion-content>

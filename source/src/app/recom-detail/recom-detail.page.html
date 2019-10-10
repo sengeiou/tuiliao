@@ -12,8 +12,8 @@
     <div class="flex-row txt-gray-b9 margin-top-30 h5 txt-bold margin-bottom-30">
       <span class="flex-4">{{list.pub_time}}&nbsp;发布</span>
       <span class="flex-1 shoucang">
-          <img src="{{uploadpath}}resource/{{res.shoucang}}" *ngIf='isshow' (click)='shoucang()' class="icon-20"/>
-          <img src="{{uploadpath}}resource/{{res.shoucang2}}" *ngIf='isshow==false'  (click)='shoucang()' class="icon-20"/>
+          <img src="{{uploadpath}}resource/{{res.shoucang}}" *ngIf='isshow' (click)='shoucang(list.user_id)' class="icon-20"/>
+          <img src="{{uploadpath}}resource/{{res.shoucang2}}" *ngIf='isshow==false'  (click)='shoucang(list.user_id)' class="icon-20"/>
         <span>收藏</span>
       </span>
     </div>
@@ -33,11 +33,11 @@
                 <span class="h6 success">{{list.success}}</span>
                 <span class="h6 winningnum">{{list.winningnum}}</span>
           </div>
-          <div class="flex-1 text-center " *ngIf='guanzushow' (click)='guanzu()'>
+          <div class="flex-1 text-center " *ngIf='guanzushow' (click)='guanzu(list.user_id)'>
               <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
               <span  class="guanzu">关注</span>
           </div>
-          <div class="flex-1 text-center " *ngIf='guanzushow==false' (click)='guanzu()'>
+          <div class="flex-1 text-center " *ngIf='guanzushow==false' (click)='guanzu(list.user_id)'>
               <img src="{{uploadpath}}resource/{{res.jian}}" class="jia"/>
               <span  class="quguan">取关</span>
           </div>
@@ -54,7 +54,7 @@
           <span class="margin-left-20 txt-blue-14">{{list.coincount}}球币</span>
         </div>
         <div class="flex-1">
-          <button (click)='pay(list)'>立即支付</button>
+          <button (click)='pay(list.user_id,list.id)'>立即支付</button>
         </div>
       </div>
   </div>

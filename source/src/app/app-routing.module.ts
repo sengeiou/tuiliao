@@ -17,6 +17,9 @@ const routes: Routes = [
   { path: 'fankui', loadChildren: './fankui/fankui.module#FankuiPageModule' },
   { path: 'message', loadChildren: './message/message.module#MessagePageModule' },
   { path: 'mykehu', loadChildren: './mykehu/mykehu.module#MykehuPageModule' },
+  { path: 'members', loadChildren: './members/members.module#MembersPageModule' },
+  { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
+  { path: 'abouttuiliao', loadChildren: './abouttuiliao/abouttuiliao.module#AbouttuiliaoPageModule' },
 ];
 @NgModule({
   imports: [

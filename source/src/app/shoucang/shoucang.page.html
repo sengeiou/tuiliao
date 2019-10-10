@@ -9,32 +9,22 @@
 <ion-content>
   <div class="bg-gray-f0">
 
-      <div class="yigou">
+      <div class="yigou" *ngFor='let list of recomfavlist'>
         
-        <div class="flex-row">
-          <div class="flex-5">
-              <div class="txt-bold">英超精选，冲击4连红！！！</div>
-              <div class="margin-top-20 h5 txt-gray-8a">2019/08/25 18:00</div>
-          </div>
-          <div class="flex-2">
-              <img src="{{uploadpath}}resource/{{res.mingzhong}}" class="icon-60" />
-          </div>
+        <div class="flex-row" *ngFor='let item of list.recom' (click)='tiaozhuan(item.id)'>
+            <div class="flex-5">
+                <div class="txt-bold">{{item.biaoti}}</div>
+                <div class="margin-top-20 h5 txt-gray-8a">{{item.pub_time}}</div>
+            </div>
+            <div class="flex-2" *ngIf='item.zongjieguo=="Y"'>
+                <img src="{{uploadpath}}resource/{{res.mingzhong}}" class="icon-60" />
+            </div>
+            <div class="flex-2" *ngIf='item.zongjieguo=="N"'>
+              <img src="{{uploadpath}}resource/{{res.weizhong}}" class="icon-60" />
+            </div>
         </div>
       </div>
 
-
-      <div class="yigou">
-        
-        <div class="flex-row">
-          <div class="flex-5">
-              <div class="txt-bold">英超精选，冲击4连红！！！</div>
-              <div class="margin-top-20 h5 txt-gray-8a">2019/08/25 18:00</div>
-          </div>
-          <div class="flex-2">
-              <img src="{{uploadpath}}resource/{{res.mingzhong}}" class="icon-60" />
-          </div>
-        </div>
-      </div>
       
   </div>
   

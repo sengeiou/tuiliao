@@ -7,12 +7,13 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
+import { CenterApi } from 'src/providers/center.api';
 
 @Component({
   selector: 'app-guanzhu',
   templateUrl: './guanzhu.page.html',
   styleUrls: ['./guanzhu.page.scss'],
-  providers:[MemberApi,ProjectApi]
+  providers:[MemberApi,ProjectApi,CenterApi]
 })
 export class GuanzhuPage extends AppBase {
 
@@ -25,6 +26,7 @@ export class GuanzhuPage extends AppBase {
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
+    public centerApi:CenterApi,
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -36,10 +38,37 @@ export class GuanzhuPage extends AppBase {
     this.params;
   }
 
-
+  focuslist=null
+  user_id = 1
   onMyShow(){
 
-    
+    this.centerApi.focuslist({focus_member_id:this.user_id}).then((focuslist:any)=>{
+      console.log(focuslist)
+      this.focuslist = focuslist
+    })
+
+  }
+  guanzushow = false
+  guanzu(item){
+
+    console.log(item)
+
+    this.centerApi.cancelfocus({befocus_id: item.befocus_id,status: 'D'}).then((cancelfocus:any)=>{
+      if(cancelfocus.code == '0'){
+        // this.guanzushow = !this.guanzushow
+        this.onMyShow()
+      }
+    })
+
+  }
+
+  focusper(itemId){
+    console.log(itemId)
+    this.router.navigate(['recomdetail'],{
+      queryParams:{
+        id: itemId
+      }
+    })
 
   }
 }

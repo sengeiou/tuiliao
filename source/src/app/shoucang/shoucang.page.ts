@@ -7,12 +7,13 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
+import { CenterApi } from 'src/providers/center.api';
 
 @Component({
   selector: 'app-shoucang',
   templateUrl: './shoucang.page.html',
   styleUrls: ['./shoucang.page.scss'],
-  providers:[MemberApi,ProjectApi]
+  providers:[MemberApi,ProjectApi,CenterApi]
 })
 export class ShoucangPage extends AppBase {
 
@@ -25,6 +26,7 @@ export class ShoucangPage extends AppBase {
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
+    public centerApi:CenterApi,
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -36,10 +38,30 @@ export class ShoucangPage extends AppBase {
     this.params;
   }
 
-
+  recomfavlist=null
+  user_id=1
   onMyShow(){
 
-    
+    this.centerApi.recomfavlist({userfav_id:this.user_id}).then((recomfavlist:any)=>{
+      console.log(recomfavlist)
+      this.recomfavlist = recomfavlist.filter(item=>{
+        
+        for(let i=0;i<item.recom.length;i++){
+           item.recom[i].pub_time = this.getdatemm(item.recom[i].pub_time)
+        }
+        return item
+      })
+    })
+
+  }
+  tiaozhuan(itemId){
+    console.log(itemId)
+
+    this.router.navigate(['recomdetail'],{
+      queryParams:{
+        id: itemId
+      }
+    })
 
   }
 }

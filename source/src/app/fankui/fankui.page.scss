@@ -6,7 +6,7 @@
   
 .liuyan {
     width: rpx(700);
-    min-height: rpx(800);
+    min-height: rpx(520);
     background: rgba(255, 255, 255, 1);
     border-radius: rpx(20);
     border: 1px solid rgba(214, 215, 217, 1);
@@ -19,7 +19,7 @@
     padding-bottom: rpx(20);
     padding-left: rpx(40);
     padding-right: rpx(40);
-    min-height: rpx(800);
+    min-height: rpx(344);
     width: 100%;
     outline: none;
     border: none;
@@ -45,5 +45,15 @@
 
     color: #fff;
     border-radius: 0 0 rpx(20) rpx(20);
+  }
+
+  .erweima {
+    width: rpx(280);
+    height: rpx(280);
+  }
+
+  .ziti {
+    line-height: 24px;
+    letter-spacing: 1px;
   }
   

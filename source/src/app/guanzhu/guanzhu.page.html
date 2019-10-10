@@ -9,49 +9,31 @@
 <ion-content>
   <div class="bg-gray-f0">
 
-      <div class="yigou">
-        <div class="flex-row">
+      <div class="yigou" *ngFor='let list of focuslist'>
+        <div class="flex-row" *ngFor='let item of list.befocus' (click)='focusper(item.id)'>
           <div class="flex-1">
-            <img src="{{uploadpath}}resource/{{res.mine}}" class="icon-40 tuobiao" />
+            <img src="{{uploadpath}}recommend/{{item.photo}}" class="icon-40 tuobiao" />
           </div>
           <div class="flex-3 margin-top-60">
-              每日一推
+              {{item.name}}
           </div>
           <div class="flex-3 margin-top-20">
-              <div class="text-center margin-bottom-20">
-                  <img src="{{uploadpath}}resource/{{res.jian}}" class="jia"/>
-                  <span  class="quguan txt-bold">取关</span>
-              </div>
-              <div>
-                  <span class="h6 txt-gray-d2 margin-right-20">近期战绩</span>
-                  <span class="txt-red-e5 h2 txt-bold">90%</span>
-              </div>
+            <div class="flex-1 text-center " *ngIf='guanzushow' (click)='guanzu(list)'>
+              <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
+              <span  class="guanzu">关注</span>
+          </div>
+          <div class="flex-1 text-center " *ngIf='guanzushow==false' (click)='guanzu(list)'>
+              <img src="{{uploadpath}}resource/{{res.jian}}" class="jian"/>
+              <span  class="quguan">取关</span>
+          </div>
+            <div>
+                <span class="h6 txt-gray-d2 margin-right-20">近期战绩</span>
+                <span class="txt-red-e5 h2 txt-bold">{{item.success_result}}</span>
+            </div>
              
           </div>
         </div>
       </div>
-
-      <div class="yigou">
-          <div class="flex-row">
-            <div class="flex-1">
-              <img src="{{uploadpath}}resource/{{res.mine}}" class="icon-40 tuobiao" />
-            </div>
-            <div class="flex-3 margin-top-60">
-                每日一推
-            </div>
-            <div class="flex-3 margin-top-20">
-                <div class="text-center margin-bottom-20">
-                    <img src="{{uploadpath}}resource/{{res.jian}}" class="jia"/>
-                    <span  class="quguan txt-bold">取关</span>
-                </div>
-                <div>
-                    <span class="h6 txt-gray-d2 margin-right-20">近期战绩</span>
-                    <span class="txt-red-e5 h2 txt-bold">90%</span>
-                </div>
-               
-            </div>
-          </div>
-        </div>
 
   </div>
   

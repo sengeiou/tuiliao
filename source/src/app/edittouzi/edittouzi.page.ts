@@ -8,7 +8,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 import { CenterApi } from 'src/providers/center.api';
-import { networkInterfaces } from 'os';
 
 
 @Component({

@@ -33,7 +33,7 @@
 
 }
 
-.jia {
+.jian {
     width: rpx(15);
     height: rpx(15);
     font-weight: bold;
@@ -42,6 +42,24 @@
     top: 26%;
   } 
 
+  .jia {
+    width: rpx(15);
+    height: rpx(15);
+    font-weight: bold;
+    position: absolute;
+    right: 26%;
+    top: 26%;
+  } 
+
+  .guanzu {
+    // width: rpx(120);
+    // height: rpx(50);
+    background: #F7555A;
+    color: #fff;
+    padding: rpx(4) rpx(20) rpx(4) rpx(36);
+    border-radius: rpx(10);
+
+  }
 
   .quguan {
 

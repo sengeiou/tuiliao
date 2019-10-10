@@ -51,6 +51,7 @@ export class FankuiPage extends AppBase {
       console.log(savefankui)
       if(savefankui.code == '0'){
         this.content = ''
+        this.toast("留言成功");
       }
     })
   }

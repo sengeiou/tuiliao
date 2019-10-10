@@ -303,8 +303,19 @@ export class AppBase implements OnInit {
         return this.MemberInfo != null;
     }
     logout() {
-        window.localStorage.removeItem("UserToken");
-        this.MemberInfo = null;
+
+        // window.localStorage.removeItem("UserToken");
+        // this.MemberInfo = null;
+
+            this.confirm("确定登出账号么？", (ret) => {
+                if (ret) {
+                    AppBase.IsLogin = false;
+                    window.localStorage.removeItem("UserToken");
+                    this.MemberInfo = null;
+                    this.back();
+                }
+            })
+
     }
     store(name, value = null) {
         if (value == null) {
@@ -313,6 +324,28 @@ export class AppBase implements OnInit {
             window.localStorage.setItem(name, value);
             return "";
         }
+    }
+
+    async confirm(msg, confirmcallback) {
+
+        const alert = await this.alertCtrl.create({
+            header: "提示",
+            subHeader: msg,
+            buttons: [{
+                text: "取消",
+                handler: () => {
+                    console.log('Disagree clicked');
+
+                    confirmcallback(false);
+                }
+            }, {
+                text: "确认",
+                handler: () => {
+                    confirmcallback(true);
+                }
+            }]
+        });
+        alert.present();
     }
 
     splitRow(content) {
@@ -347,7 +380,6 @@ export class AppBase implements OnInit {
     }
 
 
-  
 
     backHome() {
         this.navCtrl.navigateBack('tabs/home');
@@ -360,7 +392,7 @@ export class AppBase implements OnInit {
         //var bid=
     }
 
-    // yyyy/mm/dd hh:ss:mm
+    // yyyy/mm/dd hh:mm:ss
     getchangedate(date){
         return date.replace(/-/g,'/')
     }
@@ -370,13 +402,19 @@ export class AppBase implements OnInit {
         return date.replace(/-/g,'/')
     }
 
-    // yy/mm/dd hh  
+     // yyyy/mm/dd hh:mm
+     getdatemm(date){
+        date = date.slice(0,date.length-3)
+        return date.replace(/-/g,'/')
+    }
+
+    // yy/mm/dd hh:mm 
     getchangedatetime(date){
         date = date.slice(2,date.length-3)
         return date.replace(/-/g,'/')
     }
 
-    // mm/dd hh:ss
+    // mm/dd hh:mm
     getchangetime(date){
         date = date.slice(5,date.length-3)
         return date.replace(/-/g,'/')
