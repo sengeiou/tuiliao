@@ -9,12 +9,12 @@ import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 
 @Component({
-  selector: 'app-tab4',
-  templateUrl: './tab4.page.html',
-  styleUrls: ['./tab4.page.scss'],
+  selector: 'app-register',
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
   providers:[MemberApi,ProjectApi]
 })
-export class Tab4Page extends AppBase {
+export class RegisterPage extends AppBase {
 
   constructor(public router: Router,
     public navCtrl: NavController,
@@ -36,12 +36,26 @@ export class Tab4Page extends AppBase {
     this.params;
   }
 
-  // 会员
-  ismember = true
+  istelzhuce = true
 
   onMyShow(){
 
     
 
   }
+
+  telzhuce(e){
+    this.istelzhuce = true
+    console.log(e)
+    e.target.classList.add('zhuce-active')
+    e.target.parentElement.childNodes[1].classList.remove('zhuce-active')
+  }
+
+
+  emailzhuce(e){
+    this.istelzhuce = false
+    e.target.classList.add('zhuce-active')
+    e.target.parentElement.childNodes[0].classList.remove('zhuce-active')
+  }
+
 }

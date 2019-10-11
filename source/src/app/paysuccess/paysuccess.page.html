@@ -1,0 +1,24 @@
+<ion-header>
+    <div class="bg-nav txt-white">
+          <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+          <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+      <ion-title>会员中心</ion-title>
+    </div>
+  </ion-header>
+<ion-content>
+  <div>
+      <div class="imgs">
+        <img src="{{uploadpath}}resource/{{res.paysuccess}}" class=""/>
+      </div>
+      <div class="text-center">
+        <div class="h5">您已成功激活一个月的VIP会员，有效期为：</div>
+        <div class="h5 txt-yellow-c6 margin-top-30">{{nowtime}}至{{nexttime}}</div>
+      </div>
+
+      <div class="zhifu">
+       
+          <button class="btn txt-bold" routerLink='/tabs/tab2'>立即查看猛料</button>
+        </div>
+
+  </div>
+</ion-content>

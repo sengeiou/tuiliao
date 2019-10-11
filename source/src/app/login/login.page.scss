@@ -1,3 +1,145 @@
-@function rpx($px) {
-    @return ($px * 100vw) / 750;
+@function rpx($rpx) {
+    @return ($rpx * 100vw) / 750;
+  }
+
+  .login {
+    width: 100vw;
+    height: rpx(104);
+    background: #143779;
+    color: #fff;
+    line-height: rpx(104);
+    text-align: center;
+  }
+
+  
+  .codeinput {
+    font-size: rpx(80);
+    text-align: center;
+    width: rpx(100);
+    border: 0rpx;
+    border-bottom: gray rpx(4) solid;
+  }
+  
+  .fillc {
+    border-bottom: #6badff rpx(4) solid;
+  }
+  
+  .bg {
+    // background-color: #332ca5;
+    padding-left: rpx(84);
+    padding-right: rpx(84);
+  }
+  
+  .sjh {
+    // background-color: #694db2;
+    // background: transparent;
+    border-radius: rpx(20);
+    --padding-start: rpx(40);
+    font-size: rpx(28);
+    height: rpx(96);
+  }
+  
+  .width-30 {
+    width: rpx(60);
+  }
+  
+  .shurukuang {
+    background: #dddddd;
+    border-radius: rpx(20);
+  }
+  
+  .width-16 {
+    width: rpx(32);
+  }
+  
+  .weixin {
+    height: rpx(120);
+    width: rpx(120);
+  }
+  
+  .height-87 {
+    height: rpx(284);
+  }
+  
+  .height-60 {
+    height: rpx(120);
+  }
+  
+  .height-70 {
+    height: rpx(140);
+  }
+  
+  .height-30 {
+    height: rpx(60);
+  }
+  
+  .height-40 {
+    height: rpx(80);
+  }
+  
+  .op {
+    opacity: 0.5;
+  }
+  
+  .under {
+    position: fixed;
+    bottom: rpx(120);
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  
+  .white_block {
+    margin-top: rpx(10);
+    width: rpx(72);
+    height: rpx(8);
+    background: #143779;
+  }
+  
+  
+  
+  .height197 {
+    height: rpx(197);
+  }
+  
+  .height207 {
+    height: rpx(314);
+  }
+  .height-20 {
+    height: rpx(40);
+  }
+  
+  .icon-40 {
+    height: rpx(160);
+    width: rpx(160);
+  }
+  
+  .height-50 {
+    height: rpx(100);
+  }
+  
+  .dl {
+    height: rpx(96);
+  }
+  
+  .margin-top-25 {
+    margin-top: rpx(50);
+  }
+  
+  .ion-color-mycolor {
+    --ion-color-base: #143779;
+    --ion-color-base-rgb: 255, 96, 13;
+    --ion-color-contrast: #ffffff;
+    --ion-color-contrast-rgb: 255, 255, 255;
+    --ion-color-shade: #143779;
+    --ion-color-tint: #143779;
+  }
+  .bor {
+    border: rpx(2) solid black;
+  }
+  .margin-bottom50 {
+    margin-bottom: rpx(200);
+  }
+  ion-content{
+    --background:transparent;
   }

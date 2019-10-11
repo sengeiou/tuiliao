@@ -1,0 +1,23 @@
+
+
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+}
+
+.zhuce {
+    height: rpx(100);
+    background: #fff;
+    line-height: rpx(100);
+}
+
+.zhuce-active {
+    color: #fff;
+    background: #143779;
+}
+
+.bg-zhuce{
+    width: rpx(638);
+    height: rpx(80);
+    background: #143779;
+    border-radius: rpx(20);
+}

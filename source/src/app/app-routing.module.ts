@@ -23,6 +23,9 @@ const routes: Routes = [
   { path: 'universal', loadChildren: './universal/universal.module#UniversalPageModule' },
   { path: 'accountsecurity', loadChildren: './accountsecurity/accountsecurity.module#AccountsecurityPageModule' },
   { path: 'menberinfo', loadChildren: './menberinfo/menberinfo.module#MenberinfoPageModule' },
+  { path: 'memberchongzhi', loadChildren: './memberchongzhi/memberchongzhi.module#MemberchongzhiPageModule' },
+  { path: 'paysuccess', loadChildren: './paysuccess/paysuccess.module#PaysuccessPageModule' },
+  { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
 ];
 @NgModule({
   imports: [

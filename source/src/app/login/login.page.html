@@ -1,9 +1,119 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <div class="login f18">
+      登录
+    </div>
+  </ion-header>
 
-<ion-content>
 
-</ion-content>
+<div >
+
+  <!-- <div class="icon-40" (click)="back()" style="z-index: 100;">
+    <div class="height-50"></div>
+    <img [src]="uploadpath+'resource/'+res.back" class="icon-20 margin-left-40 margin-top-10">
+  </div> -->
+  <!-- <ion-icon (click)="back()" class="txt-white" name="ios-arrow-back" style="font-size:px(20)"></ion-icon> -->
+ 
+  
+  <div class=" bg" style="width:100vw;height:100vh">
+    <div class="height197"></div>
+      <div >
+          <div class="h4 txt-bold">
+              您好，
+          </div>
+          <div class="h4 txt-bold">
+              欢迎使用大赢家
+          </div>    
+      </div>
+    <div class="padding-10">
+  
+      <div>
+        <div class="height-80"></div>
+        <div class="flex-row   flex-center ">
+          <div class="  h4-6">登录</div>
+          <div style="" class="width-30"></div>
+          <div class=" h4-6 op" (click)="zhuce()">新用户注册</div>
+        </div>
+        <div class="white_block"></div>
+        <div class="height-40"></div>
+  
+        <div>
+          <div class="flex-row column">
+            <!-- <div class="txt-white">手机号</div> -->
+            <div class="flex-row flex-center shurukuang">
+              <div class="width-16"></div>
+              <!-- <div class="txt-white h5">+86</div> -->
+              <img [src]="uploadpath+'resource/'+res.user" class=" icon-20 margin-left-10">
+  
+              <ion-input class=" sjh margin-left-15" placeholder="请输入用户名" type="text" [(ngModel)]="username"
+                >
+              </ion-input>
+            </div>
+          </div>
+        </div>
+  
+  
+        <div class="margin-top">
+          <div class="flex-row column">
+            <!-- <div class="txt-white">密码</div> -->
+            <div class="flex-row flex-center shurukuang">
+              <div class="width-16"></div>
+              <ion-input class="sjh padding-left-40" placeholder="请输入密码" type="password" [(ngModel)]="password"
+                maxlength="30"></ion-input>
+            </div>
+  
+            <!-- 
+            <div class style="padding:0" class="flex-row flex-center">
+              <ion-input class="txt-white sjh " style="padding-left:px(20)" placeholder="请输入密码" type="password" [(ngModel)]="password" maxlength="30">
+              </ion-input>
+            </div> -->
+  
+  
+  
+          </div>
+        </div>
+  
+        <div class="hr"></div>
+  
+  
+  
+        <div class="">
+          <div style="" class="height-60"></div>
+          <!-- <ion-button   size="block" color="danger"  class="h4-5 dl" (click)="trylogin()" >登 录</ion-button> -->
+          <ion-button size="block" color="mycolor" class="h4-5 dl" (click)="trylogin()">登 录</ion-button>
+        </div>
+  
+        <div class="margin-top-25 margin-bottom50 ">
+          <div class="flex-row flex-center">
+            <div class='flex-1 txt-gray'></div>
+            <div class="h5  op flex-4" (click)="navigate('forgetpassword')">忘记密码请联系客服修改</div>
+          </div>
+        </div>
+  
+        <div style="" class="height-87"></div>
+  
+        <!-- <div *ngIf="wechatInstalled==true" class="under "> -->
+          <!-- <div  class="under"> -->
+  
+<!--   
+          <div class="flex-row flex-center">
+            <div class="h5  flex-1 text-center">第三方账号登录</div>
+          </div> -->
+  
+          <!-- v-if="wechatInstalled==true" -->
+          <!-- <div class="height-80"></div>
+  
+          <div class=" flex-row flex-column"> -->
+            <!-- <img [src]="uploadpath+'resource/'+res.mobile" class="icon-30"> -->
+            <!-- <img [src]="uploadpath+'resource/'+res.wechat" class="weixin" style="" type="primary" plain size="large"
+              (click)="checkWechatAuth()">
+          </div>
+  
+        </div>
+  
+        <div class="height-50"></div>
+   -->
+      </div>
+    </div>
+  </div>
+  
+</div>

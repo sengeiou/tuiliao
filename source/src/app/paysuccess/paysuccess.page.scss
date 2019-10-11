@@ -1,0 +1,34 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+
+
+.imgs {
+    width: rpx(632);
+    height: rpx(700);
+    margin: rpx(20) auto;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.zhifu {
+    position: fixed;
+    bottom: 20%;
+    width: 100vw;
+    text-align: center;
+   
+    .btn {
+        width: rpx(690);
+        height: rpx(80);
+        background: #F7E3B0;
+        color: #C68814;
+        font-size: rpx(32);
+        border-radius: rpx(20);
+        margin-top: rpx(20);
+        border-radius: rpx(40);
+        outline: none;
+    }
+}

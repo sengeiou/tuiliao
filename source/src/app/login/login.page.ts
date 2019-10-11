@@ -34,5 +34,16 @@ export class LoginPage extends AppBase {
   }
   onMyShow(){
 
+
+
   }
+
+  trylogin(){
+    
+  }
+
+  zhuce(){
+    this.navigate("/register");
+  }
+
 }

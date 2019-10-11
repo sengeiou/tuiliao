@@ -38,6 +38,18 @@ export class MenberinfoPage extends AppBase {
   }
 
 
+  name = '';
+  oldname = "";
+  actions = [];
+  mobile = '';
+  touxian = '';
+  photo = '';
+  sheetVisible = false;
+
+  provinces = [];
+  selectprovince=[];
+  maxDate='';
+
   onMyShow(){
 
     

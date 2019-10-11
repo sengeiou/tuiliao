@@ -1,0 +1,32 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+  
+  .touxiang {
+    width: rpx(176);
+    height: rpx(176);
+    border-radius: rpx(56);
+  }
+  
+  .txt92 {
+    color: #929292;
+  }
+  
+  .height-35 {
+    height: rpx(70);
+  }
+  
+  .padding-bottom-12 {
+    padding-bottom: rpx(24);
+  }
+  
+  .youicon {
+    height: rpx(36);
+    width: rpx(36);
+  }
+  
+  .qianming {
+    max-width: rpx(500);
+  }
+  

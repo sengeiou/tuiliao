@@ -26,3 +26,61 @@
       height: rpx(96);
     
   }
+
+  .mine {
+    
+      width: rpx(700);
+      height: rpx(240);
+      margin: 0 auto;
+      position: relative;
+    .huiyuan{
+        width: 100%;
+        height: 100%;
+        border-radius: rpx(20);
+        margin-top: rpx(40);
+        // margin-bottom: rpx(20);
+    }
+
+    .perfixed{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 22%;
+        left: 0;
+        span {
+            line-height: 100%;
+        }
+        .imgs {
+            position: absolute;
+            right: 3%;
+            top: 37%;
+        }
+    }
+
+  }
+  
+
+  .person {
+    width: 100vw;
+    height: rpx(182);
+    // background: #143779;
+    .touxiang {
+      position: absolute;
+      top: 15%;
+      left: 7%;
+
+    }
+  }
+
+  .txt-yellow-c6{
+    color: #C68814;
+  }
+
+  .vip {
+    width: rpx(90);
+    height: rpx(80);
+    position: absolute;
+    left: 9%;
+    bottom: 20%;
+  }
+  

@@ -1,9 +1,13 @@
 <ion-header>
   <div class="flex-row person">
-    <div class="flex-1"><img src="{{uploadpath}}resource/{{res.touxiang}}" class="icon-60 radius-50 touxiang"/></div>
+    <div class="flex-1">
+      <img src="{{uploadpath}}resource/{{res.touxiang}}" class="icon-60 radius-50 touxiang"/>
+      <img *ngIf='ismember' src="{{uploadpath}}resource/{{res.vip}}" class="vip"/>
+    </div>
     <div class="flex-3">
       <div class="txt-white margin-top margin-bottom-10">name</div>
-      <div class="txt-gray-bf h6">抱歉，您还不是会员</div>
+      <div *ngIf='ismember==false' class="txt-gray-bf h6">抱歉，您还不是会员</div>
+      <div *ngIf='ismember' class="txt-yellow-c6 h6">尊敬的会员，您好！</div>
     </div>
     <div class="flex-1 margin-top-80 text-center" routerLink='/myaccount'>
       <img src="{{uploadpath}}resource/{{res.arrowright}}" class="icon-15" />

@@ -33,4 +33,21 @@ export class AppComponent {
       
     });
   }
+
+
+  gotoPage(p) {
+    AppBase.is_mongceng = false;
+
+    AppBase.Current.menuopen = false;
+    if (AppBase.IsLogin == false) {
+      AppBase.CurrentNav.navigateForward("/login" + "?fromtab=" + AppBase.TABName);
+      return;
+    }
+    if (p.type == "forward") {
+      AppBase.CurrentNav.navigateForward(p.url + "?fromtab=" + AppBase.TABName);
+    } else {
+      AppBase.CurrentRoute.navigateByUrl(p.url);
+    }
+  }
+
 }

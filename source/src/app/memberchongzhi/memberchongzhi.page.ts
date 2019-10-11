@@ -7,14 +7,13 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
-
 @Component({
-  selector: 'app-tab4',
-  templateUrl: './tab4.page.html',
-  styleUrls: ['./tab4.page.scss'],
+  selector: 'app-memberchongzhi',
+  templateUrl: './memberchongzhi.page.html',
+  styleUrls: ['./memberchongzhi.page.scss'],
   providers:[MemberApi,ProjectApi]
 })
-export class Tab4Page extends AppBase {
+export class MemberchongzhiPage extends AppBase {
 
   constructor(public router: Router,
     public navCtrl: NavController,
@@ -36,12 +35,39 @@ export class Tab4Page extends AppBase {
     this.params;
   }
 
-  // 会员
-  ismember = true
 
   onMyShow(){
 
     
 
   }
+
+  paydate = "包一年"
+  choose(e){
+    console.log(e)
+
+    var current = e.target.parentElement.parentElement
+    current.classList.add('member-active')
+    this.paydate = e.target.parentElement.childNodes[0].innerText
+    var others = current.parentElement.childNodes
+    console.log(others)
+    console.log(current)
+    for(let i=0;i<others.length; i++){
+      if(current != others[i]){
+        others[i].classList.remove('member-active')
+      }
+    }
+
+
+  }
+
+  pay() {
+    console.log(this.paydate)
+    this.router.navigate(['paysuccess'],{
+      queryParams: {
+        paydate: this.paydate
+      }
+    })
+  }
+
 }

@@ -36,7 +36,7 @@ export class MembersPage extends AppBase {
     this.params;
   }
 
-
+  ismember = false
   onMyShow(){
 
     

@@ -1,0 +1,54 @@
+<ion-header>
+    <div class="bg-nav txt-white">
+          <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+          <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+      <ion-title>会员充值</ion-title>
+    </div>
+  </ion-header>
+
+<ion-content>
+  <div>
+    <div class="margin-20 txt-bold">开通会员</div>
+    <div>
+        <div class="member"  (click)='choose($event)'>
+            <div class="flex-row">
+              <div class="flex-4 h5 margin-left-20 txt-bold">包一天</div>
+              <div class="flex-2  txt-gray-bf txt-bold">￥<span class="f-36">18</span></div>
+            </div>
+        </div>
+        <div class="member"  (click)='choose($event)'>
+            <div class="flex-row">
+              <div class="flex-4 h5 margin-left-20 txt-bold">包一周</div>
+              <div class="flex-2  txt-gray-bf txt-bold">￥<span class="f-36">98</span></div>
+            </div>
+        </div>
+        <div class="member"  (click)='choose($event)'>
+            <div class="flex-row">
+              <div class="flex-4 h5 margin-left-20 txt-bold">包一月</div>
+              <div class="flex-2  txt-gray-bf txt-bold">￥<span class="f-36">288</span></div>
+            </div>
+        </div>
+        <div class="member member-active"  (click)='choose($event)'>
+            <div class="flex-row">
+              <div class="flex-4 h5 margin-left-20 txt-bold">包一年</div>
+              <div class="flex-2  txt-gray-bf txt-bold">￥<span class="f-36">998</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="margin-top-60 margin-left-30">
+        <div class="wenxin h6 txt-bold">温馨提示：</div>
+        <div class="txt-gray-8a h6 txt-bold"> 1. 开通会员可选择包月或者包年。</div>
+        <div class="txt-gray-8a h6 txt-bold margin-top-20 margin-bottom-20"> 2. 开通成功即成为会员，会员有效期内可免费查看足智彩等心水推介。</div> 
+        <div class="txt-gray-8a h6 txt-bold">3. 不支持退款。</div>
+      </div>
+     
+     
+      
+      <div class="zhifu">
+        <div class="h5 txt-bold">点击立即充值，即表示您已经同意<span class="txt-blue-14">《充值协议》</span></div>
+        <button class="btn txt-bold" (click)='pay()'>立即开通会员</button>
+      </div>
+
+  </div>
+</ion-content>

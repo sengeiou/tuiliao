@@ -42,4 +42,52 @@ export class TabsPage extends AppBase {
     
 
   }
+
+  hidetab=false;
+xz=1;
+count=0;
+static Instance:TabsPage=null;
+currentpage="";
+  ionViewDidEnter() {
+    TabsPage.Instance=this;
+    if (AppBase.LASTTAB != null) {
+      
+      AppBase.LASTTAB.ionViewDidEnter();
+     
+    }
+
+
+  }
+
+  gotoTab4() {
+    //this.
+    if (AppBase.IsLogin == true) {
+      this.router.navigateByUrl("/tabs/tab3");
+      this.xz=2;
+      console.log(this.xz);
+    } else {
+      this.router.navigate(["login"], { queryParams: {} });
+    }
+
+  }
+  gotoTab1(){
+  
+
+  
+      this.xz=1;
+      console.log(this.xz);
+  
+
+  }
+  gotoTab5() {
+    //this.
+    if (AppBase.IsLogin == true) {
+      this.router.navigateByUrl("/tabs/tab4");
+      this.xz=3;
+      console.log(this.xz);
+    } else {
+      this.router.navigate(["login"], { queryParams: {} });
+    }
+  }
+
 }

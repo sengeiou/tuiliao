@@ -1,9 +1,107 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>menberinfo</ion-title>
-  </ion-toolbar>
+  <div class="bg-nav txt-white">
+        <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+    <ion-title>编辑资料</ion-title>
+  </div>
 </ion-header>
 
 <ion-content>
+  <div *ngIf="MemberInfo!=null" class="padding-40">
 
+    <div class="padding white-block border-bottom padding-bottom-40" >
+      <div class="flex-row flex-center ">
+        <div class="flex-1"><img class="touxiang " src="{{getMemberPhoto(MemberInfo.photo)}}" /></div>
+        <div class="txt-black h5" style="">修改头像</div>
+        <img src="{{uploadpath}}resource/{{res.arrow}}" class="youicon margin-left-20" />
+      </div>
+    </div>
+
+
+    <div class="padding white-block border-bottom padding-bottom-12">
+      <div class="height-35" ></div>
+      <div class="flex-row flex-center">
+        <div class="txt92 h5">修改姓名</div>
+        <div class="flex-1 text-right txt-black h5">
+          {{MemberInfo.name}}
+        </div>
+        <img src="{{uploadpath}}resource/{{res.arrow}}" class="youicon margin-left-20" />
+      </div>
+    </div>
+    <!-- <div class="padding white-block border-bottom padding-bottom-12">
+      <div class="height-35" (click)='showSexualSelect()'></div>
+      <div class="flex-row flex-center" (click)='showSexualSelect()'>
+        <div class="txt92 h5 flex-1">性别</div>
+        <div class=" ">
+
+          <div *ngIf="MemberInfo.sexual=='M'" class="flex-row flex-center">
+            <img src="{{uploadpath}}resource/{{res.man}}" class="youicon" />
+            <div class="txt-black h5 margin-left-20">男</div>
+          </div>
+
+          <div *ngIf="MemberInfo.sexual=='F'" class="flex-row flex-center">
+            <img src="{{uploadpath}}resource/{{res.woman}}" class="youicon" />
+            <div class="txt-black h5 margin-left-20">女</div>
+          </div>
+
+          <div *ngIf="MemberInfo.sexual==''" class="txt-black h5">未设置</div>
+          <div *ngIf="MemberInfo.sexual=='N'" class="txt-black h5">不公开</div>
+        </div>
+        <img src="{{uploadpath}}resource/{{res.arrow}}" class="youicon margin-left-20" />
+      </div>
+    </div> -->
+    <!-- <div class="padding white-block border-bottom padding-bottom-12">
+      <div class="height-35" (click)='showDateSelect()'></div>
+      <div class="flex-row flex-center" (click)='showDateSelect()'>
+        <div class="txt92 h5">生日</div>
+        <div class="flex-1 text-right txt-black h5">
+          {{MemberInfo.birth}}
+        </div>
+        <img src="{{uploadpath}}resource/{{res.arrow}}" class="youicon margin-left-20" />
+        <div class="hide">
+          <ion-datetime #birthdll min="1900-01-01" cancelText="取消" max="{{maxDate}}" [(ngModel)]='MemberInfo.birthth'
+            doneText="完成" pickerFormat='YYYY MM DD' (ionChange)='updateBirth()'></ion-datetime>
+        </div>
+      </div>
+    </div> -->
+    <!-- <div class="padding white-block border-bottom padding-bottom-12">
+      <div class="height-35" ></div>
+      <div class="flex-row flex-center" >
+
+        <div class="txt92 h5">常住地</div>
+        <div class="flex-1 text-right txt-black h5" Picker [data]="provinces"   [mask]="true" [title]="'常驻地'"
+        [(ngModel)]="selectprovince" (ngModelChange)="onOk1($event)" (onDismiss)="onDismiss1()">
+          <div *ngIf="MemberInfo.city_id==0&&MemberInfo.province_id==0" class="txt-gray">请选择常住地</div>
+          <div *ngIf="(MemberInfo.city_id==0&&MemberInfo.province_id==0)==false" class="txt-black">{{MemberInfo.province_id_name}} {{MemberInfo.city_id_name}} </div>
+        </div>
+        <img src="{{uploadpath}}resource/{{res.you}}" class="youicon margin-left-20" />
+      </div>
+    </div>
+
+    <div class="padding white-block border-bottom padding-bottom-12">
+      <div class="height-35" (click)='navigate("addresslist")'></div>
+      <div class="flex-row flex-center" (click)='navigate("addresslist")'>
+        <div class="txt92 h5">收货地址</div>
+        <div class="flex-1 text-right txt-black h5">
+          {{MemberInfo.addresslist.length}}个
+        </div>
+        <img src="{{uploadpath}}resource/{{res.you}}" class="youicon margin-left-20" />
+      </div>
+    </div>
+
+    <div class="padding white-block border-bottom padding-bottom-12" (click)='navigate("changeintroduce")'>
+      <div class="height-35"></div>
+      <div class="flex-row">
+        <div class="txt92 h5">个性签名</div>
+        <div class="flex-1"></div>
+        <div class="txt-black h5 qianming" style="">
+          {{MemberInfo.signature}}
+        </div>
+        <img src="{{uploadpath}}resource/{{res.you}}" class="youicon margin-left-20" />
+      </div>
+    </div> -->
+
+
+
+  </div>
 </ion-content>
