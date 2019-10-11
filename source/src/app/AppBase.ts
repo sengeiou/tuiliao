@@ -48,6 +48,7 @@ export class AppBase implements OnInit {
     public stat = "stat9";
 
     public heading = "推料";
+    public font = "简体"
 
     public firseonshow = true;
     public scrolltop = 0;

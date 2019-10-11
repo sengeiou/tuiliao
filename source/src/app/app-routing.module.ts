@@ -20,6 +20,9 @@ const routes: Routes = [
   { path: 'members', loadChildren: './members/members.module#MembersPageModule' },
   { path: 'setting', loadChildren: './setting/setting.module#SettingPageModule' },
   { path: 'abouttuiliao', loadChildren: './abouttuiliao/abouttuiliao.module#AbouttuiliaoPageModule' },
+  { path: 'universal', loadChildren: './universal/universal.module#UniversalPageModule' },
+  { path: 'accountsecurity', loadChildren: './accountsecurity/accountsecurity.module#AccountsecurityPageModule' },
+  { path: 'menberinfo', loadChildren: './menberinfo/menberinfo.module#MenberinfoPageModule' },
 ];
 @NgModule({
   imports: [

@@ -1,0 +1,30 @@
+
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+}
+
+.txt_color{
+    color: #262626;
+}
+.txt-a7{
+    color: #A7A7A7;
+}
+.margin-top-12{
+    margin-top: rpx(24);
+}
+.height-1{
+    height: rpx(2);
+}
+.height-34{
+    height: rpx(68);
+}
+.height-14{
+    height: rpx(28);
+}
+.f20{
+    font-size: rpx(40);
+}
+.icon-15 {
+    height: rpx(36);
+    width: rpx(36);
+  }

@@ -1,0 +1,31 @@
+@function rpx($px) {
+  @return ($px * 100vw) / 750;
+}
+
+.clear {
+  height: rpx(52);
+  line-height: rpx(52);
+  width: rpx(92);
+  
+  background: #735fff;
+  border-radius: rpx(28);
+}
+.h34 {
+  height: rpx(68);
+}
+.h14 {
+  height: rpx(28);
+}
+.icon-15 {
+  height: rpx(36);
+  width: rpx(36);
+}
+.rowtext {
+  height: rpx(2);
+  width: 90vw;
+  background: #d6d7d9;
+  margin-top: rpx(24);
+}
+.padding-8{
+  padding: rpx(16);
+}

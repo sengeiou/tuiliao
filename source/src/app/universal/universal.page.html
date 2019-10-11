@@ -1,0 +1,48 @@
+<ion-header>
+  <div class="bg-nav txt-white">
+        <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+    <ion-title>通用</ion-title>
+  </div>
+</ion-header>
+
+
+<ion-content>
+  <div class="margin-40">
+
+    <div class="h14"></div>
+    <!-- <div class="flex-row flex-center" style="">
+      <div class="flex-1 h5 txt-a7">只在wifi环境下自动播放视频</div>
+      <ion-toggle color="danger" [checked]='MemberInfo.onlywifi_value=="Y"'
+        (ionChange)='MemberInfo.onlywifi_value=($event.detail.checked?"Y":"N");updateinfo("onlywifi",MemberInfo.onlywifi_value)'>
+      </ion-toggle>
+    </div>
+    <div style=" width:90vw;background:#D6D7D9; " class="margin-top-12 height-1"></div>
+    <div class='rowtext'></div>
+    <div class="h34"></div> -->
+
+
+    <div class="flex-row flex-center" style="">
+      <div class=" flex-1 h5 txt-a7">清除缓存</div>
+      <div style="" class="text-center txt-white clear h5" *ngIf="clearpg<=0" (click)='startclear()'>清除</div>
+      <div style="" class="text-center txt-white clear h5" *ngIf="clearpg>0">已清除{{(clearpg*100).toFixed()}}%</div>
+    </div>
+
+    <div class="padding-top-12 " *ngIf="clearpg>0">
+      <ion-progress-bar [value]="clearpg" [buffer]="1-clearpg"></ion-progress-bar>
+    </div>
+
+    <div style="width:90vw;background:#D6D7D9;" *ngIf="clearpg<=0" class="margin-top-12 height-1"></div>
+    <div class='rowtext' *ngIf="clearpg<=0"></div>
+    <!-- <div class='rowtext'></div> -->
+    <div class="h34"></div>
+
+    <div class="flex-row flex-center" style="">
+      <div class="flex-1 h5 txt-a7">文字转换&nbsp;/<span class="margin-left-10">{{font}}</span></div>
+      <ion-toggle color="danger" [checked]='font=="繁体"' (ionChange)='font=(font=="简体"?"繁体":"简体")' ></ion-toggle>
+    </div>
+    <div style=" width:90vw;background:#D6D7D9; " class="margin-top-12 height-1"></div>
+    <div class='rowtext'></div>
+
+  </div>
+</ion-content>
