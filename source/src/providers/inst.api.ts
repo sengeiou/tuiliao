@@ -78,6 +78,40 @@ export class InstApi {
     }
 
 
+    public operatorinfo(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'inst/operatorinfo';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('inst/operatorinfo', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('inst/operatorinfo', data, err);
+            });
+    }
+
+
     public resources(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'inst/resources';
         var headers = ApiConfig.GetHeader(url, data);

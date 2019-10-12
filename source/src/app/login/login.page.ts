@@ -32,14 +32,34 @@ export class LoginPage extends AppBase {
     //参数
     this.params;
   }
+
+  username = ''
+  password=""
   onMyShow(){
 
-
+    var storemobile = this.store("lastloginname");
+    this.username = storemobile;
 
   }
 
   trylogin(){
-    
+    console.log(this.username,this.password)
+    this.memberApi.employeelogin({
+      user_name: this.username,
+      password: this.password,
+      status: 'A'
+    }).then((ret)=>{
+      console.log(ret)
+      if (ret.code == "0") {
+        AppBase.IsLogin=true;
+        this.store("lastloginname", this.username);
+        this.store("UserToken", ret.return);
+        this.toast("登录成功");
+        this.backToUrl("/tabs/tab4");
+      } else {
+        this.toast("用户名或密码不正确");
+      }
+    })
   }
 
   zhuce(){

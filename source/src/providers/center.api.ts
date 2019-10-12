@@ -44,6 +44,40 @@ export class CenterApi {
     }
 
 
+    public addpurchase(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'center/addpurchase';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('center/addpurchase', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('center/addpurchase', data, err);
+            });
+    }
+
+
     public addrecfav(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'center/addrecfav';
         var headers = ApiConfig.GetHeader(url, data);
@@ -448,40 +482,6 @@ export class CenterApi {
                     ApiConfig.DimissLoadingModal();
                 }
                 return ApiConfig.ErrorHandle('center/saveinvest', data, err);
-            });
-    }
-
-
-    public addpurchase(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'center/addpurchase';
-        var headers = ApiConfig.GetHeader(url, data);
-        let options = new RequestOptions({ headers: headers });
-        let body = ApiConfig.ParamUrlencoded(data);
-        let loading = null;
-
-        if (showLoadingModal) {
-            loading = ApiConfig.GetLoadingModal();
-        }
-
-        return this.http.post(url, body, options).toPromise()
-            .then((res) => {
-                if (ApiConfig.DataLoadedHandle('center/addpurchase', data, res)) {
-                    if (showLoadingModal) {
-                        ApiConfig.DimissLoadingModal();
-                    }
-                    if (res==null) {
-                        return null;
-                    }
-                    return res.json();
-                } else {
-                    return Promise.reject(res);
-                }
-            })
-            .catch(err => {
-                if (showLoadingModal) {
-                    ApiConfig.DimissLoadingModal();
-                }
-                return ApiConfig.ErrorHandle('center/addpurchase', data, err);
             });
     }
 

@@ -11,6 +11,7 @@ import { ViewController } from '@ionic/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { OnInit } from '@angular/core';
+import { TabsPage } from './tabs/tabs.page';
 
 declare let wx: any;
 
@@ -58,8 +59,15 @@ export class AppBase implements OnInit {
 
     static Current = null;
     currentpage = "";
+    isLoginPage = false;
+
+    public operatorinfo={id:0,name:"",photo:"",loginname:""};
 
     static STATICRAND = "";
+
+    bfscrolltop; // 获取软键盘唤起前浏览器滚动部分的高度
+
+    public static devicename = "";
 
 
     public constructor(
@@ -95,13 +103,15 @@ export class AppBase implements OnInit {
         //  this.statusBar.styleLightContent();
     }
     ngOnInit() {
-
+        this.bfscrolltop = document.body.scrollTop;
         ApiConfig.SetUnicode(AppBase.UNICODE);
         this.getResources();
         this.getInstInfo();
         this.onMyLoad();
         this.setStatusBar();
     }
+
+
     onMyLoad() {
     }
     getInstInfo() {
@@ -131,12 +141,7 @@ export class AppBase implements OnInit {
     }
     shouye() {
 
-
-
-
         this.navigate("/tabs/tab1");
-
-
 
     }
     getResources() {
@@ -149,11 +154,14 @@ export class AppBase implements OnInit {
             this.res = AppBase.Resources;
         }
     }
+    consolelog(vi, value) {
+        console.log({ vi, value });
+    }
     ionViewDidEnter() {
         
         this.onMyShow();
 
-
+        
     }
 
     onMyShow() {
@@ -313,11 +321,20 @@ export class AppBase implements OnInit {
                     AppBase.IsLogin = false;
                     window.localStorage.removeItem("UserToken");
                     this.MemberInfo = null;
-                    this.back();
+                    this.backToUrl('/login');
                 }
             })
 
     }
+    toLogin() {
+
+        if (!AppBase.IsLogin) {
+            this.router.navigate(["login"], { queryParams: {} });
+
+        }
+
+    }
+
     store(name, value = null) {
         if (value == null) {
             return window.localStorage.getItem(name);
@@ -435,6 +452,12 @@ export class AppBase implements OnInit {
         }
 
         return newArr.join("-").replace("-",'')
+    }
+
+    memberinfo(){
+        this.memberinfo.getmemberinfo({}).then(()=>{
+
+        })
     }
 
     

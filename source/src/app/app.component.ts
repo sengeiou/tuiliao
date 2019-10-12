@@ -13,6 +13,11 @@ import { MemberApi } from 'src/providers/member.api';
   providers:[InstApi,MemberApi,WechatApi]
 })
 export class AppComponent {
+
+  static Instance: AppComponent = null;
+  currentpage = "";
+  devicename = "";
+
   constructor(
     private platform: Platform,
     private statusBar: StatusBar,
