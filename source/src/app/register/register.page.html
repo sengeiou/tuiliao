@@ -22,7 +22,7 @@
         <div class="txt-bold">用户名</div>
         <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
 
-          <ion-input (keyup)='checked1()'  class=" " placeholder="请输入用户名"  [(ngModel)]="username" ></ion-input>
+          <ion-input  class=" " placeholder="请输入用户名"  [(ngModel)]="username" ></ion-input>
 
         </div>
       </div>
@@ -33,7 +33,7 @@
           <div class="txt-bold">密码</div>
           <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
   
-            <ion-input (keyup)='checked2()' [disabled]="inverify==true"  class=" " placeholder="密码不少于6位"  [(ngModel)]="password" type="password" minlength="6"></ion-input>
+            <ion-input [disabled]="inverify==true"  class=" " placeholder="密码不少于6位"  [(ngModel)]="password" type="password" minlength="6"></ion-input>
   
           </div>
         </div>
@@ -45,7 +45,7 @@
             <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
                 <div class="h5">+86</div>
                 <img [src]="uploadpath+'resource/'+res.bottom_b" class=" icon-20 margin-left-20">
-                <ion-input (keyup)='checked3()' [disabled]="inverify==true" class="h5 margin-left-20" placeholder="请输入手机号码" type="tel"
+                <ion-input [disabled]="inverify==true" class="h5 margin-left-20" placeholder="请输入手机号码" type="tel"
                   [(ngModel)]="mobile" maxlength='11'></ion-input>
             </div>
           </div>
@@ -53,7 +53,7 @@
           <div class="" *ngIf='istelzhuce==false'>
               <div class="txt-bold">邮箱</div>
               <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
-                  <ion-input (keyup)='checked4()' [disabled]="inverify==true"  placeholder="请输入邮箱" type="email"
+                  <ion-input [disabled]="inverify==true"  placeholder="请输入邮箱" type="email"
                     [(ngModel)]="email" ></ion-input>
               </div>
             </div>
@@ -97,7 +97,7 @@
               <div class="txt-bold">推广码（选填）</div>
               <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
       
-                <ion-input (keyup)='checked5()'  class=" " placeholder="请输入推广码"  [(ngModel)]="code"  ></ion-input>
+                <ion-input class=" " placeholder="请输入推广码"  [(ngModel)]="code"  ></ion-input>
       
               </div>
             </div>

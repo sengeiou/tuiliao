@@ -10,8 +10,11 @@
   <div *ngIf="MemberInfo!=null" class="padding-40">
 
     <div class="padding white-block border-bottom padding-bottom-40" >
-      <div class="flex-row flex-center ">
-        <div class="flex-1"><img class="touxiang " src="{{getMemberPhoto(MemberInfo.photo)}}" /></div>
+      <div class="flex-row flex-center " (click)="selectPhoto()">
+        <div class="flex-1">
+            <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='photo==""' class="icon-60 radius-50 touxiang"/>
+            <img src="{{uploadpath}}member/{{photo}}" *ngIf='photo!=""' class="icon-60 radius-50 touxiang"/>
+        </div>
         <div class="txt-black h5" style="">修改头像</div>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="youicon margin-left-20" />
       </div>
@@ -20,11 +23,10 @@
 
     <div class="padding white-block border-bottom padding-bottom-12">
       <div class="height-35" ></div>
-      <div class="flex-row flex-center">
+      <div class="flex-row flex-center"  >
         <div class="txt92 h5">修改姓名</div>
-        <div class="flex-1 text-right txt-black h5">
-          {{MemberInfo.name}}
-        </div>
+        <ion-input class="flex-1 text-right txt-black h5" [(ngModel)]='username'>
+        </ion-input>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="youicon margin-left-20" />
       </div>
     </div>
@@ -101,6 +103,7 @@
       </div>
     </div> -->
 
+    <button (click)="save()"  class="h4-5 bg-blue-14 btns" size="block" >完成</button>
 
 
   </div>

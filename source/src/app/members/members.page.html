@@ -15,19 +15,20 @@
       <div class="perfixed">
           <div class="flex-row person">
               <div class="flex-2 ">
-                <img src="{{uploadpath}}resource/{{res.touxiang}}" class="icon-60 radius-50 touxiang"/>
-                <img *ngIf='ismember' src="{{uploadpath}}resource/{{res.vip}}" class="vip"/>
+                <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='photo==""' class="icon-60 radius-50 touxiang"/>
+                <img src="{{uploadpath}}member/{{photo}}" *ngIf='photo!=""' class="icon-60 radius-50 touxiang"/>
+                <img *ngIf='ismember=="是"' src="{{uploadpath}}resource/{{res.vip}}" class="vip"/>
               </div>
               <div class="flex-3">
-                <div class="margin-top margin-bottom-10">name</div>
-                <div *ngIf='ismember==false' class=" h6">抱歉，您还不是会员</div>
-                <div *ngIf='ismember' class="txt-yellow-c6 h6">尊敬的会员，您好！</div>
+                <div class="margin-top margin-bottom-10">{{username}}</div>
+                <div *ngIf='ismember=="否"' class=" h6">抱歉，您还不是会员</div>
+                <div *ngIf='ismember=="是"' class="txt-yellow-c6 h6">尊敬的会员，您好！</div>
               </div>
-              <div  *ngIf='ismember==false' class="flex-3 margin-top-80 text-center txt-yellow-c6 " routerLink='/memberchongzhi'>
+              <div  *ngIf='ismember=="否"' class="flex-3 margin-top-80 text-center txt-yellow-c6 " routerLink='/memberchongzhi'>
                 <span class="h6"> 申请会员</span>
                 <img src="{{uploadpath}}resource/{{res.C6arrow}}" class="icon-15 imgs" />
               </div>
-              <div *ngIf='ismember' class="flex-3 margin-top-80 text-center txt-yellow-c6" routerLink='/memberchongzhi'>
+              <div *ngIf='ismember=="是"' class="flex-3 margin-top-80 text-center txt-yellow-c6" routerLink='/memberchongzhi'>
                 <span class="h6">申请续费</span>
                 <img src="{{uploadpath}}resource/{{res.C6arrow}}" class="icon-15 imgs" />
               </div>

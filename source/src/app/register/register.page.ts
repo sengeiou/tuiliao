@@ -70,7 +70,7 @@ export class RegisterPage extends AppBase {
 
     this.memberApi.adduser({
       mobile: this.mobile,
-      user_name: this.username,
+      name: this.username,
       password: this.password,
       code: this.code,
       status: 'A'
@@ -86,32 +86,7 @@ export class RegisterPage extends AppBase {
 
   }
 
-  check1(){
-
-  }
-
-  
-  check2(){
-    if(this.username = ''){
-      this.toast('用户名不能为空')
-    }
-    
-  }
-
-  
-  check3(){
-    
-  }
-
-  
-  check4(){
-    
-  }
-
-  
-  check5(){
-    
-  }
+ 
 
 
   setInVerify() {
@@ -155,7 +130,7 @@ export class RegisterPage extends AppBase {
 
   sendVerifyCode() {
 
-    this.memberApi.checkcanreg({ mobile: this.mobile }).then(ret => {
+    this.memberApi.checkcanreg({ mobile: this.mobile,name: this.username }).then(ret => {
       console.log(ret);
 
       if (ret.code == "0") {

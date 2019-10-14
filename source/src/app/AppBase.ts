@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, Params } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { TabsPage } from './tabs/tabs.page';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 
 declare let wx: any;
 
@@ -37,7 +38,7 @@ export class AppBase implements OnInit {
     public static InstInfo = null;
     public static MemberInfo = null;
     public InstInfo = {  h5sharelogo: "", h5sharetitle: "", h5sharedesc: "", tel: "", h5appid: "", kf: "", openning: "", successtips: "", orderneedknow: "", name: "", logo: "", memberlogo: "", undershipping: 0, shippingfee: 0, about1: "", about2: "", about3: "", about4: "", about5: "" };
-    public MemberInfo = { id:0, avatarUrl: "", nickName: "", h5openid: "", unionid: "" };
+    public MemberInfo = { id:1, name: "", photo: "", mobile: "", email: "" };
     public static MYBABY = [];
     public mybaby = [];
     public options = null;
@@ -60,8 +61,11 @@ export class AppBase implements OnInit {
     static Current = null;
     currentpage = "";
     isLoginPage = false;
+    memberInfo=null;
 
     public operatorinfo={id:0,name:"",photo:"",loginname:""};
+
+
 
     static STATICRAND = "";
 
@@ -105,13 +109,31 @@ export class AppBase implements OnInit {
     ngOnInit() {
         this.bfscrolltop = document.body.scrollTop;
         ApiConfig.SetUnicode(AppBase.UNICODE);
+        this.CheckPermission();
         this.getResources();
         this.getInstInfo();
         this.onMyLoad();
         this.setStatusBar();
     }
 
+    CheckPermission() {
+        if (this.isLoginPage == false) {
+            var token = window.localStorage.getItem("UserToken");
+            console.log(token,'llll')
 
+            if (token == null) {
+                this.router.navigate(["login"]);
+            } else {
+                ApiConfig.SetToken(token);
+                
+                AppBase.memberapi.info({member_id:1}).then((memberinfo) => {
+                    console.log(memberinfo,'4165456')
+                    this.memberInfo = memberinfo;
+                    console.log(this.memberInfo,'oooo')
+                })
+            }
+        }
+    }
     onMyLoad() {
     }
     getInstInfo() {
@@ -130,7 +152,7 @@ export class AppBase implements OnInit {
     }
     getMemberInfo() {
 
-        AppBase.memberapi.info({}).then((memberinfo) => {
+        AppBase.memberapi.info({member_id:1}).then((memberinfo) => {
             if (memberinfo == null || memberinfo.mobile == undefined || memberinfo.mobile == "") {
                 //alert("?");
                 memberinfo = null;
@@ -139,6 +161,7 @@ export class AppBase implements OnInit {
 
         });
     }
+
     shouye() {
 
         this.navigate("/tabs/tab1");
@@ -160,7 +183,6 @@ export class AppBase implements OnInit {
     ionViewDidEnter() {
         
         this.onMyShow();
-
         
     }
 
@@ -226,6 +248,7 @@ export class AppBase implements OnInit {
 
     }
     async showModal(pageobj, param = {}, callback = null) {
+
         var modal = await this.modalCtrl.create({
             component: pageobj,
             componentProps: param
@@ -454,11 +477,28 @@ export class AppBase implements OnInit {
         return newArr.join("-").replace("-",'')
     }
 
-    memberinfo(){
-        this.memberinfo.getmemberinfo({}).then(()=>{
-
-        })
+    updateinfo(key, value) {
+        var arr = [];
+        arr[key] = value;
+        AppBase.memberapi.infoupdate(arr);
     }
+    async uploadFile(transfer: FileTransfer, filepath: string, module: string) {
+        filepath=filepath.split("?")[0];
+        let options: FileUploadOptions = {
+            fileKey: 'img',
+            fileName: filepath
+        }
+        //alert(filepath);
 
-    
+        var fileTransfer: FileTransferObject = await transfer.create();
+        return fileTransfer.upload(filepath, ApiConfig.getFileUploadAPI() + "?field=img&module=" + module, options)
+            .then((data) => {
+                // success
+                //alert(data.response);
+                return data.response.toString().split("|~~|")[1];
+            }, (err) => {
+                this.showModal("上传失败，请联系管理员");
+                // error
+            })
+    }
 }

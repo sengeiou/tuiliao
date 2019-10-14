@@ -45,7 +45,7 @@ export class LoginPage extends AppBase {
   trylogin(){
     console.log(this.username,this.password)
     this.memberApi.employeelogin({
-      user_name: this.username,
+      name: this.username,
       password: this.password,
       status: 'A'
     }).then((ret)=>{

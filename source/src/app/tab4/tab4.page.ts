@@ -37,11 +37,16 @@ export class Tab4Page extends AppBase {
   }
 
   // 会员
-  ismember = true
-
+  ismember = 'N'
+  photo =''
+  username = ''
   onMyShow(){
-
-  
+    this.memberApi.info({member_id:1}).then((memberinfo) => {
+      console.log(memberinfo,'4165456')
+      this.ismember = memberinfo.ismember
+      this.photo = memberinfo.photo
+      this.username = memberinfo.name
+  })
 
   }
 }

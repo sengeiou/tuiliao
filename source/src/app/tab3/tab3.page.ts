@@ -54,14 +54,17 @@ export class Tab3Page extends AppBase {
 
     this.projectApi.recomlist({}).then((recomlist:any)=>{
       console.log(recomlist)
-      this.recomlist = recomlist.filter(item=>{
-        item.pub_time_formatting = this.getchangedate(item.pub_time_formatting)
-        for(let k=0;k<item.latelycom.length;k++){
-          item.latelycom[k].com_time = this.getchangetime(item.latelycom[k].com_time)
-        }
-        return item
-      })
-      
+      if(recomlist.length>0){
+        this.recomlist = recomlist.filter(item=>{
+          item.pub_time_formatting = this.getchangedate(item.pub_time_formatting)
+          for(let k=0;k<item.latelycom.length;k++){
+            item.latelycom[k].com_time = this.getchangetime(item.latelycom[k].com_time)
+          }
+          return item
+        })
+        
+      }
+     
     })
     
 

@@ -10,11 +10,11 @@
   <div class="bg-gray-f0">
 
       <div class="yigou" *ngFor='let list of focuslist'>
-        <div class="flex-row" *ngFor='let item of list.befocus' (click)='focusper(item.id)'>
-          <div class="flex-1">
+        <div class="flex-row" *ngFor='let item of list.befocus'>
+          <div class="flex-1"  (click)='focusper(item.id)'>
             <img src="{{uploadpath}}recommend/{{item.photo}}" class="icon-40 tuobiao" />
           </div>
-          <div class="flex-3 margin-top-60">
+          <div class="flex-3 margin-top-60"  (click)='focusper(item.id)'>
               {{item.name}}
           </div>
           <div class="flex-3 margin-top-20">
@@ -26,7 +26,7 @@
               <img src="{{uploadpath}}resource/{{res.jian}}" class="jian"/>
               <span  class="quguan">取关</span>
           </div>
-            <div>
+            <div  (click)='focusper(item.id)'>
                 <span class="h6 txt-gray-d2 margin-right-20">近期战绩</span>
                 <span class="txt-red-e5 h2 txt-bold">{{item.success_result}}</span>
             </div>
