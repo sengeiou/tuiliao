@@ -1,0 +1,15 @@
+
+
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+.center{
+    margin-top:10vh;
+}
+.f32{
+    font-size: rpx(64);
+  }
+  .f22{
+    font-size: rpx(44);
+  }
