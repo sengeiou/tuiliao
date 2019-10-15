@@ -55,39 +55,6 @@ currentpage="";
       AppBase.LASTTAB.ionViewDidEnter();
      
     }
-
-
-  }
-
-  gotoTab4() {
-    //this.
-    if (AppBase.IsLogin == true) {
-      this.router.navigateByUrl("/tabs/tab3");
-      this.xz=2;
-      console.log(this.xz);
-    } else {
-      this.router.navigate(["login"], { queryParams: {} });
-    }
-
-  }
-  gotoTab1(){
-  
-
-  
-      this.xz=1;
-      console.log(this.xz);
-  
-
-  }
-  gotoTab5() {
-    //this.
-    if (AppBase.IsLogin == true) {
-      this.router.navigateByUrl("/tabs/tab4");
-      this.xz=3;
-      console.log(this.xz);
-    } else {
-      this.router.navigate(["login"], { queryParams: {} });
-    }
   }
 
 }

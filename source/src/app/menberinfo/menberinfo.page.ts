@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 // import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+// import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { ActionSheetController } from '@ionic/angular';
 
 
@@ -16,7 +16,7 @@ import { ActionSheetController } from '@ionic/angular';
   selector: 'app-menberinfo',
   templateUrl: './menberinfo.page.html',
   styleUrls: ['./menberinfo.page.scss'],
-  providers:[MemberApi,ProjectApi,Camera]
+  providers:[MemberApi,ProjectApi]
 })
 export class MenberinfoPage extends AppBase {
 
@@ -28,7 +28,7 @@ export class MenberinfoPage extends AppBase {
     public activeRoute: ActivatedRoute,
     public sanitizer: DomSanitizer,
     // public camera: Camera,
-    public transfer: FileTransfer,
+    // public transfer: FileTransfer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
     public actionSheetController: ActionSheetController,
@@ -48,6 +48,8 @@ export class MenberinfoPage extends AppBase {
   ismember = 'N'
   username = ''
   photo = ''
+  mobile=''
+  email=''
   onMyShow(){
 
     this.memberApi.info({member_id:1}).then((memberinfo) => {
@@ -55,10 +57,18 @@ export class MenberinfoPage extends AppBase {
       this.ismember = memberinfo.ismember
       this.photo = memberinfo.photo
       this.username = memberinfo.name
+      this.mobile = memberinfo.mobile
+      this.email = memberinfo.email
   })
   console.log(this.photo)
 }
 
+save(){
+  console.log(this.username,this.photo)
+
+ 
+
+}
 
 async selectPhoto() {
 //   const actionSheet = await this.actionSheetController.create({

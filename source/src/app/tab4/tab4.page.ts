@@ -40,12 +40,14 @@ export class Tab4Page extends AppBase {
   ismember = 'N'
   photo =''
   username = ''
+  ballnum = 0
   onMyShow(){
     this.memberApi.info({member_id:1}).then((memberinfo) => {
       console.log(memberinfo,'4165456')
       this.ismember = memberinfo.ismember
       this.photo = memberinfo.photo
       this.username = memberinfo.name
+      this.ballnum = memberinfo.ballnum
   })
 
   }

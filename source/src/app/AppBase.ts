@@ -117,7 +117,10 @@ export class AppBase implements OnInit {
     }
 
     CheckPermission() {
-        if (this.isLoginPage == false) {
+
+        console.log(AppBase.IsLogin,'5555')
+
+        if (AppBase.IsLogin) {
             var token = window.localStorage.getItem("UserToken");
             console.log(token,'llll')
 
@@ -127,11 +130,15 @@ export class AppBase implements OnInit {
                 ApiConfig.SetToken(token);
                 
                 AppBase.memberapi.info({member_id:1}).then((memberinfo) => {
+                    AppBase.IsLogin = memberinfo == null ? false : true;
                     console.log(memberinfo,'4165456')
                     this.memberInfo = memberinfo;
                     console.log(this.memberInfo,'oooo')
                 })
             }
+        }else {
+            // this.router.navigate(["login"]);
+            this.tryLogin()
         }
     }
     onMyLoad() {
@@ -423,7 +430,7 @@ export class AppBase implements OnInit {
 
 
     backHome() {
-        this.navCtrl.navigateBack('tabs/home');
+        this.navCtrl.navigateBack('tabs/tab1');
         return;
     }
     uploadImage(module,aa){

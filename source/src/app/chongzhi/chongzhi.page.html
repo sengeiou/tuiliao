@@ -64,3 +64,51 @@
     </div>
   </div>
 </ion-content>
+
+<div class="modal-mask" *ngIf="d" (click)="gbzf()"></div>
+<!--  *ngIf="d" -->
+<div class="modal-dialog padding-20" *ngIf="d" (click)="$event.stopPropagation()">
+
+  <div class="flex-row flex-center">
+    <div class="flex-1"></div>
+    <img [src]="uploadpath+'resource/'+res.cuowu" (click)="gbzf()" class="icon22 opa4 margin-right-10">
+  </div>
+
+  <div class="h4 txt-bold text-center margin-bottom-60" style="color:#262626">订单支付</div>
+  <div class="flex-row flex-bottom  ">
+    <div class="flex-1 h5  " style="color:#262626;opacity: 0.5;">订单编号：24587290857239</div>
+    <div class="f22" style="color:#E50303;">￥</div>
+    <div class="f32 txt-bold" style="color:#E50303;">{{paymoney}}</div>
+    <div class="f22" style="color:#E50303;">元</div>
+  </div>
+
+  <div class="h4-6 padding-bottom-20 txt-bold margin-top-40" style="color:#262626;border-bottom: 1px solid  #D6D7D9">
+    付款方式
+  </div>
+
+  <div (click)='zhifu(0)' class="flex-row flex-center xx">
+    <img [src]="uploadpath+'resource/'+res.weixinzhifu" class="icon40">
+    <div class="flex-1 margin-left-20">
+      <div class="h5 txt-bold" style="color:#262626">微信支付</div>
+      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">推荐在微信中绑定银行卡的用户使用</div>
+    </div>
+    <img [src]="uploadpath+'resource/'+(zhifufanshi==0?res.xuanzhong:res.xuanze)" (click)='zhifu(0)' class="icon-22 ">
+
+  </div>
+
+  <div (click)='zhifu(1)' class="flex-row flex-center xx">
+    <img [src]="uploadpath+'resource/'+res.zhifubao" class="icon40">
+    <div class="flex-1 margin-left-20">
+      <div class="h5 txt-bold" style="color:#262626">支付宝</div>
+      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">安全快捷，可支持银行卡支付</div>
+    </div>
+    <img [src]="uploadpath+'resource/'+(zhifufanshi==1?res.xuanzhong:res.xuanze)" (click)='zhifu(1)' class="icon-22 ">
+
+  </div>
+
+
+
+  <button class="btns margin-top-80" (click)="lijizhifu()" >立即支付</button>
+
+</div>
+

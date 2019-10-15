@@ -8,12 +8,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 import { AliyunApi } from 'src/providers/aliyun.api';
+import { CenterApi } from 'src/providers/center.api';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
-  providers:[MemberApi,ProjectApi,AliyunApi]
+  providers:[MemberApi,ProjectApi,AliyunApi,CenterApi]
 })
 export class RegisterPage extends AppBase {
 
@@ -28,6 +29,7 @@ export class RegisterPage extends AppBase {
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
     public aliyunApi:AliyunApi,
+    public centerApi:CenterApi,
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -60,8 +62,14 @@ export class RegisterPage extends AppBase {
   c2 = "";
   c3 = "";
   c4 = "";
+
+  memberlist=null
   onMyShow(){
 
+      this.memberApi.memberlist({}).then((memberlist:any)=>{
+        console.log(memberlist)
+        this.memberlist = memberlist
+      })
     
 
   }
@@ -76,9 +84,44 @@ export class RegisterPage extends AppBase {
       status: 'A'
     }).then(ret => {
       if (ret.code == "0") {
+       
+        if(this.code!=""){
+          console.log(this.code,'this.code')
+          let date = new Date()
+          let year = date.getFullYear()
+          let month = date.getMonth() + 1
+          let day = date.getDay()
+      
+          let nowtime = year + '-' + month +'-'+day
+      
+          for(let i=0;i<this.memberlist.length;i++){
+            if(this.memberlist[i].mycode == this.code){
+              let yongjin = 8
+              
+              this.centerApi.addintegration({user_id:this.memberlist[i].id,yongjin:yongjin,yongjin_time:nowtime,yongjin_name: this.username,status: 'A'}).then((addintegration:any)=>{
+                console.log(addintegration)
+              
+                if(addintegration.code == '0'){
+                  console.log(this.memberlist[i].ballnum,'55555555')
+                  this.memberlist[i].ballnum =Number(this.memberlist[i].ballnum) +Number(yongjin) 
+                  this.memberApi.editballnum({id:this.memberlist[i].id,ballnum: this.memberlist[i].ballnum}).then((editballnum:any)=>{
+                    console.log(editballnum,'家私电话')
+                  })
+        
+                }
+                
+              })
+
+            }
+          }
+        }
+        
         this.toast("绑定成功");
         this.store("UserToken", ret.return);
         this.backToUrl("/login");
+
+        
+
       } else {
         this.toast(ret.result);
       }

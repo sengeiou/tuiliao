@@ -41,13 +41,28 @@ export class RecomDetailPage extends AppBase {
     
   id = '';
   recommenddetail = []
-  user_id = 1
+  
   guanzushow=true;
   isshow = true;
+  d = false;
+
+  ismember='N'
+  username=''
+  member_id = ''
+  ballnum = 0
+
   onMyShow(){
     this.activeRoute.queryParams.subscribe(query=>{
       console.log(query)
       this.id = query.id
+
+      this.memberApi.info({member_id:1}).then((memberinfo) => {
+        console.log(memberinfo,'4165456')
+        this.ismember = memberinfo.ismember
+        this.username = memberinfo.name
+        this.member_id = memberinfo.id
+        this.ballnum = memberinfo.ballnum
+      })
 
       this.projectApi.recommenddetail({id:this.id,user_id: query.user_id}).then((recommenddetail:any)=>{
         console.log(recommenddetail)
@@ -56,7 +71,7 @@ export class RecomDetailPage extends AppBase {
 
         this.recommenddetail = detaillist.filter(item=>{
 
-          this.centerApi.purchasedlist({recom_id:item.user_id,pur_id:this.user_id}).then((purchasedlist:any)=>{
+          this.centerApi.purchasedlist({recom_id:item.user_id,pur_id:this.member_id}).then((purchasedlist:any)=>{
             console.log(purchasedlist,'2222')
             console.log(purchasedlist.length,'2222')
             if(purchasedlist.length>=1){
@@ -75,7 +90,7 @@ export class RecomDetailPage extends AppBase {
                         item.latelycom[k].com_time = this.getchangetime(item.latelycom[k].com_time)
                       }
             
-                      this.centerApi.focuslist({focus_member_id: this.user_id,befocus_id: item.user_id}).then((focuslist:any)=>{
+                      this.centerApi.focuslist({focus_member_id: this.member_id,befocus_id: item.user_id}).then((focuslist:any)=>{
                         console.log(focuslist.length)
                         if(focuslist.length == 1){
                           this.guanzushow = false
@@ -84,7 +99,7 @@ export class RecomDetailPage extends AppBase {
                         }
                       })
             
-                      this.centerApi.recomfavlist({userfav_id: this.user_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
+                      this.centerApi.recomfavlist({userfav_id: this.member_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
                         console.log(recomfavlist,'aaaa')
                         if(recomfavlist.length==1){
                           this.isshow = false
@@ -110,7 +125,7 @@ export class RecomDetailPage extends AppBase {
                 }
 
                 console.log('4444')
-                this.centerApi.focuslist({focus_member_id: this.user_id,befocus_id: item.user_id}).then((focuslist:any)=>{
+                this.centerApi.focuslist({focus_member_id: this.member_id,befocus_id: item.user_id}).then((focuslist:any)=>{
                   console.log(focuslist.length)
                   if(focuslist.length == 1){
                     this.guanzushow = false
@@ -119,7 +134,7 @@ export class RecomDetailPage extends AppBase {
                   }
                 })
 
-                this.centerApi.recomfavlist({userfav_id: this.user_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
+                this.centerApi.recomfavlist({userfav_id: this.member_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
                   console.log(recomfavlist,'aaaa')
                   if(recomfavlist.length==1){
                     this.isshow = false
@@ -146,31 +161,78 @@ export class RecomDetailPage extends AppBase {
     })
   }
 
-  pay(user_id,itemId){
-    console.log(user_id)
+  // 购买物品信息
+  payinfo={user_id: '', money: null,recom_id: ''}
 
-    this.centerApi.addpurchase({pur_id:this.user_id,status: 'A',recom_id: user_id}).then((addpurchase:any)=>{
-      console.log(addpurchase)
-      if(addpurchase.code == '0'){
-      this.router.navigate(['pay-recom-detail'],{
-          queryParams: {
-            id: itemId
-          }
-        })
-      }
-    })
+  pay(user_id,itemId,coincount){
+    console.log(user_id,'ddd')
+    console.log(itemId,'eee')
 
-   
 
-  }
+    this.payinfo.user_id = user_id
+    this.payinfo.money = coincount
+    this.payinfo.recom_id = itemId
+
+    this.d = true;
+
+
+    console.log(coincount)
 
   
+  }
+
+  lijizhifu (){
+    this.d = false;
+    let date = new Date()
+    let year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let day = date.getDay()
+
+    let nowtime = year + '-' + month +'-'+day
+
+    this.ballnum = this.ballnum - this.payinfo.money
+
+    if(this.payinfo.money>0){
+      this.centerApi.addintegration({user_id:this.member_id,zhifu:this.payinfo.money,pay_time:nowtime,status: 'A'}).then((addintegration:any)=>{
+        console.log(addintegration)
+        if(addintegration.code == '0'){
+
+          this.centerApi.addpurchase({pur_id:this.member_id,status: 'A',recom_id: this.payinfo.user_id}).then((addpurchase:any)=>{
+            console.log(addpurchase)
+            if(addpurchase.code == '0'){
+            this.router.navigate(['pay-recom-detail'],{
+                queryParams: {
+                  id: this.payinfo.recom_id
+                }
+              })
+            }
+          })
+
+          this.memberApi.editballnum({id:this.member_id,ballnum: this.ballnum}).then((editballnum:any)=>{
+            console.log(editballnum,'家私电话')
+          })
+
+        }
+        
+      })
+  
+    }
+    
+  }
+
+  gbzf() {
+    this.d = false;
+    this.onMyShow();
+    // window.location.href = "/order";  //出现短暂白屏
+    // this.navigate("/order");
+  }
+
   shoucang(user_id){
     console.log(user_id)
 
     if(this.isshow == true){
 
-      this.centerApi.addrecfav({userfav_id:this.user_id,status: 'A',recom_id: user_id}).then((addrecfav:any)=>{
+      this.centerApi.addrecfav({userfav_id:this.member_id,status: 'A',recom_id: user_id}).then((addrecfav:any)=>{
         console.log(addrecfav)
       })
 
@@ -193,7 +255,7 @@ export class RecomDetailPage extends AppBase {
     console.log(user_id)
  
     if(this.guanzushow == true) {
-      this.centerApi.addfocus({befocus_id: user_id, status: 'A',focus_member_id:this.user_id}).then((addfocus:any)=>{
+      this.centerApi.addfocus({befocus_id: user_id, status: 'A',focus_member_id:this.member_id}).then((addfocus:any)=>{
         console.log(addfocus)
       })  
     }else {

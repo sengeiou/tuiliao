@@ -78,6 +78,40 @@ export class MemberApi {
     }
 
 
+    public editballnum(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'member/editballnum';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('member/editballnum', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('member/editballnum', data, err);
+            });
+    }
+
+
     public employeelogin(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'member/employeelogin';
         var headers = ApiConfig.GetHeader(url, data);
@@ -210,6 +244,74 @@ export class MemberApi {
                     ApiConfig.DimissLoadingModal();
                 }
                 return ApiConfig.ErrorHandle('member/info', data, err);
+            });
+    }
+
+
+    public infoupdate(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'member/infoupdate';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('member/infoupdate', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('member/infoupdate', data, err);
+            });
+    }
+
+
+    public integrationlist(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'member/integrationlist';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('member/integrationlist', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('member/integrationlist', data, err);
             });
     }
 
@@ -350,8 +452,8 @@ export class MemberApi {
     }
 
 
-    public infoupdate(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'member/infoupdate';
+    public memberlist(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'member/memberlist';
         var headers = ApiConfig.GetHeader(url, data);
         let options = new RequestOptions({ headers: headers });
         let body = ApiConfig.ParamUrlencoded(data);
@@ -363,7 +465,7 @@ export class MemberApi {
 
         return this.http.post(url, body, options).toPromise()
             .then((res) => {
-                if (ApiConfig.DataLoadedHandle('member/infoupdate', data, res)) {
+                if (ApiConfig.DataLoadedHandle('member/memberlist', data, res)) {
                     if (showLoadingModal) {
                         ApiConfig.DimissLoadingModal();
                     }
@@ -379,7 +481,7 @@ export class MemberApi {
                 if (showLoadingModal) {
                     ApiConfig.DimissLoadingModal();
                 }
-                return ApiConfig.ErrorHandle('member/infoupdate', data, err);
+                return ApiConfig.ErrorHandle('member/memberlist', data, err);
             });
     }
 

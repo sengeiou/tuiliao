@@ -37,10 +37,39 @@ export class MykehuPage extends AppBase {
     this.params;
   }
 
+ // 会员
+ ismember = 'N'
+ photo =''
+ username = ''
+ ballnum = 0
+ mycode=''
+ member_id=''
+ integrationlist=''
+ onMyShow(){
+   this.memberApi.info({member_id:1}).then((memberinfo:any) => {
+     console.log(memberinfo,'4165456')
+     this.ismember = memberinfo.ismember
+     this.photo = memberinfo.photo
+     this.username = memberinfo.name
+     this.ballnum = memberinfo.ballnum
+     this.mycode = memberinfo.mycode
+     this.member_id = memberinfo.id
 
-  onMyShow(){
+     this.memberApi.integrationlist({user_id: this.member_id}).then((integrationlist:any)=>{
+      console.log(integrationlist)
+      this.integrationlist = integrationlist.filter(item=>{
+        item.chong_time = this.getchangedatetime(item.chong_time)
+        item.pay_time = this.getchangedatetime(item.pay_time)
+        if(item.yongjin!=0){
+          console.log(item,'oooo')
+          return item
+        }
+      })
+      console.log(this.integrationlist,'111')
 
-    
+    })
 
-  }
+ })
+
+ }
 }

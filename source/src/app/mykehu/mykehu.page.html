@@ -13,25 +13,18 @@
          <img src="{{uploadpath}}resource/{{res.erweima}}" class="icon-20"/>
           <span class="margin-left-20 h5 txt-bold">我的邀请码</span>
         </div>
-        <div class="flex-2 text-center h5 txt-bold">709394</div>
+        <div class="flex-2 text-center h5 txt-bold">{{mycode}}</div>
       </div>
 
       <div class="">
         <div class="yongjin padding-left-30 txt-bold">佣金列表</div>
         <ul>
-          <li class="flex-row">
+          <li class="flex-row" *ngFor='let item of integrationlist'>
             <div class="flex-5">
-                <div class="h5 margin-10 txt-bold">张三</div>
-                <div class="h6 txt-gray-8a ">2019/08/12 15:00</div>
+                <div class="h5 margin-10 txt-bold">{{item.yongjin_name}}</div>
+                <div class="h6 txt-gray-8a ">{{item.yongjin_time}}</div>
             </div>
-            <div class="flex-2 qiubi txt-bold txt-green-25 h5"> +128球币</div>
-          </li>
-          <li class="flex-row">
-            <div class="flex-5">
-                <div class="h5 margin-10 txt-bold">张三</div>
-                <div class="h6 txt-gray-8a">2019/08/12 15:00</div>
-            </div>
-            <div class="flex-2 qiubi txt-green-25 h5 txt-bold"> +128球币</div>
+            <div class="flex-2 qiubi txt-bold txt-green-25 h5"> +{{item.yongjin}}球币</div>
           </li>
         </ul>
       </div>

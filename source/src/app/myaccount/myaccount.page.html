@@ -11,8 +11,8 @@
 
         <div class="flex-row mine">
           <div class="flex-4 ">
-            <div class="text-right margin-right-80 margin-bottom-20"><img  src="{{uploadpath}}resource/{{res.touxiang}}" class="icon-60 radius-50"/></div>
-            <div class="txt-white  text-right">我的账户：188&nbsp;球币</div>
+            <div class="text-right margin-right-80 margin-bottom-20"><img  src="{{uploadpath}}member/{{photo}}" class="icon-60 radius-50"/></div>
+            <div class="txt-white  text-right">我的账户：{{ballnum}}&nbsp;球币</div>
           </div>
           <div class="flex-2 text-center" routerLink='/chongzhi'>
               <span class="h5 txt-white">去充值</span>
@@ -35,27 +35,38 @@
       </div>
     </div>
 
-    <ul>
-      <li class="flex-row">
+    <ul *ngFor='let item of integrationlist'>
+      <li class="flex-row" *ngIf='item.chongzhi!=0'>
         <div class="flex-5" *ngIf='isshow'>
             <div *ngIf='isshow' class="h5 margin-10">充值</div>
-            <div class="h6 txt-gray-8a">2019/08/12 15:00</div>
+            <div class="h6 txt-gray-8a">{{item.chong_time}}</div>
         </div>
         <div class="flex-5" *ngIf='isshow==false'>
-            <div class="h5 qiubi">2019/08/12 15:00</div>
+            <div class="h5 qiubi">{{item.chong_time}}</div>
         </div>
-        <div class="flex-2 qiubi txt-red-e5"> +128球币</div>
+        <div class="flex-2 qiubi txt-green-25"> +{{item.chongzhi}}球币</div>
       </li>
-      <li class="flex-row">
+      <li class="flex-row" *ngIf='item.zhifu!=0'>
           <div class="flex-5" *ngIf='isshow'>
               <div *ngIf='isshow' class="h5 margin-10">购买推介</div>
-              <div class="h6 txt-gray-8a">2019/08/12 15:00</div>
+              <div class="h6 txt-gray-8a">{{item.pay_time}}</div>
           </div>
           <div class="flex-5" *ngIf='isshow==false'>
-              <div class="h5 qiubi">2019/08/12 15:00</div>
+              <div class="h5 qiubi">{{item.pay_time}}</div>
           </div>
-          <div class="flex-2 qiubi txt-green-25"> -128球币</div>
+          <div class="flex-2 qiubi txt-red-e5"> -{{item.zhifu}}球币</div>
         </li>
+
+        <li class="flex-row" *ngIf='item.yongjin!=0'>
+            <div class="flex-5" *ngIf='isshow'>
+                <div *ngIf='isshow' class="h5 margin-10">佣金</div>
+                <div class="h6 txt-gray-8a">{{item.yongjin_time}}</div>
+            </div>
+            <div class="flex-5" *ngIf='isshow==false'>
+                <div class="h5 qiubi">{{item.yongjin_time}}</div>
+            </div>
+            <div class="flex-2 qiubi txt-green-25"> +{{item.yongjin}}球币</div>
+          </li>
     </ul>
 
   </div>

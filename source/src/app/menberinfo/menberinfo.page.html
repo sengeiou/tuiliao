@@ -1,7 +1,7 @@
 <ion-header>
-  <div class="bg-nav txt-white">
+  <div class="bg-nav txt-white" (click)='back()'>
         <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
-        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" />
     <ion-title>编辑资料</ion-title>
   </div>
 </ion-header>
@@ -18,18 +18,42 @@
         <div class="txt-black h5" style="">修改头像</div>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="youicon margin-left-20" />
       </div>
+      <div style="width:90vw;background:#D6D7D9;" class="margin-top-12 height-1"></div>
     </div>
 
 
     <div class="padding white-block border-bottom padding-bottom-12">
       <div class="height-35" ></div>
       <div class="flex-row flex-center"  >
-        <div class="txt92 h5">修改姓名</div>
+        <div class="txt92 h5">用户名</div>
         <ion-input class="flex-1 text-right txt-black h5" [(ngModel)]='username'>
         </ion-input>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="youicon margin-left-20" />
       </div>
+      <div style="width:90vw;background:#D6D7D9;" class="margin-top-12 height-1"></div>
     </div>
+
+    <div class="padding white-block border-bottom padding-bottom-12">
+        <div class="height-35" ></div>
+        <div class="flex-row flex-center"  >
+          <div class="txt92 h5">手机号码</div>
+          <ion-input class="flex-1 text-right txt-black h5" [(ngModel)]='mobile'>
+          </ion-input>
+          <img src="{{uploadpath}}resource/{{res.arrow}}" class="youicon margin-left-20" />
+        </div>
+        <div style="width:90vw;background:#D6D7D9;" class="margin-top-12 height-1"></div>
+      </div>
+
+      <div class="padding white-block border-bottom padding-bottom-12">
+          <div class="height-35" ></div>
+          <div class="flex-row flex-center"  >
+            <div class="txt92 h5">邮箱</div>
+            <ion-input class="flex-1 text-right txt-black h5" [(ngModel)]='email'>
+            </ion-input>
+            <img src="{{uploadpath}}resource/{{res.arrow}}" class="youicon margin-left-20" />
+          </div>
+          <div style="width:90vw;background:#D6D7D9;" class="margin-top-12 height-1"></div>
+        </div>
     <!-- <div class="padding white-block border-bottom padding-bottom-12">
       <div class="height-35" (click)='showSexualSelect()'></div>
       <div class="flex-row flex-center" (click)='showSexualSelect()'>
@@ -102,7 +126,7 @@
         <img src="{{uploadpath}}resource/{{res.you}}" class="youicon margin-left-20" />
       </div>
     </div> -->
-
+    <div class="height-35" ></div>
     <button (click)="save()"  class="h4-5 bg-blue-14 btns" size="block" >完成</button>
 
 
