@@ -47,7 +47,7 @@ export class FankuiPage extends AppBase {
   }
   content = ''
   send(){
-    this.centerApi.savefankui({user_id: 1,content: this.content,status: 'A'}).then((savefankui:any)=>{
+    this.centerApi.savefankui({user_id: this.user_id,content: this.content,status: 'A'}).then((savefankui:any)=>{
       console.log(savefankui)
       if(savefankui.code == '0'){
         this.content = ''

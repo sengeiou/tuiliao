@@ -44,16 +44,16 @@ export class MyaccountPage extends AppBase {
   c=false
   onMyShow(){
 
-    this.memberApi.info({member_id:1}).then((memberinfo) => {
-      console.log(memberinfo,'4165456')
-      this.ismember = memberinfo.ismember
-      this.photo = memberinfo.photo
-      this.username = memberinfo.name
-      this.ballnum = memberinfo.ballnum
-      this.member_id = memberinfo.id
+    // this.memberApi.info({member_id:1}).then((memberinfo) => {
+    //   console.log(memberinfo,'4165456')
+    //   this.ismember = memberinfo.ismember
+    //   this.photo = memberinfo.photo
+    //   this.username = memberinfo.name
+    //   this.ballnum = memberinfo.ballnum
+    //   this.member_id = memberinfo.id
 
 
-      this.memberApi.integrationlist({user_id: this.member_id}).then((integrationlist:any)=>{
+      this.memberApi.integrationlist({user_id: this.user_id}).then((integrationlist:any)=>{
         console.log(integrationlist)
         this.integrationlist = integrationlist.filter(item=>{
           item.chong_time = this.getchangedatetime(item.chong_time)
@@ -62,11 +62,6 @@ export class MyaccountPage extends AppBase {
         })
       })
 
-
-  })
-
-
-   
 
   }
 

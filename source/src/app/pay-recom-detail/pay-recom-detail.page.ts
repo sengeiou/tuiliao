@@ -43,7 +43,7 @@ export class PayRecomDetailPage extends AppBase {
   isshow = true
   guanzushow = true
   recommenddetail = []
-  user_id = 1
+  // user_id = 1
   onMyShow(){
     this.activeRoute.queryParams.subscribe(query=>{
       console.log(query)

@@ -13,6 +13,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { TabsPage } from './tabs/tabs.page';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { AppPage } from 'e2e/src/app.po';
 
 declare let wx: any;
 
@@ -65,7 +66,8 @@ export class AppBase implements OnInit {
 
     public operatorinfo={id:0,name:"",photo:"",loginname:""};
 
-
+    user_id=''
+    ismember='否'
 
     static STATICRAND = "";
 
@@ -102,6 +104,12 @@ export class AppBase implements OnInit {
         console.log("rdw", AppBase.MemberInfo);
 
         this.formdata={};
+
+        var longlivetoken=window.localStorage.getItem("UserToken");
+        var token=window.sessionStorage.getItem("UserToken");
+        if(token==null&&longlivetoken!=null){
+            window.sessionStorage.setItem("UserToken",longlivetoken);
+        }
     }
     setStatusBar() {
         //  this.statusBar.styleLightContent();
@@ -109,9 +117,10 @@ export class AppBase implements OnInit {
     ngOnInit() {
         this.bfscrolltop = document.body.scrollTop;
         ApiConfig.SetUnicode(AppBase.UNICODE);
-        this.CheckPermission();
+        // this.CheckPermission();
         this.getResources();
         this.getInstInfo();
+        this.getMemberInfo();
         this.onMyLoad();
         this.setStatusBar();
     }
@@ -120,25 +129,38 @@ export class AppBase implements OnInit {
 
         console.log(AppBase.IsLogin,'5555')
 
-        if (AppBase.IsLogin) {
+        // window.localStorage.removeItem("UserToken");
+        
+        if (AppBase.IsLogin==false) {
             var token = window.localStorage.getItem("UserToken");
-            console.log(token,'llll')
+            var loginame = window.localStorage.getItem("lastloginname");
+            console.log(token,'2222')
 
             if (token == null) {
                 this.router.navigate(["login"]);
+                AppBase.IsLogin = false;
             } else {
                 ApiConfig.SetToken(token);
-                
-                AppBase.memberapi.info({member_id:1}).then((memberinfo) => {
-                    AppBase.IsLogin = memberinfo == null ? false : true;
-                    console.log(memberinfo,'4165456')
-                    this.memberInfo = memberinfo;
-                    console.log(this.memberInfo,'oooo')
+
+                AppBase.memberapi.memberlist({}).then((memberlist)=>{
+                    console.log(memberlist,'memberlist')
+                    this.memberInfo = memberlist.filter(item=>{
+                        if(item.name==loginame){
+                            this.user_id = item.id
+                            this.ismember = item.ismember
+                            return item
+                        }
+                    })
+                    console.log(this.memberInfo,'memberkkkkkkkkkk')
                 })
+
+                // AppBase.memberapi.info({name:loginame}).then((memberinfo) => {
+                //     AppBase.IsLogin = memberinfo == null ? false : true;
+                //     console.log(memberinfo,'memberinfo')
+                //     this.memberInfo = memberinfo;
+                //     console.log(this.memberInfo,'oooo')
+                // })
             }
-        }else {
-            // this.router.navigate(["login"]);
-            this.tryLogin()
         }
     }
     onMyLoad() {
@@ -159,14 +181,26 @@ export class AppBase implements OnInit {
     }
     getMemberInfo() {
 
-        AppBase.memberapi.info({member_id:1}).then((memberinfo) => {
-            if (memberinfo == null || memberinfo.mobile == undefined || memberinfo.mobile == "") {
-                //alert("?");
-                memberinfo = null;
-            }
-            this.MemberInfo = memberinfo;
+        // AppBase.memberapi.info({member_id:1}).then((memberinfo) => {
+        //     if (memberinfo == null || memberinfo.mobile == undefined || memberinfo.mobile == "") {
+        //         //alert("?");
+        //         memberinfo = null;
+        //     }
+        //     this.MemberInfo = memberinfo;
 
-        });
+        // });
+        var loginame = window.localStorage.getItem("lastloginname");
+        AppBase.memberapi.memberlist({}).then((memberlist)=>{
+            console.log(memberlist,'memberlist')
+            this.memberInfo = memberlist.filter(item=>{
+                if(item.name==loginame){
+                    this.user_id = item.id
+                    this.ismember=item.ismember
+                    return item
+                }
+            })
+            console.log(this.memberInfo,'memberkkkkkkkkkk')
+        })
     }
 
     shouye() {
@@ -350,7 +384,9 @@ export class AppBase implements OnInit {
                 if (ret) {
                     AppBase.IsLogin = false;
                     window.localStorage.removeItem("UserToken");
+                    window.localStorage.removeItem("lastloginname");
                     this.MemberInfo = null;
+                    this.memberInfo = null;
                     this.backToUrl('/login');
                 }
             })

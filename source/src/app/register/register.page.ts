@@ -75,58 +75,50 @@ export class RegisterPage extends AppBase {
   }
 
   xiayibu(){
-
-    this.memberApi.adduser({
-      mobile: this.mobile,
-      name: this.username,
-      password: this.password,
-      code: this.code,
-      status: 'A'
-    }).then(ret => {
-      if (ret.code == "0") {
-       
-        if(this.code!=""){
-          console.log(this.code,'this.code')
-          let date = new Date()
-          let year = date.getFullYear()
-          let month = date.getMonth() + 1
-          let day = date.getDay()
-      
-          let nowtime = year + '-' + month +'-'+day
-      
-          for(let i=0;i<this.memberlist.length;i++){
-            if(this.memberlist[i].mycode == this.code){
-              let yongjin = 8
-              
-              this.centerApi.addintegration({user_id:this.memberlist[i].id,yongjin:yongjin,yongjin_time:nowtime,yongjin_name: this.username,status: 'A'}).then((addintegration:any)=>{
-                console.log(addintegration)
-              
-                if(addintegration.code == '0'){
-                  console.log(this.memberlist[i].ballnum,'55555555')
-                  this.memberlist[i].ballnum =Number(this.memberlist[i].ballnum) +Number(yongjin) 
-                  this.memberApi.editballnum({id:this.memberlist[i].id,ballnum: this.memberlist[i].ballnum}).then((editballnum:any)=>{
-                    console.log(editballnum,'家私电话')
-                  })
-        
-                }
-                
-              })
-
-            }
-          }
-        }
-        
-        this.toast("绑定成功");
-        this.store("UserToken", ret.return);
-        this.backToUrl("/login");
-
-        
-
-      } else {
-        this.toast(ret.result);
+    if(this.username!=""){
+    //  this.checkcanregs("name",this.username)
+     console.log('dddd')
+     if(this.mobile!=""){
+      this.checkcanregs("mobile",this.mobile)
+     }
+      if(this.email!=""){
+        this.checkcanregs("email",this.email)
       }
-    });
+    }
 
+    
+    
+
+
+  }
+
+  checkcanregs(type,value){
+    let obj={}
+    obj[type]=value
+    this.memberApi.checkcanreg(obj).then((checkcanreg)=>{
+      console.log(checkcanreg,'checkcanreg')
+      if(checkcanreg.code=='0'){
+
+        this.memberApi.adduser({
+          mobile: this.mobile,
+          name: this.username,
+          password: this.password,
+          code: this.code,
+          status: 'A'
+        }).then(ret => {
+          if (ret.code == "0"){
+            this.toast("注册成功");
+            this.store("UserToken", ret.return);
+            this.backToUrl("/login");
+          } else {
+            this.toast(ret.result);
+          }
+        });
+        
+      }else{
+        this.toast(checkcanreg.result);
+      }
+    })
   }
 
  

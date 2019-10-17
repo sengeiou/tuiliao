@@ -38,25 +38,30 @@ export class YigouPage extends AppBase {
     this.params;
   }
 
-  user_id = 1
+  // user_id = ''
   purchasedlist = null
   onMyShow(){
 
+    // this.user_id = this.memberInfo.id
+
     this.centerApi.purchasedlist({pur_id:this.user_id}).then((purchasedlist:any)=>{
       console.log(purchasedlist)
-      this.purchasedlist = purchasedlist.filter(item=>{
-        for(let i=0;i<item.recom.length;i++){
-          item.recom[i].pub_time = this.getdatemm(item.recom[i].pub_time)
-        }
-        return item
-      })
+      if(purchasedlist.length>0){
+        this.purchasedlist = purchasedlist.filter(item=>{
+          for(let i=0;i<item.recom.length;i++){
+            item.recom[i].pub_time = this.getdatemm(item.recom[i].pub_time)
+          }
+          return item
+        })
+      }
+      
     })
   }
 
-  tiaozhuan() {
+  tiaozhuan(id) {
     this.router.navigate(['pay-recom-detail'],{
       queryParams:{
-        id: 2
+        id: id
       }
     })
   }

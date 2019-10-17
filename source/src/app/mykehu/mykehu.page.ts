@@ -46,7 +46,7 @@ export class MykehuPage extends AppBase {
  member_id=''
  integrationlist=''
  onMyShow(){
-   this.memberApi.info({member_id:1}).then((memberinfo:any) => {
+   this.memberApi.info({id:this.user_id}).then((memberinfo:any) => {
      console.log(memberinfo,'4165456')
      this.ismember = memberinfo.ismember
      this.photo = memberinfo.photo

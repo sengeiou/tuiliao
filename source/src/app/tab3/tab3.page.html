@@ -14,7 +14,7 @@
       </div>
     </ion-header>
 
-  <div *ngFor='let list of recomlist' class="margin-top-30 bor-bot-b" (click)='tiaozhuan(list.id)'>
+  <div *ngFor='let list of recomlist' class="margin-top-30 bor-bot-b" (click)='tiaozhuan(list.id,list.user_id)'>
     <div class="flex-row">
       <div class="flex-1"><img src="{{uploadpath}}member/{{list.member_photo}}" class="icon-60 radius-50  margin-20"></div>
       <div class="flex-2 txt-bold">

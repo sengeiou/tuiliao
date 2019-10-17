@@ -39,7 +39,7 @@ export class ShoucangPage extends AppBase {
   }
 
   recomfavlist=null
-  user_id=1
+  // user_id=1
   onMyShow(){
 
     this.centerApi.recomfavlist({userfav_id:this.user_id}).then((recomfavlist:any)=>{
@@ -54,13 +54,39 @@ export class ShoucangPage extends AppBase {
     })
 
   }
-  tiaozhuan(itemId){
+  tiaozhuan(itemId,user_id){
     console.log(itemId)
 
-    this.router.navigate(['recomdetail'],{
-      queryParams:{
-        id: itemId
+    this.centerApi.purchasedlist({recom_id:user_id,pur_id:this.user_id}).then((purchasedlist:any)=>{
+      console.log(purchasedlist)
+      if(purchasedlist.length>0){
+        for(let i=0;i<purchasedlist.length;i++){
+          for(let j=0;j<purchasedlist[i].recom.length;j++){
+            if(purchasedlist[i].recom[j].id == itemId){
+              this.router.navigate(['pay-recom-detail'],{
+                queryParams: {
+                  id: itemId
+                }
+              })
+           }else {
+            this.router.navigate(['recomdetail'],{
+              queryParams: {
+                id: itemId
+              }
+            })
+           }
+        }
+        
+        }
+      }else {
+        this.router.navigate(['recomdetail'],{
+          queryParams: {
+            id: itemId
+          }
+        })
       }
+     
+
     })
 
   }

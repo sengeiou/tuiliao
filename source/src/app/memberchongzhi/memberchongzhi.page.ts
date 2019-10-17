@@ -43,6 +43,8 @@ export class MemberchongzhiPage extends AppBase {
   }
 
   paydate = "包一年"
+  paymoney=998
+  d=false
   choose(e){
     console.log(e)
 
@@ -63,11 +65,88 @@ export class MemberchongzhiPage extends AppBase {
 
   pay() {
     console.log(this.paydate)
-    this.router.navigate(['paysuccess'],{
-      queryParams: {
-        paydate: this.paydate
-      }
-    })
+    this.d = true
+    // this.router.navigate(['paysuccess'],{
+    //   queryParams: {
+    //     paydate: this.paydate
+    //   }
+    // })
   }
+
+  zhifufanshi=0
+
+  zhifu(id){
+    this.zhifufanshi = id;
+
+  }
+
+
+  lijizhifu() {
+    this.d = false;
+
+    let date = new Date()
+    let year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let day = date.getDay()
+
+    let nowtime = year + '-' + month +'-'+day
+    this.router.navigate(['paysuccess'],{
+        queryParams: {
+          paydate: this.paydate
+        }
+      })
+
+    // if (this.zhifufanshi == 0) {
+    //   console.log(this.zhifuinfo);
+    //   this.wechatApi.prepay({ pay_amount: this.zhifuinfo.pay_amount, orders: this.zhifuinfo.orders }).then((params) => {
+    //     console.log(params);
+    //     Wechat.sendPaymentRequest(params, () => {
+    //       this.navigate("/paysuccess", { backtovideo_id: this.params.video_id, id: params.orderno });
+    //     }, () => {
+    //       this.navigate("/order");
+    //     });
+    //   });
+    // }
+
+    // if (this.zhifufanshi == 1) {
+    //   console.log(this.zhifuinfo);
+    //   this.alipayApi.prepa({ pay_amount: this.zhifuinfo.pay_amount, orders: this.zhifuinfo.orders }).then((ret) => {
+    //     console.log(ret);
+    //     if (ret.code == 0) {
+    //       this.alipay.pay(ret.return)
+    //         .then(result => {
+
+    //           if (result.resultStatus == "9000") {
+    //             this.navigate("/paysuccess", { backtovideo_id: this.params.video_id, id: ret.result });
+    //             //window.location.href = "/paysuccess?id=" + ret.result;
+    //           }
+    //           else {
+    //             this.navigate("/order");
+
+    //           }
+    //           console.log(result); // Success
+    //         })
+    //         .catch(error => {
+    //           alert("error");
+    //           alert(error);
+    //           console.log(error); // Failed
+    //         });
+    //     }
+    //   });
+
+    // }
+    // if (this.zhifufanshi == 2) {
+    //   this.orderApi.pay({ pay_amount: this.zhifuinfo.pay_amount, orders: this.zhifuinfo.orders }).then((info) => {
+
+    //     console.log(info);
+    //     this.navigate("/paysuccess", { id: info });
+    //     //window.location.href = "/paysuccess?id=" + info;
+    //     //  this.navigate("/paysuccess",{id:info});
+
+
+    //   })
+    // }
+  }
+
 
 }

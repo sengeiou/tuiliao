@@ -50,18 +50,20 @@ export class RecomDetailPage extends AppBase {
   username=''
   member_id = ''
   ballnum = 0
+  code=''
 
   onMyShow(){
     this.activeRoute.queryParams.subscribe(query=>{
       console.log(query)
       this.id = query.id
 
-      this.memberApi.info({member_id:1}).then((memberinfo) => {
+      this.memberApi.info({id:this.user_id}).then((memberinfo) => {
         console.log(memberinfo,'4165456')
         this.ismember = memberinfo.ismember
         this.username = memberinfo.name
         this.member_id = memberinfo.id
         this.ballnum = memberinfo.ballnum
+        this.code = memberinfo.code
       })
 
       this.projectApi.recommenddetail({id:this.id,user_id: query.user_id}).then((recommenddetail:any)=>{
@@ -71,90 +73,40 @@ export class RecomDetailPage extends AppBase {
 
         this.recommenddetail = detaillist.filter(item=>{
 
-          this.centerApi.purchasedlist({recom_id:item.user_id,pur_id:this.member_id}).then((purchasedlist:any)=>{
-            console.log(purchasedlist,'2222')
-            console.log(purchasedlist.length,'2222')
-            if(purchasedlist.length>=1){
-              for(let i=0;i<purchasedlist.length;i++){
-                for(let j=0;j<purchasedlist[i].recom.length;j++){
-                  if(purchasedlist[i].recom[j].id == item.id){
-                    this.router.navigate(['pay-recom-detail'],{
-                      queryParams: {
-                        id: item.id
-                      }
-                    })
-                    }else{
-                      item.pub_time = this.getchangetime(item.pub_time)
-                      item.end_time = this.getchangedatetime(item.end_time)
-                      for(let k=0;k<item.latelycom.length;k++){
-                        item.latelycom[k].com_time = this.getchangetime(item.latelycom[k].com_time)
-                      }
-            
-                      this.centerApi.focuslist({focus_member_id: this.member_id,befocus_id: item.user_id}).then((focuslist:any)=>{
-                        console.log(focuslist.length)
-                        if(focuslist.length == 1){
-                          this.guanzushow = false
-                        }else {
-                          this.guanzushow = true
-                        }
-                      })
-            
-                      this.centerApi.recomfavlist({userfav_id: this.member_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
-                        console.log(recomfavlist,'aaaa')
-                        if(recomfavlist.length==1){
-                          this.isshow = false
-                        }else {
-                          this.isshow = true
-                        }
-                      })
-            
-                     
-            
-                      return item
-
-                    }
-                  }
-                }
+      
+            item.pub_time = this.getchangetime(item.pub_time)
+            item.end_time = this.getchangedatetime(item.end_time)
+            for(let k=0;k<item.latelycom.length;k++){
+              item.latelycom[k].com_time = this.getchangetime(item.latelycom[k].com_time)
+            }
+  
+            this.centerApi.focuslist({focus_member_id: this.member_id,befocus_id: item.user_id}).then((focuslist:any)=>{
+              console.log(focuslist.length)
+              if(focuslist.length == 1){
+                this.guanzushow = false
               }else {
-
-                item.pub_time = this.getchangetime(item.pub_time)
-                item.end_time = this.getchangedatetime(item.end_time)
-
-                for(let k=0;k<item.latelycom.length;k++){
-                  item.latelycom[k].com_time = this.getchangetime(item.latelycom[k].com_time)
-                }
-
-                console.log('4444')
-                this.centerApi.focuslist({focus_member_id: this.member_id,befocus_id: item.user_id}).then((focuslist:any)=>{
-                  console.log(focuslist.length)
-                  if(focuslist.length == 1){
-                    this.guanzushow = false
-                  }else {
-                    this.guanzushow = true
-                  }
-                })
-
-                this.centerApi.recomfavlist({userfav_id: this.member_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
-                  console.log(recomfavlist,'aaaa')
-                  if(recomfavlist.length==1){
-                    this.isshow = false
-                  }else {
-                    this.isshow = true
-                  }
-                })
-                console.log(item)
-               
+                this.guanzushow = true
               }
-          })
-          return item
+            })
+  
+            this.centerApi.recomfavlist({userfav_id: this.member_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
+              console.log(recomfavlist,'aaaa')
+              if(recomfavlist.length==1){
+                this.isshow = false
+              }else {
+                this.isshow = true
+              }
+            })
+  
+            
+  
+            return item
 
           
-        })
+          })
+
+              
         console.log(this.recommenddetail,'8888')
-
-
-        
-
 
       })  
      
@@ -190,9 +142,28 @@ export class RecomDetailPage extends AppBase {
 
     let nowtime = year + '-' + month +'-'+day
 
-    this.ballnum = this.ballnum - this.payinfo.money
 
-    if(this.payinfo.money>0){
+    if(this.payinfo.money<this.ballnum){
+      this.ballnum = this.ballnum - this.payinfo.money
+
+      let yongjin =  this.payinfo.money * 0.1;
+    
+      console.log(yongjin)
+      console.log(this.code,'code')
+      if(this.code!=''){
+        this.memberApi.memberlist({}).then((memberlist:any)=>{
+          for(let i=0;i<memberlist.length;i++){
+            if(memberlist[i].mycode == this.code){
+              console.log(memberlist[i].mycode,'mycode')
+              this.centerApi.addintegration({user_id:memberlist[i].id,yongjin:yongjin,yongjin_name:this.username,yongjin_time:nowtime,status: 'A'}).then((addintegration:any)=>{
+                console.log(addintegration)
+              })
+            }
+          }
+        })
+      }
+      
+
       this.centerApi.addintegration({user_id:this.member_id,zhifu:this.payinfo.money,pay_time:nowtime,status: 'A'}).then((addintegration:any)=>{
         console.log(addintegration)
         if(addintegration.code == '0'){

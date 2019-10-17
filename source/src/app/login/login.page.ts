@@ -37,8 +37,8 @@ export class LoginPage extends AppBase {
   password=""
   onMyShow(){
 
-    var storemobile = this.store("lastloginname");
-    this.username = storemobile;
+    var storename = this.store("lastloginname");
+    this.username = storename;
 
   }
 
@@ -55,7 +55,7 @@ export class LoginPage extends AppBase {
         this.store("lastloginname", this.username);
         this.store("UserToken", ret.return);
         this.toast("登录成功");
-        this.backToUrl("/tabs/tab4");
+        this.backToUrl("/tabs/tab1");
       } else {
         this.toast("用户名或密码不正确");
       }

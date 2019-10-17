@@ -7,11 +7,11 @@
 </ion-header>
 
 <ion-content>
-  <div class="bg-gray-f0">
+  <div class="bg-gray-f0" *ngIf='recomfavlist!=null'>
 
       <div class="yigou" *ngFor='let list of recomfavlist'>
         
-        <div class="flex-row" *ngFor='let item of list.recom' (click)='tiaozhuan(item.id)'>
+        <div class="flex-row" *ngFor='let item of list.recom' (click)='tiaozhuan(item.id,item.user_id)'>
             <div class="flex-5">
                 <div class="txt-bold">{{item.biaoti}}</div>
                 <div class="margin-top-20 h5 txt-gray-8a">{{item.pub_time}}</div>

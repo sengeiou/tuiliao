@@ -95,8 +95,23 @@ export class PaysuccessPage extends AppBase {
         this.nexttime =  year + "年" + month +"月"+ day + "日"
       }
 
+      this.updatememberinfo('id',this.user_id)
+      this.updatememberinfo('ismember','Y')
+      this.updatememberinfo("startmember_time",this.nowtime)
+      this.updatememberinfo("endmenber_time",this.nexttime)
+     
+
 
     })
 
+  }
+
+  updatememberinfo(type,value){
+    let obj={}
+    obj[type]=value
+    this.memberApi.infoupdate(obj).then((infoupdate:any)=>{
+      console.log(infoupdate,'kkkkk')
+      this.ismember="是"
+    })
   }
 }

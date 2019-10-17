@@ -40,7 +40,7 @@ export class TouziPage extends AppBase {
   investmentlist=null;
   onMyShow(){
 
-    this.centerApi.investmentlist({user_id: 1}).then((investmentlist:any)=>{
+    this.centerApi.investmentlist({user_id: this.user_id}).then((investmentlist:any)=>{
       console.log(investmentlist,'kjkjk')
 
       this.investmentlist = investmentlist.filter(item=>{
@@ -60,7 +60,7 @@ export class TouziPage extends AppBase {
   }
 
   delete(item){
-    this.centerApi.deleteinvest({user_id: 1,id: item.id}).then((deleteinvest:any)=>{
+    this.centerApi.deleteinvest({user_id: this.user_id,id: item.id}).then((deleteinvest:any)=>{
       console.log(deleteinvest)
       if(deleteinvest.code == '0'){
         this.onMyShow();

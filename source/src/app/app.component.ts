@@ -6,6 +6,7 @@ import { AppBase } from './AppBase';
 import { InstApi } from 'src/providers/inst.api';
 import { WechatApi } from 'src/providers/wechat.api';
 import { MemberApi } from 'src/providers/member.api';
+// import { Device } from '@ionic-native/device/ngx';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent {
     private platform: Platform,
     private statusBar: StatusBar,
     public instApi:InstApi,
+    // public device: Device,
     public memberApi:MemberApi,
     public wechatApi:WechatApi
   ) {
@@ -30,12 +32,26 @@ export class AppComponent {
     AppBase.memberapi=this.memberApi;
     AppBase.wechatApi=this.wechatApi
   }
+  keyboardheight = 50;
 
   initializeApp() {
     this.platform.ready().then(() => {
+
+      window.addEventListener('keyboardDidHide', (e: any) => {
+        //if(this.platformname=='Android'){
+        this.keyboardheight = 0;
+        //}
+      });
+      window.addEventListener('keyboardDidShow', (e: any) => {
+        //if(this.platformname=='Android'){
+        this.keyboardheight = (parseInt(e.keyboardHeight));
+        //}
+      });
+      // this.devicename = this.device.model;
+
+
       this.statusBar.styleDefault();
 
-      
     });
   }
 

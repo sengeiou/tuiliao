@@ -9,8 +9,8 @@
 <ion-content>
   <div class="bg-gray-f0" >
 
-      <div class="yigou" *ngFor='let list of purchasedlist' (click)='tiaozhuan()'>
-        <div *ngFor="let item of list.recom">
+      <div class="yigou" *ngFor='let list of purchasedlist' >
+        <div *ngFor="let item of list.recom" (click)='tiaozhuan(item.id)'>
             <div class="h5">{{item.pub_time}}</div>
             <div class="flex-row">
               <div class="flex-1">

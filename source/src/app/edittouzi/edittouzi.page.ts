@@ -59,7 +59,7 @@ id = ''
 
     if(this.id!='' && this.id !=undefined){
 
-      this.centerApi.editinvest({id: this.id, user_id: 1,content: this.content,name: this.biaoti,status: 'A'}).then((editinvest:any)=>{
+      this.centerApi.editinvest({id: this.id, user_id: this.user_id,content: this.content,name: this.biaoti,status: 'A'}).then((editinvest:any)=>{
         if(editinvest.code=='0'){
           this.back()
         }
@@ -67,7 +67,7 @@ id = ''
 
     }else if(this.id==undefined || this.id == ''){
 
-      this.centerApi.saveinvest({user_id: 1,content: this.content,name: this.biaoti,status: 'A'}).then((saveinvest:any)=>{
+      this.centerApi.saveinvest({user_id: this.user_id,content: this.content,name: this.biaoti,status: 'A'}).then((saveinvest:any)=>{
         console.log(saveinvest)
         if(saveinvest.code == '0'){
           this.back()

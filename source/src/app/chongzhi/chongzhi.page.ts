@@ -45,7 +45,7 @@ export class ChongzhiPage extends AppBase {
   member_id=''
   onMyShow(){
 
-    this.memberApi.info({member_id:1}).then((memberinfo) => {
+    this.memberApi.info({id:this.user_id}).then((memberinfo) => {
       console.log(memberinfo,'4165456')
       this.ismember = memberinfo.ismember
       this.photo = memberinfo.photo

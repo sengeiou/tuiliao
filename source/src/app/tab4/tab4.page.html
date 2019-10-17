@@ -1,14 +1,14 @@
-<ion-header>
+<ion-header *ngFor='let item of memberInfo'>
   <div class="flex-row person"  routerLink='/myaccount'>
     <div class="flex-1">
-      <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='photo==""' class="icon-60 radius-50 touxiang"/>
-      <img src="{{uploadpath}}member/{{photo}}" *ngIf='photo!=""' class="icon-60 radius-50 touxiang"/>
-      <img *ngIf='ismember=="Y"' src="{{uploadpath}}resource/{{res.vip}}" class="vip"/>
+      <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='item.photo==""' class="icon-60 radius-50 touxiang"/>
+      <img src="{{uploadpath}}member/{{item.photo}}" *ngIf='item.photo!=""' class="icon-60 radius-50 touxiang"/>
+      <img *ngIf='item.ismember=="是"' src="{{uploadpath}}resource/{{res.vip}}" class="vip"/>
     </div>
     <div class="flex-3">
-      <div class="txt-white margin-top margin-bottom-10">{{username}}</div>
-      <div *ngIf='ismember=="否"' class="txt-gray-bf h6">抱歉，您还不是会员</div>
-      <div *ngIf='ismember=="是"' class="txt-yellow-c6 h6">尊敬的会员，您好！</div>
+      <div class="txt-white margin-top margin-bottom-10">{{item.name}}</div>
+      <div *ngIf='item.ismember=="否"' class="txt-gray-bf h6">抱歉，您还不是会员</div>
+      <div *ngIf='item.ismember=="是"' class="txt-yellow-c6 h6">尊敬的会员，您好！</div>
     </div>
     <div class="flex-1 margin-top-80 text-center">
       <img src="{{uploadpath}}resource/{{res.arrowright}}" class="icon-15" />
@@ -16,12 +16,12 @@
   </div>
 </ion-header>
 
-<ion-content>
+<ion-content *ngFor='let item of memberInfo'>
   <ul>
     <li class="flex-row info"  routerLink='/chongzhi'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.money}}" class="icon-20 margin-left-30 margin-right-20 tuobiao">
-        <span class="h2 txt-blue-14 margin-right-10">{{ballnum}}</span>
+        <span class="h2 txt-blue-14 margin-right-10">{{item.ballnum}}</span>
         <span class="h6">球币</span>
       </div>
       <div class="flex-2 text-center">
