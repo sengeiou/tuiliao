@@ -84,11 +84,11 @@
 
     <div class="modal-mask" *ngIf='ishuiyuan'></div>
     <div class="modal-dialog" *ngIf='ishuiyuan'>
-          <img src="{{uploadpath}}resource/{{res.	huiyuan}}" />
+          <img src="{{uploadpath}}resource/{{res.huiyuan}}" />
           <div>
               <button class="btn2">尊享独家猛料</button>
-              <button class="btn1 ">立即开通VIP</button><br>
-              <button class="btn2 ">残忍拒绝</button>  
+              <button class="btn1 " routerLink='/memberchongzhi'>立即开通VIP</button><br>
+              <button class="btn2 " (click)='refuse()'>残忍拒绝</button>  
           </div> 
     </div>
 

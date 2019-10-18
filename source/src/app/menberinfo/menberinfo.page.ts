@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,ChangeDetectorRef } from '@angular/core';
 import { AppBase } from '../AppBase';
 import { Router } from '@angular/router';
 import {  ActivatedRoute, Params } from '@angular/router';
@@ -32,6 +32,7 @@ export class MenberinfoPage extends AppBase {
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
     public actionSheetController: ActionSheetController,
+    public cd: ChangeDetectorRef
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -58,18 +59,19 @@ export class MenberinfoPage extends AppBase {
   oldphoto=''
   onMyShow(){
 
-      for(let i=0;i<this.memberInfo.length;i++){
-        this.ismember = this.memberInfo[i].ismember
-        this.photo = this.memberInfo[i].photo
-        this.oldphoto = this.memberInfo[i].photo
-        this.username = this.memberInfo[i].name
-        this.oldname = this.memberInfo[i].name
-        this.mobile = this.memberInfo[i].mobile
-        this.oldmobile = this.memberInfo[i].mobile
-        this.email = this.memberInfo[i].email
-        this.oldemail = this.memberInfo[i].email
-        this.id = this.memberInfo[i].id
-      }
+      this.memberApi.info({id:this.user_id}).then((memberInfo)=>{
+        this.ismember = memberInfo.ismember
+        this.photo = memberInfo.photo
+        this.oldphoto = memberInfo.photo
+        this.username = memberInfo.name
+        this.oldname = memberInfo.name
+        this.mobile = memberInfo.mobile
+        this.oldmobile = memberInfo.mobile
+        this.email = memberInfo.email
+        this.oldemail = memberInfo.email
+        this.id = memberInfo.id
+      })
+       
 
   console.log(this.photo)
 }
@@ -84,6 +86,7 @@ save(){
   }
   console.log(this.username,this.photo)
   if(this.username!=this.oldname){
+
     json.name = this.username
     this.updatememinfo("name",this.username)
     // this.navigate('/tabs/tab4')
@@ -115,7 +118,9 @@ updatememinfo(type,value){
     console.log(infoupdate)
     if(infoupdate.code=='0'){
       this.store("lastloginname", this.username);
-      this.back();
+      // this.cd.detectChanges();
+      // this.navigate('tabs/tab4',{reload:true});
+      location.replace('tabs/tab4')
     }else {
       if(infoupdate.result.indexOf('name')!=-1){
         this.toast('修改失败，用户名已被使用！')

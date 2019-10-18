@@ -47,15 +47,15 @@ export class LoginPage extends AppBase {
     this.memberApi.employeelogin({
       name: this.username,
       password: this.password,
-      status: 'A'
     }).then((ret)=>{
       console.log(ret)
       if (ret.code == "0") {
         AppBase.IsLogin=true;
         this.store("lastloginname", this.username);
         this.store("UserToken", ret.return);
+        this.store("user_id",ret.result)
         this.toast("登录成功");
-        this.backToUrl("/tabs/tab1");
+        this.backToUrl("/tabs/tab4");
       } else {
         this.toast("用户名或密码不正确");
       }

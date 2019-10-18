@@ -46,7 +46,7 @@ export class RecomDetailPage extends AppBase {
   isshow = true;
   d = false;
 
-  ismember='N'
+  // ismember='N'
   username=''
   member_id = ''
   ballnum = 0
@@ -59,7 +59,7 @@ export class RecomDetailPage extends AppBase {
 
       this.memberApi.info({id:this.user_id}).then((memberinfo) => {
         console.log(memberinfo,'4165456')
-        this.ismember = memberinfo.ismember
+        // this.ismember = memberinfo.ismember
         this.username = memberinfo.name
         this.member_id = memberinfo.id
         this.ballnum = memberinfo.ballnum
@@ -73,30 +73,31 @@ export class RecomDetailPage extends AppBase {
 
         this.recommenddetail = detaillist.filter(item=>{
 
-      
+          this.centerApi.focuslist({focus_member_id: this.member_id,befocus_id: item.user_id}).then((focuslist:any)=>{
+            console.log(focuslist.length)
+            if(focuslist.length == 1){
+              this.guanzushow = false
+            }else {
+              this.guanzushow = true
+            }
+          })
+
+          this.centerApi.recomfavlist({userfav_id: this.member_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
+            console.log(recomfavlist,'aaaa')
+            if(recomfavlist.length==1){
+              this.isshow = false
+            }else {
+              this.isshow = true
+            }
+          })
+          
             item.pub_time = this.getchangetime(item.pub_time)
             item.end_time = this.getchangedatetime(item.end_time)
             for(let k=0;k<item.latelycom.length;k++){
               item.latelycom[k].com_time = this.getchangetime(item.latelycom[k].com_time)
             }
   
-            this.centerApi.focuslist({focus_member_id: this.member_id,befocus_id: item.user_id}).then((focuslist:any)=>{
-              console.log(focuslist.length)
-              if(focuslist.length == 1){
-                this.guanzushow = false
-              }else {
-                this.guanzushow = true
-              }
-            })
-  
-            this.centerApi.recomfavlist({userfav_id: this.member_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
-              console.log(recomfavlist,'aaaa')
-              if(recomfavlist.length==1){
-                this.isshow = false
-              }else {
-                this.isshow = true
-              }
-            })
+           
   
             
   
@@ -142,8 +143,10 @@ export class RecomDetailPage extends AppBase {
 
     let nowtime = year + '-' + month +'-'+day
 
-
-    if(this.payinfo.money<this.ballnum){
+    console.log(this.ballnum,'ballnum')
+    console.log(this.payinfo.money,'this.payinfo.money')
+    console.log(this.payinfo.money<this.ballnum)
+    if(Number(this.payinfo.money) < this.ballnum){
       this.ballnum = this.ballnum - this.payinfo.money
 
       let yongjin =  this.payinfo.money * 0.1;
@@ -156,7 +159,7 @@ export class RecomDetailPage extends AppBase {
             if(memberlist[i].mycode == this.code){
               console.log(memberlist[i].mycode,'mycode')
               this.centerApi.addintegration({user_id:memberlist[i].id,yongjin:yongjin,yongjin_name:this.username,yongjin_time:nowtime,status: 'A'}).then((addintegration:any)=>{
-                console.log(addintegration)
+                console.log(addintegration,'8989898989898')
               })
             }
           }
@@ -187,9 +190,36 @@ export class RecomDetailPage extends AppBase {
         
       })
   
+    }else {
+
+      this.gotcharge('你的球币不够，请充值')
+
     }
     
   }
+
+  async gotcharge(msg) {
+
+    const alert = await this.alertCtrl.create({
+        header: "提示",
+        subHeader: msg,
+        buttons: [{
+            text: "取消",
+            handler: () => {
+                console.log('Disagree clicked');
+
+                // this.back()
+            }
+        }, {
+            text: "去充值",
+            handler: () => {
+                // confirmcallback(true);
+                this.navigate('chongzhi')
+            }
+        }]
+    });
+    alert.present();
+}
 
   gbzf() {
     this.d = false;

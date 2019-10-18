@@ -316,6 +316,40 @@ export class MemberApi {
     }
 
 
+    public memberlist(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'member/memberlist';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('member/memberlist', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('member/memberlist', data, err);
+            });
+    }
+
+
     public setvalue(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'member/setvalue';
         var headers = ApiConfig.GetHeader(url, data);
@@ -380,6 +414,40 @@ export class MemberApi {
                     ApiConfig.DimissLoadingModal();
                 }
                 return ApiConfig.ErrorHandle('member/update', data, err);
+            });
+    }
+
+
+    public updateismember(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'member/updateismember';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('member/updateismember', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('member/updateismember', data, err);
             });
     }
 
@@ -452,8 +520,8 @@ export class MemberApi {
     }
 
 
-    public memberlist(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'member/memberlist';
+    public updatepassword(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'member/updatepassword';
         var headers = ApiConfig.GetHeader(url, data);
         let options = new RequestOptions({ headers: headers });
         let body = ApiConfig.ParamUrlencoded(data);
@@ -465,7 +533,7 @@ export class MemberApi {
 
         return this.http.post(url, body, options).toPromise()
             .then((res) => {
-                if (ApiConfig.DataLoadedHandle('member/memberlist', data, res)) {
+                if (ApiConfig.DataLoadedHandle('member/updatepassword', data, res)) {
                     if (showLoadingModal) {
                         ApiConfig.DimissLoadingModal();
                     }
@@ -481,7 +549,7 @@ export class MemberApi {
                 if (showLoadingModal) {
                     ApiConfig.DimissLoadingModal();
                 }
-                return ApiConfig.ErrorHandle('member/memberlist', data, err);
+                return ApiConfig.ErrorHandle('member/updatepassword', data, err);
             });
     }
 

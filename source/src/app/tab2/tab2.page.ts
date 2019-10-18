@@ -54,14 +54,20 @@ export class Tab2Page extends AppBase {
      
       this.footlist = footlist.filter((item)=>{
         console.log(item)
-        item.new = 'Y'
-        if(item.com_date.length>5){
-          item.com_date.splice(5,item.com_date.length-5)
-        }
+        // item.new = 'Y'
+        if(item.isnew=='是'){
 
-        for(let i=0;i<item.com_date.length;i++){
-          return item.com_date[i].zongresult=='W'
+          if(item.com_date.length>5){
+            item.com_date.splice(5,item.com_date.length-5)
+          }
+  
+          // for(let i=0;i<item.com_date.length;i++){
+          //   return item.com_date[i].zongresult=='W'
+          // }
+          return  item
+
         }
+        
 
 
       
@@ -88,13 +94,34 @@ export class Tab2Page extends AppBase {
   watchthis(list){
     console.log(list)
 
-    this.router.navigate(['newfootdetail'],{
-      queryParams: {
-        id:list.id,
-        new: list.new
+    if(this.ismember=="否"){
+      if(list.isnew=='是'){
+        this.ishuiyuan = true
+      }else{
+        this.router.navigate(['newfootdetail'],{
+          queryParams: {
+            id:list.id,
+            new: list.isnew
+          }
+        })
       }
-    })
+    }else{
 
+      this.router.navigate(['newfootdetail'],{
+        queryParams: {
+          id:list.id,
+          new: list.isnew
+        }
+      })
+
+    }
+
+  
+
+  }
+
+  refuse(){
+    this.ishuiyuan = false
   }
 
   newRecom(event){
@@ -122,15 +149,19 @@ export class Tab2Page extends AppBase {
       // this.footlist = footlist
       
       this.footlist = footlist.filter((item)=>{
-        item.new = 'N'
-        console.log(item)
-        if(item.com_date.length>5){
-          item.com_date.splice(5,item.com_date.length-5)
+      
+        if(item.isnew=='否'){
+          console.log(item)
+          if(item.com_date.length>5){
+            item.com_date.splice(5,item.com_date.length-5)
+          }
+  
+          // for(let i=0;i<item.com_date.length;i++){
+          //   return item.com_date[i].zongresult!='W'
+          // }
+          return item
         }
-
-        for(let i=0;i<item.com_date.length;i++){
-          return item.com_date[i].zongresult!='W'
-        }
+        
         
       })
 

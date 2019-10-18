@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild,ChangeDetectorRef } from '@angular/core';
 import { AppBase } from '../AppBase';
 import { Router } from '@angular/router';
 import {  ActivatedRoute, Params } from '@angular/router';
@@ -25,6 +25,7 @@ export class Tab4Page extends AppBase {
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
+    public cd: ChangeDetectorRef
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -37,18 +38,16 @@ export class Tab4Page extends AppBase {
   }
 
   // 会员
-  ismember = 'N'
-  photo =''
-  username = ''
-  ballnum = 0
-  onMyShow(){
-  //   this.memberApi.info({member_id:1}).then((memberinfo) => {
-  //     console.log(memberinfo,'4165456')
-  //     this.ismember = memberinfo.ismember
-  //     this.photo = memberinfo.photo
-  //     this.username = memberinfo.name
-  //     this.ballnum = memberinfo.ballnum
-  // })
 
+  info={}
+  
+  onMyShow(){
+    // if(this.memberInfo!=null){
+    //   this.info=this.memberInfo
+    //   console.log(this.info.photo,'kkkkk')
+    // }
+    this.memberApi.info({id:this.user_id}).then((info)=>{
+      this.info = info
+    })
   }
 }

@@ -8,9 +8,9 @@
 
 <ion-content  >
   <div  *ngFor='let list of footdetail'>
-    <div class="box1 flex-row bor_top-b">
+    <div class="box1 flex-row bor_top-b"  (click)='shouqi(list.id)'>
       <span class="flex-1 margin-left-20 h4-5 txt-white txt-bold">{{list.recom_time}}</span>
-      <span class="flex-1 h4-5 text-right margin-right-20 txt-white txt-bold" (click)='shouqi(list.id)'>
+      <span class="flex-1 h4-5 text-right margin-right-20 txt-white txt-bold">
          收起详情 
           <img *ngIf='list.isshow==false && list.show==false' src="{{uploadpath}}resource/{{res.arrowright}}" class="icon-15 img-margin"/>
           <img *ngIf='list.isshow && list.show' src="{{uploadpath}}resource/{{res.arrowbottom}}" class="icon-15 img-margin"/>

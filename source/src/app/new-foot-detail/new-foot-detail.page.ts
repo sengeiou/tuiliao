@@ -48,7 +48,7 @@ export class NewFootDetailPage  extends AppBase {
       console.log(query)
       this.id = query.id
       this.new = query.new
-      if(this.new == 'Y'){
+      if(this.new == '是'){
         this.projectApi.footdetail({id: query.id}).then((footdetail:any)=>{
           console.log(footdetail,'oooo')
           this.footdetail.push( footdetail)
@@ -70,7 +70,7 @@ export class NewFootDetailPage  extends AppBase {
         console.log(this.footdetail)
         })
   
-      }else if(this.new == 'N'){
+      }else if(this.new == '否'){
         this.projectApi.footdetail({id :this.id}).then((footdetail:any)=>{
           console.log(footdetail,'oooo')
           this.footdetail.push( footdetail)

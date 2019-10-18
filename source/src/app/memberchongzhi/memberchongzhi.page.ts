@@ -7,11 +7,12 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
+import { CenterApi } from 'src/providers/center.api';
 @Component({
   selector: 'app-memberchongzhi',
   templateUrl: './memberchongzhi.page.html',
   styleUrls: ['./memberchongzhi.page.scss'],
-  providers:[MemberApi,ProjectApi]
+  providers:[MemberApi,ProjectApi,CenterApi]
 })
 export class MemberchongzhiPage extends AppBase {
 
@@ -24,6 +25,7 @@ export class MemberchongzhiPage extends AppBase {
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
+    public centerApi:CenterApi,
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -35,9 +37,12 @@ export class MemberchongzhiPage extends AppBase {
     this.params;
   }
 
-
+  endmenbertime=null
   onMyShow(){
 
+    this.memberApi.info({id:this.user_id}).then((info)=>{
+      this.endmenbertime = info.endmenber_time
+    })
     
 
   }
@@ -51,9 +56,10 @@ export class MemberchongzhiPage extends AppBase {
     var current = e.target.parentElement.parentElement
     current.classList.add('member-active')
     this.paydate = e.target.parentElement.childNodes[0].innerText
+    this.paymoney = e.target.parentElement.childNodes[1].innerText.replace('￥','')
     var others = current.parentElement.childNodes
     console.log(others)
-    console.log(current)
+    console.log(this.paymoney)
     for(let i=0;i<others.length; i++){
       if(current != others[i]){
         others[i].classList.remove('member-active')
@@ -80,21 +86,111 @@ export class MemberchongzhiPage extends AppBase {
 
   }
 
+  
+  gbzf() {
+    this.d = false;
+    this.onMyShow();
+    // window.location.href = "/order";  //出现短暂白屏
+    // this.navigate("/order");
+  }
+
+  starttime=null
+  endtime=null
 
   lijizhifu() {
     this.d = false;
 
-    let date = new Date()
-    let year = date.getFullYear()
-    let month = date.getMonth() + 1
-    let day = date.getDay()
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth()+1;
+    let day = date.getDate();
+    let hh = date.getHours();
+    let mm = date.getMinutes();
 
-    let nowtime = year + '-' + month +'-'+day
-    this.router.navigate(['paysuccess'],{
-        queryParams: {
-          paydate: this.paydate
-        }
-      })
+    console.log(year,month,day,hh,mm)
+
+
+    let days = new Date(year, month, 0).getDate()
+     
+    this.starttime =  year + "-" + month +"-"+ day +" "+hh+":"+mm
+    console.log(this.starttime,'fjfhfhfjh')
+
+    if(this.ismember=="是"){
+      console.log(this.endmenbertime,'到期时间')
+      year = Number(this.endmenbertime.slice(0,4)) 
+      month = Number(this.endmenbertime.slice(5,7)) 
+      day = Number(this.endmenbertime.slice(8,10)) 
+      hh= Number(this.endmenbertime.slice(10,13)) 
+      mm= Number(this.endmenbertime.slice(14,16)) 
+    }
+
+    console.log(year,month,day,hh,mm,'啦啦啦啦啦')
+
+    if(this.paydate == "包一天") {
+      if(days==day){
+        month = month+1
+        day = 1
+        this.endtime =  year + "-" + month +"-"+ day +" "+hh+":"+mm
+      }else {
+        day = day+1
+        this.endtime =  year + "-" + month +"-"+ day  +" "+hh+":"+mm
+      }
+     
+    }
+
+    if(this.paydate == "包一周") {
+      if((days-day)<7){
+        month = month+1
+        day = 7-(days-day)
+        this.endtime =  year + "-" + month +"-"+ day  +" "+hh+":"+mm
+      }else {
+        day = day+7
+        this.endtime =  year + "-" + month +"月-"+ day +" "+hh+":"+mm
+      }
+    
+    }
+
+    if(this.paydate == "包一月") {
+      if(month == 12){
+        year = year + 1
+        month = 1
+        this.endtime =  year + "-" + month +"-"+ day  +" "+hh+":"+mm
+      }else {
+        month = month+1
+        this.endtime =  year + "-" + month +"-"+ day  +" "+hh+":"+mm
+      }
+      
+    }
+
+    if(this.paydate == "包一年") {
+      year = year+1
+      this.endtime =  year + "-" + month +"-"+ day +" "+hh+":"+mm
+    }
+
+    console.log(this.starttime)
+    console.log(this.endtime)
+
+
+    this.memberApi.updateismember({id:this.user_id,ismember:"Y",startmember_time:this.starttime,endmenber_time:this.endtime}).then((updateismember:any)=>{
+      console.log(updateismember,'updateismember')
+      if(updateismember.code == '0'){
+        this.ismember = '是'
+        this.centerApi.addintegration({user_id:this.user_id,startmember_time:this.starttime,endmenber_time:this.endtime,paymember:this.paymoney,status:'A'}).then((addintegration:any)=>{
+          console.log(addintegration,'addintegration')
+        })
+
+        this.router.navigate(['paysuccess'],{
+          queryParams: {
+            paydate: this.paydate,
+            paymoney: this.paymoney
+          }
+        })
+
+      }
+      
+  })
+
+   
 
     // if (this.zhifufanshi == 0) {
     //   console.log(this.zhifuinfo);

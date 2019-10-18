@@ -110,6 +110,7 @@ export class AppBase implements OnInit {
         if(token==null&&longlivetoken!=null){
             window.sessionStorage.setItem("UserToken",longlivetoken);
         }
+
     }
     setStatusBar() {
         //  this.statusBar.styleLightContent();
@@ -117,23 +118,32 @@ export class AppBase implements OnInit {
     ngOnInit() {
         this.bfscrolltop = document.body.scrollTop;
         ApiConfig.SetUnicode(AppBase.UNICODE);
-        // this.CheckPermission();
+        this.CheckPermission();
         this.getResources();
         this.getInstInfo();
-        this.getMemberInfo();
         this.onMyLoad();
         this.setStatusBar();
     }
 
     CheckPermission() {
 
+        
+        
+            let date = new Date();
+            let year = date.getFullYear();
+            let month = date.getMonth()+1;
+            let day = date.getDate();
+            let hh = date.getHours();
+            let mm = date.getMinutes(); 
+
+            let nowtime = year + "-" + month +"-"+ day +" "+hh+":"+mm
+
+
         console.log(AppBase.IsLogin,'5555')
 
-        // window.localStorage.removeItem("UserToken");
-        
-        if (AppBase.IsLogin==false) {
+        if (this.isLoginPage==false) {
             var token = window.localStorage.getItem("UserToken");
-            var loginame = window.localStorage.getItem("lastloginname");
+            this.user_id = window.localStorage.getItem("user_id");
             console.log(token,'2222')
 
             if (token == null) {
@@ -142,24 +152,38 @@ export class AppBase implements OnInit {
             } else {
                 ApiConfig.SetToken(token);
 
-                AppBase.memberapi.memberlist({}).then((memberlist)=>{
-                    console.log(memberlist,'memberlist')
-                    this.memberInfo = memberlist.filter(item=>{
-                        if(item.name==loginame){
-                            this.user_id = item.id
-                            this.ismember = item.ismember
-                            return item
-                        }
-                    })
-                    console.log(this.memberInfo,'memberkkkkkkkkkk')
-                })
+                AppBase.memberapi.info({id:this.user_id}).then((memberinfo) => {
+                    AppBase.IsLogin = memberinfo == null ? false : true;
+                    console.log(memberinfo,'memberinfo')
+                    if(memberinfo==null){
+                        this.router.navigate(['login'])
+                    }else{
+                        if(memberinfo.endmenber_time!=""){
+                            if(memberinfo.endmenber_time>nowtime){
+                                console.log('jjjjjjj')
+                                this.memberInfo = memberinfo;
+                                this.ismember = memberinfo.ismember
+                            }else {
+                                console.log('哈哈哈哈哈哈')
+                                console.log(memberinfo.endmenber_time,nowtime)
+                                AppBase.memberapi.updateismember({id:this.user_id,ismember:'N'}).then((updateismember:any)=>{
+                                    console.log(updateismember,'updateismember')
+                                    if(updateismember.code=='0'){
+                                        this.ismember = '否'
+                                        this.memberInfo = memberinfo
+                                    }
+                                })
+                            }
+                        }else {
 
-                // AppBase.memberapi.info({name:loginame}).then((memberinfo) => {
-                //     AppBase.IsLogin = memberinfo == null ? false : true;
-                //     console.log(memberinfo,'memberinfo')
-                //     this.memberInfo = memberinfo;
-                //     console.log(this.memberInfo,'oooo')
-                // })
+                            this.memberInfo = memberinfo;
+                            this.ismember = memberinfo.ismember
+                        }
+                       
+                       
+                    }
+                    // console.log(this.memberInfo,'oooo')
+                })
             }
         }
     }
@@ -181,26 +205,14 @@ export class AppBase implements OnInit {
     }
     getMemberInfo() {
 
-        // AppBase.memberapi.info({member_id:1}).then((memberinfo) => {
-        //     if (memberinfo == null || memberinfo.mobile == undefined || memberinfo.mobile == "") {
-        //         //alert("?");
-        //         memberinfo = null;
-        //     }
-        //     this.MemberInfo = memberinfo;
+        AppBase.memberapi.info({id:this.user_id}).then((memberinfo) => {
+            if (memberinfo == null || memberinfo.mobile == undefined || memberinfo.mobile == "") {
+                //alert("?");
+                memberinfo = null;
+            }
+            this.MemberInfo = memberinfo;
 
-        // });
-        var loginame = window.localStorage.getItem("lastloginname");
-        AppBase.memberapi.memberlist({}).then((memberlist)=>{
-            console.log(memberlist,'memberlist')
-            this.memberInfo = memberlist.filter(item=>{
-                if(item.name==loginame){
-                    this.user_id = item.id
-                    this.ismember=item.ismember
-                    return item
-                }
-            })
-            console.log(this.memberInfo,'memberkkkkkkkkkk')
-        })
+        });
     }
 
     shouye() {
@@ -228,7 +240,7 @@ export class AppBase implements OnInit {
     }
 
     onMyShow() {
-
+       
     }
     onPullRefresh(ref) {
         this.onMyShow();
@@ -384,7 +396,7 @@ export class AppBase implements OnInit {
                 if (ret) {
                     AppBase.IsLogin = false;
                     window.localStorage.removeItem("UserToken");
-                    window.localStorage.removeItem("lastloginname");
+                    window.localStorage.removeItem("user_id");
                     this.MemberInfo = null;
                     this.memberInfo = null;
                     this.backToUrl('/login');
@@ -490,6 +502,17 @@ export class AppBase implements OnInit {
      getdatemm(date){
         date = date.slice(0,date.length-3)
         return date.replace(/-/g,'/')
+    }
+
+    // yyyy年mm月dd日 hh:mm
+    getdatech(date){
+        let date1 = date.slice(0,4)
+        let date2 = date.slice(5,7)
+        let date3 = date.slice(8,10)
+        let date4 = date.slice(10,date.length-3)
+        return date1+"年"+date2+"月"+date3+"日"+date4
+        console.log(date1,date2,date3)
+        // return date.replace(/-/g,'年')
     }
 
     // yy/mm/dd hh:mm 

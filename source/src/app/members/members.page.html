@@ -12,26 +12,28 @@
   
     <div class="mine">
       <img src="{{uploadpath}}resource/{{res.wodehuiyuan}}" class="huiyuan"/>
-      <div class="perfixed" *ngFor='let item of memberInfo'>
+      <div class="perfixed">
           <div class="flex-row person">
               <div class="flex-2 ">
                 <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='photo==""' class="icon-60 radius-50 touxiang"/>
-                <img src="{{uploadpath}}member/{{item.photo}}" *ngIf='photo!=""' class="icon-60 radius-50 touxiang"/>
-                <img *ngIf='item.ismember=="是"' src="{{uploadpath}}resource/{{res.vip}}" class="vip"/>
+                <img src="{{uploadpath}}member/{{photo}}" *ngIf='photo!=""' class="icon-60 radius-50 touxiang"/>
+                <img *ngIf='ismember=="是"' src="{{uploadpath}}resource/{{res.vip}}" class="vip"/>
               </div>
               <div class="flex-3">
-                <div class="margin-top margin-bottom-10">{{item.name}}</div>
-                <div *ngIf='item.ismember=="否"' class=" h6">抱歉，您还不是会员</div>
-                <div *ngIf='item.ismember=="是"' class="txt-yellow-c6 h6">尊敬的会员，您好！</div>
+                <div class="margin-top margin-bottom-10">{{username}}</div>
+                <div *ngIf='ismember=="否"' class=" h6">抱歉，您还不是会员</div>
+                <div *ngIf='ismember=="是"' class="txt-yellow-c6 h6">尊敬的会员，您好！</div>
               </div>
-              <div  *ngIf='item.ismember=="否"' class="flex-3 margin-top-80 text-center txt-yellow-c6 " routerLink='/memberchongzhi'>
+              <div  *ngIf='ismember=="否"' class="flex-3 margin-top-80 text-center txt-yellow-c6 " routerLink='/memberchongzhi'>
                 <span class="h6"> 申请会员</span>
                 <img src="{{uploadpath}}resource/{{res.C6arrow}}" class="icon-15 imgs" />
               </div>
-              <div *ngIf='item.ismember=="是"' class="flex-3 margin-top-80 text-center txt-yellow-c6" routerLink='/memberchongzhi'>
+              <div *ngIf='ismember=="是"' class="flex-3 margin-top-80 text-center txt-yellow-c6" routerLink='/memberchongzhi'>
                 <span class="h6">申请续费</span>
                 <img src="{{uploadpath}}resource/{{res.C6arrow}}" class="icon-15 imgs" />
+               
               </div>
+              <div class="h6 positon" *ngIf='ismember=="是"'>有限期至：{{endtime}}</div>
             </div>
       </div>
     </div>
@@ -48,11 +50,11 @@
              <th width='40%'>有效期至</th>
              <th width='20%'>金额</th>
            </thead>
-           <tbody class="text-center">
+           <tbody class="text-center"  *ngFor='let item of integrationlist'>
              <tr class="tbtr h5">
-               <td>19/09/11 16：24</td>
-               <td>19/09/12 16：23</td>
-               <td>￥18</td>
+               <td>{{item.startmember_time}}</td>
+               <td>{{item.endmenber_time}}</td>
+               <td>￥{{item.paymember}}</td>
              </tr>
            </tbody>
          </table>

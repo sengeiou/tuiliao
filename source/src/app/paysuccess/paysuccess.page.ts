@@ -7,13 +7,14 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
+import { CenterApi } from 'src/providers/center.api';
 
 
 @Component({
   selector: 'app-paysuccess',
   templateUrl: './paysuccess.page.html',
   styleUrls: ['./paysuccess.page.scss'],
-  providers:[MemberApi,ProjectApi]
+  providers:[MemberApi,ProjectApi,CenterApi]
 })
 export class PaysuccessPage extends AppBase {
 
@@ -26,6 +27,7 @@ export class PaysuccessPage extends AppBase {
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
+    public centerApi:CenterApi,
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -39,16 +41,15 @@ export class PaysuccessPage extends AppBase {
 
   nowtime = ''
   nexttime=''
-
   onMyShow(){
 
     this.activeRoute.queryParams.subscribe(query=>{
       console.log(query)
 
-      let date = new Date()
-      let year = date.getFullYear()
-      let month = date.getMonth()+1
-      let day = date.getDay()
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let day = date.getDate();
 
       this.nowtime = year + "年" + month +"月"+ day + "日"
       console.log(this.nowtime)
@@ -95,23 +96,10 @@ export class PaysuccessPage extends AppBase {
         this.nexttime =  year + "年" + month +"月"+ day + "日"
       }
 
-      this.updatememberinfo('id',this.user_id)
-      this.updatememberinfo('ismember','Y')
-      this.updatememberinfo("startmember_time",this.nowtime)
-      this.updatememberinfo("endmenber_time",this.nexttime)
      
 
-
     })
 
   }
 
-  updatememberinfo(type,value){
-    let obj={}
-    obj[type]=value
-    this.memberApi.infoupdate(obj).then((infoupdate:any)=>{
-      console.log(infoupdate,'kkkkk')
-      this.ismember="是"
-    })
-  }
 }

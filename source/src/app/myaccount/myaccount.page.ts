@@ -44,13 +44,14 @@ export class MyaccountPage extends AppBase {
   c=false
   onMyShow(){
 
-    // this.memberApi.info({member_id:1}).then((memberinfo) => {
-    //   console.log(memberinfo,'4165456')
-    //   this.ismember = memberinfo.ismember
-    //   this.photo = memberinfo.photo
-    //   this.username = memberinfo.name
-    //   this.ballnum = memberinfo.ballnum
-    //   this.member_id = memberinfo.id
+    this.memberApi.info({id:this.user_id}).then((memberinfo) => {
+      console.log(memberinfo,'4165456')
+      this.ismember = memberinfo.ismember
+      this.photo = memberinfo.photo
+      this.username = memberinfo.name
+      this.ballnum = memberinfo.ballnum
+      this.member_id = memberinfo.id
+      this.ismember = memberinfo.ismember
 
 
       this.memberApi.integrationlist({user_id: this.user_id}).then((integrationlist:any)=>{
@@ -62,7 +63,7 @@ export class MyaccountPage extends AppBase {
         })
       })
 
-
+    })
   }
 
   isshow=true
@@ -88,12 +89,12 @@ export class MyaccountPage extends AppBase {
     }
     others[0].classList.remove('account-active')
 
-    this.memberApi.integrationlist({user_id: this.member_id}).then((integrationlist:any)=>{
-      console.log(integrationlist)
+    this.memberApi.integrationlist({user_id: this.user_id}).then((integrationlist:any)=>{
+      console.log(integrationlist,'lkkkk')
       this.integrationlist = integrationlist.filter(item=>{
         item.chong_time = this.getchangedatetime(item.chong_time)
         item.pay_time = this.getchangedatetime(item.pay_time)
-        if(item.chongzhi>0 || item.yongjin>0){
+        if(item.chongzhi>0){
           return item
         }
       })
@@ -109,7 +110,7 @@ export class MyaccountPage extends AppBase {
       others[i].classList.remove('account-active')
     }
     
-    this.memberApi.integrationlist({user_id: this.member_id}).then((integrationlist:any)=>{
+    this.memberApi.integrationlist({user_id: this.user_id}).then((integrationlist:any)=>{
       console.log(integrationlist)
       this.integrationlist = integrationlist.filter(item=>{
         item.chong_time = this.getchangedatetime(item.chong_time)

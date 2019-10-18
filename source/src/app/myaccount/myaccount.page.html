@@ -9,10 +9,13 @@
 <ion-content>
   <div class="bg-gray-f0">
 
-        <div class="flex-row mine" *ngFor='let item of memberInfo'>
+        <div class="flex-row mine">
           <div class="flex-4 ">
-            <div class="text-right margin-right-80 margin-bottom-20"><img  src="{{uploadpath}}member/{{item.photo}}" class="icon-60 radius-50"/></div>
-            <div class="txt-white  text-right">我的账户：{{item.ballnum}}&nbsp;球币</div>
+            <div class="text-right margin-right-80 margin-bottom-20">
+                <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='photo==""' class="icon-60 radius-50"/>
+                <img src="{{uploadpath}}member/{{photo}}" *ngIf='photo!=""' class="icon-60 radius-50"/>
+            </div>
+            <div class="txt-white  text-right">我的账户：{{ballnum}}&nbsp;球币</div>
           </div>
           <div class="flex-2 text-center" routerLink='/chongzhi'>
               <span class="h5 txt-white">去充值</span>
