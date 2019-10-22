@@ -147,17 +147,17 @@ export class RegisterPage extends AppBase {
     // 验证码
     var verifycode =this.yanzhenma;
     this.aliyunApi.verifycode({
-      mobile: this.mobile,
-      verifycode,
-      type: "register"
-    }).then(ret => {
-      if (ret.code == 0) {
-      this.show = 2;
-    } else {
-     
-      this.toast("验证码校验失败，请重新尝试");
-    }
-  });
+        mobile: this.mobile,
+        verifycode,
+        type: "register"
+      }).then(ret => {
+        if (ret.code == 0) {
+        this.show = 2;
+      } else {
+      
+        this.toast("验证码校验失败，请重新尝试");
+      }
+    });
 
 
   }

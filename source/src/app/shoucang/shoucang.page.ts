@@ -39,18 +39,22 @@ export class ShoucangPage extends AppBase {
   }
 
   recomfavlist=null
+  favlist = []
   // user_id=1
   onMyShow(){
 
     this.centerApi.recomfavlist({userfav_id:this.user_id}).then((recomfavlist:any)=>{
       console.log(recomfavlist)
+      this.favlist = []
       this.recomfavlist = recomfavlist.filter(item=>{
-        
         for(let i=0;i<item.recom.length;i++){
            item.recom[i].pub_time = this.getdatemm(item.recom[i].pub_time)
+           this.favlist.push(item.recom[i]) 
         }
+        
         return item
       })
+      console.log( this.recomfavlist,' this.recomfavlist')
     })
 
   }

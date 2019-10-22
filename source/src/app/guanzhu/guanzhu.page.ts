@@ -40,14 +40,42 @@ export class GuanzhuPage extends AppBase {
 
   focuslist=null
   // user_id = 1
+  recom_user_id = ''
   onMyShow(){
 
     this.centerApi.focuslist({focus_member_id:this.user_id}).then((focuslist:any)=>{
       console.log(focuslist)
-      this.focuslist = focuslist
+      this.focuslist = focuslist.filter(item=>{
+        console.log(item.befocus.length,'item.befocus.length')
+
+        this.memberApi.info({id:item.befocus_id}).then((info)=>{
+          console.log(info,'info')
+          item.befocus_id_name = info.name
+          item.befocus_id_photo = info.photo
+       })
+
+       this.projectApi.recomlist({user_id:item.befocus_id}).then((recomlist:any)=>{
+         console.log(recomlist,'reclist')
+          for(let i=0;i<recomlist.length;i++){
+            if(recomlist[i].isnew == '是'){
+              item.isnew = true
+            }
+          }
+       })
+
+        if(item.befocus.length>1){
+          item.befocus.splice(0,item.befocus.length-1)
+          return item
+        }else {
+          return item
+
+        }
+      })
+      console.log()
     })
 
   }
+
   guanzushow = false
   guanzu(item){
 
@@ -64,9 +92,9 @@ export class GuanzhuPage extends AppBase {
 
   focusper(itemId){
     console.log(itemId)
-    this.router.navigate(['recomdetail'],{
+    this.router.navigate(['guanzhudetail'],{
       queryParams:{
-        id: itemId
+        user_id: itemId
       }
     })
 

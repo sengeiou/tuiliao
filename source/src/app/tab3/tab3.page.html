@@ -31,7 +31,7 @@
       </div>
     </div>
     <div class="margin-left-20 margin-bottom-20 h5 txt-bold">{{list.biaoti}}</div>
-    <div class="bg-gray margin-left-20 content">
+    <div class="bg-gray margin-left-20 content" *ngIf='list.latelycom.length>0'>
       <div class="padding-left-20 padding-bottom-20 h5" *ngFor='let item of list.latelycom'>
         <span class="">{{item.name_name}}</span>
         <span class="">{{item.hostteam_name}}VS{{item.guestteam_name}}</span>

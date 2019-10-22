@@ -63,6 +63,7 @@ export class LoginPage extends AppBase {
   }
 
   zhuce(){
+    this.store("isregister", "isregister");
     this.navigate("/register");
   }
 

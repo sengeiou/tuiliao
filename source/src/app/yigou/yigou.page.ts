@@ -48,6 +48,13 @@ export class YigouPage extends AppBase {
       console.log(purchasedlist)
       if(purchasedlist.length>0){
         this.purchasedlist = purchasedlist.filter(item=>{
+
+          this.memberApi.info({id:item.recom_id}).then((info)=>{
+            console.log(info,'info')
+            item.befocus_id_name = info.name
+            item.befocus_id_photo = info.photo
+         })
+
           for(let i=0;i<item.recom.length;i++){
             item.recom[i].pub_time = this.getdatemm(item.recom[i].pub_time)
           }

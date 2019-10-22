@@ -72,8 +72,9 @@ export class PayRecomDetailPage extends AppBase {
             }
           })
 
-          this.centerApi.recomfavlist({userfav_id: this.user_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
+          this.centerApi.recomfavlist({userfav_id: this.user_id,recom_id: item.user_id,rec_id:item.id}).then((recomfavlist:any)=>{
             console.log(recomfavlist,'aaaa')
+            console.log(recomfavlist.length,'aaaa')
             if(recomfavlist.length==1){
               this.isshow = false
             }else {
@@ -93,18 +94,18 @@ export class PayRecomDetailPage extends AppBase {
     this.router.navigate(['tabs/tab3'])
   }
 
-  shoucang(user_id){
-    console.log(user_id)
+  shoucang(list){
+    console.log(list)
 
     if(this.isshow == true){
 
-      this.centerApi.addrecfav({userfav_id:this.user_id,status: 'A',recom_id: user_id}).then((addrecfav:any)=>{
+      this.centerApi.addrecfav({userfav_id:this.user_id,status: 'A',recom_id: list.user_id,rec_id:list.id}).then((addrecfav:any)=>{
         console.log(addrecfav)
       })
 
     }else {
 
-      this.centerApi.deletefav({status: 'D',recom_id: user_id,}).then((deletefav:any)=>{
+      this.centerApi.deletefav({status: 'D',recom_id: list.user_id,userfav_id:this.user_id,rec_id:list.id}).then((deletefav:any)=>{
         console.log(deletefav)
       })
 

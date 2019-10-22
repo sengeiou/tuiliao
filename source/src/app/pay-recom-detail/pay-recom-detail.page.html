@@ -13,14 +13,14 @@
   <div class="flex-row txt-gray-b9 margin-top-30 h5 txt-bold margin-bottom-30">
     <span class="flex-1">{{list.pub_time}}&nbsp;发布</span>
     <span class="flex-2 shoucang">
-      <img src="{{uploadpath}}resource/{{res.shoucang}}" *ngIf='isshow' (click)='shoucang(list.user_id)' class="icon-20"/>
-      <img src="{{uploadpath}}resource/{{res.shoucang2}}" *ngIf='isshow==false'  (click)='shoucang(list.user_id)' class="icon-20"/>
+      <img src="{{uploadpath}}resource/{{res.shoucang}}" *ngIf='isshow' (click)='shoucang(list)' class="icon-20"/>
+      <img src="{{uploadpath}}resource/{{res.shoucang2}}" *ngIf='isshow==false'  (click)='shoucang(list)' class="icon-20"/>
       <span class="">收藏</span>
     </span>
   </div>
   <img src="{{uploadpath}}resource/{{res.mingzhong}}" class="icon-60 imgfixed" *ngIf='list.zongjieguo=="Y"'/>
   <img src="{{uploadpath}}resource/{{res.weizhong}}" class="icon-60 imgfixed" *ngIf='list.zongjieguo=="N"'/>
-  <div class="bg-gray content">
+  <div class="bg-gray content" *ngIf='list.latelycom.length>0'>
     <div class="padding-left-20 padding-bottom-20 h5" *ngFor='let item of list.latelycom'>
       <span class="">{{item.name_name}}</span>
       <span class="">{{item.hostteam_name}}VS{{item.guestteam_name}}</span>

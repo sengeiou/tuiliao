@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'register', loadChildren: './register/register.module#RegisterPageModule' },
   { path: 'chongzhisuccess', loadChildren: './chongzhisuccess/chongzhisuccess.module#ChongzhisuccessPageModule' },
   { path: 'updatepassword', loadChildren: './updatepassword/updatepassword.module#UpdatepasswordPageModule' },
+  { path: 'guanzhudetail', loadChildren: './guanzhudetail/guanzhudetail.module#GuanzhudetailPageModule' },
 ];
 @NgModule({
   imports: [

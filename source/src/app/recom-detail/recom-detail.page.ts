@@ -51,6 +51,7 @@ export class RecomDetailPage extends AppBase {
   member_id = ''
   ballnum = 0
   code=''
+  list_id=''
 
   onMyShow(){
     this.activeRoute.queryParams.subscribe(query=>{
@@ -72,6 +73,7 @@ export class RecomDetailPage extends AppBase {
         detaillist.push( recommenddetail)
 
         this.recommenddetail = detaillist.filter(item=>{
+          this.list_id = item.id
 
           this.centerApi.focuslist({focus_member_id: this.member_id,befocus_id: item.user_id}).then((focuslist:any)=>{
             console.log(focuslist.length)
@@ -82,13 +84,22 @@ export class RecomDetailPage extends AppBase {
             }
           })
 
-          this.centerApi.recomfavlist({userfav_id: this.member_id,recom_id: item.user_id}).then((recomfavlist:any)=>{
+          this.centerApi.recomfavlist({userfav_id: this.member_id,recom_id: item.user_id,rec_id:item.id}).then((recomfavlist:any)=>{
             console.log(recomfavlist,'aaaa')
+            console.log(recomfavlist.length,'aaaa')
+            // for(let i=0;i<recomfavlist.length;i++){
+            //     if(item.id == recomfavlist[i].rec_id){
+            //       this.isshow = true
+            //     }else {
+            //       this.isshow = false
+            //     }
+            // }
             if(recomfavlist.length==1){
               this.isshow = false
             }else {
               this.isshow = true
             }
+           
           })
           
             item.pub_time = this.getchangetime(item.pub_time)
@@ -171,7 +182,7 @@ export class RecomDetailPage extends AppBase {
         console.log(addintegration)
         if(addintegration.code == '0'){
 
-          this.centerApi.addpurchase({pur_id:this.member_id,status: 'A',recom_id: this.payinfo.user_id}).then((addpurchase:any)=>{
+          this.centerApi.addpurchase({pur_id:this.member_id,status: 'A',recom_id: this.payinfo.user_id,rec_id:this.list_id}).then((addpurchase:any)=>{
             console.log(addpurchase)
             if(addpurchase.code == '0'){
             this.router.navigate(['pay-recom-detail'],{
@@ -228,18 +239,18 @@ export class RecomDetailPage extends AppBase {
     // this.navigate("/order");
   }
 
-  shoucang(user_id){
-    console.log(user_id)
+  shoucang(list){
+    console.log(list,'list')
 
     if(this.isshow == true){
 
-      this.centerApi.addrecfav({userfav_id:this.member_id,status: 'A',recom_id: user_id}).then((addrecfav:any)=>{
+      this.centerApi.addrecfav({userfav_id:this.member_id,status: 'A',recom_id: list.user_id,rec_id:list.id}).then((addrecfav:any)=>{
         console.log(addrecfav)
       })
 
     }else {
 
-      this.centerApi.deletefav({status: 'D',recom_id: user_id,}).then((deletefav:any)=>{
+      this.centerApi.deletefav({status: 'D',userfav_id:this.member_id,recom_id: list.user_id,rec_id:list.id}).then((deletefav:any)=>{
         console.log(deletefav)
       })
 

@@ -14,10 +14,11 @@
             <div class="h5">{{item.pub_time}}</div>
             <div class="flex-row">
               <div class="flex-1">
-                <img src="{{uploadpath}}resource/{{res.mine}}" class="icon-40 tuobiao" />
+                <img src="{{uploadpath}}resource/{{res.mine}}" *ngIf='list.befocus_id_photo==""' class="icon-40 tuobiao" />
+                <img src="{{uploadpath}}member/{{list.befocus_id_photo}}"  *ngIf='list.befocus_id_photo!=""' class="icon-40 tuobiao" />
               </div>
               <div class="flex-5 margin-30">
-                  <div>{{item.name}}</div>
+                  <div>{{list.befocus_id_name}}</div>
                   <div class="h6 margin-top-5">{{item.biaoti}}</div>
               </div>
               <div class="flex-2">

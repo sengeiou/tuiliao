@@ -144,11 +144,17 @@ export class AppBase implements OnInit {
         if (this.isLoginPage==false) {
             var token = window.localStorage.getItem("UserToken");
             this.user_id = window.localStorage.getItem("user_id");
+            var isregister = window.localStorage.getItem("isregister");
             console.log(token,'2222')
 
             if (token == null) {
-                this.router.navigate(["login"]);
-                AppBase.IsLogin = false;
+                if(isregister!=null){
+                    // this.router.navigate(["re"]);
+                }else {
+                    this.router.navigate(["login"]);
+                    AppBase.IsLogin = false;
+                }
+                
             } else {
                 ApiConfig.SetToken(token);
 
