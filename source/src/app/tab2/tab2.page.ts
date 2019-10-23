@@ -36,6 +36,7 @@ export class Tab2Page extends AppBase {
   onMyLoad(){
     //参数
     this.params;
+    AppBase.LASTTAB=this;
   }
 
   footlist = null

@@ -1,4 +1,4 @@
-import { Component, ViewChild,ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AppBase } from '../AppBase';
 import { Router } from '@angular/router';
 import {  ActivatedRoute, Params } from '@angular/router';
@@ -9,12 +9,11 @@ import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 
 @Component({
-  selector: 'app-tab4',
-  templateUrl: './tab4.page.html',
-  styleUrls: ['./tab4.page.scss'],
-  providers:[MemberApi,ProjectApi]
+  selector: 'app-langchoose',
+  templateUrl: './langchoose.page.html',
+  styleUrls: ['./langchoose.page.scss'],
 })
-export class Tab4Page extends AppBase {
+export class LangchoosePage extends AppBase {
 
   constructor(public router: Router,
     public navCtrl: NavController,
@@ -22,10 +21,7 @@ export class Tab4Page extends AppBase {
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public activeRoute: ActivatedRoute,
-    public sanitizer: DomSanitizer,
-    public memberApi:MemberApi,
-    public projectApi:ProjectApi,
-    public cd: ChangeDetectorRef
+    public sanitizer: DomSanitizer
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -36,19 +32,14 @@ export class Tab4Page extends AppBase {
     //参数
     this.params;
   }
+  change(val){
+    window.localStorage.setItem("langcode",val);
+    this.back();
+  }
 
-  // 会员
-
-  info={}
-  
   onMyShow(){
-    // if(this.memberInfo!=null){
-    //   this.info=this.memberInfo
-    //   console.log(this.info.photo,'kkkkk')
-    // }
-    AppBase.LASTTAB=this;
-    this.memberApi.info({id:this.user_id}).then((info)=>{
-      this.info = info
-    })
+
+    
+
   }
 }

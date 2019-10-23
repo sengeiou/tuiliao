@@ -41,6 +41,7 @@ export class Tab3Page extends AppBase {
   recomlist = null
   member_id=''
   onMyShow(){
+    AppBase.LASTTAB=this;
 
 
     this.memberApi.info({id:this.user_id}).then((memberinfo) => {

@@ -61,7 +61,7 @@ export class AppBase implements OnInit {
 
     static Current = null;
     currentpage = "";
-    isLoginPage = false;
+    isLoginPage = true;
     memberInfo=null;
 
     public operatorinfo={id:0,name:"",photo:"",loginname:""};
@@ -236,11 +236,40 @@ export class AppBase implements OnInit {
             this.res = AppBase.Resources;
         }
     }
+    static Lang=null;
+    lang=[];
+    langcode="tc";
+    getLang() {
+        if (AppBase.Lang == null) {
+            AppBase.instapi.langs({}, false).then((res) => {
+                AppBase.Lang = res;
+                this.refreshLang();
+            });
+        }else{
+            this.refreshLang();
+        }
+
+    }
+
+    refreshLang(){
+        if(AppBase.Lang!=null){
+
+            var langcode=window.localStorage.getItem("langcode");
+            if(langcode!=null){
+                this.langcode=langcode;
+            }
+            alert(this.langcode);
+            this.lang=AppBase.Lang[this.langcode];
+            console.log("refreshLang",this.lang);
+        }
+    }
+
     consolelog(vi, value) {
         console.log({ vi, value });
     }
     ionViewDidEnter() {
         
+        this.refreshLang();
         this.onMyShow();
         
     }

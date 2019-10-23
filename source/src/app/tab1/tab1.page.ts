@@ -43,6 +43,7 @@ export class Tab1Page extends AppBase {
  horselist = null;
 
   onMyShow(){
+    AppBase.LASTTAB=this;
 
     this.projectApi.lunbolist({name:'赛马'}).then((lunbolist:any)=>{
       console.log(lunbolist)
