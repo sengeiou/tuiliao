@@ -29,7 +29,7 @@ export class Tab4Page extends AppBase {
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
-      
+    this.info={};
   }
 
   onMyLoad(){
@@ -39,7 +39,7 @@ export class Tab4Page extends AppBase {
 
   // 会员
 
-  info={}
+  info=null;
   
   onMyShow(){
     // if(this.memberInfo!=null){
@@ -47,8 +47,5 @@ export class Tab4Page extends AppBase {
     //   console.log(this.info.photo,'kkkkk')
     // }
     AppBase.LASTTAB=this;
-    this.memberApi.info({id:this.user_id}).then((info)=>{
-      this.info = info
-    })
   }
 }

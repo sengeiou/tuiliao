@@ -144,20 +144,20 @@ export class RegisterPage extends AppBase {
     e.target.classList.add('zhuce-active')
     e.target.parentElement.childNodes[1].classList.remove('zhuce-active')
 
-    // 验证码
-    var verifycode =this.yanzhenma;
-    this.aliyunApi.verifycode({
-        mobile: this.mobile,
-        verifycode,
-        type: "register"
-      }).then(ret => {
-        if (ret.code == 0) {
-        this.show = 2;
-      } else {
+    // // 验证码
+    // var verifycode =this.yanzhenma;
+    // this.aliyunApi.verifycode({
+    //     mobile: this.mobile,
+    //     verifycode,
+    //     type: "register"
+    //   }).then(ret => {
+    //     if (ret.code == 0) {
+    //     this.show = 2;
+    //   } else {
       
-        this.toast("验证码校验失败，请重新尝试");
-      }
-    });
+    //     this.toast("验证码校验失败，请重新尝试");
+    //   }
+    // });
 
 
   }

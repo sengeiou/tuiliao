@@ -18,7 +18,7 @@ import { AppPage } from 'e2e/src/app.po';
 declare let wx: any;
 
 export class AppBase implements OnInit {
-    public needlogin = false;
+    public needlogin = true;
 
     public static TABName = "";
     public static LASTTAB = null;
@@ -39,7 +39,7 @@ export class AppBase implements OnInit {
     public static InstInfo = null;
     public static MemberInfo = null;
     public InstInfo = {  h5sharelogo: "", h5sharetitle: "", h5sharedesc: "", tel: "", h5appid: "", kf: "", openning: "", successtips: "", orderneedknow: "", name: "", logo: "", memberlogo: "", undershipping: 0, shippingfee: 0, about1: "", about2: "", about3: "", about4: "", about5: "" };
-    public MemberInfo = { id:1, name: "", photo: "", mobile: "", email: "" };
+    
     public static MYBABY = [];
     public mybaby = [];
     public options = null;
@@ -61,8 +61,8 @@ export class AppBase implements OnInit {
 
     static Current = null;
     currentpage = "";
-    isLoginPage = true;
-    memberInfo=null;
+    isLoginPage = false;
+    memberInfo={id:0,endmenber_time:""};
 
     public operatorinfo={id:0,name:"",photo:"",loginname:""};
 
@@ -118,8 +118,8 @@ export class AppBase implements OnInit {
     ngOnInit() {
         this.bfscrolltop = document.body.scrollTop;
         ApiConfig.SetUnicode(AppBase.UNICODE);
-        this.CheckPermission();
         this.getResources();
+        this.getLang();
         this.getInstInfo();
         this.onMyLoad();
         this.setStatusBar();
@@ -159,9 +159,9 @@ export class AppBase implements OnInit {
                 ApiConfig.SetToken(token);
 
                 AppBase.memberapi.info({id:this.user_id}).then((memberinfo) => {
-                    AppBase.IsLogin = memberinfo == null ? false : true;
+                    AppBase.IsLogin = memberinfo.id == 0 ? false : true;
                     console.log(memberinfo,'memberinfo')
-                    if(memberinfo==null){
+                    if(memberinfo.id==0){
                         this.router.navigate(['login'])
                     }else{
                         if(memberinfo.endmenber_time!=""){
@@ -212,11 +212,11 @@ export class AppBase implements OnInit {
     getMemberInfo() {
 
         AppBase.memberapi.info({id:this.user_id}).then((memberinfo) => {
-            if (memberinfo == null || memberinfo.mobile == undefined || memberinfo.mobile == "") {
+            if (memberinfo.id == 0 || memberinfo.mobile == undefined || memberinfo.mobile == "") {
                 //alert("?");
                 memberinfo = null;
             }
-            this.MemberInfo = memberinfo;
+            this.memberInfo = memberinfo;
 
         });
     }
@@ -258,7 +258,6 @@ export class AppBase implements OnInit {
             if(langcode!=null){
                 this.langcode=langcode;
             }
-            alert(this.langcode);
             this.lang=AppBase.Lang[this.langcode];
             console.log("refreshLang",this.lang);
         }
@@ -269,6 +268,7 @@ export class AppBase implements OnInit {
     }
     ionViewDidEnter() {
         
+        this.CheckPermission();
         this.refreshLang();
         this.onMyShow();
         
@@ -327,7 +327,7 @@ export class AppBase implements OnInit {
     }
     navigate(pagename, param = {}, checkLogin = false) {
         if (checkLogin == true) {
-            if (this.MemberInfo == null) {
+            if (this.memberInfo.id == 0) {
                 this.navigate("login");
                 return;
             }
@@ -420,7 +420,7 @@ export class AppBase implements OnInit {
         await actionSheet.present();
     }
     hasLogin() {
-        return this.MemberInfo != null;
+        return this.memberInfo != null;
     }
     logout() {
 
@@ -432,7 +432,6 @@ export class AppBase implements OnInit {
                     AppBase.IsLogin = false;
                     window.localStorage.removeItem("UserToken");
                     window.localStorage.removeItem("user_id");
-                    this.MemberInfo = null;
                     this.memberInfo = null;
                     this.backToUrl('/login');
                 }
