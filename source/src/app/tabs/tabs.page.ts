@@ -39,7 +39,7 @@ export class TabsPage extends AppBase {
 
   onMyShow(){
 
-    
+    AppBase.LASTTAB=this;
 
   }
 

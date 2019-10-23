@@ -2,7 +2,7 @@
   <div class="bg-nav txt-white">
         <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
         <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-    <ion-title>球币充值</ion-title>
+    <ion-title>{{lang.coinrecharge}}</ion-title>
   </div>
 </ion-header>
 
@@ -18,7 +18,7 @@
       <div class="flex-row flex-column">
         <img [src]="uploadpath+'resource/'+res.chognzhisuccess" class="icon-50">
 
-        <div class="h3 txt-bold margin-top-20">充值成功</div>
+        <div class="h3 txt-bold margin-top-20">{{lang.rechargesucceeded}}</div>
         <!-- <div class=" margin-top-80">您已成功支付，实付金额为</div> -->
 
         <!-- <div class=" margin-top-20 txt-bold" style="color:#E50303">5064{{orderpayinfo.amount}}</div> -->
@@ -31,7 +31,7 @@
           </div> -->
 
 
-          <div class=" margin-top-80">您已成功充值，充值球币数为</div>
+          <div class=" margin-top-80">{{lang.successcontent1}}</div>
 
         <!-- <div class=" margin-top-20 txt-bold" style="color:#E50303">5064{{orderpayinfo.amount}}</div> -->
 
@@ -40,7 +40,7 @@
         <div class="flex-row flex-bottom margin-top-20 ">
             
             <div class="f32 txt-bold" style="color:rgb(117, 236, 37);">{{ballnum}}</div>
-            <div class="f22" style="color:rgb(96, 204, 45);">球币</div>
+            <div class="f22" style="color:rgb(96, 204, 45);">{{lang.ballcoin}}</div>
           </div>
 
 
@@ -49,7 +49,7 @@
 
         <div class="flex-row margin-top-80">
           <div></div>
-          <div class="h5" (click)="retuntab()">返回首页</div>
+          <div class="h5" (click)="retuntab()">{{lang.gohome}}</div>
         </div>
 
 

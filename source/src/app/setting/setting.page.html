@@ -2,7 +2,7 @@
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
           <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-      <ion-title>设置</ion-title>
+      <ion-title>{{lang.setting}}</ion-title>
     </div>
   </ion-header>
 
@@ -15,7 +15,7 @@
           <div class='h14'></div>
           <div class="flex-row flex-center"  (click)="navigate('menberinfo')">
             <img [src]="uploadpath+'resource/'+res.gerenziliao" class="icon-22">
-            <div class="margin-left-20 flex-1 h5">个人资料</div>
+            <div class="margin-left-20 flex-1 h5">{{lang.permsg}}</div>
             <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
           </div>
     
@@ -74,7 +74,7 @@
               <div class='h34'></div>
             <div class="flex-row flex-center">
               <img [src]="uploadpath+'resource/'+res.shezhi" class="icon-22">
-              <div class="margin-left-20 flex-1 h5">通用</div>
+              <div class="margin-left-20 flex-1 h5">{{lang.universal}}</div>
               <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
             </div>
             <div class='rowtext'></div>
@@ -109,7 +109,7 @@
               <div class='h34'></div>
             <div class="flex-row flex-center">
                 <img [src]="uploadpath+'resource/'+res.tuichudenglu" class="icon-22">
-                <div class="margin-left-20 flex-1 h5" style="color:#E50303" (click)='logout()'>退出登录</div>
+                <div class="margin-left-20 flex-1 h5" style="color:#E50303" (click)='logout()'>{{lang.loginout}}</div>
                 <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
             </div>
          

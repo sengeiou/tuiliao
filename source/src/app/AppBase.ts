@@ -4,6 +4,7 @@ import { NavController, ModalController, ToastController, NavParams, AlertContro
     from "@ionic/angular";
 import { InstApi } from "../providers/inst.api";
 import { MemberApi } from "../providers/member.api";
+import { CenterApi } from "../providers/center.api";
 import { WechatApi } from "../providers/wechat.api";
 import { AppComponent } from "./app.component";
 import { ReturnStatement } from "@angular/compiler";
@@ -28,6 +29,7 @@ export class AppBase implements OnInit {
     public static myapp: AppComponent = null;
     public static instapi: InstApi = null;
     public static memberapi: MemberApi = null;
+    public static centerApi: CenterApi = null;
     public static wechatApi: WechatApi = null;
     public static UNICODE = "tuiliao";
 
@@ -123,6 +125,7 @@ export class AppBase implements OnInit {
         this.getInstInfo();
         this.onMyLoad();
         this.setStatusBar();
+        this.getaboutus();
     }
 
     CheckPermission() {
@@ -242,6 +245,7 @@ export class AppBase implements OnInit {
     getLang() {
         if (AppBase.Lang == null) {
             AppBase.instapi.langs({}, false).then((res) => {
+                console.log(res,'langlang')
                 AppBase.Lang = res;
                 this.refreshLang();
             });
@@ -270,6 +274,7 @@ export class AppBase implements OnInit {
         
         this.CheckPermission();
         this.refreshLang();
+        this.getaboutus();
         this.onMyShow();
         
     }
@@ -445,6 +450,16 @@ export class AppBase implements OnInit {
 
         }
 
+    }
+
+    static aboutemail="";
+    about = [];
+    getaboutus(){
+        AppBase.instapi.aboutus({id:1},false).then((res)=>{
+            console.log(res,'是是是')
+            this.about = res
+            AppBase.aboutemail = res.officialemail
+        })
     }
 
     store(name, value = null) {

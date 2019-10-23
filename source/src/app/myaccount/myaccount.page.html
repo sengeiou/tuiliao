@@ -2,7 +2,7 @@
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
           <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-      <ion-title>我的账户</ion-title>
+      <ion-title>{{lang.myaccount}}</ion-title>
     </div>
   </ion-header>
 
@@ -15,25 +15,25 @@
                 <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='photo==""' class="icon-60 radius-50"/>
                 <img src="{{uploadpath}}member/{{photo}}" *ngIf='photo!=""' class="icon-60 radius-50"/>
             </div>
-            <div class="txt-white  text-right">我的账户：{{ballnum}}&nbsp;球币</div>
+            <div class="txt-white  text-right">{{lang.myaccount}}：{{ballnum}}&nbsp;{{lang.ballcoin}}</div>
           </div>
           <div class="flex-2 text-center" routerLink='/chongzhi'>
-              <span class="h5 txt-white">去充值</span>
+              <span class="h5 txt-white">{{lang.torecharge}}</span>
               <img src="{{uploadpath}}resource/{{res.arrowright}}" class="icon-15  imgs" />
           </div>
         </div>
 
     <div class="flex-row bg-white margin-bottom-20">
       <div class="flex-1 text-center account account-active">
-        <span (click)='account($event)'>账户明细</span>
+        <span (click)='account($event)'>{{lang.accountdetails}}</span>
         <div class="line"></div>
       </div>
       <div class="flex-1 text-center account">
-        <span (click)='chongzhi($event)'>充值记录</span>
+        <span (click)='chongzhi($event)'>{{lang.rechargerecord}}</span>
         <div class="line"></div>
       </div>
       <div class="flex-1 text-center account">
-          <span (click)='zhifu($event)'>支付记录</span>
+          <span (click)='zhifu($event)'>{{lang.paymentrecord}}</span>
           <div class="line"></div>
       </div>
     </div>
@@ -41,34 +41,34 @@
     <ul *ngFor='let item of integrationlist'>
       <li class="flex-row" *ngIf='item.chongzhi!=0'>
         <div class="flex-5" *ngIf='isshow'>
-            <div *ngIf='isshow' class="h5 margin-10">充值</div>
+            <div *ngIf='isshow' class="h5 margin-10">{{lang.recharge}}</div>
             <div class="h6 txt-gray-8a">{{item.chong_time}}</div>
         </div>
         <div class="flex-5" *ngIf='isshow==false'>
             <div class="h5 qiubi">{{item.chong_time}}</div>
         </div>
-        <div class="flex-2 qiubi txt-green-25"> +{{item.chongzhi}}球币</div>
+        <div class="flex-2 qiubi txt-green-25"> +{{item.chongzhi}}{{lang.ballcoin}}</div>
       </li>
       <li class="flex-row" *ngIf='item.zhifu!=0'>
           <div class="flex-5" *ngIf='isshow'>
-              <div *ngIf='isshow' class="h5 margin-10">购买推介</div>
+              <div *ngIf='isshow' class="h5 margin-10">{{lang.purchaserecommendation}}</div>
               <div class="h6 txt-gray-8a">{{item.pay_time}}</div>
           </div>
           <div class="flex-5" *ngIf='isshow==false'>
               <div class="h5 qiubi">{{item.pay_time}}</div>
           </div>
-          <div class="flex-2 qiubi txt-red-e5"> -{{item.zhifu}}球币</div>
+          <div class="flex-2 qiubi txt-red-e5"> -{{item.zhifu}}{{lang.ballcoin}}</div>
         </li>
 
         <li class="flex-row" *ngIf='item.yongjin!=0'>
             <div class="flex-5" *ngIf='isshow'>
-                <div *ngIf='isshow' class="h5 margin-10">佣金</div>
+                <div *ngIf='isshow' class="h5 margin-10">{{lang.commission}}</div>
                 <div class="h6 txt-gray-8a">{{item.yongjin_time}}</div>
             </div>
             <div class="flex-5" *ngIf='isshow==false'>
                 <div class="h5 qiubi">{{item.yongjin_time}}</div>
             </div>
-            <div class="flex-2 qiubi txt-green-25"> +{{item.yongjin}}球币</div>
+            <div class="flex-2 qiubi txt-green-25"> +{{item.yongjin}}{{lang.ballcoin}}</div>
           </li>
     </ul>
 

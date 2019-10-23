@@ -2,7 +2,7 @@
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
           <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-      <ion-title>我的客户</ion-title>
+      <ion-title>{{lang.guest}}</ion-title>
     </div>
   </ion-header>
 
@@ -11,20 +11,20 @@
       <div class="yaoqingma flex-row">
         <div class="flex-5 ">
          <img src="{{uploadpath}}resource/{{res.erweima}}" class="icon-20"/>
-          <span class="margin-left-20 h5 txt-bold">我的邀请码</span>
+          <span class="margin-left-20 h5 txt-bold">{{lang.mycode}}</span>
         </div>
         <div class="flex-2 text-center h5 txt-bold">{{mycode}}</div>
       </div>
 
       <div class="">
-        <div class="yongjin padding-left-30 txt-bold">佣金列表</div>
+        <div class="yongjin padding-left-30 txt-bold">{{lang.commissionlist}}</div>
         <ul>
           <li class="flex-row" *ngFor='let item of integrationlist'>
             <div class="flex-5">
                 <div class="h5 margin-10 txt-bold">{{item.yongjin_name}}</div>
                 <div class="h6 txt-gray-8a ">{{item.yongjin_time}}</div>
             </div>
-            <div class="flex-2 qiubi txt-bold txt-green-25 h5"> +{{item.yongjin}}球币</div>
+            <div class="flex-2 qiubi txt-bold txt-green-25 h5"> +{{item.yongjin}}{{lang.ballcoin}}</div>
           </li>
         </ul>
       </div>

@@ -2,7 +2,7 @@
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
           <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-      <ion-title>注册</ion-title>
+      <ion-title>{{lang.register}}</ion-title>
     </div>
   </ion-header>
 
@@ -10,8 +10,8 @@
   <div>
 
     <div class="flex-row zhuce">
-      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak zhuce-active" (click)='telzhuce($event)'>手机号码注册</div>
-      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak" (click)='emailzhuce($event)'>邮箱注册</div>
+      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak zhuce-active" (click)='telzhuce($event)'>{{lang.phoneregister}}</div>
+      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak" (click)='emailzhuce($event)'>{{lang.emailregister}}</div>
     </div>
 
     <div class="height-80"></div>
@@ -19,10 +19,10 @@
     <div class="padding-40">
 
       <div class="">
-        <div class="txt-bold">用户名</div>
+        <div class="txt-bold">{{lang.editingname}}</div>
         <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
 
-          <ion-input  class=" " placeholder="请输入用户名"  [(ngModel)]="username" ></ion-input>
+          <ion-input  class=" " placeholder="{{lang.entername}}"  [(ngModel)]="username" ></ion-input>
 
         </div>
       </div>
@@ -30,10 +30,10 @@
       <div class="height-50"></div>
 
       <div class="">
-          <div class="txt-bold">密码</div>
+          <div class="txt-bold">{{lang.password}}</div>
           <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
   
-            <ion-input [disabled]="inverify==true"  class=" " placeholder="密码不少于6位"  [(ngModel)]="password" type="password" minlength="6"></ion-input>
+            <ion-input [disabled]="inverify==true"  class=" " placeholder="{{lang.passwordlen}}"  [(ngModel)]="password" type="password" minlength="6"></ion-input>
   
           </div>
         </div>
@@ -41,19 +41,19 @@
         <div class="height-50"></div>
 
         <div class="" *ngIf='istelzhuce'>
-            <div class="txt-bold">手机号码</div>
+            <div class="txt-bold">{{lang.editingphone}}</div>
             <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
                 <div class="h5">+86</div>
                 <img [src]="uploadpath+'resource/'+res.bottom_b" class=" icon-20 margin-left-20">
-                <ion-input [disabled]="inverify==true" class="h5 margin-left-20" placeholder="请输入手机号码" type="tel"
+                <ion-input [disabled]="inverify==true" class="h5 margin-left-20" placeholder="{{lang.enterphone}}" type="tel"
                   [(ngModel)]="mobile" maxlength='11'></ion-input>
             </div>
           </div>
 
           <div class="" *ngIf='istelzhuce==false'>
-              <div class="txt-bold">邮箱</div>
+              <div class="txt-bold">{{lang.editingemail}}</div>
               <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
-                  <ion-input [disabled]="inverify==true"  placeholder="请输入邮箱" type="email"
+                  <ion-input [disabled]="inverify==true"  placeholder="{{lang.enteremail}}" type="email"
                     [(ngModel)]="email" ></ion-input>
               </div>
             </div>
@@ -62,14 +62,14 @@
           <div class="height-50"></div>
 
           <div class=""  *ngIf='istelzhuce'>
-              <div class="txt-bold">验证码</div>
+              <div class="txt-bold">{{lang.yanzhengma}}</div>
             <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
-                <ion-input [disabled]="inverify==true" placeholder="请输入验证码" [(ngModel)]="yanzhenma" maxlength='30'
+                <ion-input [disabled]="inverify==true" placeholder="{{lang.enteryanzhengma}}" [(ngModel)]="yanzhenma" maxlength='30'
                   class="flex-1 h5"></ion-input>
-                <div *ngIf="!diyici" (click)="sendVerifyCode()" class="h5" style="color:#143779">获取验证码</div>
+                <div *ngIf="!diyici" (click)="sendVerifyCode()" class="h5" style="color:#143779">{{lang.getyanzhengma}}</div>
     
-                <div class="h5 txt-gray" *ngIf="reminder>0">{{reminder}}秒后重新发送</div>
-                <div class="h5 txt-primary" *ngIf="reminder<0" (click)="sendVerifyCode()">重新发送</div>
+                <div class="h5 txt-gray" *ngIf="reminder>0">{{reminder}}{{lang.sendyanzhengma}}</div>
+                <div class="h5 txt-primary" *ngIf="reminder<0" (click)="sendVerifyCode()">{{lang.resetyanzhengma}}</div>
     
     
               </div>
@@ -77,14 +77,14 @@
 
 
             <div class=""  *ngIf='istelzhuce==false'>
-                <div class="txt-bold">验证码</div>
+                <div class="txt-bold">{{lang.yanzhengma}}</div>
               <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
-                  <ion-input [disabled]="inverify==true" placeholder="请登录邮箱获取验证码并输入" [(ngModel)]="yanzhenma2" maxlength='30'
+                  <ion-input [disabled]="inverify==true" placeholder="{{lang.emailyanzhengma}}" [(ngModel)]="yanzhenma2" maxlength='30'
                     ></ion-input>
-                  <!-- <div *ngIf="!diyici" (click)="sendVerifyCode()" class="h5" style="color:#143779">获取验证码</div>
+                  <div *ngIf="!diyici" (click)="sendVerifyCode2()" class="h5" style="color:#143779">获取验证码</div>
       
                   <div class="h5 txt-gray" *ngIf="reminder>0">{{reminder}}秒后重新发送</div>
-                  <div class="h5 txt-primary" *ngIf="reminder<0" (click)="sendVerifyCode()">重新发送</div> -->
+                  <div class="h5 txt-primary" *ngIf="reminder<0" (click)="sendVerifyCode2()">重新发送</div>
       
       
                 </div>
@@ -94,10 +94,10 @@
             <div class="height-50"></div>
 
             <div class="">
-              <div class="txt-bold">推广码（选填）</div>
+              <div class="txt-bold">{{lang.code}}</div>
               <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
       
-                <ion-input class=" " placeholder="请输入推广码"  [(ngModel)]="code"  ></ion-input>
+                <ion-input class=" " placeholder="{{lang.entercode}}"  [(ngModel)]="code"  ></ion-input>
       
               </div>
             </div>
@@ -107,7 +107,7 @@
 
               <div class=" " *ngIf="inverify==false" >
 
-                <button  size="block" type="danger" class="bg-zhuce txt-bold txt-white f13" (click)="xiayibu()">注册
+                <button  size="block" type="danger" class="bg-zhuce txt-bold txt-white f13" (click)="xiayibu()">{{lang.register}}
                 </button>
 
               </div>

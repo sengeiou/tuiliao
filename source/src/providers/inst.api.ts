@@ -10,6 +10,40 @@ export class InstApi {
     }
 
 
+    public aboutus(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'inst/aboutus';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('inst/aboutus', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('inst/aboutus', data, err);
+            });
+    }
+
+
     public indexbanner(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'inst/indexbanner';
         var headers = ApiConfig.GetHeader(url, data);
@@ -74,6 +108,40 @@ export class InstApi {
                     ApiConfig.DimissLoadingModal();
                 }
                 return ApiConfig.ErrorHandle('inst/info', data, err);
+            });
+    }
+
+
+    public langs(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'inst/langs';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('inst/langs', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('inst/langs', data, err);
             });
     }
 
@@ -145,36 +213,4 @@ export class InstApi {
             });
     }
 
-    public langs(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'inst/langs';
-        var headers = ApiConfig.GetHeader(url, data);
-        let options = new RequestOptions({ headers: headers });
-        let body = ApiConfig.ParamUrlencoded(data);
-        let loading = null;
-
-        if (showLoadingModal) {
-            loading = ApiConfig.GetLoadingModal();
-        }
-
-        return this.http.post(url, body, options).toPromise()
-            .then((res) => {
-                if (ApiConfig.DataLoadedHandle('inst/langs', data, res)) {
-                    if (showLoadingModal) {
-                        ApiConfig.DimissLoadingModal();
-                    }
-                    if (res==null) {
-                        return null;
-                    }
-                    return res.json();
-                } else {
-                    return Promise.reject(res);
-                }
-            })
-            .catch(err => {
-                if (showLoadingModal) {
-                    ApiConfig.DimissLoadingModal();
-                }
-                return ApiConfig.ErrorHandle('inst/langs', data, err);
-            });
-    }
 }

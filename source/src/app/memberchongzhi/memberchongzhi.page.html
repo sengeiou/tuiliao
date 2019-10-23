@@ -2,52 +2,52 @@
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
           <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-      <ion-title>会员充值</ion-title>
+      <ion-title>{{lang.memberreg}}</ion-title>
     </div>
   </ion-header>
 
 <ion-content>
   <div>
-    <div class="margin-20 txt-bold">开通会员</div>
+    <div class="margin-20 txt-bold">{{lang.openmember}}</div>
     <div>
         <div class="member"  (click)='choose($event)'>
             <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">包一天</div>
+              <div class="flex-4 h5 margin-left-20 txt-bold">{{lang.oneday}}</div>
               <div class="flex-2  txt-gray-bf txt-bold">￥<span class="f-36">18</span></div>
             </div>
         </div>
         <div class="member"  (click)='choose($event)'>
             <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">包一周</div>
+              <div class="flex-4 h5 margin-left-20 txt-bold">{{lang.weekday}}</div>
               <div class="flex-2  txt-gray-bf txt-bold">￥<span class="f-36">98</span></div>
             </div>
         </div>
         <div class="member"  (click)='choose($event)'>
             <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">包一月</div>
+              <div class="flex-4 h5 margin-left-20 txt-bold">{{lang.monthday}}</div>
               <div class="flex-2  txt-gray-bf txt-bold">￥<span class="f-36">288</span></div>
             </div>
         </div>
         <div class="member member-active"  (click)='choose($event)'>
             <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">包一年</div>
+              <div class="flex-4 h5 margin-left-20 txt-bold">{{lang.yearday}}</div>
               <div class="flex-2  txt-gray-bf txt-bold">￥<span class="f-36">998</span></div>
             </div>
         </div>
     </div>
 
     <div class="margin-top-60 margin-left-30">
-        <div class="wenxin h6 txt-bold">温馨提示：</div>
-        <div class="txt-gray-8a h6 txt-bold"> 1. 开通会员可选择包月或者包年。</div>
-        <div class="txt-gray-8a h6 txt-bold margin-top-20 margin-bottom-20"> 2. 开通成功即成为会员，会员有效期内可免费查看足智彩等心水推介。</div> 
-        <div class="txt-gray-8a h6 txt-bold">3. 不支持退款。</div>
+        <div class="wenxin h6 txt-bold">{{lang.reminder}}：</div>
+        <div class="txt-gray-8a h6 txt-bold"> 1.{{lang.memcontent1}}</div>
+        <div class="txt-gray-8a h6 txt-bold margin-top-20 margin-bottom-20"> 2. {{lang.memcontent2}}</div> 
+        <div class="txt-gray-8a h6 txt-bold">3. {{lang.memcontent3}}</div>
       </div>
      
      
       
       <div class="zhifu">
-        <div class="h5 txt-bold">点击立即充值，即表示您已经同意<span class="txt-blue-14">《充值协议》</span></div>
-        <button class="btn txt-bold" (click)='pay()'>立即开通会员</button>
+        <div class="h5 txt-bold">{{lang.agreed}}<span class="txt-blue-14">《{{lang.protocol}}》</span></div>
+        <button class="btn txt-bold" (click)='pay()'>{{lang.imopenmember}}</button>
       </div>
 
   </div>
@@ -62,23 +62,23 @@
     <img [src]="uploadpath+'resource/'+res.cuowu" (click)="gbzf()" class="icon22 opa4 margin-right-10">
   </div>
 
-  <div class="h4 txt-bold text-center margin-bottom-60" style="color:#262626">订单支付</div>
+  <div class="h4 txt-bold text-center margin-bottom-60" style="color:#262626">{{lang.orderpayment}}</div>
   <div class="flex-row flex-bottom  ">
-    <div class="flex-1 h5  " style="color:#262626;opacity: 0.5;">订单编号：24587290857239</div>
+    <div class="flex-1 h5  " style="color:#262626;opacity: 0.5;">{{lang.ordernumber}}：24587290857239</div>
     <div class="f22" style="color:#E50303;">￥</div>
     <div class="f32 txt-bold" style="color:#E50303;">{{paymoney}}</div>
     <div class="f22" style="color:#E50303;">元</div>
   </div>
 
   <div class="h4-6 padding-bottom-20 txt-bold margin-top-40" style="color:#262626;border-bottom: 1px solid  #D6D7D9">
-    付款方式
+    {{lang.paymentmethod}}
   </div>
 
   <div (click)='zhifu(0)' class="flex-row flex-center xx">
     <img [src]="uploadpath+'resource/'+res.weixinzhifu" class="icon40">
     <div class="flex-1 margin-left-20">
-      <div class="h5 txt-bold" style="color:#262626">微信支付</div>
-      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">推荐在微信中绑定银行卡的用户使用</div>
+      <div class="h5 txt-bold" style="color:#262626">{{lang.WeChatpay}}</div>
+      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">{{lang.WeChat}}</div>
     </div>
     <img [src]="uploadpath+'resource/'+(zhifufanshi==0?res.xuanzhong:res.xuanze)" (click)='zhifu(0)' class="icon-22 ">
 
@@ -87,8 +87,8 @@
   <div (click)='zhifu(1)' class="flex-row flex-center xx">
     <img [src]="uploadpath+'resource/'+res.zhifubao" class="icon40">
     <div class="flex-1 margin-left-20">
-      <div class="h5 txt-bold" style="color:#262626">支付宝</div>
-      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">安全快捷，可支持银行卡支付</div>
+      <div class="h5 txt-bold" style="color:#262626">{{lang.alipay}}</div>
+      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">{{lang.bankcard}}</div>
     </div>
     <img [src]="uploadpath+'resource/'+(zhifufanshi==1?res.xuanzhong:res.xuanze)" (click)='zhifu(1)' class="icon-22 ">
 
@@ -96,4 +96,4 @@
 
 
 
-  <button class="btns margin-top-80" (click)="lijizhifu()" >立即支付</button>
+  <button class="btns margin-top-80" (click)="lijizhifu()" >{{lang.payment}}</button>

@@ -486,40 +486,6 @@ export class MemberApi {
     }
 
 
-    public yanzhenguser(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'member/yanzhenguser';
-        var headers = ApiConfig.GetHeader(url, data);
-        let options = new RequestOptions({ headers: headers });
-        let body = ApiConfig.ParamUrlencoded(data);
-        let loading = null;
-
-        if (showLoadingModal) {
-            loading = ApiConfig.GetLoadingModal();
-        }
-
-        return this.http.post(url, body, options).toPromise()
-            .then((res) => {
-                if (ApiConfig.DataLoadedHandle('member/yanzhenguser', data, res)) {
-                    if (showLoadingModal) {
-                        ApiConfig.DimissLoadingModal();
-                    }
-                    if (res==null) {
-                        return null;
-                    }
-                    return res.json();
-                } else {
-                    return Promise.reject(res);
-                }
-            })
-            .catch(err => {
-                if (showLoadingModal) {
-                    ApiConfig.DimissLoadingModal();
-                }
-                return ApiConfig.ErrorHandle('member/yanzhenguser', data, err);
-            });
-    }
-
-
     public updatepassword(data, showLoadingModal: boolean = true) {
         var url = ApiConfig.getApiUrl() + 'member/updatepassword';
         var headers = ApiConfig.GetHeader(url, data);
@@ -550,6 +516,40 @@ export class MemberApi {
                     ApiConfig.DimissLoadingModal();
                 }
                 return ApiConfig.ErrorHandle('member/updatepassword', data, err);
+            });
+    }
+
+
+    public yanzhenguser(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'member/yanzhenguser';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('member/yanzhenguser', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('member/yanzhenguser', data, err);
             });
     }
 

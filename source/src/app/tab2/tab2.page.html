@@ -17,13 +17,13 @@
       <div class="flex-row flex-center bg-y nav-box bor_bot-b ">
         <div class="margin-left-20 margin-right-20"><img src="{{uploadpath}}resource/{{res.kuaibao}}" class="icon-40"/></div>
         
-        <div><span class="h5 txt-bold">最新最猛最火热的推荐尽在大赢家！！！</span>  </div>
+        <div><span class="h5 txt-bold">{{lang.dayingjia}}</span>  </div>
       </div>
 
 
     <div class="flex-row text-center bor_bot-b">
-      <button class="flex-1 new-active padding-tb txt-t-g h4" (click)='newRecom($event)'>最新推介</button>
-      <button class="flex-1 padding-tb txt-t-g h4" (click)='oldRecom($event)'> 往期推介</button>
+      <button class="flex-1 new-active padding-tb txt-t-g h4" (click)='newRecom($event)'>{{lang.newrecom}}</button>
+      <button class="flex-1 padding-tb txt-t-g h4" (click)='oldRecom($event)'> {{lang.oldrecom}}</button>
     </div>
 
     <div *ngFor='let list of footlist'>
@@ -32,11 +32,11 @@
       </div>
       <table (click)='watchthis(list)' class="text-center" width='100%'  style="table-layout:fixed;" cellspacing="0" cellpadding="0" >
         <thead class="bg-th table-th txt-white">
-          <th width="10%">序号</th>
-          <th width="20%">赛事</th>
-          <th width="30%">主队</th>
-          <th  width="30%">客队</th>
-          <th  width="15%">推介</th>
+          <th width="10%">{{lang.number}}</th>
+          <th width="20%">{{lang.tournament}}</th>
+          <th width="30%">{{lang.hometeam}}</th>
+          <th  width="30%">{{lang.visitingteam}}</th>
+          <th  width="15%">{{lang.recommendation}}</th>
         </thead>
         <tbody  *ngFor='let item of list.com_date;let i=index'>
           <tr  class="tr-border h5 txt-bold text-center">
@@ -54,7 +54,7 @@
                 <div>{{item.guest2_name}}</div>
             </td>
             <td  width="10%" *ngIf='isshow==false'>
-              <span><a  class="txt-red">等待<br>结果</a></span>
+              <span><a  class="txt-red">{{lang.waiting}}<br>{{lang.result}}</a></span>
               <!-- <div *ngIf='isshow'>
                   <a  class="txt-red" (click)='watchthis(list)'>{{item.result}}</a>
                   <a  class="txt-red" (click)='watchthis(list)'>{{item.result2}}</a>
@@ -62,12 +62,12 @@
             </td>
             <td  width="10%" *ngIf='isshow'>
                 <div>
-                    <a  *ngIf='item.result=="Y"' class="txt-red">命中</a>
-                    <a  *ngIf='item.result=="N"'  class="txt-9">未中</a>
+                    <a  *ngIf='item.result=="Y"' class="txt-red">{{lang.hit}}</a>
+                    <a  *ngIf='item.result=="N"'  class="txt-9">{{lang.missed}}</a>
                 </div>
                 <div>
-                    <a  *ngIf='item.result2=="Y"'  class="txt-red">命中</a>
-                    <a  *ngIf='item.result2=="N"' class="txt-9">未中</a>
+                    <a  *ngIf='item.result2=="Y"'  class="txt-red">{{lang.hit}}</a>
+                    <a  *ngIf='item.result2=="N"' class="txt-9">{{lang.missed}}</a>
                 </div>
               </td>
         </tbody>
@@ -77,8 +77,7 @@
     <div *ngIf='footlist==null'  class="zanwu">
       <img src="{{uploadpath}}resource/{{res.zanwuneirong}}"/>
       <div>
-          暂无推介<br>
-          敬请期待
+          {{lang.forward}}
       </div>
     </div>
 
@@ -86,9 +85,9 @@
     <div class="modal-dialog" *ngIf='ishuiyuan'>
           <img src="{{uploadpath}}resource/{{res.huiyuan}}" />
           <div>
-              <button class="btn2">尊享独家猛料</button>
-              <button class="btn1 " routerLink='/memberchongzhi'>立即开通VIP</button><br>
-              <button class="btn2 " (click)='refuse()'>残忍拒绝</button>  
+              <button class="btn2">{{lang.privatemsg}}</button>
+              <button class="btn1 " routerLink='/memberchongzhi'>{{lang.imopenvip}}</button><br>
+              <button class="btn2 " (click)='refuse()'>{{lang.refusal}}</button>  
           </div> 
     </div>
 

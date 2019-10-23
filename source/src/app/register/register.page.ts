@@ -78,19 +78,56 @@ export class RegisterPage extends AppBase {
     if(this.username!=""){
     //  this.checkcanregs("name",this.username)
      console.log('dddd')
-     if(this.mobile!=""){
-      this.checkcanregs("mobile",this.mobile)
+     if(this.password.length>=6){
+        if(this.mobile!=""){
+
+          var verifycode =this.yanzhenma;
+          this.aliyunApi.verifycode({
+            mobile: this.mobile,
+            verifycode,
+            type: "register"
+          }).then(ret => {
+            console.log(ret,'ret')
+          if (ret.code == 0) {
+    
+            this.checkcanregs("mobile",this.mobile)
+    
+            this.show = 2;
+          } else {
+            this.toast("验证码校验失败，请重新尝试");
+          }
+        });
+          
+          
+          
+        }
+        if(this.email!=""){
+
+          var verifycode =this.yanzhenma2;
+          this.aliyunApi.emailverifycodes({
+              email: this.email,
+              verifycode,
+              type: "register"
+            }).then(ret => {
+              console.log(ret,'ret')
+            if (ret.code == 0) {
+              this.checkcanregs("email",this.email)
+              this.show = 2;
+            } else {
+              this.toast("验证码校验失败，请重新尝试");
+            }
+          });
+        }
+     }else {
+       this.toast("密码少于6位，请重新输入密码")
      }
-      if(this.email!=""){
-        this.checkcanregs("email",this.email)
-      }
+     
     }
 
     
-    
-
 
   }
+
 
   checkcanregs(type,value){
     let obj={}
@@ -201,6 +238,42 @@ export class RegisterPage extends AppBase {
     });
   }
 
+  sendVerifyCode2(){
+    this.memberApi.checkcanreg({ email: this.email,name: this.username }).then(ret => {
+      console.log(ret);
+
+      if (ret.code == "0") {
+        // this.inverify = true;
+        this.aliyunApi.emailverifycode({
+          email: this.email,
+          type: "register"
+        }).then(ret => {
+          console.log(ret);
+          if (ret.code == 0) {
+            this.reminder = 60;
+            this.show = 1;
+
+            this.c1 = "";
+            this.c2 = "";
+            this.c3 = "";
+            this.c4 = "";
+            //this.$refs["inputc1"].focus();
+
+            //var obj = this.ele.nativeElement.querySelector('#inputc1');
+            //obj.focus();
+
+            this.toast("验证码已发送，请注意查收");
+            this.diyici = true;
+            this.setInVerify();
+          } else {
+            this.toast("验证码发送失败，请稍后重试");
+          }
+        });
+      } else {
+        this.toast("邮箱已经被使用");
+      }
+    });
+  }
   
 
   emailzhuce(e){

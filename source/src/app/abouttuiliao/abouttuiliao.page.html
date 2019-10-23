@@ -2,7 +2,7 @@
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
           <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-      <ion-title>关于我们</ion-title>
+      <ion-title>{{lang.aboutus}}</ion-title>
     </div>
   </ion-header>
 
@@ -12,7 +12,7 @@
       <div class="flex-row flex-column">
         <img [src]="uploadpath+'resource/'+res.logo" class="icon-100 radius " style="">
         <div style="" class="height-40"> </div>
-        <div class="txt-bold h4-6">推料</div>
+        <div class="txt-bold h4-6">{{lang.tuiliao}}</div>
         <div class="height-1"></div>
         <div class="height-1"></div>
         <div class="h5">version 1.1.7</div>
@@ -24,20 +24,20 @@
     
       <div class="flex-row flex-center margin-left-40 margin-right-40 pd" style="">
         <div class="flex-row column flex-1">
-          <div class="h5">推料官方邮箱</div>
+          <div class="h5">{{lang.tuiliaoeamil}}</div>
           <div class="height-1"></div>
-          <div class="h5" style="color:#D6D7D9">feedback@ityunhe.com</div>
+          <div class="h5" style="color:#D6D7D9">{{about.officialemail}}</div>
         </div>
-        <div style="color:#F87961" class="h5" >复制</div>
+        <div style="color:#F87961" class="h5" (click)="copy()" >{{lang.copy}}</div>
       </div>
       <div style="width:90vw;background:#D6D7D9;" class="margin-left-40 margin-right-40 height-1"></div>
     
     
       <div class="flex-row flex-center margin-left-40 margin-right-40 pd">
         <div class="flex-row column flex-1">
-          <div class="h5">违法和不良信息举报</div>
+          <div class="h5">{{lang.tuiliaowarn}}</div>
           <div class="height-1"></div>
-          <div class="h5" style="color:#D6D7D9">0755-26903057</div>
+          <div class="h5" style="color:#D6D7D9">{{about.jubaomobile}}</div>
         </div>
         <img [src]="uploadpath+'resource/'+res.you" class="icon-15">
       </div>
@@ -49,7 +49,7 @@
       <div class="bot">
         <div class="flex-row flex-column ">
           <div class="h5 opa">Copyright©️2018-2019</div>
-          <div class="h5 opa">推料版权所有</div>
+          <div class="h5 opa">{{lang.tuiliaobanquan}}</div>
         </div>
       </div>
     

@@ -2,7 +2,7 @@
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
           <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-      <ion-title>帮助反馈</ion-title>
+      <ion-title>{{lang.feedback}}</ion-title>
     </div>
   </ion-header>
 
@@ -11,29 +11,29 @@
       <div class="height-80"></div>
       <div class="flex-row flex-center ">
         <div class="flex-1"></div>
-        <img src="{{uploadpath}}resource/{{res.qrcode}}" class="erweima" />
+        <img src="{{uploadpath}}aboutus/{{about.kefuweixin}}" class="erweima" />
         
         <div class="flex-1"></div>
       </div>
       <div class="height-70"></div>
       <div class="h4-6 text-center txt-bold">
-        客服微信
+        {{lang.weixinkefu}}
       </div>
       <div class="height-40"></div>
       <div class="h5 ziti text padding-left-20 padding-right-20">
-        添加推料官方微信号，反馈您的意见和建议，我们会及时给您满意的答复。
+        {{lang.weixinkefucontent}}
       </div>
       <div class="height-50"></div>
   
       <div class="liuyan margin-left-40">
         <div class="top h5">
-          留言
+          {{lang.leavemessage}}
         </div>
         <div class="">
-          <ion-textarea  [(ngModel)]="content"  class="textarea h5" placeholder='请输入留言内容…'></ion-textarea>
+          <ion-textarea  [(ngModel)]="content"  class="textarea h5" placeholder='{{lang.liuyancontent}}…'></ion-textarea>
         </div>
         <div (click)="send()" class="top h4-5 text-center txt-bold" style="color:#735FFF">
-          发送
+          {{lang.send}}
         </div>
       </div>
     </div>

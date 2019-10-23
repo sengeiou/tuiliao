@@ -41,6 +41,7 @@ export class PaysuccessPage extends AppBase {
 
   nowtime = ''
   nexttime=''
+  paydate = ''
   onMyShow(){
 
     this.activeRoute.queryParams.subscribe(query=>{
@@ -50,6 +51,8 @@ export class PaysuccessPage extends AppBase {
       let year = date.getFullYear();
       let month = date.getMonth()+1;
       let day = date.getDate();
+
+      this.paydate = query.paydate.substr(1)
 
       this.nowtime = year + "年" + month +"月"+ day + "日"
       console.log(this.nowtime)

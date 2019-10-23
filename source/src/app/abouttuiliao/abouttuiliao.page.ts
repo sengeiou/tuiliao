@@ -7,13 +7,14 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
 
 
 @Component({
   selector: 'app-abouttuiliao',
   templateUrl: './abouttuiliao.page.html',
   styleUrls: ['./abouttuiliao.page.scss'],
-  providers:[MemberApi,ProjectApi]
+  providers:[MemberApi,ProjectApi,Clipboard]
 })
 export class AbouttuiliaoPage extends AppBase {
 
@@ -26,6 +27,7 @@ export class AbouttuiliaoPage extends AppBase {
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
+    private clipboard: Clipboard,
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -42,5 +44,13 @@ export class AbouttuiliaoPage extends AppBase {
 
     
 
+  }
+
+  copy() {
+   
+    this.clipboard.copy(AppBase.aboutemail).then(() => {
+      this.toast("复制成功");
+
+    });
   }
 }

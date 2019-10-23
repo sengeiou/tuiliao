@@ -1,6 +1,6 @@
 <ion-header>
     <div class="login f18">
-      登录
+      {{lang.login}}
     </div>
   </ion-header>
 
@@ -18,10 +18,10 @@
     <div class="height197"></div>
       <div >
           <div class="h4 txt-bold">
-              您好，
+              {{lang.hello}}
           </div>
           <div class="h4 txt-bold">
-              欢迎使用大赢家
+              {{lang.wecome}}
           </div>    
       </div>
     <div class="padding-10">
@@ -29,9 +29,9 @@
       <div>
         <div class="height-80"></div>
         <div class="flex-row   flex-center ">
-          <div class="  h4-6">登录</div>
+          <div class="  h4-6">{{lang.login}}</div>
           <div style="" class="width-30"></div>
-          <div class=" h4-6 op" (click)="zhuce()">新用户注册</div>
+          <div class=" h4-6 op" (click)="zhuce()">{{lang.newuser}}</div>
         </div>
         <div class="white_block"></div>
         <div class="height-40"></div>
@@ -44,7 +44,7 @@
               <!-- <div class="txt-white h5">+86</div> -->
               <img [src]="uploadpath+'resource/'+res.user" class=" icon-20 margin-left-10">
   
-              <ion-input class=" sjh margin-left-15" placeholder="请输入用户名" type="text" [(ngModel)]="username"
+              <ion-input class=" sjh margin-left-15" placeholder="{{lang.entername}}" type="text" [(ngModel)]="username"
                 >
               </ion-input>
             </div>
@@ -57,7 +57,7 @@
             <!-- <div class="txt-white">密码</div> -->
             <div class="flex-row flex-center shurukuang">
               <div class="width-16"></div>
-              <ion-input class="sjh padding-left-40" placeholder="请输入密码" type="password" [(ngModel)]="password"
+              <ion-input class="sjh padding-left-40" placeholder="{{lang.enterpwd}}" type="password" [(ngModel)]="password"
                 maxlength="30"></ion-input>
             </div>
   
@@ -79,13 +79,13 @@
         <div class="">
           <div style="" class="height-60"></div>
           <!-- <ion-button   size="block" color="danger"  class="h4-5 dl" (click)="trylogin()" >登 录</ion-button> -->
-          <ion-button size="block" color="mycolor" class="h4-5 dl" (click)="trylogin()">登 录</ion-button>
+          <ion-button size="block" color="mycolor" class="h4-5 dl" (click)="trylogin()">{{lang.login}}</ion-button>
         </div>
   
         <div class="margin-top-25 margin-bottom50 ">
           <div class="flex-row flex-center">
             <div class='flex-1 txt-gray'></div>
-            <div class="h5  op flex-4" (click)="navigate('forgetpassword')">忘记密码请联系客服修改</div>
+            <div class="h5  op flex-4" (click)="navigate('forgetpassword')">{{lang.forgetpwd}}</div>
           </div>
         </div>
   

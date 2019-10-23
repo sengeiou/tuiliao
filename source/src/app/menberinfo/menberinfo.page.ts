@@ -156,7 +156,7 @@ async selectPhoto() {
 
               this.memberApi.infoupdate({ photo: photo }, false).then(data => {
                 if (data.code == "0") {
-                  this.MemberInfo.photo = String(photo);
+                  this.photo = String(photo);
                 }
               });
 
@@ -185,7 +185,7 @@ async selectPhoto() {
               //alert(photo);
               this.memberApi.infoupdate({ photo: photo }, false).then(data => {
                 if (data.code == "0") {
-                  this.MemberInfo.photo = String(photo);
+                  this.photo = String(photo);
                 }
               });
             });

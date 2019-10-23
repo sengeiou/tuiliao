@@ -2,7 +2,7 @@
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
           <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-      <ion-title>我的关注</ion-title>
+      <ion-title>{{lang.notes}}</ion-title>
     </div>
   </ion-header>
 
@@ -21,14 +21,14 @@
           <div class="flex-3 margin-top-20">
             <div class="flex-1 text-center " *ngIf='guanzushow' >
               <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
-              <span  class="guanzu">关注</span>
+              <span  class="guanzu">{{lang.focus}}</span>
             </div>
             <div class="flex-1 text-center " *ngIf='guanzushow==false' >
                 <img src="{{uploadpath}}resource/{{res.jian}}" class="jian"/>
-                <span  class="quguan">取关</span>
+                <span  class="quguan">{{lang.notfocus}}</span>
             </div>
               <div class="margin-top-20" (click)='focusper(item.user_id)'>
-                  <span class="h6 txt-gray-d2 margin-right-20">近期战绩</span>
+                  <span class="h6 txt-gray-d2 margin-right-20">{{lang.recentachi}}</span>
                   <span class="txt-red-e5 h2 txt-bold">{{item.success_result}}</span>
               </div>
              

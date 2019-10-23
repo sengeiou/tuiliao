@@ -2,7 +2,7 @@
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
           <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-      <ion-title>球币充值</ion-title>
+      <ion-title>{{lang.coinrecharge}}</ion-title>
     </div>
   </ion-header>
 
@@ -10,41 +10,41 @@
   <div class="bg-gray-f0">
 
     <div class="qiubi">
-      <div class="txt-bold margin-top-30">请选择充值金额</div>
+      <div class="txt-bold margin-top-30">{{lang.selectamount}}</div>
       <ul>
         <li class="money" (click)='choose($event)'>
           <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">60球币</div>
+              <div class="flex-4 h5 margin-left-20 txt-bold">60{{lang.ballcoin}}</div>
               <div class="flex-2 h5 txt-gray-bf txt-bold">￥6</div>
           </div>
         </li>
         <li class="money" (click)='choose($event)'>
           <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">120球币</div>
+              <div class="flex-4 h5 margin-left-20 txt-bold">120{{lang.ballcoin}}</div>
               <div class="flex-2 h5 txt-gray-bf txt-bold">￥12</div>
           </div>
         </li>
         <li class="money" (click)='choose($event)'>
            <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">300球币</div>
+              <div class="flex-4 h5 margin-left-20 txt-bold">300{{lang.ballcoin}}</div>
               <div class="flex-2 h5 txt-gray-bf txt-bold">￥30</div>
             </div>
         </li>
         <li class="money" (click)='choose($event)'>
           <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">680球币</div>
+              <div class="flex-4 h5 margin-left-20 txt-bold">680{{lang.ballcoin}}</div>
               <div class="flex-2 h5 txt-gray-bf txt-bold">￥68</div>
           </div>
         </li>
         <li class="money" (click)='choose($event)'>
           <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">1280球币</div>
+              <div class="flex-4 h5 margin-left-20 txt-bold">1280{{lang.ballcoin}}</div>
               <div class="flex-2 h5 txt-gray-bf txt-bold">￥128</div>
           </div>
         </li>
         <li class="money money-active" (click)='choose($event)'>
             <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">3000球币</div>
+              <div class="flex-4 h5 margin-left-20 txt-bold">3000{{lang.ballcoin}}</div>
               <div class="flex-2 h5 txt-gray-bf txt-bold">￥300</div>
             </div>
         </li>
@@ -52,15 +52,15 @@
       
     </div>
     <div class="margin-top-60 margin-left-30">
-      <div class="wenxin h6 txt-bold">温馨提示：</div>
-      <div class="txt-gray-8a h6 txt-bold">1. 球币可用于购买推介的内容。</div>
-      <div class="txt-gray-8a h6 txt-bold margin-top-10 margin-bottom-10">2. 球币不可兑换现金，提现或转赠他人。</div> 
-      <div class="txt-gray-8a h6 txt-bold">3. 球币充值后，不支持无理由退款。</div>
+      <div class="wenxin h6 txt-bold">{{lang.reminder}}：</div>
+      <div class="txt-gray-8a h6 txt-bold">1. {{lang.content1}}</div>
+      <div class="txt-gray-8a h6 txt-bold margin-top-10 margin-bottom-10">2. {{lang.content2}}</div> 
+      <div class="txt-gray-8a h6 txt-bold">3. {{lang.content3}}</div>
     </div>
 
     <div class="zhifu">
-      <div class="h5 txt-bold">点击立即充值，即表示您已经同意<span class="txt-blue-14">《充值协议》</span></div>
-      <button class="btn txt-bold" (click)='pay()'>立即支付</button>
+      <div class="h5 txt-bold">{{lang.agreed}}<span class="txt-blue-14">《{{lang.protocol}}》</span></div>
+      <button class="btn txt-bold" (click)='pay()'>{{lang.payment}}</button>
     </div>
   </div>
 </ion-content>
@@ -74,23 +74,23 @@
     <img [src]="uploadpath+'resource/'+res.cuowu" (click)="gbzf()" class="icon22 opa4 margin-right-10">
   </div>
 
-  <div class="h4 txt-bold text-center margin-bottom-60" style="color:#262626">订单支付</div>
+  <div class="h4 txt-bold text-center margin-bottom-60" style="color:#262626">{{lang.orderpayment}}</div>
   <div class="flex-row flex-bottom  ">
-    <div class="flex-1 h5  " style="color:#262626;opacity: 0.5;">订单编号：24587290857239</div>
+    <div class="flex-1 h5  " style="color:#262626;opacity: 0.5;">{{lang.ordernumber}}：24587290857239</div>
     <div class="f22" style="color:#E50303;">￥</div>
     <div class="f32 txt-bold" style="color:#E50303;">{{paymoney}}</div>
     <div class="f22" style="color:#E50303;">元</div>
   </div>
 
   <div class="h4-6 padding-bottom-20 txt-bold margin-top-40" style="color:#262626;border-bottom: 1px solid  #D6D7D9">
-    付款方式
+    {{lang.paymentmethod}}
   </div>
 
   <div (click)='zhifu(0)' class="flex-row flex-center xx">
     <img [src]="uploadpath+'resource/'+res.weixinzhifu" class="icon40">
     <div class="flex-1 margin-left-20">
-      <div class="h5 txt-bold" style="color:#262626">微信支付</div>
-      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">推荐在微信中绑定银行卡的用户使用</div>
+      <div class="h5 txt-bold" style="color:#262626">{{lang.WeChatpay}}</div>
+      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">{{lang.WeChat}}</div>
     </div>
     <img [src]="uploadpath+'resource/'+(zhifufanshi==0?res.xuanzhong:res.xuanze)" (click)='zhifu(0)' class="icon-22 ">
 
@@ -99,8 +99,8 @@
   <div (click)='zhifu(1)' class="flex-row flex-center xx">
     <img [src]="uploadpath+'resource/'+res.zhifubao" class="icon40">
     <div class="flex-1 margin-left-20">
-      <div class="h5 txt-bold" style="color:#262626">支付宝</div>
-      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">安全快捷，可支持银行卡支付</div>
+      <div class="h5 txt-bold" style="color:#262626">{{lang.alipay}}</div>
+      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">{{lang.bankcard}}</div>
     </div>
     <img [src]="uploadpath+'resource/'+(zhifufanshi==1?res.xuanzhong:res.xuanze)" (click)='zhifu(1)' class="icon-22 ">
 
@@ -108,7 +108,7 @@
 
 
 
-  <button class="btns margin-top-80" (click)="lijizhifu()" >立即支付</button>
+  <button class="btns margin-top-80" (click)="lijizhifu()" >{{lang.payment}}</button>
 
 </div>
 

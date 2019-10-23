@@ -7,8 +7,8 @@
     </div>
     <div class="flex-3">
       <div class="txt-white margin-top margin-bottom-10">{{memberInfo.name}}</div>
-      <div *ngIf='memberInfo.ismember=="否"' class="txt-gray-bf h6">抱歉，您还不是会员</div>
-      <div *ngIf='memberInfo.ismember=="是"' class="txt-yellow-c6 h6">尊敬的会员，您好！</div>
+      <div *ngIf='memberInfo.ismember=="否"' class="txt-gray-bf h6">{{lang.notmember}}</div>
+      <div *ngIf='memberInfo.ismember=="是"' class="txt-yellow-c6 h6">{{lang.ismember}}</div>
     </div>
     <div class="flex-1 margin-top-80 text-center">
       <img src="{{uploadpath}}resource/{{res.arrowright}}" class="icon-15" />
@@ -22,10 +22,10 @@
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.money}}" class="icon-20 margin-left-30 margin-right-20 tuobiao">
         <span class="h2 txt-blue-14 margin-right-10">{{memberInfo.ballnum}}</span>
-        <span class="h6">球币</span>
+        <span class="h6">{{lang.ballcoin}}</span>
       </div>
       <div class="flex-2 text-center">
-        <span class="h6">去充值</span>
+        <span class="h6">{{lang.torecharge}}</span>
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
       </div>
     </li>
@@ -33,7 +33,7 @@
     <li class="flex-row info" routerLink='/yigou'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.yigou}}" class="icon-20 margin-left-30 margin-right-20">
-        <span class="h5">已购推介</span>
+        <span class="h5">{{lang.referral}}</span>
       </div>
       <div class="flex-2 text-center">
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
@@ -42,7 +42,7 @@
     <li class="flex-row info" routerLink='/touzi'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.touzi}}" class="icon-20 margin-left-30 margin-right-20">
-        <span class="h5">投资计划</span>
+        <span class="h5">{{lang.Investment}}</span>
       </div>
       <div class="flex-2 text-center">
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
@@ -51,7 +51,7 @@
     <li class="flex-row info" routerLink='/shoucang'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.wodeshoucang}}" class="icon-20 margin-left-30 margin-right-20">
-        <span class="h5">我的收藏</span>
+        <span class="h5">{{lang.collection}}</span>
       </div>
       <div class="flex-2 text-center">
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
@@ -60,7 +60,7 @@
     <li class="flex-row info"  routerLink='/guanzhu'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.guanzhu}}" class="icon-20 margin-left-30 margin-right-20">
-        <span class="h5">我的关注</span>
+        <span class="h5">{{lang.notes}}</span>
       </div>
       <div class="flex-2 text-center">
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
@@ -70,7 +70,7 @@
     <li class="flex-row info" routerLink='/members'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.kehu}}" class="icon-20 margin-left-30 margin-right-20">
-        <span class="h5">我的会员</span>
+        <span class="h5">{{lang.member}}</span>
       </div>
       <div class="flex-2 text-center">
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
@@ -79,7 +79,7 @@
     <li class="flex-row info" routerLink='/mykehu'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.kehu}}" class="icon-20 margin-left-30 margin-right-20">
-        <span class="h5">我的客户</span>
+        <span class="h5">{{lang.guest}}</span>
       </div>
       <div class="flex-2 text-center">
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
@@ -88,7 +88,7 @@
     <li class="flex-row info" routerLink='/message'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.xiaoxi}}" class="icon-20 margin-left-30 margin-right-20">
-        <span class="h5">消息通知</span>
+        <span class="h5">{{lang.message}}</span>
       </div>
       <div class="flex-2 text-center">
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
@@ -97,7 +97,7 @@
     <li class="flex-row info" routerLink='/setting'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.shezhi}}" class="icon-20 margin-left-30 margin-right-20">
-        <span class="h5">设置</span>
+        <span class="h5">{{lang.setting}}</span>
       </div>
       <div class="flex-2 text-center">
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
@@ -107,7 +107,7 @@
     <li class="flex-row info" routerLink='/fankui'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.fankui}}" class="icon-20 margin-left-30 margin-right-20">
-        <span class="h5">帮助反馈</span>
+        <span class="h5">{{lang.feedback}}</span>
       </div>
       <div class="flex-2 text-center">
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
@@ -125,7 +125,7 @@
     <li class="flex-row info" (click)='navigate("langchoose")'>
       <div class="flex-3">
         <img src="{{uploadpath}}resource/{{res.guanyu}}" class="icon-20 margin-left-30 margin-right-20">
-        <span class="h5">选择语言</span>
+        <span class="h5">{{lang.language}}</span>
       </div>
       <div class="flex-2 text-center">
         <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
