@@ -35,12 +35,11 @@ export class SettingPage extends AppBase {
   onMyLoad(){
     //参数
     this.params;
+
   }
 
 
   onMyShow(){
-
-    
 
   }
 

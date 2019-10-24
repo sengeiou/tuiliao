@@ -55,7 +55,7 @@ export class LoginPage extends AppBase {
         this.store("UserToken", ret.return);
         this.store("user_id",ret.result)
         this.toast("登录成功");
-        this.backToUrl("/tabs/tab4");
+        this.backToUrl("/tabs/tab1");
       } else {
         this.toast("用户名或密码不正确");
       }

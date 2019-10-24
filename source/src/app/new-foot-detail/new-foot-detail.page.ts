@@ -48,8 +48,10 @@ export class NewFootDetailPage  extends AppBase {
       console.log(query)
       this.id = query.id
       this.new = query.new
+     
       if(this.new == '是'){
-        this.projectApi.footdetail({id: query.id}).then((footdetail:any)=>{
+        this.footdetail = []
+        this.projectApi.footdetail({id: query.id,lang: this.langcode}).then((footdetail:any)=>{
           console.log(footdetail,'oooo')
           this.footdetail.push( footdetail)
   
@@ -71,55 +73,74 @@ export class NewFootDetailPage  extends AppBase {
         })
   
       }else if(this.new == '否'){
-        this.projectApi.footdetail({id :this.id}).then((footdetail:any)=>{
-          console.log(footdetail,'oooo')
-          this.footdetail.push( footdetail)
-  
-          this.footdetail = this.footdetail.filter((item)=>{
-            item.recom_time = this.getchangedate(item.recom_time)
-            item.isshow=false
-            item.show = false
-            console.log(item)
-            if(item.com_date.length>5){
-              item.com_date.splice(5,item.com_date.length-5)
-            }
+        this.footdetail = []
 
-            for(let i=0;i<item.com_date.length;i++){
-              item.com_date[i].foot_time = this.getchangedatetime(item.com_date[i].foot_time)
-              item.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
-              return item.com_date[i].zongresult!='W'
-            }
+        this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
 
-          return item
-        })
+          footlist.filter((item,idx)=>{
+
+            if(item.id == this.id){
+              this.projectApi.footdetail({id :this.id,lang: this.langcode}).then((footdetail:any)=>{
+                console.log(footdetail,'oooo')
+                this.footdetail.push( footdetail)
         
-        this.projectApi.footlist({}).then((footlist:any)=>{
-         
+                this.footdetail = this.footdetail.filter((item)=>{
+                  item.recom_time = this.getchangedate(item.recom_time)
+                  item.isshow=false
+                  item.show = false
+                  console.log(item)
+                  if(item.com_date.length>5){
+                    item.com_date.splice(5,item.com_date.length-5)
+                  }
 
-          this.footdetail = footlist.filter((item,idx)=>{
+                  for(let i=0;i<item.com_date.length;i++){
+                    item.com_date[i].foot_time = this.getchangedatetime(item.com_date[i].foot_time)
+                    item.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
+                    return item.com_date[i].zongresult!='W'
+                  }
 
-            item.recom_time = this.getchangedate(item.recom_time)
+                  return item
+                })
+                this.shouqi(this.id)
 
-            item.isshow=false
-            item.show = false
-            if(item.com_date.length>5){
-              item.com_date.splice(5,item.com_date.length-5)
+      
+              })
+            }else {
+                this.projectApi.footdetail({id :item.id,lang: this.langcode}).then((footdetail:any)=>{
+                  console.log(footdetail,'oooo')
+                  this.footdetail.push( footdetail)
+          
+                  this.footdetail = this.footdetail.filter((item)=>{
+                    item.recom_time = this.getchangedate(item.recom_time)
+                    item.isshow=false
+                    item.show = false
+                    console.log(item)
+                    if(item.com_date.length>5){
+                      item.com_date.splice(5,item.com_date.length-5)
+                    }
+
+                    for(let i=0;i<item.com_date.length;i++){
+                      item.com_date[i].foot_time = this.getchangedatetime(item.com_date[i].foot_time)
+                      item.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
+                      return item.com_date[i].zongresult!='W'
+                    }
+
+
+
+                    return item
+
+
+                  })
+        
+                })
+
             }
-    
-            for(let i=0;i<item.com_date.length;i++){
-              item.com_date[i].foot_time = this.getchangedatetime(item.com_date[i].foot_time)
-              item.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
-              return item.com_date[i].zongresult!='W'
-            }
-    
-          })
-
-          this.shouqi(this.id)
+              
           
           console.log(footlist)
         })
 
-        console.log(this.footdetail)
+        console.log(this.footdetail,'hhhhhhhhhh')
         })
   
       }

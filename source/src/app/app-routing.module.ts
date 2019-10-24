@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: 'pay-recom-detail', loadChildren: './pay-recom-detail/pay-recom-detail.module#PayRecomDetailPageModule' },
   { path: 'yigou', loadChildren: './yigou/yigou.module#YigouPageModule' },
   { path: 'guanzhu', loadChildren: './guanzhu/guanzhu.module#GuanzhuPageModule' },
+  { path: 'guanzhudetail', loadChildren: './guanzhudetail/guanzhudetail.module#GuanzhudetailPageModule' },
   { path: 'shoucang', loadChildren: './shoucang/shoucang.module#ShoucangPageModule' },
   { path: 'touzi', loadChildren: './touzi/touzi.module#TouziPageModule' },
   { path: 'edittouzi', loadChildren: './edittouzi/edittouzi.module#EdittouziPageModule' },

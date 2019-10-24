@@ -61,6 +61,9 @@ export class Tab1Page extends AppBase {
 
       this.horselist = horselist.filter(item=>{
         item.horse_time = this.getDate(item.horse_time)
+        if(item.horse.length>10){
+          item.horse.splice(10,item.horse.length-10)
+        }
         return item.isnew == '是'
       })
       
@@ -95,6 +98,11 @@ export class Tab1Page extends AppBase {
 
       this.horselist = horselist.filter(item=>{
         item.horse_time = this.getDate(item.horse_time)
+
+        if(item.horse.length>10){
+          item.horse.splice(10,item.horse.length-10)
+        }
+
         for(let i=0;i<item.horse.length;i++){
 
           if(item.horse[i].onenum==item.horse[i].winner || item.horse[i].onenum==item.horse[i].second ||item.horse[i].onenum==item.horse[i].third ){

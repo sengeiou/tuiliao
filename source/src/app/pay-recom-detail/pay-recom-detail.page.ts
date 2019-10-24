@@ -50,11 +50,28 @@ export class PayRecomDetailPage extends AppBase {
       this.id = query.id
       this.recommenddetail = []
 
-      this.projectApi.recommenddetail({id:this.id}).then((recommenddetail:any)=>{
+      this.projectApi.recommenddetail({id:this.id,lang: this.langcode}).then((recommenddetail:any)=>{
         console.log(recommenddetail)
         this.recommenddetail.push( recommenddetail)
 
         this.recommenddetail = this.recommenddetail.filter(item=>{
+
+
+          if(this.langcode=='sc'){
+            
+            item.biaoti = this.Simplized(item.biaoti)
+            item.success = this.Simplized(item.success)
+            item.winningnum = this.Simplized(item.winningnum)
+            item.user_id_name = this.Simplized(item.user_id_name)
+
+          }else if(this.langcode=='tc'){
+
+            item.biaoti = this.Traditionalized(item.biaoti)
+            item.success = this.Traditionalized(item.success)
+            item.winningnum = this.Traditionalized(item.winningnum)
+            item.user_id_name = this.Traditionalized(item.user_id_name)
+
+          }
 
           item.pub_time = this.getchangetime(item.pub_time)
           item.end_time = this.getchangedatetime(item.end_time)

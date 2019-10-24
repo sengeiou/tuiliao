@@ -1,0 +1,133 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+}
+
+.success {
+    display: inline-block;
+    width: rpx(120);
+    height: rpx(44);
+    background: #B7C2FB;
+    border-radius: rpx(20);
+    text-align: center;
+    line-height: rpx(44);
+    color: #3F51B5;
+    font-weight: bold;
+    margin-right: rpx(10);
+  }
+  
+  .winningnum {
+    display: inline-block;
+    width: rpx(108);
+    height: rpx(44);
+    text-align: center;
+    line-height: rpx(44);
+    border-radius: rpx(20);
+    background: #FDB9BB;
+    color: #E51C23;
+    font-weight: bold;
+  }
+
+  .txt-red-r {
+    color: #E51C23;
+  }
+  
+  .txt-gray-d {
+    color: #D2D2D2;
+  }
+
+  .yigou {
+    width: 100vw;
+    height: rpx(192);
+    background: #ffffff;
+    padding-top: rpx(20);
+    margin: 0 auto;
+    position: relative;
+    .tuobiao {
+        position: absolute;
+        top: 30%;
+        border-radius: 50%;
+    }
+
+
+}
+
+.jian {
+    width: rpx(15);
+    height: rpx(15);
+    font-weight: bold;
+    position: absolute;
+    right: 21%;
+    top: 17%;
+  } 
+
+  .jia {
+    width: rpx(15);
+    height: rpx(15);
+    font-weight: bold;
+    position: absolute;
+    right: 21%;
+    top: 17%;
+  } 
+
+  .guanzu {
+    // width: rpx(120);
+    // height: rpx(50);
+    background: #F7555A;
+    color: #fff;
+    padding: rpx(4) rpx(20) rpx(4) rpx(36);
+    border-radius: rpx(10);
+
+  }
+
+  .quguan {
+
+    background: #143779;
+    color: #fff;
+    padding: rpx(4) rpx(20) rpx(4) rpx(36);
+    border-radius: rpx(10);
+
+  }
+
+  .txt-gray-d2 {
+    color: #D2D2D2;
+    }
+
+    .txt-red-e5 {
+        color: #E51C23;
+    }
+
+    .new-active {
+        background: #143779;
+        color: #fff !important;
+        outline:none;
+    }
+
+
+    .padding-tb {
+        padding-top: rpx(34);
+        padding-bottom: rpx(34);
+        outline: none;
+    }
+
+    .border-gray {
+        border: rpx(2) solid #b9b9b9;
+        border-top: none;
+    }
+
+    .content {
+        width: 100vw;
+        height: rpx(174);
+        margin: 0 auto;
+        padding-top: rpx(30);
+        padding-left: rpx(20);
+        padding-right: rpx(20);
+        background: #fff;
+        margin-bottom: rpx(10);
+    }
+
+    .chaochu {
+      max-width: rpx(600);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }

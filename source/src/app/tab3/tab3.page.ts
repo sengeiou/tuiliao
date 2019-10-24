@@ -61,20 +61,47 @@ export class Tab3Page extends AppBase {
     })
     
 
-    this.projectApi.recomlist({}).then((recomlist:any)=>{
-      console.log(recomlist)
+    this.projectApi.recomlist({lang: this.langcode}).then((recomlist:any)=>{
+      // console.log(recomlist)
       if(recomlist.length>0){
         this.recomlist = recomlist.filter(item=>{
-          item.pub_time_formatting = this.getchangedate(item.pub_time_formatting)
-          for(let k=0;k<item.latelycom.length;k++){
-            item.latelycom[k].com_time = this.getchangetime(item.latelycom[k].com_time)
+
+          if(this.langcode=='sc'){
+            item.biaoti = this.Simplized(item.biaoti)
+            item.success = this.Simplized(item.success)
+            item.winningnum = this.Simplized(item.winningnum)
+            item.user_id_name = this.Simplized(item.user_id_name)
+            item.pub_time_formatting = this.getchangedate(item.pub_time_formatting)
+            for(let k=0;k<item.latelycom.length;k++){
+              item.latelycom[k].com_time = this.getchangetime(item.latelycom[k].com_time)
+            }
+            return item
+
+          }else if(this.langcode=='tc'){
+
+            item.biaoti = this.Traditionalized(item.biaoti)
+            item.success = this.Traditionalized(item.success)
+            item.winningnum = this.Traditionalized(item.winningnum)
+            item.user_id_name = this.Traditionalized(item.user_id_name)
+
+            item.pub_time_formatting = this.getchangedate(item.pub_time_formatting)
+            for(let k=0;k<item.latelycom.length;k++){
+              item.latelycom[k].com_time = this.getchangetime(item.latelycom[k].com_time)
+            }
+            return item
+
           }
-          return item
+
+         
+
         })
-        
+        console.log(this.recomlist,'哈哈哈哈哈哈哈哈哈哈或或或所所所')
       }
      
     })
+
+    console.log(this.Traditionalized('第一场'),'突突突突突突拖拖拖拖')
+    console.log(this.Simplized('第一場'),'突突突突突突拖拖拖拖')
     
 
   }
@@ -133,4 +160,7 @@ export class Tab3Page extends AppBase {
   slideTouchEnd() {
     this.slides.startAutoplay();
   }
+
+
+
 }

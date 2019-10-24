@@ -81,16 +81,17 @@
            
           </div>
     
-          <!-- <div>
+          <div  (click)="navigate('langchoose')">
               <div class='h34'></div>
             <div class="flex-row flex-center">
-              <img [src]="uploadpath+'resource/'+res.guli" class="icon-22">
-              <div class="margin-left-20 flex-1 h5">鼓励一下</div>
+              <img [src]="uploadpath+'resource/'+res.lang" class="icon-22">
+              <div class="margin-left-20 flex-1 h5">{{lang.language}}</div>
+              <div class="margin-right-10 h5">{{langcode=="sc"?"简体":"繁體"}}</div>
               <img [src]="uploadpath+'resource/'+res.arrow" class="icon-15">
             </div>
             <div class='rowtext'></div>
           
-          </div> -->
+          </div>
     
     
           <!-- <div >

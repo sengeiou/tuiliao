@@ -1,0 +1,69 @@
+<ion-header>
+  <div class="bg-nav txt-white">
+        <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+    <ion-title>{{lang.detail}}</ion-title>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div style="background: #DDDDDD;height: 100vh"> 
+
+      <div class="yigou bor_bot-b">
+        <div class="flex-row">
+          <div class="flex-2">
+            <img src="{{uploadpath}}member/{{member_photo}}" *ngIf='member_photo!=""' class="icon-60 radius-50  margin-10">
+            <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='member_photo==""' class="icon-60 radius-50  margin-10">
+          </div>
+          <div class="flex-4 txt-bold margin-top-10">
+            <div class="h4-5 txt-bold margin-bottom-20">{{member_name}}</div>
+            <span class="h6 success">{{success}}</span>
+            <span class="h6 winningnum">{{winningnum}}</span>
+          </div>
+          <div class="flex-3">
+            <div class="flex-1 text-center " *ngIf='guanzushow' (click)='guanzu(list)'>
+              <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
+              <span  class="guanzu">{{lang.focus}}</span>
+            </div>
+            <div class="flex-1 text-center " *ngIf='guanzushow==false' (click)='guanzu(list)'>
+                <img src="{{uploadpath}}resource/{{res.jian}}" class="jian"/>
+                <span  class="quguan">{{lang.notfocus}}</span>
+            </div>
+            <div>
+                <span class="h6 txt-gray-d2 margin-right-20">{{lang.recentachi}}</span>
+                <span class="txt-red-e5 h2 txt-bold">{{success_result}}</span>
+            </div>
+              
+          </div>
+        </div>
+      </div>
+
+
+    <div class="flex-row text-center border-gray bg-white">
+      <button class="flex-1 new-active padding-tb h4-5 txt-blue-14" (click)='newRecom($event)'>{{lang.newrecom}}</button>
+      <button class="flex-1 padding-tb h4-5 txt-blue-14" (click)='oldRecom($event)'> {{lang.oldrecom}}</button>
+    </div>
+    
+
+    <div class="content" *ngFor='let list of recomlist'>
+        
+      <div class="flex-row" (click)='tiaozhuan(list)'>
+          <div class="flex-5 ">
+              <div class="txt-bold f18 chaochu">{{list.biaoti}}</div>
+              <div class="margin-top-20 h5 txt-gray-8a">{{list.pub_time}} &nbsp;{{lang.publish}}</div>
+          </div>
+          <div class="flex-1" *ngIf='list.zongjieguo=="Y"'>
+              <img src="{{uploadpath}}resource/{{res.mingzhong}}" class="icon-60" />
+          </div>
+          <div class="flex-1" *ngIf='list.zongjieguo=="N"'>
+            <img src="{{uploadpath}}resource/{{res.weizhong}}" class="icon-60" />
+          </div>
+          <div class="flex-1 f18 txt-blue-14 txt-bold margin-top-30" *ngIf='list.zongjieguo=="" && list.isnew=="否"'>
+            {{lang.undetermined}}
+          </div>
+      </div>
+    </div>
+
+
+  </div>
+</ion-content>

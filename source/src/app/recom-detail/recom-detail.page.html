@@ -5,108 +5,110 @@
       <ion-title>{{lang.pointdetail}}</ion-title>
     </div>
   </ion-header>
-
-<div *ngFor='let list of recommenddetail'>
-  <div class=" margin-left-20 margin-bottom-30">
-    <div class="f18 txt-black-10 txt-bold margin-top-30">{{list.biaoti}}</div>
-    <div class="flex-row txt-gray-b9 margin-top-30 h5 txt-bold margin-bottom-30">
-      <span class="flex-4">{{list.pub_time}}&nbsp;{{lang.publish}}</span>
-      <span class="flex-1 shoucang">
-          <img src="{{uploadpath}}resource/{{res.shoucang}}" *ngIf='isshow' (click)='shoucang(list)' class="icon-20"/>
-          <img src="{{uploadpath}}resource/{{res.shoucang2}}" *ngIf='isshow==false'  (click)='shoucang(list)' class="icon-20"/>
-        <span>{{lang.shoucang}}</span>
-      </span>
-    </div>
-    <div class="bg-gray content" *ngIf='list.latelycom.length>0'>
-      <div class="padding-left-20 padding-bottom-20 h5" *ngFor='let item of list.latelycom'>
-        <span class="">{{item.name_name}}</span>
-        <span class="">{{item.hostteam_name}}VS{{item.guestteam_name}}</span>
-        <span class="texu">{{item.com_time}}</span>
+<ion-content>
+  <div *ngFor='let list of recommenddetail'>
+    <div class=" margin-left-20 margin-bottom-30">
+      <div class="f18 txt-black-10 txt-bold margin-top-30">{{list.biaoti}}</div>
+      <div class="flex-row txt-gray-b9 margin-top-30 h5 txt-bold margin-bottom-30">
+        <span class="flex-4">{{list.pub_time}}&nbsp;{{lang.publish}}</span>
+        <span class="flex-1 shoucang">
+            <img src="{{uploadpath}}resource/{{res.shoucang}}" *ngIf='isshow' (click)='shoucang(list)' class="icon-20"/>
+            <img src="{{uploadpath}}resource/{{res.shoucang2}}" *ngIf='isshow==false'  (click)='shoucang(list)' class="icon-20"/>
+          <span>{{lang.shoucang}}</span>
+        </span>
       </div>
-    </div>
-  </div>
-  <div class="bg-gray-ec">
-      <div class="flex-row person">
-          <div class="flex-1 text-center touxiang">
-            <!-- <img src="{{uploadpath}}member/{{list.member_photo}}" class="icon-60 radius-50"> -->
-            <img src="{{uploadpath}}member/{{list.member_photo}}" *ngIf='list.member_photo!=""' class="icon-60 radius-50">
-            <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='list.member_photo==""' class="icon-60 radius-50">
-          </div>
-          <div class="flex-2 txt-bold margin-top">
-                <div class="h4-5 txt-bold margin-bottom-20">{{list.user_id_name}}</div>
-                <span class="h6 success">{{list.success}}</span>
-                <span class="h6 winningnum">{{list.winningnum}}</span>
-          </div>
-          <div class="flex-1 text-center " *ngIf='guanzushow' (click)='guanzu(list.user_id)'>
-              <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
-              <span  class="guanzu">{{lang.focus}}</span>
-          </div>
-          <div class="flex-1 text-center " *ngIf='guanzushow==false' (click)='guanzu(list.user_id)'>
-              <img src="{{uploadpath}}resource/{{res.jian}}" class="jia"/>
-              <span  class="quguan">{{lang.notfocus}}</span>
-          </div>
-      </div>
-      <div class="zhifu">
-        <img src="{{uploadpath}}resource/{{res.suo}}" class="icon-50 bg-pink"/>
-        <div class="h5">{{lang.recontent1}}</div>
-        <div class="h5">{{lang.distancetime}}：<span class="txt-red-ec margin-left-20">{{list.end_time}}</span></div>
-      </div>
-      <div class="h5 txt-gray-b9 text-center">{{lang.reccontent2}}</div>
-      <div class="flex-row fixedzhifu">
-        <div class="flex-2 txt-bold">
-          <span>{{lang.needpay}}:</span>
-          <span class="margin-left-20 txt-blue-14">{{list.coincount}}{{lang.ballcoin}}</span>
-        </div>
-        <div class="flex-1">
-          <button (click)='pay(list.user_id,list.id,list.coincount)'>{{lang.payment}}</button>
+      <div class="bg-gray content" *ngIf='list.latelycom.length>0'>
+        <div class="padding-left-20 padding-bottom-20 h5" *ngFor='let item of list.latelycom'>
+          <span class="">{{item.name_name}}</span>
+          <span class="">{{item.hostteam_name}}VS{{item.guestteam_name}}</span>
+          <span class="texu">{{item.com_time}}</span>
         </div>
       </div>
-  </div>
-</div>
-
-<div class="modal-mask" *ngIf="d" (click)="gbzf()"></div>
-<!--  *ngIf="d" -->
-<div class="modal-dialog padding-20" *ngIf="d" (click)="$event.stopPropagation()">
-
-  <div class="flex-row flex-center">
-    <div class="flex-1"></div>
-    <img [src]="uploadpath+'resource/'+res.cuowu" (click)="gbzf()" class="icon22 opa4 margin-right-10">
-  </div>
-
-  <div class="h4 txt-bold text-center margin-bottom-60" style="color:#262626">{{lang.orderpayment}}</div>
-  <div class="flex-row flex-bottom  ">
-    <div class="flex-1 h5  " style="color:#262626;opacity: 0.5;">{{lang.ordernumber}}：24587290857239</div>
-    <div class="f22" style="color:#E50303;">￥</div>
-    <div class="f32 txt-bold" style="color:#E50303;">{{payinfo.money}}</div>
-    <div class="f22" style="color:#E50303;">{{lang.ballcoin}}</div>
-  </div>
-
-  <!-- <div class="h4-6 padding-bottom-20 txt-bold margin-top-40" style="color:#262626;border-bottom: 1px solid  #D6D7D9">
-    付款方式
-  </div>
-
-  <div (click)='zhifu(0)' class="flex-row flex-center xx">
-    <img [src]="uploadpath+'resource/'+res.weixinpay" class="icon40">
-    <div class="flex-1 margin-left-20">
-      <div class="h5 txt-bold" style="color:#262626">微信支付</div>
-      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">推荐在微信中绑定银行卡的用户使用</div>
     </div>
-    <img [src]="uploadpath+'resource/'+(zhifufanshi==0?res.xuanzhon:res.xuanze)" (click)='zhifu(0)' class="icon-22 ">
+    <div class="bg-gray-ec">
+        <div class="flex-row person">
+            <div class="flex-1 text-center touxiang">
+              <!-- <img src="{{uploadpath}}member/{{list.member_photo}}" class="icon-60 radius-50"> -->
+              <img src="{{uploadpath}}member/{{list.member_photo}}" *ngIf='list.member_photo!=""' class="icon-60 radius-50">
+              <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='list.member_photo==""' class="icon-60 radius-50">
+            </div>
+            <div class="flex-2 txt-bold margin-top">
+                  <div class="h4-5 txt-bold margin-bottom-20">{{list.user_id_name}}</div>
+                  <span class="h6 success">{{list.success}}</span>
+                  <span class="h6 winningnum">{{list.winningnum}}</span>
+            </div>
+            <div class="flex-1 text-center " *ngIf='guanzushow' (click)='guanzu(list.user_id)'>
+                <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
+                <span  class="guanzu">{{lang.focus}}</span>
+            </div>
+            <div class="flex-1 text-center " *ngIf='guanzushow==false' (click)='guanzu(list.user_id)'>
+                <img src="{{uploadpath}}resource/{{res.jian}}" class="jia"/>
+                <span  class="quguan">{{lang.notfocus}}</span>
+            </div>
+        </div>
+        <div class="zhifu">
+          <img src="{{uploadpath}}resource/{{res.suo}}" class="icon-50 bg-pink"/>
+          <div class="h5">{{lang.recontent1}}</div>
+          <div class="h5">{{lang.distancetime}}：<span class="txt-red-ec margin-left-20">{{list.end_time}}</span></div>
+        </div>
+        <div class="h5 txt-gray-b9 text-center">{{lang.reccontent2}}</div>
+        <div class="flex-row fixedzhifu">
+          <div class="flex-2 txt-bold">
+            <span>{{lang.needpay}}:</span>
+            <span class="margin-left-20 txt-blue-14">{{list.coincount}}{{lang.ballcoin}}</span>
+          </div>
+          <div class="flex-1">
+            <button (click)='pay(list.user_id,list.id,list.coincount)'>{{lang.payment}}</button>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="modal-mask" *ngIf="d" (click)="gbzf()"></div>
+  <!--  *ngIf="d" -->
+  <div class="modal-dialog padding-20" *ngIf="d" (click)="$event.stopPropagation()">
+
+    <div class="flex-row flex-center">
+      <div class="flex-1"></div>
+      <img [src]="uploadpath+'resource/'+res.cuowu" (click)="gbzf()" class="icon22 opa4 margin-right-10">
+    </div>
+
+    <div class="h4 txt-bold text-center margin-bottom-60" style="color:#262626">{{lang.orderpayment}}</div>
+    <div class="flex-row flex-bottom  ">
+      <div class="flex-1 h5  " style="color:#262626;opacity: 0.5;">{{lang.ordernumber}}：24587290857239</div>
+      <div class="f22" style="color:#E50303;">￥</div>
+      <div class="f32 txt-bold" style="color:#E50303;">{{payinfo.money}}</div>
+      <div class="f22" style="color:#E50303;">{{lang.ballcoin}}</div>
+    </div>
+
+    <!-- <div class="h4-6 padding-bottom-20 txt-bold margin-top-40" style="color:#262626;border-bottom: 1px solid  #D6D7D9">
+      付款方式
+    </div>
+
+    <div (click)='zhifu(0)' class="flex-row flex-center xx">
+      <img [src]="uploadpath+'resource/'+res.weixinpay" class="icon40">
+      <div class="flex-1 margin-left-20">
+        <div class="h5 txt-bold" style="color:#262626">微信支付</div>
+        <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">推荐在微信中绑定银行卡的用户使用</div>
+      </div>
+      <img [src]="uploadpath+'resource/'+(zhifufanshi==0?res.xuanzhon:res.xuanze)" (click)='zhifu(0)' class="icon-22 ">
+
+    </div>
+
+    <div (click)='zhifu(1)' class="flex-row flex-center xx">
+      <img [src]="uploadpath+'resource/'+res.zhifubaopay" class="icon40">
+      <div class="flex-1 margin-left-20">
+        <div class="h5 txt-bold" style="color:#262626">支付宝</div>
+        <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">安全快捷，可支持银行卡支付</div>
+      </div>
+      <img [src]="uploadpath+'resource/'+(zhifufanshi==1?res.xuanzhon:res.xuanze)" (click)='zhifu(1)' class="icon-22 ">
+
+    </div> -->
+
+
+
+    <button class="btns margin-top-80" (click)="lijizhifu()" >{{lang.payment}}</button>
 
   </div>
 
-  <div (click)='zhifu(1)' class="flex-row flex-center xx">
-    <img [src]="uploadpath+'resource/'+res.zhifubaopay" class="icon40">
-    <div class="flex-1 margin-left-20">
-      <div class="h5 txt-bold" style="color:#262626">支付宝</div>
-      <div class="h6 margin-top-5" style="color:#262626;opacity:0.5;">安全快捷，可支持银行卡支付</div>
-    </div>
-    <img [src]="uploadpath+'resource/'+(zhifufanshi==1?res.xuanzhon:res.xuanze)" (click)='zhifu(1)' class="icon-22 ">
-
-  </div> -->
-
-
-
-  <button class="btns margin-top-80" (click)="lijizhifu()" >{{lang.payment}}</button>
-
-</div>
+</ion-content>

@@ -50,11 +50,12 @@ export class Tab2Page extends AppBase {
   onMyShow(){
 
     // this.autoPlay()
+    console.log(this.langcode,'lang')
     
-    this.projectApi.footlist({}).then((footlist:any)=>{
-     
+    this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
+     console.log(footlist,'footlist')
       this.footlist = footlist.filter((item)=>{
-        console.log(item)
+        // console.log(item)
         // item.new = 'Y'
         if(item.isnew=='是'){
 
@@ -145,7 +146,7 @@ export class Tab2Page extends AppBase {
     event.target.classList.add('new-active')
     event.target.parentElement.childNodes[0].classList.remove('new-active')
 
-    this.projectApi.footlist({}).then((footlist:any)=>{
+    this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
       console.log(footlist)
       // this.footlist = footlist
       
