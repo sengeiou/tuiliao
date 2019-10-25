@@ -48,6 +48,13 @@ export class ShoucangPage extends AppBase {
       this.favlist = []
       this.recomfavlist = recomfavlist.filter(item=>{
         for(let i=0;i<item.recom.length;i++){
+
+          if(this.langcode=='tc'){
+            item.recom[i].biaoti = this.Traditionalized(item.recom[i].biaoti)
+          }else if(this.langcode=='sc'){
+            item.recom[i].biaoti = this.Simplized(item.recom[i].biaoti)
+          }
+
            item.recom[i].pub_time = this.getdatemm(item.recom[i].pub_time)
            this.favlist.push(item.recom[i]) 
         }

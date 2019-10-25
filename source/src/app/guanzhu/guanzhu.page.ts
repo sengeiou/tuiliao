@@ -50,7 +50,14 @@ export class GuanzhuPage extends AppBase {
 
         this.memberApi.info({id:item.befocus_id}).then((info)=>{
           console.log(info,'info')
-          item.befocus_id_name = info.name
+
+          if(this.langcode=='tc'){
+            item.befocus_id_name = this.Traditionalized(info.name)
+          }else if(this.langcode=='sc'){
+            item.befocus_id_name = this.Simplized(info.name)
+          }
+
+          // item.befocus_id_name = info.name
           item.befocus_id_photo = info.photo
        })
 

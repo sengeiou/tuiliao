@@ -51,11 +51,21 @@ export class YigouPage extends AppBase {
 
           this.memberApi.info({id:item.recom_id}).then((info)=>{
             console.log(info,'info')
-            item.befocus_id_name = info.name
+            // item.befocus_id_name = info.name
+            if(this.langcode=='tc'){
+              item.befocus_id_name = this.Traditionalized(info.name)
+            }else if(this.langcode=='sc'){
+              item.befocus_id_name = this.Simplized(info.name)
+            }
             item.befocus_id_photo = info.photo
          })
 
           for(let i=0;i<item.recom.length;i++){
+            if(this.langcode=='tc'){
+              item.recom[i].biaoti = this.Traditionalized(item.recom[i].biaoti)
+            }else if(this.langcode=='sc'){
+              item.recom[i].biaoti = this.Simplized(item.recom[i].biaoti)
+            }
             item.recom[i].pub_time = this.getdatemm(item.recom[i].pub_time)
           }
           return item

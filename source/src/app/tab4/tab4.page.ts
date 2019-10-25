@@ -46,6 +46,7 @@ export class Tab4Page extends AppBase {
     //   this.info=this.memberInfo
     //   console.log(this.info.photo,'kkkkk')
     // }
+    
     AppBase.LASTTAB=this;
   }
 }

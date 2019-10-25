@@ -45,6 +45,12 @@ export class MessagePage extends AppBase {
     this.centerApi.messagelist({}).then((messagelist:any)=>{
       console.log(messagelist)
       this.messagelist = messagelist.filter(item=>{
+
+        if(this.langcode=='tc'){
+          item.content = this.Traditionalized(item.content)
+        }else if(this.langcode=='sc'){
+          item.content = this.Simplized(item.content)
+        }
         item.updated_date = this.getdate(item.updated_date)
         return item
       })

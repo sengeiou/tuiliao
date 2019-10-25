@@ -60,6 +60,11 @@ export class MykehuPage extends AppBase {
       this.integrationlist = integrationlist.filter(item=>{
         item.chong_time = this.getchangedatetime(item.chong_time)
         item.pay_time = this.getchangedatetime(item.pay_time)
+        if(this.langcode=='tc'){
+          item.yongjin_name = this.Traditionalized(item.yongjin_name)
+        }else if(this.langcode=='sc'){
+          item.yongjin_name = this.Simplized(item.yongjin_name)
+        }
         if(item.yongjin!=0){
           console.log(item,'oooo')
           return item

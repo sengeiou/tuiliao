@@ -44,6 +44,13 @@ export class TouziPage extends AppBase {
       console.log(investmentlist,'kjkjk')
 
       this.investmentlist = investmentlist.filter(item=>{
+        if(this.langcode=='tc'){
+          item.name = this.Traditionalized(item.name)
+          item.content = this.Traditionalized(item.content)
+        }else if(this.langcode=='sc'){
+          item.name = this.Simplized(item.name)
+          item.content = this.Simplized(item.content)
+        }
         item.updated_date = this.getchangemonthtime(item.updated_date)
         return item
       })
