@@ -80,25 +80,27 @@ export class RegisterPage extends AppBase {
      console.log('dddd')
      if(this.password.length>=6){
         if(this.mobile!=""){
+          
 
-          var verifycode =this.yanzhenma;
-          this.aliyunApi.verifycode({
-            mobile: this.mobile,
-            verifycode,
-            type: "register"
-          }).then(ret => {
-            console.log(ret,'ret')
-          if (ret.code == 0) {
-    
-            this.checkcanregs("mobile",this.mobile)
-    
-            this.show = 2;
-          } else {
-            this.toast("验证码校验失败，请重新尝试");
-          }
-        });
-          
-          
+            var verifycode =this.yanzhenma;
+            this.aliyunApi.verifycode({
+                mobile: this.mobile,
+                verifycode,
+                type: "register"
+              }).then(ret => {
+                console.log(ret,'ret')
+              if (ret.code == 0) {
+        
+                this.checkcanregs("mobile",this.mobile)
+        
+                this.show = 2;
+              } else {
+                this.toast("验证码校验失败，请重新尝试");
+              }
+            });
+
+         
+
           
         }
         if(this.email!=""){
@@ -122,6 +124,8 @@ export class RegisterPage extends AppBase {
        this.toast("密码少于6位，请重新输入密码")
      }
      
+    }else{
+      this.toast("用户名为空，请重新填写！")
     }
 
     
@@ -181,21 +185,6 @@ export class RegisterPage extends AppBase {
     e.target.classList.add('zhuce-active')
     e.target.parentElement.childNodes[1].classList.remove('zhuce-active')
 
-    // // 验证码
-    // var verifycode =this.yanzhenma;
-    // this.aliyunApi.verifycode({
-    //     mobile: this.mobile,
-    //     verifycode,
-    //     type: "register"
-    //   }).then(ret => {
-    //     if (ret.code == 0) {
-    //     this.show = 2;
-    //   } else {
-      
-    //     this.toast("验证码校验失败，请重新尝试");
-    //   }
-    // });
-
 
   }
 
@@ -207,31 +196,38 @@ export class RegisterPage extends AppBase {
 
       if (ret.code == "0") {
         // this.inverify = true;
-        this.aliyunApi.sendverifycode({
-          mobile: this.mobile,
-          type: "register"
-        }).then(ret => {
-          console.log(ret);
-          if (ret.code == 0) {
-            this.reminder = 60;
-            this.show = 1;
+        let reg =/^(13[0-9]\d{8}|15[0-35-9]\d{8}|18[0-9]\{8}|14[57]\d{8})$/
+          if(reg.test(this.mobile)){
 
-            this.c1 = "";
-            this.c2 = "";
-            this.c3 = "";
-            this.c4 = "";
-            //this.$refs["inputc1"].focus();
+            this.aliyunApi.phoneverifycode({
+              mobile: this.mobile,
+              type: "register"
+            }).then(ret => {
+              console.log(ret);
+              if (ret.code == 0) {
+                this.reminder = 60;
+                this.show = 1;
 
-            //var obj = this.ele.nativeElement.querySelector('#inputc1');
-            //obj.focus();
+                this.c1 = "";
+                this.c2 = "";
+                this.c3 = "";
+                this.c4 = "";
+                //this.$refs["inputc1"].focus();
 
-            this.toast("验证码已发送，请注意查收");
-            this.diyici = true;
-            this.setInVerify();
-          } else {
-            this.toast("验证码发送失败，请稍后重试");
+                //var obj = this.ele.nativeElement.querySelector('#inputc1');
+                //obj.focus();
+
+                this.toast("验证码已发送，请注意查收");
+                this.diyici = true;
+                this.setInVerify();
+              } else {
+                this.toast("验证码发送失败，请稍后重试");
+              }
+            });
+
+          }else {
+            this.toast('手机号码错误，请重新输入！')
           }
-        });
       } else {
         this.toast("手机号码已经被使用");
       }

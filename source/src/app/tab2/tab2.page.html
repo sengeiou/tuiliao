@@ -74,7 +74,7 @@
       </table>
     </div>
 
-    <div *ngIf='footlist==null'  class="zanwu">
+    <div *ngIf='footlist==null || footlist.length==0'  class="zanwu">
       <img src="{{uploadpath}}resource/{{res.zanwuneirong}}"/>
       <div>
           {{lang.forward}}

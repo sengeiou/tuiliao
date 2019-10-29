@@ -52,13 +52,13 @@ export class PaysuccessPage extends AppBase {
       let month = date.getMonth()+1;
       let day = date.getDate();
 
-      this.paydate = query.paydate.substr(1)
+      this.paydate = query.paydate
 
       this.nowtime = year + "年" + month +"月"+ day + "日"
       console.log(this.nowtime)
       let days = new Date(year, month, 0).getDate()
       console.log(days)
-      if(query.paydate == "包一天") {
+      if(query.paydate == "1天") {
         if(days==day){
           month = month+1
           day = 1
@@ -70,7 +70,7 @@ export class PaysuccessPage extends AppBase {
        
       }
 
-      if(query.paydate == "包一周") {
+      if(query.paydate == "7天") {
         if((days-day)<7){
           month = month+1
           day = 7-(days-day)
@@ -82,7 +82,7 @@ export class PaysuccessPage extends AppBase {
       
       }
 
-      if(query.paydate == "包一月") {
+      if(query.paydate == "30天") {
         if(month == 12){
           year = year + 1
           month = 1
@@ -94,7 +94,7 @@ export class PaysuccessPage extends AppBase {
         
       }
 
-      if(query.paydate == "包一年") {
+      if(query.paydate == "365天") {
         year = year+1
         this.nexttime =  year + "年" + month +"月"+ day + "日"
       }

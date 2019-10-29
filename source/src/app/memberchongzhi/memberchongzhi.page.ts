@@ -126,7 +126,7 @@ export class MemberchongzhiPage extends AppBase {
 
     console.log(year,month,day,hh,mm,'啦啦啦啦啦')
 
-    if(this.paydate == "包一天") {
+    if(this.paydate == "1天") {
       if(days==day){
         month = month+1
         day = 1
@@ -138,7 +138,7 @@ export class MemberchongzhiPage extends AppBase {
      
     }
 
-    if(this.paydate == "包一周") {
+    if(this.paydate == "7天") {
       if((days-day)<7){
         month = month+1
         day = 7-(days-day)
@@ -150,7 +150,7 @@ export class MemberchongzhiPage extends AppBase {
     
     }
 
-    if(this.paydate == "包一月") {
+    if(this.paydate == "30天") {
       if(month == 12){
         year = year + 1
         month = 1
@@ -162,7 +162,7 @@ export class MemberchongzhiPage extends AppBase {
       
     }
 
-    if(this.paydate == "包一年") {
+    if(this.paydate == "365天") {
       year = year+1
       this.endtime =  year + "-" + month +"-"+ day +" "+hh+":"+mm
     }

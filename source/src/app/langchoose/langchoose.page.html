@@ -7,25 +7,29 @@
 </ion-header>
 
 <ion-content>
-  <div class="flex-row flex-center">
-      <!-- <ion-button class="flex-1" (click)='change("en")'>英语</ion-button> -->
+  <!-- <div class="flex-row flex-center">
+      <ion-button class="flex-1" (click)='change("en")'>英语</ion-button>
       <ion-button class="flex-1" (click)='change("tc")'>繁体中文</ion-button>
       <ion-button class="flex-1" (click)='change("sc")'>简体中文</ion-button>
+  </div> -->
 
+  <div class="margin-40">
+
+      <div class="h14"></div>
+      <div class="flex-row flex-center" style="">
+        <div class="flex-1 h5 txt-a7">繁体中文</div>
+        <ion-toggle color="danger" [checked]='langcode=="tc"' (click)='change("tc")' (ionChange)='langcode=(langcode=="tc"?"sc":"tc")' ></ion-toggle>
+      </div>
+      <div class='rowtext'></div>
+      <!-- <div class="h14"></div> -->
+      <!-- <div style=" width:90vw;background:#D6D7D9; " class="margin-top-12 height-1"></div> -->
      
-
+      <div class="h34"></div>
+      <div class="flex-row flex-center" style="">
+        <div class="flex-1 h5 txt-a7">简体中文</div>
+        <ion-toggle color="danger" [checked]='langcode=="sc"' (click)='change("sc")' (ionChange)='langcode=(langcode=="sc"?"tc":"sc")' ></ion-toggle>
+      </div>
+      <!-- <div style=" width:90vw;background:#D6D7D9; " class="margin-top-12 height-1"></div> -->
+      <div class='rowtext'></div>
   </div>
-  <!-- <div class="flex-row flex-center" style="">
-    <div class="flex-1 h5 txt-a7">繁体中文</div>
-    <ion-toggle color="danger" [checked]='font=="繁体"' (ionChange)='font=(font=="简体"?"繁体":"简体")' ></ion-toggle>
-  </div>
-  <div style=" width:90vw;background:#D6D7D9; " class="margin-top-12 height-1"></div>
-  <div class='rowtext'></div>
-  <div class="h34"></div>
-  <div class="flex-row flex-center" style="">
-    <div class="flex-1 h5 txt-a7">简体中文</div>
-    <ion-toggle color="danger" [checked]='font=="繁体"' (ionChange)='font=(font=="简体"?"繁体":"简体")' ></ion-toggle>
-  </div>
-  <div style=" width:90vw;background:#D6D7D9; " class="margin-top-12 height-1"></div>
-  <div class='rowtext'></div> -->
 </ion-content>

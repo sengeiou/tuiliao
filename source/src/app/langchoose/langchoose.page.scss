@@ -1,0 +1,13 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+.h14 {
+    height: rpx(28);
+  }
+
+  .rowtext {
+    height: rpx(2);
+    width: 90vw;
+    background: #d6d7d9;
+    margin-top: rpx(24);
+  }

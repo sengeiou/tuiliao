@@ -152,7 +152,10 @@ export class AppBase implements OnInit {
 
             if (token == null) {
                 if(isregister!=null){
+                    console.log('kkkkkk')
                     // this.router.navigate(["re"]);
+                    // this.router.navigate(["login"]);
+                    window.localStorage.removeItem("isregister");
                 }else {
                     this.router.navigate(["login"]);
                     AppBase.IsLogin = false;
@@ -162,9 +165,9 @@ export class AppBase implements OnInit {
                 ApiConfig.SetToken(token);
 
                 AppBase.memberapi.info({id:this.user_id}).then((memberinfo) => {
-                    AppBase.IsLogin = memberinfo.id == 0 ? false : true;
+                    AppBase.IsLogin = memberinfo == null ? false : true;
                     console.log(memberinfo,'memberinfo')
-                    if(memberinfo.id==0){
+                    if(memberinfo == null){
                         this.router.navigate(['login'])
                     }else{
                         if(memberinfo.endmenber_time!=""){
@@ -437,6 +440,7 @@ export class AppBase implements OnInit {
                     AppBase.IsLogin = false;
                     window.localStorage.removeItem("UserToken");
                     window.localStorage.removeItem("user_id");
+                    window.localStorage.removeItem("isregister");
                     this.memberInfo = null;
                     this.backToUrl('/login');
                 }

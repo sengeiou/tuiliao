@@ -72,16 +72,17 @@ export class NewFootDetailPage  extends AppBase {
         console.log(this.footdetail)
         })
   
-      }else if(this.new == '否'){
+      }else if(this.new == '否' || this.new==""){
         this.footdetail = []
 
         this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
+          console.log(footlist,'footlist')
 
           footlist.filter((item,idx)=>{
-
-            if(item.id == this.id){
+            if(item.isnew !='是'){
+              if(item.id == this.id){
               this.projectApi.footdetail({id :this.id,lang: this.langcode}).then((footdetail:any)=>{
-                console.log(footdetail,'oooo')
+                console.log(footdetail,'6666')
                 this.footdetail.push( footdetail)
         
                 this.footdetail = this.footdetail.filter((item)=>{
@@ -135,12 +136,15 @@ export class NewFootDetailPage  extends AppBase {
                 })
 
             }
+            }
+
+           
               
           
-          console.log(footlist)
+            console.log(this.footdetail,'hhhhhhhhhh')
         })
 
-        console.log(this.footdetail,'hhhhhhhhhh')
+       
         })
   
       }

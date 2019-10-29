@@ -34,7 +34,7 @@ export class LangchoosePage extends AppBase {
   }
   change(val){
     window.localStorage.setItem("langcode",val);
-    this.navCtrl.back();
+    // this.navCtrl.back();
   }
 
   onMyShow(){

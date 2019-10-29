@@ -10,8 +10,8 @@ export class AliyunApi {
     }
 
 
-    public sendverifycode(data, showLoadingModal: boolean = true) {
-        var url = ApiConfig.getApiUrl() + 'aliyun/sendverifycode';
+    public phoneverifycode(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'aliyun/phoneverifycode';
         var headers = ApiConfig.GetHeader(url, data);
         let options = new RequestOptions({ headers: headers });
         let body = ApiConfig.ParamUrlencoded(data);
@@ -23,7 +23,7 @@ export class AliyunApi {
 
         return this.http.post(url, body, options).toPromise()
             .then((res) => {
-                if (ApiConfig.DataLoadedHandle('aliyun/sendverifycode', data, res)) {
+                if (ApiConfig.DataLoadedHandle('aliyun/phoneverifycode', data, res)) {
                     if (showLoadingModal) {
                         ApiConfig.DimissLoadingModal();
                     }
@@ -39,7 +39,7 @@ export class AliyunApi {
                 if (showLoadingModal) {
                     ApiConfig.DimissLoadingModal();
                 }
-                return ApiConfig.ErrorHandle('aliyun/sendverifycode', data, err);
+                return ApiConfig.ErrorHandle('aliyun/phoneverifycode', data, err);
             });
     }
 

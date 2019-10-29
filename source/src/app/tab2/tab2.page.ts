@@ -152,7 +152,7 @@ export class Tab2Page extends AppBase {
       
       this.footlist = footlist.filter((item)=>{
       
-        if(item.isnew=='否'){
+        if(item.isnew=='否' || item.isnew==''){
           console.log(item)
           if(item.com_date.length>5){
             item.com_date.splice(5,item.com_date.length-5)
