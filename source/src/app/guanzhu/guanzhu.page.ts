@@ -44,41 +44,43 @@ export class GuanzhuPage extends AppBase {
   onMyShow(){
 
     this.centerApi.focuslist({focus_member_id:this.user_id}).then((focuslist:any)=>{
-      console.log(focuslist)
-      this.focuslist = focuslist.filter(item=>{
-        console.log(item.befocus.length,'item.befocus.length')
-
-        this.memberApi.info({id:item.befocus_id}).then((info)=>{
-          console.log(info,'info')
-
-          if(this.langcode=='tc'){
-            item.befocus_id_name = this.Traditionalized(info.name)
-          }else if(this.langcode=='sc'){
-            item.befocus_id_name = this.Simplized(info.name)
-          }
-
-          // item.befocus_id_name = info.name
-          item.befocus_id_photo = info.photo
-       })
-
-       this.projectApi.recomlist({user_id:item.befocus_id}).then((recomlist:any)=>{
-         console.log(recomlist,'reclist')
-          for(let i=0;i<recomlist.length;i++){
-            if(recomlist[i].isnew == '是'){
-              item.isnew = true
+      console.log(focuslist,'focuslist')
+      if(focuslist.length!=0){
+          this.focuslist = focuslist.filter(item=>{
+            console.log(item.befocus.length,'item.befocus.length')
+    
+            this.memberApi.info({id:item.befocus_id}).then((info)=>{
+              console.log(info,'info')
+    
+              if(this.langcode=='tc'){
+                item.befocus_id_name = this.Traditionalized(info.name)
+              }else if(this.langcode=='sc'){
+                item.befocus_id_name = this.Simplized(info.name)
+              }
+    
+              // item.befocus_id_name = info.name
+              item.befocus_id_photo = info.photo
+          })
+    
+          this.projectApi.recomlist({user_id:item.befocus_id}).then((recomlist:any)=>{
+            console.log(recomlist,'reclist')
+              for(let i=0;i<recomlist.length;i++){
+                if(recomlist[i].isnew == '是'){
+                  item.isnew = true
+                }
+              }
+          })
+    
+            if(item.befocus.length>1){
+              item.befocus.splice(0,item.befocus.length-1)
+              return item
+            }else {
+              return item
+    
             }
-          }
-       })
-
-        if(item.befocus.length>1){
-          item.befocus.splice(0,item.befocus.length-1)
-          return item
-        }else {
-          return item
-
-        }
-      })
-      console.log()
+          })
+      }
+      
     })
 
   }

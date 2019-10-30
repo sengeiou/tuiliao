@@ -41,6 +41,8 @@ export class MessagePage extends AppBase {
   messagelist=null
 
   onMyShow(){
+    AppBase.LASTTAB=this;
+    console.log(this.memberInfo,'kkkkkk')
 
     this.centerApi.messagelist({}).then((messagelist:any)=>{
       console.log(messagelist)

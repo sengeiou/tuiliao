@@ -68,7 +68,7 @@ export class YigouPage extends AppBase {
             }
             item.recom[i].pub_time = this.getdatemm(item.recom[i].pub_time)
           }
-          return item
+          return item.recom.length>0
         })
       }
       

@@ -16,20 +16,20 @@
   <div class="margin-40">
 
       <div class="h14"></div>
-      <div class="flex-row flex-center" style="">
-        <div class="flex-1 h5 txt-a7">繁体中文</div>
-        <ion-toggle color="danger" [checked]='langcode=="tc"' (click)='change("tc")' (ionChange)='langcode=(langcode=="tc"?"sc":"tc")' ></ion-toggle>
-      </div>
-      <div class='rowtext'></div>
-      <!-- <div class="h14"></div> -->
-      <!-- <div style=" width:90vw;background:#D6D7D9; " class="margin-top-12 height-1"></div> -->
-     
-      <div class="h34"></div>
-      <div class="flex-row flex-center" style="">
+      <div class="flex-row flex-center" (click)='change("sc")'>
         <div class="flex-1 h5 txt-a7">简体中文</div>
-        <ion-toggle color="danger" [checked]='langcode=="sc"' (click)='change("sc")' (ionChange)='langcode=(langcode=="sc"?"tc":"sc")' ></ion-toggle>
+        <img src="{{uploadpath}}resource/{{res.dui}}" class="icon-20" *ngIf='langcode=="sc"'/>
       </div>
-      <!-- <div style=" width:90vw;background:#D6D7D9; " class="margin-top-12 height-1"></div> -->
+      
+
+      <div class='rowtext'></div>
+      <div class="h34"></div>
+
+      <div class="flex-row flex-center"  (click)='change("tc")'>
+        <div class="flex-1 h5 txt-a7">繁体中文</div>
+        <img src="{{uploadpath}}resource/{{res.dui}}" class="icon-20" *ngIf='langcode=="tc"'/>
+      </div>
+
       <div class='rowtext'></div>
   </div>
 </ion-content>

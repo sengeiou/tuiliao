@@ -76,7 +76,7 @@ export class RegisterPage extends AppBase {
 
   xiayibu(){
     if(this.username!=""){
-    //  this.checkcanregs("name",this.username)
+      // this.checkcanregs("name",this.username)
      console.log('dddd')
      if(this.password.length>=6){
         if(this.mobile!=""){
@@ -91,8 +91,8 @@ export class RegisterPage extends AppBase {
                 console.log(ret,'ret')
               if (ret.code == 0) {
         
-                this.checkcanregs("mobile",this.mobile)
-        
+                // this.checkcanregs("mobile",this.mobile)
+                this.checkcanregs("name",this.username)
                 this.show = 2;
               } else {
                 this.toast("验证码校验失败，请重新尝试");
@@ -113,7 +113,8 @@ export class RegisterPage extends AppBase {
             }).then(ret => {
               console.log(ret,'ret')
             if (ret.code == 0) {
-              this.checkcanregs("email",this.email)
+              // this.checkcanregs("email",this.email)
+              this.checkcanregs("name",this.username)
               this.show = 2;
             } else {
               this.toast("验证码校验失败，请重新尝试");
@@ -191,7 +192,7 @@ export class RegisterPage extends AppBase {
 
   sendVerifyCode() {
 
-    this.memberApi.checkcanreg({ mobile: this.mobile,name: this.username }).then(ret => {
+    this.memberApi.checkcanreg({ mobile: this.mobile}).then(ret => {
       console.log(ret);
 
       if (ret.code == "0") {
@@ -235,7 +236,7 @@ export class RegisterPage extends AppBase {
   }
 
   sendVerifyCode2(){
-    this.memberApi.checkcanreg({ email: this.email,name: this.username }).then(ret => {
+    this.memberApi.checkcanreg({ email: this.email }).then(ret => {
       console.log(ret);
 
       if (ret.code == "0") {

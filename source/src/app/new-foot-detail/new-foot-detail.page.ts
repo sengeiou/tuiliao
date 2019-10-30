@@ -48,106 +48,70 @@ export class NewFootDetailPage  extends AppBase {
       console.log(query)
       this.id = query.id
       this.new = query.new
-     
-      if(this.new == '是'){
-        this.footdetail = []
-        this.projectApi.footdetail({id: query.id,lang: this.langcode}).then((footdetail:any)=>{
-          console.log(footdetail,'oooo')
-          this.footdetail.push( footdetail)
-  
-          this.footdetail = this.footdetail.filter((item)=>{
-            item.recom_time = this.getchangedate(item.recom_time)
-            console.log(item)
-            if(item.com_date.length>5){
-              item.com_date.splice(5,item.com_date.length-5)
-            }
-
-            for(let i=0;i<item.com_date.length;i++){
-              item.com_date[i].foot_time = this.getchangedatetime(item.com_date[i].foot_time)
-              item.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
-            }
-            return item
-          })
-         this.shouqi(this.id)
-        console.log(this.footdetail)
-        })
-  
-      }else if(this.new == '否' || this.new==""){
-        this.footdetail = []
-
-        this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
-          console.log(footlist,'footlist')
-
-          footlist.filter((item,idx)=>{
-            if(item.isnew !='是'){
-              if(item.id == this.id){
-              this.projectApi.footdetail({id :this.id,lang: this.langcode}).then((footdetail:any)=>{
-                console.log(footdetail,'6666')
-                this.footdetail.push( footdetail)
-        
-                this.footdetail = this.footdetail.filter((item)=>{
-                  item.recom_time = this.getchangedate(item.recom_time)
-                  item.isshow=false
-                  item.show = false
-                  console.log(item)
-                  if(item.com_date.length>5){
-                    item.com_date.splice(5,item.com_date.length-5)
-                  }
-
-                  for(let i=0;i<item.com_date.length;i++){
-                    item.com_date[i].foot_time = this.getchangedatetime(item.com_date[i].foot_time)
-                    item.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
-                    return item.com_date[i].zongresult!='W'
-                  }
-
-                  return item
-                })
-                this.shouqi(this.id)
-
+      this.footdetail = []
+          if(this.new == '是'){
+            // this.footdetail = []
+            this.projectApi.footdetail({id: query.id,lang: this.langcode}).then((footdetail:any)=>{
+              console.log(footdetail,'oooo')
+              this.footdetail.push( footdetail)
       
+              this.footdetail = this.footdetail.filter((item)=>{
+                item.recom_time = this.getchangedate(item.recom_time)
+                console.log(item)
+                if(item.com_date.length>5){
+                  item.com_date.splice(5,item.com_date.length-5)
+                }
+
+                for(let i=0;i<item.com_date.length;i++){
+                  item.com_date[i].foot_time = this.getchangedatetime(item.com_date[i].foot_time)
+                  item.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
+                }
+                return item
               })
-            }else {
-                this.projectApi.footdetail({id :item.id,lang: this.langcode}).then((footdetail:any)=>{
-                  console.log(footdetail,'oooo')
-                  this.footdetail.push( footdetail)
+            this.shouqi(this.id)
+            console.log(this.footdetail)
+            })
+      
+          }else if(this.new == '否'){
+            // this.footdetail = []
+
+            this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
+              console.log(footlist,'footlist')
+
+              footlist.filter((item,idx)=>{
+
+                if(item.isnew=='否'){
+                  this.projectApi.footdetail({id:item.id,lang:this.langcode}).then((footdetail:any)=>{
+                    console.log(footdetail.com_date.length,'length')
+                    footdetail.recom_time = this.getchangedate(item.recom_time)
+                    footdetail.isshow=true
+                    footdetail.show = true
+                    if(footdetail.com_date.length>5){
+                      footdetail.com_date.splice(5,item.com_date.length-5)
+                    }
+
+                    for(let i=0;i<footdetail.com_date.length;i++){
+                        footdetail.com_date[i].foot_time = this.getchangedatetime(item.com_date[i].foot_time)
+                        footdetail.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
+                        
+                      }
+
+                      if(this.id!=footdetail.id){
+                        footdetail.isshow=false
+                        footdetail.show = false
+                      }
+                    
           
-                  this.footdetail = this.footdetail.filter((item)=>{
-                    item.recom_time = this.getchangedate(item.recom_time)
-                    item.isshow=false
-                    item.show = false
-                    console.log(item)
-                    if(item.com_date.length>5){
-                      item.com_date.splice(5,item.com_date.length-5)
-                    }
-
-                    for(let i=0;i<item.com_date.length;i++){
-                      item.com_date[i].foot_time = this.getchangedatetime(item.com_date[i].foot_time)
-                      item.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
-                      return item.com_date[i].zongresult!='W'
-                    }
-
-
-
-                    return item
-
-
+                      this.footdetail.push(footdetail)
                   })
-        
-                })
-
-            }
-            }
-
-           
+                }
               
-          
-            console.log(this.footdetail,'hhhhhhhhhh')
-        })
+            })
 
-       
-        })
-  
-      }
+          
+            })
+      
+          }
      
     })
 
