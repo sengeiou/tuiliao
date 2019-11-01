@@ -3,7 +3,7 @@
         <ion-slides class="lunbo" (swipe)="swipeEvent($event)"
          #slide01  pager loop="true" autoplay="2000"  (ionSlideTouchEnd)= "slideTouchEnd()">
               <ion-slide  *ngFor='let img of imgs'>
-                  <img style="object-fit: fill;width: 100vw"  src="{{uploadpath}}lunbo/{{img.lunbo}}">
+                  <img style="object-fit: fill;width: 100vw"  src="{{uploadpath}}indexbanner/{{img.lunbo}}">
                 </ion-slide>
         </ion-slides>
 
@@ -14,7 +14,7 @@
       </div>
    
 
-  <div *ngFor='let list of recomlist' class="margin-top-30 bor-bot-b" (click)='tiaozhuan(list.id,list.user_id)'>
+  <div *ngFor='let list of recomlist' class="margin-top-30" (click)='tiaozhuan(list.id,list.user_id,list.coincount)'>
     <div class="flex-row">
       <div class="flex-1">
         <img src="{{uploadpath}}member/{{list.member_photo}}" *ngIf='list.member_photo!=""' class="icon-60 radius-50  margin-20">
@@ -42,5 +42,6 @@
       <span class="flex-3">{{list.pub_time_formatting}}</span>
       <span class="flex-1 h4-5 txt-b-14 text-center">{{list.coincount}}{{lang.ballcoin}}</span>
     </div>
+    <div class="bg-gray-8a"></div>
   </div>
 </ion-content>

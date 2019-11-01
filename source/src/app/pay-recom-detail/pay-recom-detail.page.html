@@ -70,16 +70,19 @@
           </div>
       </div>
     </div>
-    <div class="h5 txt-gray-b9 weizhi text-center">{{lang.reccontent2}}</div>
-    <div class="flex-row fixedzhifu">
-      <div class="flex-2 txt-bold">
-        <span>{{lang.needpay}}:</span>
-        <span class="margin-left-20 txt-y-ff ">{{list.coincount}}{{lang.ballcoin}}</span>
-      </div>
-      <div class="flex-1">
-        <button disabled>{{lang.payed}}</button>
+    <div class="fixedzhifucon">
+       <div class="h5 txt-gray-b9 weizhi text-center" *ngIf='coincount!=0'>{{lang.reccontent2}}</div>
+      <div class="flex-row fixedzhifu" *ngIf='coincount!=0'>
+        <div class="flex-2 txt-bold">
+          <span>{{lang.needpay}}:</span>
+          <span class="margin-left-20 txt-y-ff ">{{list.coincount}}{{lang.ballcoin}}</span>
+        </div>
+        <div class="flex-1">
+          <button disabled>{{lang.payed}}</button>
+        </div>
       </div>
     </div>
+   
 </div>
 </div>
 </ion-content>

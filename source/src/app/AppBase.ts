@@ -131,15 +131,17 @@ export class AppBase implements OnInit {
     CheckPermission() {
 
         
-        
+            let day = null
+            let month=null
             let date = new Date();
             let year = date.getFullYear();
-            let month = date.getMonth()+1;
-            let day = date.getDate();
+            month = date.getMonth()+1;
+            day = date.getDate();
             let hh = date.getHours();
             let mm = date.getMinutes(); 
-
-            let nowtime = year + "-" + month +"-"+ day +" "+hh+":"+mm
+            month = month>10?month:('0'+month)
+            day  =  day>10?day:('0'+day)
+            let nowtime = year + "-" + month +"-"+ day+ " "+hh+":"+mm
 
 
         console.log(AppBase.IsLogin,'5555')
@@ -207,6 +209,7 @@ export class AppBase implements OnInit {
                 AppBase.InstInfo = instinfo;
                 this.InstInfo = instinfo;
                 console.log(instinfo);
+                console.log(instinfo.tip1);
                 console.log("aaabbbccc", AppBase.STATICRAND);
                 
             });

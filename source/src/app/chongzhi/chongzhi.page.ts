@@ -43,6 +43,7 @@ export class ChongzhiPage extends AppBase {
   username = ''
   ballnum = 0
   member_id=''
+  ballcoinlist=null
   onMyShow(){
 
     this.memberApi.info({id:this.user_id}).then((memberinfo) => {
@@ -54,23 +55,35 @@ export class ChongzhiPage extends AppBase {
       this.member_id = memberinfo.id
   })
 
-  }
-  paymoney = 300;
-  ballnum2 = 3000;
-  d=false;
-  choose(e){
-    console.log(e)
+  this.centerApi.ballcoinlist({}).then((ballcoinlist)=>{
+      console.log(ballcoinlist)
+      this.ballcoinlist = ballcoinlist.reverse() 
+  })
 
+  }
+  paymoney = 0;
+  ballnum2 = 0;
+  d=false;
+  choose(e,item){
+    console.log(e)
+    console.log(item)
+    
     var current = e.target.parentElement.parentElement
-    current.classList.add('money-active')
-    this.paymoney = e.target.parentElement.childNodes[1].innerText.replace('￥','')
-    this.ballnum2 = Number(e.target.parentElement.childNodes[0].innerText.replace('球币','')) 
-    var others = current.parentElement.childNodes
+    if(current.classList.contains('money')){
+      console.log('ooooo')
+      current.classList.add('money-active')
+    }else {
+      return
+    }
+    
+    this.paymoney = item.money
+    this.ballnum2 = item.ballnum
+    var others = current.parentElement.parentElement.childNodes
     console.log(others)
     console.log(current)
-    for(let i=0;i<others.length; i++){
-      if(current != others[i]){
-        others[i].classList.remove('money-active')
+    for(let i=1;i<others.length; i++){
+      if(current != others[i].childNodes[0]){
+        others[i].childNodes[0].classList.remove('money-active')
       }
     }
 
@@ -99,20 +112,23 @@ export class ChongzhiPage extends AppBase {
   lijizhifu() {
     this.d = false;
 
-    this.ballnum = Number(this.ballnum) + this.ballnum2
+    this.ballnum = Number(this.ballnum) + Number(this.ballnum2)
     console.log(typeof this.ballnum,'222')
     console.log(this.ballnum,'3333')
     console.log( typeof this.ballnum2,'222')
+    console.log( typeof this.paymoney,'3333')
     let date = new Date()
     let year = date.getFullYear()
     let month = date.getMonth() + 1
     let day = date.getDay()
+    let hh = date.getHours()
+    let mm = date.getMinutes()
 
-    let nowtime = year + '-' + month +'-'+day
+    let nowtime = year + '-' + month +'-'+day+" "+hh+":"+mm
 
 
     if(this.paymoney>0){
-      this.centerApi.addintegration({user_id:this.member_id,chongzhi:this.ballnum2,chong_time:nowtime,status: 'A'}).then((addintegration:any)=>{
+      this.centerApi.memberpayment({member_id:this.member_id,chongzhi:this.ballnum2,chong_time:nowtime,status: 'A'}).then((addintegration:any)=>{
         console.log(addintegration)
         if(addintegration.code=='0'){
           this.memberApi.editballnum({id:this.member_id,ballnum: this.ballnum}).then((editballnum:any)=>{

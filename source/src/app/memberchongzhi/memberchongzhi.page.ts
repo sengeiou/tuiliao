@@ -38,29 +38,37 @@ export class MemberchongzhiPage extends AppBase {
   }
 
   endmenbertime=null
+  huiyuanlist = null
   onMyShow(){
 
     this.memberApi.info({id:this.user_id}).then((info)=>{
       this.endmenbertime = info.endmenber_time
     })
     
-
+    this.centerApi.huiyuanlist({}).then((huiyuanlist)=>{
+      this.huiyuanlist = huiyuanlist.reverse()
+    })
   }
 
-  paydate = "包一年"
-  paymoney=998
+  paydate = 0
+  paymoney=0
   d=false
-  choose(e){
+  choose(e,item){
     console.log(e)
 
     var current = e.target.parentElement.parentElement
-    current.classList.add('member-active')
-    this.paydate = e.target.parentElement.childNodes[0].innerText
-    this.paymoney = e.target.parentElement.childNodes[1].innerText.replace('￥','')
+    if(current.classList.contains('member')){
+      console.log('ooooo')
+      current.classList.add('member-active')
+    }else {
+      return
+    }
+    this.paydate = item.days
+    this.paymoney = item.money
     var others = current.parentElement.childNodes
     console.log(others)
     console.log(this.paymoney)
-    for(let i=0;i<others.length; i++){
+    for(let i=1;i<others.length; i++){
       if(current != others[i]){
         others[i].classList.remove('member-active')
       }
@@ -100,72 +108,19 @@ export class MemberchongzhiPage extends AppBase {
   lijizhifu() {
     this.d = false;
 
-    let date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth()+1;
-    let day = date.getDate();
-    let hh = date.getHours();
-    let mm = date.getMinutes();
-
-    console.log(year,month,day,hh,mm)
-
-
-    let days = new Date(year, month, 0).getDate()
-     
-    this.starttime =  year + "-" + month +"-"+ day +" "+hh+":"+mm
-    console.log(this.starttime,'fjfhfhfjh')
+    var date1 = new Date();
+    var date2 = new Date(date1);
+    date2.setDate(date1.getDate() + Number(this.paydate));
+     this.starttime = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate() + " " + date1.getHours() + ":" +date1.getMinutes()
+     this.endtime =  date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() + " " + date2.getHours() + ":" +date2.getMinutes()
 
     if(this.ismember=="是"){
-      console.log(this.endmenbertime,'到期时间')
-      year = Number(this.endmenbertime.slice(0,4)) 
-      month = Number(this.endmenbertime.slice(5,7)) 
-      day = Number(this.endmenbertime.slice(8,10)) 
-      hh= Number(this.endmenbertime.slice(10,13)) 
-      mm= Number(this.endmenbertime.slice(14,16)) 
-    }
-
-    console.log(year,month,day,hh,mm,'啦啦啦啦啦')
-
-    if(this.paydate == "1天") {
-      if(days==day){
-        month = month+1
-        day = 1
-        this.endtime =  year + "-" + month +"-"+ day +" "+hh+":"+mm
-      }else {
-        day = day+1
-        this.endtime =  year + "-" + month +"-"+ day  +" "+hh+":"+mm
-      }
-     
-    }
-
-    if(this.paydate == "7天") {
-      if((days-day)<7){
-        month = month+1
-        day = 7-(days-day)
-        this.endtime =  year + "-" + month +"-"+ day  +" "+hh+":"+mm
-      }else {
-        day = day+7
-        this.endtime =  year + "-" + month +"月-"+ day +" "+hh+":"+mm
-      }
-    
-    }
-
-    if(this.paydate == "30天") {
-      if(month == 12){
-        year = year + 1
-        month = 1
-        this.endtime =  year + "-" + month +"-"+ day  +" "+hh+":"+mm
-      }else {
-        month = month+1
-        this.endtime =  year + "-" + month +"-"+ day  +" "+hh+":"+mm
-      }
       
+      date2.setDate(date2.getDate() + Number(this.paydate));
+      this.endtime =  date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() + " " + date2.getHours() + ":" +date2.getMinutes()
+
     }
 
-    if(this.paydate == "365天") {
-      year = year+1
-      this.endtime =  year + "-" + month +"-"+ day +" "+hh+":"+mm
-    }
 
     console.log(this.starttime)
     console.log(this.endtime)
@@ -175,17 +130,17 @@ export class MemberchongzhiPage extends AppBase {
       console.log(updateismember,'updateismember')
       if(updateismember.code == '0'){
         this.ismember = '是'
-        this.centerApi.addintegration({user_id:this.user_id,startmember_time:this.starttime,endmenber_time:this.endtime,paymember:this.paymoney,status:'A'}).then((addintegration:any)=>{
+        this.centerApi.memberpayment({member_id:this.user_id,payment_time:this.starttime,price:this.paymoney,endtime:this.endtime}).then((addintegration:any)=>{
           console.log(addintegration,'addintegration')
-        })
-
-        this.router.navigate(['paysuccess'],{
-          queryParams: {
-            paydate: this.paydate,
-            paymoney: this.paymoney
+          if(addintegration.code){
+            this.router.navigate(['paysuccess'],{
+              queryParams: {
+                paydate: this.paydate,
+                paymoney: this.paymoney
+              }
+            })
           }
         })
-
       }
       
   })

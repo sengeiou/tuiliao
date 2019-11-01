@@ -52,9 +52,9 @@
            </thead>
            <tbody class="text-center"  *ngFor='let item of integrationlist'>
              <tr class="tbtr h5">
-               <td>{{item.startmember_time}}</td>
-               <td>{{item.endmenber_time}}</td>
-               <td>￥{{item.paymember}}</td>
+               <td>{{getchangedatetime(item.payment_time)}}</td>
+               <td>{{getchangedatetime(item.endtime)}}</td>
+               <td>￥{{item.price}}</td>
              </tr>
            </tbody>
          </table>

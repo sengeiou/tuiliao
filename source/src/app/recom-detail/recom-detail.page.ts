@@ -266,7 +266,7 @@ export class RecomDetailPage extends AppBase {
 
     }else {
 
-      this.centerApi.deletefav({status: 'D',userfav_id:this.member_id,recom_id: list.user_id,rec_id:list.id}).then((deletefav:any)=>{
+      this.centerApi.deletefav({userfav_id:this.member_id,recom_id: list.user_id,rec_id:list.id}).then((deletefav:any)=>{
         console.log(deletefav)
       })
 
@@ -287,7 +287,7 @@ export class RecomDetailPage extends AppBase {
         console.log(addfocus)
       })  
     }else {
-      this.centerApi.cancelfocus({befocus_id: user_id,status: 'D'}).then((cancelfocus:any)=>{
+      this.centerApi.cancelfocus({focus_member_id:this.member_id,befocus_id: user_id}).then((cancelfocus:any)=>{
         console.log(cancelfocus)
       })
     }

@@ -12,13 +12,14 @@
       <div class="yigou" *ngFor='let list of focuslist'>
         <div class="flex-row" *ngFor='let item of list.befocus'>
           <div class="flex-2 text-right"  (click)='focusper(item.user_id)'>
-            <img src="{{uploadpath}}member/{{list.befocus_id_photo}}" class="icon-60 margin-top-20 radius-50" />
+            <img src="{{uploadpath}}member/{{list.befocus_id_photo}}" *ngIf='list.befocus_id_photo!=""' class="icon-60 margin-top-20 radius-50" />
+            <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='list.befocus_id_photo==""' class="icon-60 margin-top-20 radius-50" />
             <img src="{{uploadpath}}resource/{{res.new}}" *ngIf='list.isnew' class="icon-42"/>
           </div>
-          <div class="flex-3 margin-top margin-left-20"  (click)='focusper(item.user_id)'>
+          <div class="flex-4 margin-top margin-left-20"  (click)='focusper(item.user_id)'>
               {{list.befocus_id_name}}
           </div>
-          <div class="flex-3 margin-top-20">
+          <div class="flex-4 margin-top-20">
             <div class="flex-1 text-center " *ngIf='guanzushow' >
               <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
               <span  class="guanzu">{{lang.focus}}</span>
@@ -28,7 +29,7 @@
                 <span  class="quguan">{{lang.notfocus}}</span>
             </div>
               <div class="margin-top-20" (click)='focusper(item.user_id)'>
-                  <span class="h6 txt-gray-d2 margin-right-20">{{lang.recentachi}}</span>
+                  <span class="h6 txt-gray-d2">{{lang.recentachi}}</span>
                   <span class="txt-red-e5 h2 txt-bold">{{item.success_result}}</span>
               </div>
              

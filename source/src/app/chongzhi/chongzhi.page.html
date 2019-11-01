@@ -11,51 +11,30 @@
 
     <div class="qiubi">
       <div class="txt-bold margin-top-30">{{lang.selectamount}}</div>
-      <ul>
-        <li class="money" (click)='choose($event)'>
-          <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">60{{lang.ballcoin}}</div>
-              <div class="flex-2 h5 txt-gray-bf txt-bold">￥6</div>
+      
+      <div>
+          <div  *ngFor='let item of ballcoinlist'>
+              <div  class="money" >
+                  <div class="flex-row" (click)='choose($event,item)'>
+                      <div class="flex-4 h5 margin-left-20 txt-bold">{{item.ballnum}}{{lang.ballcoin}}</div>
+                      <div class="flex-2 h5 txt-gray-bf txt-bold">￥{{item.money}}</div>
+                  </div>
+              </div>
           </div>
-        </li>
-        <li class="money" (click)='choose($event)'>
-          <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">120{{lang.ballcoin}}</div>
-              <div class="flex-2 h5 txt-gray-bf txt-bold">￥12</div>
-          </div>
-        </li>
-        <li class="money" (click)='choose($event)'>
-           <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">300{{lang.ballcoin}}</div>
-              <div class="flex-2 h5 txt-gray-bf txt-bold">￥30</div>
-            </div>
-        </li>
-        <li class="money" (click)='choose($event)'>
-          <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">680{{lang.ballcoin}}</div>
-              <div class="flex-2 h5 txt-gray-bf txt-bold">￥68</div>
-          </div>
-        </li>
-        <li class="money" (click)='choose($event)'>
-          <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">1280{{lang.ballcoin}}</div>
-              <div class="flex-2 h5 txt-gray-bf txt-bold">￥128</div>
-          </div>
-        </li>
-        <li class="money money-active" (click)='choose($event)'>
-            <div class="flex-row">
-              <div class="flex-4 h5 margin-left-20 txt-bold">3000{{lang.ballcoin}}</div>
-              <div class="flex-2 h5 txt-gray-bf txt-bold">￥300</div>
-            </div>
-        </li>
-      </ul>
+      </div>
+      
+     
       
     </div>
     <div class="margin-top-60 margin-left-30">
       <div class="wenxin h6 txt-bold">{{lang.reminder}}：</div>
-      <div class="txt-gray-8a h6 txt-bold">1. {{lang.content1}}</div>
-      <div class="txt-gray-8a h6 txt-bold margin-top-10 margin-bottom-10">2. {{lang.content2}}</div> 
-      <div class="txt-gray-8a h6 txt-bold">3. {{lang.content3}}</div>
+
+
+      <div class="txt-gray-8a h6 txt-bold" style="white-space:pre-wrap">{{InstInfo.tip1}}</div>
+
+      
+      <!-- <div class="txt-gray-8a h6 txt-bold margin-top-10 margin-bottom-10">2. {{lang.content2}}</div> 
+      <div class="txt-gray-8a h6 txt-bold">3. {{lang.content3}}</div> -->
     </div>
 
     <div class="zhifu">

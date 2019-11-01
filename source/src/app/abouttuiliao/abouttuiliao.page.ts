@@ -46,11 +46,15 @@ export class AbouttuiliaoPage extends AppBase {
 
   }
 
-  copy() {
-   
-    this.clipboard.copy(AppBase.aboutemail).then(() => {
-      this.toast("复制成功");
+  copy(email) {
+    console.log(email)
+    this.clipboard.copy(email);
+    this.toast('已复制')
+  }
 
-    });
+  call(tel){
+    console.log(tel)
+    let tel_str = "tel:"+tel;
+    document.location.href=tel_str;
   }
 }

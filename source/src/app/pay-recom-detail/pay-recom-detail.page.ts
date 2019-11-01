@@ -43,11 +43,13 @@ export class PayRecomDetailPage extends AppBase {
   isshow = true
   guanzushow = true
   recommenddetail = []
+  coincount=null
   // user_id = 1
   onMyShow(){
     this.activeRoute.queryParams.subscribe(query=>{
       console.log(query)
       this.id = query.id
+      this.coincount= query.coincount
       this.recommenddetail = []
 
       this.projectApi.recommenddetail({id:this.id,lang: this.langcode}).then((recommenddetail:any)=>{
@@ -122,7 +124,7 @@ export class PayRecomDetailPage extends AppBase {
 
     }else {
 
-      this.centerApi.deletefav({status: 'D',recom_id: list.user_id,userfav_id:this.user_id,rec_id:list.id}).then((deletefav:any)=>{
+      this.centerApi.deletefav({recom_id: list.user_id,userfav_id:this.user_id,rec_id:list.id}).then((deletefav:any)=>{
         console.log(deletefav)
       })
 
@@ -143,7 +145,7 @@ export class PayRecomDetailPage extends AppBase {
         console.log(addfocus)
       })  
     }else {
-      this.centerApi.cancelfocus({befocus_id: user_id,status: 'D'}).then((cancelfocus:any)=>{
+      this.centerApi.cancelfocus({befocus_id: user_id,focus_member_id:this.user_id}).then((cancelfocus:any)=>{
         console.log(cancelfocus)
       })
     }

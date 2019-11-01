@@ -7,11 +7,12 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
+import { CenterApi } from 'src/providers/center.api';
 @Component({
   selector: 'app-myaccount',
   templateUrl: './myaccount.page.html',
   styleUrls: ['./myaccount.page.scss'],
-  providers:[MemberApi,ProjectApi]
+  providers:[MemberApi,ProjectApi,CenterApi]
 })
 export class MyaccountPage extends AppBase {
 
@@ -24,6 +25,7 @@ export class MyaccountPage extends AppBase {
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
+    public centerApi:CenterApi,
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -42,6 +44,7 @@ export class MyaccountPage extends AppBase {
   member_id=''
   integrationlist=null
   c=false
+  memberpaymentlist=null
   onMyShow(){
 
     this.memberApi.info({id:this.user_id}).then((memberinfo) => {
@@ -57,10 +60,19 @@ export class MyaccountPage extends AppBase {
       this.memberApi.integrationlist({user_id: this.user_id}).then((integrationlist:any)=>{
         console.log(integrationlist)
         this.integrationlist = integrationlist.filter(item=>{
-          item.chong_time = this.getchangedatetime(item.chong_time)
           item.pay_time = this.getchangedatetime(item.pay_time)
           return item
         })
+      })
+
+      this.centerApi.memberpaymentlist({member_id:this.user_id}).then((memberpaymentlist)=>{
+        console.log(memberpaymentlist)
+        this.memberpaymentlist = memberpaymentlist.filter(item=>{
+          if(item.chongzhi>0){
+            return item
+          }
+        })
+        console.log(this.memberpaymentlist)
       })
 
     })
@@ -89,20 +101,21 @@ export class MyaccountPage extends AppBase {
     }
     others[0].classList.remove('account-active')
 
-    this.memberApi.integrationlist({user_id: this.user_id}).then((integrationlist:any)=>{
-      console.log(integrationlist,'lkkkk')
-      this.integrationlist = integrationlist.filter(item=>{
-        item.chong_time = this.getchangedatetime(item.chong_time)
-        item.pay_time = this.getchangedatetime(item.pay_time)
+    this.centerApi.memberpaymentlist({member_id:this.user_id}).then((memberpaymentlist)=>{
+      console.log(memberpaymentlist)
+      this.memberpaymentlist = memberpaymentlist.filter(item=>{
         if(item.chongzhi>0){
           return item
         }
       })
+      console.log(this.memberpaymentlist)
     })
+
   }
 
   zhifu(e){
     this.isshow = false
+    this.memberpaymentlist = null
     e.target.parentElement.classList.add('account-active')
     var others = e.target.parentElement.parentElement.childNodes
     console.log(others)

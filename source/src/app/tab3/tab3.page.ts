@@ -106,41 +106,50 @@ export class Tab3Page extends AppBase {
 
   }
 
-  tiaozhuan(itemID,user_id){
-    console.log(itemID,user_id)
-
-    this.centerApi.purchasedlist({recom_id:user_id,pur_id:this.member_id}).then((purchasedlist:any)=>{
-      console.log(purchasedlist)
-      if(purchasedlist.length>0){
-        for(let i=0;i<purchasedlist.length;i++){
-          for(let j=0;j<purchasedlist[i].recom.length;j++){
-            if(purchasedlist[i].recom[j].id == itemID){
-              this.router.navigate(['pay-recom-detail'],{
+  tiaozhuan(itemID,user_id,coincount){
+    console.log(itemID,user_id,coincount)
+    if(coincount>0){
+      this.centerApi.purchasedlist({recom_id:user_id,pur_id:this.member_id}).then((purchasedlist:any)=>{
+        console.log(purchasedlist)
+        if(purchasedlist.length>0){
+          for(let i=0;i<purchasedlist.length;i++){
+            for(let j=0;j<purchasedlist[i].recom.length;j++){
+              if(purchasedlist[i].recom[j].id == itemID){
+                this.router.navigate(['pay-recom-detail'],{
+                  queryParams: {
+                    id: itemID
+                  }
+                })
+             }else {
+              this.router.navigate(['recomdetail'],{
                 queryParams: {
                   id: itemID
                 }
               })
-           }else {
-            this.router.navigate(['recomdetail'],{
-              queryParams: {
-                id: itemID
-              }
-            })
-           }
-        }
-        
-        }
-      }else {
-        this.router.navigate(['recomdetail'],{
-          queryParams: {
-            id: itemID
+             }
           }
-        })
-      }
-     
-
-    })
-
+          
+          }
+        }else {
+          this.router.navigate(['recomdetail'],{
+            queryParams: {
+              id: itemID
+            }
+          })
+        }
+       
+  
+      })
+  
+    }else {
+      this.router.navigate(['pay-recom-detail'],{
+        queryParams: {
+          id: itemID,
+          coincount: coincount
+        }
+      })
+    }
+   
   }
 
  

@@ -58,51 +58,11 @@ export class PaysuccessPage extends AppBase {
       console.log(this.nowtime)
       let days = new Date(year, month, 0).getDate()
       console.log(days)
-      if(query.paydate == "1天") {
-        if(days==day){
-          month = month+1
-          day = 1
-          this.nexttime =  year + "年" + month +"月"+ day + "日"
-        }else {
-          day = day+1
-          this.nexttime =  year + "年" + month +"月"+ day + "日"
-        }
-       
-      }
+      var date2 = new Date(date);
+      date2.setDate(date.getDate() + Number(this.paydate));
+      this.nexttime = date2.getFullYear() + "年" + (date2.getMonth() + 1) + "月" + date2.getDate() +"日"
 
-      if(query.paydate == "7天") {
-        if((days-day)<7){
-          month = month+1
-          day = 7-(days-day)
-          this.nexttime =  year + "年" + month +"月"+ day + "日"
-        }else {
-          day = day+7
-          this.nexttime =  year + "年" + month +"月"+ day + "日"
-        }
-      
-      }
-
-      if(query.paydate == "30天") {
-        if(month == 12){
-          year = year + 1
-          month = 1
-          this.nexttime =  year + "年" + month +"月"+ day + "日"
-        }else {
-          month = month+1
-          this.nexttime =  year + "年" + month +"月"+ day + "日"
-        }
-        
-      }
-
-      if(query.paydate == "365天") {
-        year = year+1
-        this.nexttime =  year + "年" + month +"月"+ day + "日"
-      }
-
-     
-
-    })
-
-  }
+  })
+}
 
 }
