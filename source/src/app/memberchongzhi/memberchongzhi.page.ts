@@ -114,16 +114,29 @@ export class MemberchongzhiPage extends AppBase {
   lijizhifu() {
     this.d = false;
 
-    var date1 = new Date();
-    var date2 = new Date(date1);
-    date2.setDate(date1.getDate() + Number(this.paydate));
-     this.starttime = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate() + " " + date1.getHours() + ":" +date1.getMinutes()
-     this.endtime =  date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() + " " + date2.getHours() + ":" +date2.getMinutes()
-
+   
     if(this.ismember=="是"){
-      
-      date2.setDate(date2.getDate() + Number(this.paydate));
-      this.endtime =  date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() + " " + date2.getHours() + ":" +date2.getMinutes()
+      console.log(this.endmenbertime,'endmenbertime')
+
+      let date3 = new Date(this.endmenbertime)
+      let date4 = new Date(date3)
+      date4.setDate(date3.getDate()+Number(this.paydate))
+
+      console.log(date3.getFullYear() + "-" + (date3.getMonth() + 1) + "-" + date3.getDate() + " " + date3.getHours() +  ":"  +date3.getMinutes() +":"+ date3.getSeconds(),'3333')
+      console.log(date4.getFullYear() + "-" + (date4.getMonth() + 1) + "-" + date4.getDate() + " " + date4.getHours() +  ":"  +date4.getMinutes() +":"+ date4.getSeconds(),'444')
+
+      this.starttime = date3.getFullYear() + "-" + (date3.getMonth() + 1) + "-" + date3.getDate() + " " + date3.getHours() +  ":"  +date3.getMinutes()
+      this.endtime = date4.getFullYear() + "-" + (date4.getMonth() + 1) + "-" + date4.getDate() + " " + date4.getHours() +  ":"  +date4.getMinutes()
+
+    
+    }else {
+
+      var date1 = new Date();
+      var date2 = new Date(date1);
+      date2.setDate(date1.getDate() + Number(this.paydate));
+       this.starttime = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate() + " " + date1.getHours() + ":"  +date1.getMinutes() + date1.getSeconds()
+       this.endtime =  date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() + " " + date2.getHours() + ":" +date2.getMinutes() + date1.getSeconds()
+      console.log(date1,date2,'uuuuu')
 
     }
 
@@ -136,13 +149,20 @@ export class MemberchongzhiPage extends AppBase {
       console.log(updateismember,'updateismember')
       if(updateismember.code == '0'){
         this.ismember = '是'
+
+        this.centerApi.addnotification({user_id: this.user_id,membermoney:this.paymoney,starttime:this.starttime,endtime:this.endtime,status:'A'}).then((addnotification:any)=>{
+          console.log(addnotification)
+        })
+
         this.centerApi.memberpayment({member_id:this.user_id,payment_time:this.starttime,price:this.paymoney,endtime:this.endtime}).then((addintegration:any)=>{
           console.log(addintegration,'addintegration')
           if(addintegration.code){
             this.router.navigate(['paysuccess'],{
               queryParams: {
                 paydate: this.paydate,
-                paymoney: this.paymoney
+                paymoney: this.paymoney,
+                starttime: this.starttime,
+                endtime: this.endtime
               }
             })
           }

@@ -138,6 +138,9 @@ export class ChongzhiPage extends AppBase {
       this.centerApi.memberpayment({member_id:this.member_id,chongzhi:this.ballnum2,chong_time:nowtime,status: 'A'}).then((addintegration:any)=>{
         console.log(addintegration)
         if(addintegration.code=='0'){
+          this.centerApi.addnotification({user_id: this.member_id,chongmoney:this.paymoney,ballcoins:this.ballnum2,status:'A'}).then((addnotification:any)=>{
+            console.log(addnotification)
+          })
           this.memberApi.editballnum({id:this.member_id,ballnum: this.ballnum}).then((editballnum:any)=>{
             console.log(editballnum,'家私电话')
             if(editballnum.code=='0'){

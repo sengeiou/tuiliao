@@ -60,14 +60,17 @@ export class MyaccountPage extends AppBase {
       this.memberApi.integrationlist({user_id: this.user_id}).then((integrationlist:any)=>{
         console.log(integrationlist)
         this.integrationlist = integrationlist.filter(item=>{
-          item.pay_time = this.getchangedatetime(item.pay_time)
-          return item
+          item.pay_time = this.getdatemm(item.pay_time)
+          if((item.yongjin > 0 && item.zhifu==0 )||(item.yongjin==0 && item.zhifu>0) ){
+            return item
+          }
         })
       })
 
       this.centerApi.memberpaymentlist({member_id:this.user_id}).then((memberpaymentlist)=>{
         console.log(memberpaymentlist)
         this.memberpaymentlist = memberpaymentlist.filter(item=>{
+          item.chong_time = this.getdatemm(item.chong_time)
           if(item.chongzhi>0){
             return item
           }
@@ -105,6 +108,7 @@ export class MyaccountPage extends AppBase {
     this.centerApi.memberpaymentlist({member_id:this.user_id}).then((memberpaymentlist)=>{
       console.log(memberpaymentlist)
       this.memberpaymentlist = memberpaymentlist.filter(item=>{
+        item.chong_time = this.getdatemm(item.chong_time)
         if(item.chongzhi>0){
           return item
         }
@@ -127,8 +131,7 @@ export class MyaccountPage extends AppBase {
     this.memberApi.integrationlist({user_id: this.user_id}).then((integrationlist:any)=>{
       console.log(integrationlist)
       this.integrationlist = integrationlist.filter(item=>{
-        item.chong_time = this.getchangedatetime(item.chong_time)
-        item.pay_time = this.getchangedatetime(item.pay_time)
+        item.pay_time = this.getdatemm(item.pay_time)
         if(item.zhifu>0){
           return item
         }

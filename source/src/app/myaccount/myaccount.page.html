@@ -18,8 +18,8 @@
             <div class="txt-white  text-right">{{lang.myaccount}}：{{ballnum}}&nbsp;{{lang.ballcoin}}</div>
           </div>
           <div class="flex-2 text-center">
-              <div class="margin-top"  routerLink='/chongzhi'>
-                <span class="h5 txt-white">{{lang.torecharge}}</span>
+              <div class="margin-top-14"  routerLink='/chongzhi'>
+                <span class="h5 txt-white">{{lang.coinrecharge}}</span>
                 <img src="{{uploadpath}}resource/{{res.arrowright}}" class="icon-15  imgs" />
               </div>
               <div class="">
@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <ul>
+    <ul >
       <li class="flex-row" *ngFor='let list of memberpaymentlist'>
         <div class="flex-5" *ngIf='isshow'>
             <div *ngIf='isshow' class="h5 margin-10">{{lang.recharge}}</div>
@@ -55,27 +55,32 @@
         </div>
         <div class="flex-2 qiubi txt-green-25"> +{{list.chongzhi}}{{lang.ballcoin}}</div>
       </li>
-      <li class="flex-row"  *ngFor='let item of integrationlist'>
-          <div class="flex-5" *ngIf='isshow'>
-              <div *ngIf='isshow' class="h5 margin-10">{{lang.purchaserecommendation}}</div>
-              <div class="h6 txt-gray-8a">{{item.pay_time}}</div>
-          </div>
-          <div class="flex-5" *ngIf='isshow==false'>
-              <div class="h5 qiubi">{{item.pay_time}}</div>
-          </div>
-          <div class="flex-2 qiubi txt-red-e5"> -{{item.zhifu}}{{lang.ballcoin}}</div>
-      </li>
+      <div    *ngFor='let item of integrationlist'>
+        <li class="flex-row" *ngIf='item.zhifu>0'>
+            <div class="flex-5" *ngIf='isshow '>
+                <div *ngIf='isshow' class="h5 margin-10">{{lang.purchaserecommendation}}</div>
+                <div class="h6 txt-gray-8a">{{item.pay_time}}</div>
+            </div>
+            <div class="flex-5" *ngIf='isshow==false'>
+                <div class="h5 qiubi">{{item.pay_time}}</div>
+            </div>
+            <div class="flex-2 qiubi txt-red-e5"> -{{item.zhifu}}{{lang.ballcoin}}</div>
+        </li>
 
-        <li class="flex-row"  *ngFor='let item of integrationlist'>
+        <li class="flex-row" *ngIf='item.yongjin>0'>
+          
             <div class="flex-5" *ngIf='isshow'>
                 <div *ngIf='isshow' class="h5 margin-10">{{lang.commission}}</div>
                 <div class="h6 txt-gray-8a">{{item.yongjin_time}}</div>
             </div>
-            <div class="flex-5" *ngIf='isshow==false'>
+            <div class="flex-5" *ngIf='isshow==false '>
                 <div class="h5 qiubi">{{item.yongjin_time}}</div>
             </div>
             <div class="flex-2 qiubi txt-green-25"> +{{item.yongjin}}{{lang.ballcoin}}</div>
-          </li>
+      
+        </li>
+      </div>
+        
     </ul>
 
   </div>

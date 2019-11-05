@@ -198,6 +198,11 @@ export class RecomDetailPage extends AppBase {
         console.log(addintegration)
         if(addintegration.code == '0'){
 
+          this.centerApi.addnotification({user_id: this.user_id,paycoins:this.payinfo.money,recom_user:this.payinfo.user_id,rec_id:  this.id,status:'A'}).then((addnotification:any)=>{
+            console.log(addnotification,'addnotification')
+          })
+  
+
           this.centerApi.addpurchase({pur_id:this.member_id,status: 'A',recom_id: this.payinfo.user_id,rec_id:this.list_id}).then((addpurchase:any)=>{
             console.log(addpurchase)
             if(addpurchase.code == '0'){
