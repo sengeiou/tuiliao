@@ -4,7 +4,7 @@
 
 .member{
     width: rpx(690);
-    height: rpx(134);
+    // height: rpx(134);
     border: rpx(2) solid #F0F2F5;
     line-height: rpx(134);
     margin: rpx(40) auto;
@@ -17,10 +17,12 @@
 
 
 .zhifu {
-    position: fixed;
-    bottom: 10%;
+    // position: fixed;
+    // bottom: 6%;
     width: 100vw;
     text-align: center;
+    margin-top: rpx(100);
+    margin-bottom: rpx(30);
     .btn {
         width: rpx(690);
         height: rpx(80);

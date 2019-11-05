@@ -1,12 +1,11 @@
-<ion-header>
+<!-- <ion-header>
     <div class="login f18">
       {{lang.login}}
     </div>
-  </ion-header>
+  </ion-header> -->
 
-<ion-content>
-<div >
-
+<ion-content [style.background-image]="'url('+uploadpath+'resource/'+res.loginbackground+')'" style="background-size: 100vw 100vh;">
+<div>
   <!-- <div class="icon-40" (click)="back()" style="z-index: 100;">
     <div class="height-50"></div>
     <img [src]="uploadpath+'resource/'+res.back" class="icon-20 margin-left-40 margin-top-10">
@@ -85,7 +84,7 @@
         <div class="margin-top-25 margin-bottom50 ">
           <div class="flex-row flex-center">
             <div class='flex-1 txt-gray'></div>
-            <div class="h5  op flex-4" (click)="navigate('forgetpassword')">{{lang.forgetpwd}}</div>
+            <div class="h5  op flex-4" (click)='forgetpwd()'>{{lang.forgetpwd}}</div>
           </div>
         </div>
   

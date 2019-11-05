@@ -47,19 +47,26 @@ export class ChongzhiPage extends AppBase {
   onMyShow(){
 
     this.memberApi.info({id:this.user_id}).then((memberinfo) => {
-      console.log(memberinfo,'4165456')
-      this.ismember = memberinfo.ismember
-      this.photo = memberinfo.photo
-      this.username = memberinfo.name
-      this.ballnum = memberinfo.ballnum
-      this.member_id = memberinfo.id
-  })
+        console.log(memberinfo,'4165456')
+        this.ismember = memberinfo.ismember
+        this.photo = memberinfo.photo
+        this.username = memberinfo.name
+        this.ballnum = memberinfo.ballnum
+        this.member_id = memberinfo.id
+    })
 
-  this.centerApi.ballcoinlist({}).then((ballcoinlist)=>{
-      console.log(ballcoinlist)
-      this.ballcoinlist = ballcoinlist.reverse() 
-  })
+    this.centerApi.ballcoinlist({}).then((ballcoinlist)=>{
+        console.log(ballcoinlist)
+        this.ballcoinlist = ballcoinlist.sort(this.compare("seq"))
+        
+    })
 
+
+  }
+  compare(pro){
+    return function(a,b){
+      return a[pro]-b[pro]
+    }
   }
   paymoney = 0;
   ballnum2 = 0;
@@ -78,12 +85,12 @@ export class ChongzhiPage extends AppBase {
     
     this.paymoney = item.money
     this.ballnum2 = item.ballnum
-    var others = current.parentElement.parentElement.childNodes
+    var others = current.parentElement.childNodes
     console.log(others)
     console.log(current)
-    for(let i=1;i<others.length; i++){
-      if(current != others[i].childNodes[0]){
-        others[i].childNodes[0].classList.remove('money-active')
+    for(let i=2;i<others.length-1; i++){
+      if(current != others[i]){
+        others[i].classList.remove('money-active')
       }
     }
 

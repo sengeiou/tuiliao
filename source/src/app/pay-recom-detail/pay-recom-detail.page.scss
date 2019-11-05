@@ -155,8 +155,9 @@
   width: 100vw;
   height: rpx(104);
   background: #fff;
-  position: fixed;
-  bottom: 5%;
+  margin-top: rpx(20);
+  // position: fixed;
+  // bottom: 0%;
   div {
     line-height: rpx(104);
     margin-left: rpx(40);
@@ -174,14 +175,15 @@
   width: 100vw;
   height: 12%;
   position: fixed;
-  bottom: 5%;
+  bottom: -2%;
 }
 
 
 .weizhi {
   width: 100vw;
-  position: fixed;
-  bottom: 14%;
+  
+  // position: fixed;
+  // bottom: 14%;
   
 }
 

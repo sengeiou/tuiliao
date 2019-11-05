@@ -9,8 +9,8 @@
   }
   .qiubi {
     width: 100vw;
-    height: rpx(626);
-    background: #fff;
+    // height: 100%;
+   
     padding-left: rpx(20);
     .money {
         width: rpx(340);
@@ -20,6 +20,7 @@
         line-height: rpx(134);
         float: left;
         border-radius: rpx(10);
+        background: #fff !important;
 
     }
   }
@@ -32,6 +33,10 @@
       color: #BFBFBF;
       
   }
+  .h40 {
+    background: #fff;
+    height: rpx(40);
+  }
 
   .wenxin{
       width: rpx(132);
@@ -43,10 +48,11 @@
   }
 
   .zhifu {
-      position: fixed;
-      bottom: 10%;
+      // position: fixed;
+      // bottom: 6%;
       width: 100vw;
       text-align: center;
+      margin-top: rpx(100);
       .btn {
           width: rpx(690);
           height: rpx(80);

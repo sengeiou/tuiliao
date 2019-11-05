@@ -9,36 +9,31 @@
 <ion-content>
   <div class="bg-gray-f0">
 
-    <div class="qiubi">
+    <div class="qiubi bg-white margin-bottom-60">
       <div class="txt-bold margin-top-30">{{lang.selectamount}}</div>
       
-      <div>
-          <div  *ngFor='let item of ballcoinlist'>
-              <div  class="money" >
-                  <div class="flex-row" (click)='choose($event,item)'>
-                      <div class="flex-4 h5 margin-left-20 txt-bold">{{item.ballnum}}{{lang.ballcoin}}</div>
-                      <div class="flex-2 h5 txt-gray-bf txt-bold">￥{{item.money}}</div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      
-     
+        <div  class="money"  *ngFor='let item of ballcoinlist'>
+            <div class="flex-row" (click)='choose($event,item)'>
+                <div class="flex-4 h5 margin-left-20 txt-bold">{{item.ballnum}}{{lang.ballcoin}}</div>
+                <div class="flex-2 h5 txt-gray-bf txt-bold">￥{{item.money}}</div>
+            </div>
+        </div>
+
+     <div class="h40" style="clear: both;"></div>
       
     </div>
+
+
     <div class="margin-top-60 margin-left-30">
       <div class="wenxin h6 txt-bold">{{lang.reminder}}：</div>
 
 
       <div class="txt-gray-8a h6 txt-bold" style="white-space:pre-wrap">{{InstInfo.tip1}}</div>
 
-      
-      <!-- <div class="txt-gray-8a h6 txt-bold margin-top-10 margin-bottom-10">2. {{lang.content2}}</div> 
-      <div class="txt-gray-8a h6 txt-bold">3. {{lang.content3}}</div> -->
     </div>
 
     <div class="zhifu">
-      <div class="h5 txt-bold">{{lang.agreed}}<span class="txt-blue-14">《{{lang.protocol}}》</span></div>
+      <div class="h5 txt-bold">{{lang.agreed}}<span class="txt-blue-14" routerLink='/agreement'>《{{lang.protocol}}》</span></div>
       <button class="btn txt-bold" (click)='pay()'>{{lang.payment}}</button>
     </div>
   </div>

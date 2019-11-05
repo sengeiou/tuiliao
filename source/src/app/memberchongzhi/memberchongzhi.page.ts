@@ -46,8 +46,14 @@ export class MemberchongzhiPage extends AppBase {
     })
     
     this.centerApi.huiyuanlist({}).then((huiyuanlist)=>{
-      this.huiyuanlist = huiyuanlist.reverse()
+      this.huiyuanlist = huiyuanlist.sort(this.compare("seq"))
     })
+  }
+
+  compare(pro){
+    return function(a,b){
+      return a[pro]-b[pro]
+    }
   }
 
   paydate = 0

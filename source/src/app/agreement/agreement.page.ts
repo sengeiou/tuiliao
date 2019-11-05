@@ -7,16 +7,14 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
-import { CenterApi } from 'src/providers/center.api';
-
 
 @Component({
-  selector: 'app-fankui',
-  templateUrl: './fankui.page.html',
-  styleUrls: ['./fankui.page.scss'],
-  providers:[MemberApi,ProjectApi,CenterApi]
+  selector: 'app-agreement',
+  templateUrl: './agreement.page.html',
+  styleUrls: ['./agreement.page.scss'],
+  providers:[MemberApi,ProjectApi]
 })
-export class FankuiPage extends AppBase {
+export class AgreementPage extends AppBase {
 
   constructor(public router: Router,
     public navCtrl: NavController,
@@ -27,7 +25,6 @@ export class FankuiPage extends AppBase {
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
-    public centerApi:CenterApi,
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -44,22 +41,5 @@ export class FankuiPage extends AppBase {
 
     
 
-  }
-  content = ''
-  send(){
-    let date = new Date()
-    let feedbacktime = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
-    console.log(feedbacktime)
-
-    if(this.content!=""){
-      this.centerApi.savefankui({user_id: this.user_id,content: this.content,fee_time: feedbacktime,status: 'A'}).then((savefankui:any)=>{
-        console.log(savefankui)
-        if(savefankui.code == '0'){
-          this.content = ''
-          this.toast("留言成功");
-        }
-      })
-    }
-    
   }
 }

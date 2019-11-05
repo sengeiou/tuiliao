@@ -156,15 +156,16 @@
   width: 100vw;
   height: 12%;
   position: fixed;
-  bottom: 5%;
+  bottom: -2%;
 }
 
 .fixedzhifu {
   width: 100vw;
   height: rpx(104);
   background: #fff;
-  position: fixed;
-  bottom: 5%;
+  // position: fixed;
+  // bottom: 0%;
+  margin-top: rpx(20);
   div {
     line-height: rpx(104);
     margin-left: rpx(40);

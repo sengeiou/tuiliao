@@ -67,4 +67,17 @@ export class LoginPage extends AppBase {
     this.navigate("/register");
   }
 
+  forgetpwd(){
+    this.confirm("拨打客服电话",(ret)=>{
+      if(ret){
+        console.log('hhhhh')
+        this.call(this.InstInfo.customerservicemobile)
+      }
+    })
+  }
+  call(tel){
+    console.log(tel)
+    let tel_str = "tel:"+tel;
+    document.location.href=tel_str;
+  }
 }

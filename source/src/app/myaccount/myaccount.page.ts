@@ -92,6 +92,7 @@ export class MyaccountPage extends AppBase {
   } 
 
   chongzhi(e){
+    this.integrationlist=null
     this.isshow = false
     e.target.parentElement.classList.add('account-active')
     var others = e.target.parentElement.parentElement.childNodes
