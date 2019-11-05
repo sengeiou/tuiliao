@@ -26,8 +26,8 @@
             <img  src="{{uploadpath}}resource/{{res.message}}" class="icon-25"/>
           </div>
           <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='list.ballcoins>0'>通知：您已充值{{list.ballcoins}}，花了{{list.chongmoney}}元。</div>
-          <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='list.paycoins>0'>通知：您已购买了{{list.recommend_user_id}}的推介，花了{{list.paycoins}}球币。</div>
-          <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='list.membermoney>0'>通知：您已充值会员，从{{list.starttime_dateformat}}到{{list.endtime_dateformat}}，花了{{list.membermoney}}元。</div>
+          <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='list.paycoins>0'>{{lang.noti1}}{{list.recommend_user_id}}的推介，花了{{list.paycoins}}{{lang.ballcoin}}。</div>
+          <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='list.membermoney>0'>{{lang.noti2}}{{list.starttime_dateformat}}到{{list.endtime_dateformat}}，花了{{list.membermoney}}元。</div>
         </div>
         <div class="time text-right h6 margin-right-20">{{list.updated_date}}</div>
       </div>
