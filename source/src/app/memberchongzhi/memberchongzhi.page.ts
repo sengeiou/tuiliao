@@ -154,7 +154,7 @@ export class MemberchongzhiPage extends AppBase {
           console.log(addnotification)
         })
 
-        this.centerApi.memberpayment({member_id:this.user_id,payment_time:this.starttime,price:this.paymoney,endtime:this.endtime}).then((addintegration:any)=>{
+        this.centerApi.addmemberrecord({member_id:this.user_id,payment_time:this.starttime,price:this.paymoney,endtime:this.endtime}).then((addintegration:any)=>{
           console.log(addintegration,'addintegration')
           if(addintegration.code){
             this.router.navigate(['paysuccess'],{

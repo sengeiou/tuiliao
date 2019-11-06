@@ -53,7 +53,7 @@ export class MembersPage extends AppBase {
       this.endtime = this.getdatech(memberinfo.endmenber_time)
   })
   // console.log(this.photo)
-    this.centerApi.memberpaymentlist({member_id:this.user_id}).then((integrationlist:any)=>{
+    this.centerApi.memberrecordlist({member_id:this.user_id}).then((integrationlist:any)=>{
         console.log(integrationlist,'integrationlist')
         this.integrationlist = integrationlist.filter(item=>{
           if(item.price>0){

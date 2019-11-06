@@ -45,6 +45,7 @@ export class MyaccountPage extends AppBase {
   integrationlist=null
   c=false
   memberpaymentlist=null
+  commissionlist=null
   onMyShow(){
 
     this.memberApi.info({id:this.user_id}).then((memberinfo) => {
@@ -61,10 +62,9 @@ export class MyaccountPage extends AppBase {
         console.log(integrationlist)
         this.integrationlist = integrationlist.filter(item=>{
           item.pay_time = this.getdatemm(item.pay_time)
-          if((item.yongjin > 0 && item.zhifu==0 )||(item.yongjin==0 && item.zhifu>0) ){
             return item
-          }
         })
+        console.log(this.integrationlist,'ppp')
       })
 
       this.centerApi.memberpaymentlist({member_id:this.user_id}).then((memberpaymentlist)=>{
@@ -77,6 +77,16 @@ export class MyaccountPage extends AppBase {
         })
         console.log(this.memberpaymentlist)
       })
+
+      this.centerApi.commissionlist({user_id:this.user_id}).then((commissionlist)=>{
+        console.log(commissionlist)
+        this.commissionlist = commissionlist.filter(item=>{
+          item.yongjin_time = this.getdatemm(item.yongjin_time)
+            return item
+        })
+        console.log(this.commissionlist)
+      })
+
 
     })
   }

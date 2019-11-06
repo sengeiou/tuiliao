@@ -23,7 +23,7 @@
     <div class="msg" *ngFor='let list of notificationlist' (click)='detail(list)'>
         <div class="content flex-row">
           <div class="flex-1 text-center margin-top-10">
-            <img  src="{{uploadpath}}resource/{{res.message}}" class="icon-25"/>
+            <img  src="{{uploadpath}}resource/{{res.tongzhi}}" class="icon-25"/>
           </div>
           <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='list.ballcoins>0'>通知：您已充值{{list.ballcoins}}，花了{{list.chongmoney}}元。</div>
           <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='list.paycoins>0'>{{lang.noti1}}{{list.recommend_user_id}}的推介，花了{{list.paycoins}}{{lang.ballcoin}}。</div>

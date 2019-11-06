@@ -64,15 +64,39 @@ export class RegisterPage extends AppBase {
   c4 = "";
 
   memberlist=null
+  areacodelist=null
+  areacode="+852"
   onMyShow(){
 
       this.memberApi.memberlist({}).then((memberlist:any)=>{
         console.log(memberlist)
         this.memberlist = memberlist
       })
+
+      this.centerApi.areacodelist({}).then((areacodelist)=>{
+        console.log(areacodelist)
+        this.areacodelist = areacodelist.sort(this.compare("seq"))
+      })
     
 
   }
+
+  compare(pro){
+    return function(a,b){
+      return a[pro]-b[pro]
+    }
+  }
+
+  checkcode(arr,str){
+    for(let item of arr){
+      if(item.mycode==str){
+        return true
+      }
+    }
+    return false
+  }
+
+
 
   xiayibu(){
     if(this.username!=""){
@@ -81,7 +105,32 @@ export class RegisterPage extends AppBase {
      if(this.password.length>=6){
         if(this.mobile!=""){
           
+          if(this.code!=""){
+            if(this.checkcode(this.memberlist,this.code)){
 
+              var verifycode =this.yanzhenma;
+              this.aliyunApi.verifycode({
+                  mobile: this.mobile,
+                  verifycode,
+                  type: "register"
+                }).then(ret => {
+                  console.log(ret,'ret')
+                if (ret.code == 0) {
+          
+                  // this.checkcanregs("mobile",this.mobile)
+                  this.checkcanregs("name",this.username)
+                  this.show = 2;
+                } else {
+                  this.toast("验证码校验失败，请重新尝试");
+                }
+              });
+  
+
+            }else {
+              this.toast("推广码输入错误！请重新输入")
+              return
+            }
+          }else {
             var verifycode =this.yanzhenma;
             this.aliyunApi.verifycode({
                 mobile: this.mobile,
@@ -98,28 +147,53 @@ export class RegisterPage extends AppBase {
                 this.toast("验证码校验失败，请重新尝试");
               }
             });
-
-         
+          }
 
           
         }
         if(this.email!=""){
 
-          var verifycode =this.yanzhenma2;
-          this.aliyunApi.emailverifycodes({
-              email: this.email,
-              verifycode,
-              type: "register"
-            }).then(ret => {
-              console.log(ret,'ret')
-            if (ret.code == 0) {
-              // this.checkcanregs("email",this.email)
-              this.checkcanregs("name",this.username)
-              this.show = 2;
-            } else {
-              this.toast("验证码校验失败，请重新尝试");
+          if(this.code!=""){
+            if(this.checkcode(this.memberlist,this.code)){
+
+              var verifycode =this.yanzhenma2;
+              this.aliyunApi.emailverifycodes({
+                  email: this.email,
+                  verifycode,
+                  type: "register"
+                }).then(ret => {
+                  console.log(ret,'ret')
+                if (ret.code == 0) {
+                  // this.checkcanregs("email",this.email)
+                  this.checkcanregs("name",this.username)
+                  this.show = 2;
+                } else {
+                  this.toast("验证码校验失败，请重新尝试");
+                }
+              });
+
+            }else {
+              this.toast("推广码输入错误！请重新输入")
+              return
             }
-          });
+          }else {
+            var verifycode =this.yanzhenma2;
+            this.aliyunApi.emailverifycodes({
+                email: this.email,
+                verifycode,
+                type: "register"
+              }).then(ret => {
+                console.log(ret,'ret')
+              if (ret.code == 0) {
+                // this.checkcanregs("email",this.email)
+                this.checkcanregs("name",this.username)
+                this.show = 2;
+              } else {
+                this.toast("验证码校验失败，请重新尝试");
+              }
+            });
+          }
+
         }
      }else {
        this.toast("密码少于6位，请重新输入密码")
@@ -189,6 +263,23 @@ export class RegisterPage extends AppBase {
 
   }
 
+  changcode(){
+    console.log()
+    console.log(this.areacode,'aaa')
+    if(this.areacode=="+852"){
+     
+      return  /^(5|6|8|9)\d{7}$/
+     
+    }else if(this.areacode == "+86") {
+      
+     return  /^[1][3-8]\d{9}$/
+
+    }else if(this.areacode == "+853"){
+     
+      return /^[6]([8|6])\d{5}/
+
+    }
+   }
 
   sendVerifyCode() {
 
@@ -197,7 +288,10 @@ export class RegisterPage extends AppBase {
 
       if (ret.code == "0") {
         // this.inverify = true;
-        let reg =/^(13[0-9]\d{8}|15[0-35-9]\d{8}|18[0-9]\{8}|14[57]\d{8})$/
+        console.log(5555)
+        var reg = this.changcode()
+        console.log(reg,'reg')
+        
           if(reg.test(this.mobile)){
 
             this.aliyunApi.phoneverifycode({

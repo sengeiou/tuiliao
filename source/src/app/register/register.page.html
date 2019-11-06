@@ -43,8 +43,12 @@
         <div class="" *ngIf='istelzhuce'>
             <div class="txt-bold">{{lang.editingphone}}</div>
             <div class="flex-1 flex-row flex-center padding-bottom-10" style="border-bottom:1px solid #D6D7D9">
-                <div class="h5">+86</div>
-                <img [src]="uploadpath+'resource/'+res.bottom_b" class=" icon-20 margin-left-20">
+                <div class="h5">
+                  <select style="outline: none;border: none;background: transparent;" [(ngModel)]="areacode" name="areacode" (ngModelChange)="changcode()">
+                    <option *ngFor='let code of areacodelist;let i=index'  #areacode >{{code.areacode}}</option>
+                  </select>
+                </div>
+                <!-- <img [src]="uploadpath+'resource/'+res.bottom_b" class=" icon-20 margin-left-20"> -->
                 <ion-input [disabled]="inverify==true" class="h5 margin-left-20" placeholder="{{lang.enterphone}}" type="tel"
                   [(ngModel)]="mobile" maxlength='11'></ion-input>
             </div>
@@ -107,7 +111,7 @@
 
               <div class=" " *ngIf="inverify==false" >
 
-                <button  size="block" type="danger" class="bg-zhuce txt-bold txt-white f13" (click)="xiayibu()">{{lang.register}}
+                <button  size="block" type="danger" style="outline: none;" class="bg-zhuce txt-bold txt-white f13" (click)="xiayibu()">{{lang.register}}
                 </button>
 
               </div>

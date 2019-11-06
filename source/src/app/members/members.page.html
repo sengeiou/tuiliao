@@ -24,11 +24,11 @@
                 <div *ngIf='ismember=="否"' class=" h6">{{lang.notmember}}</div>
                 <div *ngIf='ismember=="是"' class="txt-yellow-c6 h6">{{lang.ismember}}</div>
               </div>
-              <div  *ngIf='ismember=="否"' class="flex-3 margin-top-80 text-center txt-yellow-c6 " routerLink='/memberchongzhi'>
+              <div  *ngIf='ismember=="否"' class="flex-3 margin-top-80 text-center txt-yellow-c6 " routerLink='/memberchongzhi' style="outline: none;">
                 <span class="h6"> {{lang.applymember}}</span>
                 <img src="{{uploadpath}}resource/{{res.C6arrow}}" class="icon-15 imgs" />
               </div>
-              <div *ngIf='ismember=="是"' class="flex-3 margin-top-80 text-center txt-yellow-c6" routerLink='/memberchongzhi'>
+              <div *ngIf='ismember=="是"' class="flex-3 margin-top-80 text-center txt-yellow-c6" routerLink='/memberchongzhi' style="outline: none;">
                 <span class="h6">{{lang.applyrenewal}}</span>
                 <img src="{{uploadpath}}resource/{{res.C6arrow}}" class="icon-15 imgs" />
                

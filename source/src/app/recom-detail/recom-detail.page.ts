@@ -185,7 +185,7 @@ export class RecomDetailPage extends AppBase {
           for(let i=0;i<memberlist.length;i++){
             if(memberlist[i].mycode == this.code){
               console.log(memberlist[i].mycode,'mycode')
-              this.centerApi.addintegration({user_id:memberlist[i].id,yongjin:yongjin,yongjin_name:this.username,yongjin_time:nowtime,status: 'A'}).then((addintegration:any)=>{
+              this.centerApi.addcommission({user_id:memberlist[i].id,yongjin:yongjin,yongjin_name:this.username,yongjin_time:nowtime,status: 'A'}).then((addintegration:any)=>{
                 console.log(addintegration,'8989898989898')
               })
             }

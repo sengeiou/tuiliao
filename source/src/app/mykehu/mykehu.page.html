@@ -13,7 +13,11 @@
          <img src="{{uploadpath}}resource/{{res.erweima}}" class="icon-20"/>
           <span class="margin-left-20 h5 txt-bold">{{lang.mycode}}</span>
         </div>
-        <div class="flex-2 text-center h5 txt-bold">{{mycode}}</div>
+        <div class="flex-2 text-center h5 txt-bold">
+            <span>{{mycode}}</span>
+            <img (click)='copy(mycode)' src="{{uploadpath}}resource/{{res.copy}}" class="icon-20 margin-left-10" />
+        </div>
+        
       </div>
 
       <div class="">

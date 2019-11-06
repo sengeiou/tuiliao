@@ -62,12 +62,19 @@ export class ChongzhiPage extends AppBase {
     })
 
 
+  
   }
+
+
+ 
+
   compare(pro){
     return function(a,b){
       return a[pro]-b[pro]
     }
   }
+
+
   paymoney = 0;
   ballnum2 = 0;
   d=false;
@@ -135,7 +142,7 @@ export class ChongzhiPage extends AppBase {
 
 
     if(this.paymoney>0){
-      this.centerApi.memberpayment({member_id:this.member_id,chongzhi:this.ballnum2,chong_time:nowtime,status: 'A'}).then((addintegration:any)=>{
+      this.centerApi.memberpayment({member_id:this.member_id,chongzhi:this.ballnum2,chong_time:nowtime,money:this.paymoney,status: 'A'}).then((addintegration:any)=>{
         console.log(addintegration)
         if(addintegration.code=='0'){
           this.centerApi.addnotification({user_id: this.member_id,chongmoney:this.paymoney,ballcoins:this.ballnum2,status:'A'}).then((addnotification:any)=>{

@@ -57,7 +57,7 @@ export class MessagePage extends AppBase {
         item.updated_date = this.getdate(item.updated_date)
         return item
       })
-
+      this.messagelist =  this.messagelist.sort(this.compare("updated_date"))
     })
 
     this.centerApi.notificationlist({user_id:this.user_id}).then((notificationlist)=>{
@@ -73,9 +73,18 @@ export class MessagePage extends AppBase {
         }
         return item
       })
+      this.notificationlist = this.notificationlist.sort(this.compare("updated_date"))
     })
 
   }
+
+  compare(pro){
+    return function(a,b){
+      return a[pro]-b[pro]
+    }
+  }
+
+
   detail(item){
     console.log(item)
     if(item.mokuai_name=="赛马"){

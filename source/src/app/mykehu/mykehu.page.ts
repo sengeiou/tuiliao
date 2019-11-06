@@ -7,13 +7,15 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
+import { Clipboard } from '@ionic-native/clipboard/ngx';
+import { CenterApi } from 'src/providers/center.api';
 
 
 @Component({
   selector: 'app-mykehu',
   templateUrl: './mykehu.page.html',
   styleUrls: ['./mykehu.page.scss'],
-  providers:[MemberApi,ProjectApi]
+  providers:[MemberApi,ProjectApi,Clipboard,CenterApi]
 })
 export class MykehuPage extends AppBase {
 
@@ -26,6 +28,8 @@ export class MykehuPage extends AppBase {
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
+    private clipboard: Clipboard,
+    private centerApi: CenterApi,
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -55,26 +59,33 @@ export class MykehuPage extends AppBase {
      this.mycode = memberinfo.mycode
      this.member_id = memberinfo.id
 
-     this.memberApi.integrationlist({user_id: this.member_id}).then((integrationlist:any)=>{
+     this.centerApi.commissionlist({user_id: this.member_id}).then((integrationlist:any)=>{
       console.log(integrationlist)
-      this.integrationlist = integrationlist.filter(item=>{
-        item.chong_time = this.getchangedatetime(item.chong_time)
-        item.pay_time = this.getchangedatetime(item.pay_time)
-        if(this.langcode=='tc'){
-          item.yongjin_name = this.Traditionalized(item.yongjin_name)
-        }else if(this.langcode=='sc'){
-          item.yongjin_name = this.Simplized(item.yongjin_name)
-        }
-        if(item.yongjin!=0){
-          console.log(item,'oooo')
-          return item
-        }
-      })
-      console.log(this.integrationlist,'111')
+      if(integrationlist){
+        this.integrationlist = integrationlist.filter(item=>{
+          // item.chong_time = this.getchangedatetime(item.chong_time)
+          item.yongjin_time = this.getchangedatetime(item.yongjin_time)
+          if(this.langcode=='tc'){
+            item.yongjin_name = this.Traditionalized(item.yongjin_name)
+          }else if(this.langcode=='sc'){
+            item.yongjin_name = this.Simplized(item.yongjin_name)
+          }
+          
+            return item
+        
+        })
+        console.log(this.integrationlist,'111')
+      }
+     
 
     })
 
  })
 
+ }
+
+ copy(mycode){
+  this.clipboard.copy(mycode);
+  this.toast('已复制')
  }
 }
