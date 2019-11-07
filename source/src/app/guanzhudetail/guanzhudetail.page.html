@@ -21,11 +21,11 @@
             <span class="h6 winningnum">{{winningnum}}</span>
           </div>
           <div class="flex-3">
-            <div class="flex-1 text-center " *ngIf='guanzushow' (click)='guanzu(list)'>
+            <div class="flex-1 text-center " *ngIf='guanzushow' (click)='guanzu(member_id)'>
               <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
               <span  class="guanzu">{{lang.focus}}</span>
             </div>
-            <div class="flex-1 text-center " *ngIf='guanzushow==false' (click)='guanzu(list)'>
+            <div class="flex-1 text-center " *ngIf='guanzushow==false' (click)='guanzu(member_id)'>
                 <img src="{{uploadpath}}resource/{{res.jian}}" class="jian"/>
                 <span  class="quguan">{{lang.notfocus}}</span>
             </div>

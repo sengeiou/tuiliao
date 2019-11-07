@@ -48,7 +48,7 @@ export class GuanzhuPage extends AppBase {
       if(focuslist.length!=0){
           this.focuslist = focuslist.filter(item=>{
             console.log(item.befocus.length,'item.befocus.length')
-    
+            
             this.memberApi.info({id:item.befocus_id}).then((info)=>{
               console.log(info,'info')
     
@@ -70,7 +70,7 @@ export class GuanzhuPage extends AppBase {
                 }
               }
           })
-    
+             item.guanzushow = false
             if(item.befocus.length>1){
               item.befocus.splice(0,item.befocus.length-1)
               return item
@@ -85,18 +85,36 @@ export class GuanzhuPage extends AppBase {
 
   }
 
-  guanzushow = false
+  // guanzushow = false
   guanzu(item){
-
     console.log(item)
-
-    this.centerApi.cancelfocus({befocus_id: item.befocus_id,status: 'D'}).then((cancelfocus:any)=>{
-      if(cancelfocus.code == '0'){
-        // this.guanzushow = !this.guanzushow
-        this.onMyShow()
-      }
-    })
-
+ 
+    if(item.guanzushow == true) {
+      this.centerApi.addfocus({befocus_id: item.befocus_id, status: 'A',focus_member_id:this.user_id}).then((addfocus:any)=>{
+        console.log(addfocus)
+        if(addfocus.code=='0'){
+          this.focuslist = this.focuslist.filter(list=>{
+            if(list.id == item.id){
+              list.guanzushow = false
+            }
+            return list
+          })
+        }
+      })  
+    }else {
+      this.centerApi.cancelfocus({focus_member_id:this.user_id,befocus_id: item.befocus_id}).then((cancelfocus:any)=>{
+        console.log(cancelfocus)
+        if(cancelfocus.code=='0'){
+          this.focuslist = this.focuslist.filter(list=>{
+            if(list.id == item.id){
+              list.guanzushow = true
+            }
+            return list
+          })
+        }
+      })
+    }
+   
   }
 
   focusper(itemId){

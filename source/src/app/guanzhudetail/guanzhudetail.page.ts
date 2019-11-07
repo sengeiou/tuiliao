@@ -85,13 +85,14 @@ export class GuanzhudetailPage extends AppBase {
     console.log(user_id)
  
     if(this.guanzushow == true) {
-      this.centerApi.addfocus({befocus_id: user_id, status: 'A',focus_member_id:this.member_id}).then((addfocus:any)=>{
+      this.centerApi.addfocus({befocus_id: this.member_id, status: 'A',focus_member_id:this.user_id}).then((addfocus:any)=>{
         console.log(addfocus)
       })  
     }else {
      
-      this.centerApi.cancelfocus({befocus_id: user_id,status: 'D'}).then((cancelfocus:any)=>{
+      this.centerApi.cancelfocus({focus_member_id:this.user_id,befocus_id: this.member_id,status: 'D'}).then((cancelfocus:any)=>{
         if(cancelfocus.code == '0'){
+          console.log(cancelfocus)
           // this.guanzushow = !this.guanzushow
           // this.onMyShow()
         }

@@ -8,16 +8,18 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 import { CenterApi } from 'src/providers/center.api';
+import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
 
 @Component({
   selector: 'app-chongzhi',
   templateUrl: './chongzhi.page.html',
   styleUrls: ['./chongzhi.page.scss'],
-  providers:[MemberApi,ProjectApi,CenterApi]
+  providers:[MemberApi,ProjectApi,CenterApi,AlipayApi,PayPal ]
 })
 export class ChongzhiPage extends AppBase {
 
   constructor(public router: Router,
+  
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public toastCtrl: ToastController,
@@ -27,12 +29,13 @@ export class ChongzhiPage extends AppBase {
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
     public centerApi:CenterApi,
+    private payPal: PayPal
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
       
   }
-
+  
   onMyLoad(){
     //参数
     this.params;
@@ -78,6 +81,8 @@ export class ChongzhiPage extends AppBase {
   paymoney = 0;
   ballnum2 = 0;
   d=false;
+  
+
   choose(e,item){
     console.log(e)
     console.log(item)
@@ -115,8 +120,9 @@ export class ChongzhiPage extends AppBase {
     console.log(this.paymoney,this.ballnum2)
     this.d = true
   }
-  zhifufanshi=0
-
+ 
+  zhifufanshi = 2;
+  zhifuinfo = null;
   zhifu(id){
     this.zhifufanshi = id;
 
@@ -131,6 +137,7 @@ export class ChongzhiPage extends AppBase {
     console.log(this.ballnum,'3333')
     console.log( typeof this.ballnum2,'222')
     console.log( typeof this.paymoney,'3333')
+    console.log( typeof this.paymoney,'3333')
     let date = new Date()
     let year = date.getFullYear()
     let month = date.getMonth() + 1
@@ -140,79 +147,75 @@ export class ChongzhiPage extends AppBase {
 
     let nowtime = year + '-' + month +'-'+day+" "+hh+":"+mm
 
+    
+    console.log(this.zhifufanshi,'this.zhifufanshi')
+    if (this.zhifufanshi == 2) {
+      console.log('pppppppp')
 
-    if(this.paymoney>0){
-      this.centerApi.memberpayment({member_id:this.member_id,chongzhi:this.ballnum2,chong_time:nowtime,money:this.paymoney,status: 'A'}).then((addintegration:any)=>{
-        console.log(addintegration)
-        if(addintegration.code=='0'){
-          this.centerApi.addnotification({user_id: this.member_id,chongmoney:this.paymoney,ballcoins:this.ballnum2,status:'A'}).then((addnotification:any)=>{
-            console.log(addnotification)
-          })
-          this.memberApi.editballnum({id:this.member_id,ballnum: this.ballnum}).then((editballnum:any)=>{
-            console.log(editballnum,'家私电话')
-            if(editballnum.code=='0'){
-              this.router.navigate(['chongzhisuccess'],{
-                queryParams: {
-                  money: this.paymoney,
-                  ballnum: this.ballnum2
-                }
-              })
-            }
-          })
-        }
-      })
+      this.payPal.init({
+        PayPalEnvironmentProduction: 'ASQTy5LpV5C-5MyA7UDcBl2RJouuE7tpr-ClZ6Pj5ajJyPz5aDC3IL9zhagRSNwknX83TroXIFtItrpq',
+        PayPalEnvironmentSandbox: 'Af0-D6daL8_ke1pqrGxlCt3mXh7md506DCOgra9m90uNKNexjAHq4FLL0giwCOhYx3eBy71tCcJV_6Yb'
+      }).then(() => {
+        console.log('aaaaaaaa')
+        // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
+        this.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
+          // Only needed if you get an "Internal Service Error" after PayPal login!
+          //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
+        })).then(() => {
+          console.log('yyyyyyyyyy')
+          let payment = new PayPalPayment('0.01', 'USD', 'Description', 'sale');
+          this.payPal.renderSinglePaymentUI(payment).then(() => {
+            console.log('PayPalPayPalPayPalPayPalPayPal')
+            // Successfully paid
+
+
+            this.centerApi.memberpayment({member_id:this.member_id,chongzhi:this.ballnum2,chong_time:nowtime,money:this.paymoney,status: 'A'}).then((addintegration:any)=>{
+              console.log(addintegration)
+              if(addintegration.code=='0'){
+                this.centerApi.addnotification({user_id: this.member_id,chongmoney:this.paymoney,ballcoins:this.ballnum2,status:'A'}).then((addnotification:any)=>{
+                  console.log(addnotification)
+                })
+                this.memberApi.editballnum({id:this.member_id,ballnum: this.ballnum}).then((editballnum:any)=>{
+                  console.log(editballnum,'家私电话')
+                  if(editballnum.code=='0'){
+                    this.router.navigate(['chongzhisuccess'],{
+                      queryParams: {
+                        money: this.paymoney,
+                        ballnum: this.ballnum2
+                      }
+                    })
+                  }
+                })
+              }
+            })
+      
+            // Example sandbox response
+            //
+            // {
+            //   "client": {
+            //     "environment": "sandbox",
+            //     "product_name": "PayPal iOS SDK",
+            //     "paypal_sdk_version": "2.16.0",
+            //     "platform": "iOS"
+            //   },
+            //   "response_type": "payment",
+            //   "response": {
+            //     "id": "PAY-1AB23456CD789012EF34GHIJ",
+            //     "state": "approved",
+            //     "create_time": "2016-10-03T13:33:33Z",
+            //     "intent": "sale"
+            //   }
+            // }
+          }, () => {
+            // Error or render dialog closed without being successful
+          });
+        }, () => {
+          // Error in configuration
+        });
+      }, () => {
+        // Error in initialization, maybe PayPal isn't supported or something else
+      });
     }
-
-    // if (this.zhifufanshi == 0) {
-    //   console.log(this.zhifuinfo);
-    //   this.wechatApi.prepay({ pay_amount: this.zhifuinfo.pay_amount, orders: this.zhifuinfo.orders }).then((params) => {
-    //     console.log(params);
-    //     Wechat.sendPaymentRequest(params, () => {
-    //       this.navigate("/paysuccess", { backtovideo_id: this.params.video_id, id: params.orderno });
-    //     }, () => {
-    //       this.navigate("/order");
-    //     });
-    //   });
-    // }
-
-    // if (this.zhifufanshi == 1) {
-    //   console.log(this.zhifuinfo);
-    //   this.alipayApi.prepa({ pay_amount: this.zhifuinfo.pay_amount, orders: this.zhifuinfo.orders }).then((ret) => {
-    //     console.log(ret);
-    //     if (ret.code == 0) {
-    //       this.alipay.pay(ret.return)
-    //         .then(result => {
-
-    //           if (result.resultStatus == "9000") {
-    //             this.navigate("/paysuccess", { backtovideo_id: this.params.video_id, id: ret.result });
-    //             //window.location.href = "/paysuccess?id=" + ret.result;
-    //           }
-    //           else {
-    //             this.navigate("/order");
-
-    //           }
-    //           console.log(result); // Success
-    //         })
-    //         .catch(error => {
-    //           alert("error");
-    //           alert(error);
-    //           console.log(error); // Failed
-    //         });
-    //     }
-    //   });
-
-    // }
-    // if (this.zhifufanshi == 2) {
-    //   this.orderApi.pay({ pay_amount: this.zhifuinfo.pay_amount, orders: this.zhifuinfo.orders }).then((info) => {
-
-    //     console.log(info);
-    //     this.navigate("/paysuccess", { id: info });
-    //     //window.location.href = "/paysuccess?id=" + info;
-    //     //  this.navigate("/paysuccess",{id:info});
-
-
-    //   })
-    // }
   }
 
 }

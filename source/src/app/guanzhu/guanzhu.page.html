@@ -20,11 +20,11 @@
               {{list.befocus_id_name}}
           </div>
           <div class="flex-4 margin-top-20">
-            <div class="flex-1 text-center " *ngIf='guanzushow' >
+            <div class="flex-1 text-center " *ngIf='list.guanzushow==true' (click)='guanzu(list)'>
               <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
               <span  class="guanzu">{{lang.focus}}</span>
             </div>
-            <div class="flex-1 text-center " *ngIf='guanzushow==false' >
+            <div class="flex-1 text-center " *ngIf='list.guanzushow==false' (click)='guanzu(list)'>
                 <img src="{{uploadpath}}resource/{{res.jian}}" class="jian"/>
                 <span  class="quguan">{{lang.notfocus}}</span>
             </div>

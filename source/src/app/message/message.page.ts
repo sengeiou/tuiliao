@@ -38,52 +38,68 @@ export class MessagePage extends AppBase {
     this.params;
   }
 
-  messagelist=null
-  notificationlist=null
-
+  messagelist=[]
+  notificationlist=[]
+  messagelists = []
   onMyShow(){
     AppBase.LASTTAB=this;
     console.log(this.memberInfo,'kkkkkk')
-
+    this.messagelists=[]
     this.centerApi.messagelist({}).then((messagelist:any)=>{
       console.log(messagelist)
       this.messagelist = messagelist.filter(item=>{
-
+        let date = new Date(item.msgtime)
+        item.times = date.getTime(); 
         if(this.langcode=='tc'){
           item.content = this.Traditionalized(item.content)
         }else if(this.langcode=='sc'){
           item.content = this.Simplized(item.content)
         }
-        item.updated_date = this.getdate(item.updated_date)
+        item.isshow = true
+        // item.msgtime = this.getdate(item.msgtime)
         return item
       })
-      this.messagelist =  this.messagelist.sort(this.compare("updated_date"))
+
+      this.centerApi.notificationlist({user_id:this.user_id}).then((notificationlist)=>{
+        console.log(notificationlist)
+        this.notificationlist = notificationlist.filter(item=>{
+          // item.msgtime = this.getdate(item.msgtime)
+          let date = new Date(item.msgtime)
+          item.times = date.getTime();  
+          item.isshow = false
+          if(item.paycoins>0){
+            this.memberApi.info({id:item.recom_user}).then((info)=>{
+              console.log(info)
+              item.recommend_user_id = info.name
+            })
+            
+          }
+          return item
+        })
+        this.messagelists = this.messagelist.concat(this.notificationlist)
+        this.messagelists = this.messagelists.sort(this.compare('times'))
+        console.log(this.messagelists,'msg')
+      })
+     
+           
     })
 
-    this.centerApi.notificationlist({user_id:this.user_id}).then((notificationlist)=>{
-      console.log(notificationlist)
-      this.notificationlist = notificationlist.filter(item=>{
-        item.updated_date = this.getdate(item.updated_date)
-        if(item.paycoins>0){
-          this.memberApi.info({id:item.recom_user}).then((info)=>{
-            console.log(info)
-            item.recommend_user_id = info.name
-          })
-          
-        }
-        return item
-      })
-      this.notificationlist = this.notificationlist.sort(this.compare("updated_date"))
-    })
+   
+
 
   }
 
   compare(pro){
     return function(a,b){
-      return a[pro]-b[pro]
+      return b[pro]-a[pro]
     }
   }
 
+  isRead(ID){
+    this.centerApi.editisread({id:ID,isRead:'Y',status:"A"}).then((editisread)=>{
+        console.log(editisread)
+    })
+  }
 
   detail(item){
     console.log(item)
@@ -94,12 +110,15 @@ export class MessagePage extends AppBase {
     }else if(item.mokuai_name=="推介"){
       this.navigate('/tabs/tab3')
     }else if(item.paycoins>0){
+      this.isRead(item.id)
       this.navigate('/pay-recom-detail',{
         id:item.rec_id
       })
     }else if(item.ballcoins>0){
+      this.isRead(item.id)
       this.navigate('/chongzhi')
     }else if(item.membermoney>0){
+      this.isRead(item.id)
       this.navigate('/members')
     }
   }

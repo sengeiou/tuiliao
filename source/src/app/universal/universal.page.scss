@@ -5,7 +5,7 @@
 .clear {
   height: rpx(52);
   line-height: rpx(52);
-  width: rpx(92);
+  width: rpx(184);
   
   background: #735fff;
   border-radius: rpx(28);
@@ -25,6 +25,9 @@
   width: 90vw;
   background: #d6d7d9;
   margin-top: rpx(24);
+}
+.margin-bottom-24 {
+  margin-bottom: rpx(24);
 }
 .padding-8{
   padding: rpx(16);

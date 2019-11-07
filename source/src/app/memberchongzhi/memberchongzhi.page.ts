@@ -8,11 +8,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 import { CenterApi } from 'src/providers/center.api';
+import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
+
 @Component({
   selector: 'app-memberchongzhi',
   templateUrl: './memberchongzhi.page.html',
   styleUrls: ['./memberchongzhi.page.scss'],
-  providers:[MemberApi,ProjectApi,CenterApi]
+  providers:[MemberApi,ProjectApi,CenterApi,PayPal]
 })
 export class MemberchongzhiPage extends AppBase {
 
@@ -26,6 +28,7 @@ export class MemberchongzhiPage extends AppBase {
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
     public centerApi:CenterApi,
+    private payPal: PayPal
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -93,7 +96,7 @@ export class MemberchongzhiPage extends AppBase {
     // })
   }
 
-  zhifufanshi=0
+  zhifufanshi=2
 
   zhifu(id){
     this.zhifufanshi = id;
@@ -125,8 +128,8 @@ export class MemberchongzhiPage extends AppBase {
       console.log(date3.getFullYear() + "-" + (date3.getMonth() + 1) + "-" + date3.getDate() + " " + date3.getHours() +  ":"  +date3.getMinutes() +":"+ date3.getSeconds(),'3333')
       console.log(date4.getFullYear() + "-" + (date4.getMonth() + 1) + "-" + date4.getDate() + " " + date4.getHours() +  ":"  +date4.getMinutes() +":"+ date4.getSeconds(),'444')
 
-      this.starttime = date3.getFullYear() + "-" + (date3.getMonth() + 1) + "-" + date3.getDate() + " " + date3.getHours() +  ":"  +date3.getMinutes()
-      this.endtime = date4.getFullYear() + "-" + (date4.getMonth() + 1) + "-" + date4.getDate() + " " + date4.getHours() +  ":"  +date4.getMinutes()
+      this.starttime = date3.getFullYear() + "-" + (date3.getMonth() + 1) + "-" + date3.getDate() + " " + date3.getHours() +  ":"  +date3.getMinutes() +":"+ date3.getSeconds()
+      this.endtime = date4.getFullYear() + "-" + (date4.getMonth() + 1) + "-" + date4.getDate() + " " + date4.getHours() +  ":"  +date4.getMinutes()+":"+ date4.getSeconds()
 
     
     }else {
@@ -134,8 +137,8 @@ export class MemberchongzhiPage extends AppBase {
       var date1 = new Date();
       var date2 = new Date(date1);
       date2.setDate(date1.getDate() + Number(this.paydate));
-       this.starttime = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate() + " " + date1.getHours() + ":"  +date1.getMinutes() + date1.getSeconds()
-       this.endtime =  date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() + " " + date2.getHours() + ":" +date2.getMinutes() + date1.getSeconds()
+       this.starttime = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate() + " " + date1.getHours() + ":"  +date1.getMinutes() +":"+ date1.getSeconds()
+       this.endtime =  date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() + " " + date2.getHours() + ":" +date2.getMinutes() +":"+ date1.getSeconds()
       console.log(date1,date2,'uuuuu')
 
     }
@@ -145,84 +148,82 @@ export class MemberchongzhiPage extends AppBase {
     console.log(this.endtime)
 
 
-    this.memberApi.updateismember({id:this.user_id,ismember:"Y",startmember_time:this.starttime,endmenber_time:this.endtime}).then((updateismember:any)=>{
-      console.log(updateismember,'updateismember')
-      if(updateismember.code == '0'){
-        this.ismember = '是'
-
-        this.centerApi.addnotification({user_id: this.user_id,membermoney:this.paymoney,starttime:this.starttime,endtime:this.endtime,status:'A'}).then((addnotification:any)=>{
-          console.log(addnotification)
-        })
-
-        this.centerApi.addmemberrecord({member_id:this.user_id,payment_time:this.starttime,price:this.paymoney,endtime:this.endtime}).then((addintegration:any)=>{
-          console.log(addintegration,'addintegration')
-          if(addintegration.code){
-            this.router.navigate(['paysuccess'],{
-              queryParams: {
-                paydate: this.paydate,
-                paymoney: this.paymoney,
-                starttime: this.starttime,
-                endtime: this.endtime
-              }
-            })
-          }
-        })
-      }
-      
-  })
+    
 
    
 
-    // if (this.zhifufanshi == 0) {
-    //   console.log(this.zhifuinfo);
-    //   this.wechatApi.prepay({ pay_amount: this.zhifuinfo.pay_amount, orders: this.zhifuinfo.orders }).then((params) => {
-    //     console.log(params);
-    //     Wechat.sendPaymentRequest(params, () => {
-    //       this.navigate("/paysuccess", { backtovideo_id: this.params.video_id, id: params.orderno });
-    //     }, () => {
-    //       this.navigate("/order");
-    //     });
-    //   });
-    // }
+      if (this.zhifufanshi == 2) {
+          console.log('pppppppp')
 
-    // if (this.zhifufanshi == 1) {
-    //   console.log(this.zhifuinfo);
-    //   this.alipayApi.prepa({ pay_amount: this.zhifuinfo.pay_amount, orders: this.zhifuinfo.orders }).then((ret) => {
-    //     console.log(ret);
-    //     if (ret.code == 0) {
-    //       this.alipay.pay(ret.return)
-    //         .then(result => {
+          this.payPal.init({
+            PayPalEnvironmentProduction: 'ASQTy5LpV5C-5MyA7UDcBl2RJouuE7tpr-ClZ6Pj5ajJyPz5aDC3IL9zhagRSNwknX83TroXIFtItrpq',
+            PayPalEnvironmentSandbox: 'Af0-D6daL8_ke1pqrGxlCt3mXh7md506DCOgra9m90uNKNexjAHq4FLL0giwCOhYx3eBy71tCcJV_6Yb'
+          }).then(() => {
+            console.log('aaaaaaaa')
+            // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
+            this.payPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
+              // Only needed if you get an "Internal Service Error" after PayPal login!
+              //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
+            })).then(() => {
+              console.log('yyyyyyyyyy')
+              let payment = new PayPalPayment('0.01', 'USD', 'Description', 'sale');
+              this.payPal.renderSinglePaymentUI(payment).then(() => {
+                console.log('PayPalPayPalPayPalPayPalPayPal')
+                // Successfully paid
 
-    //           if (result.resultStatus == "9000") {
-    //             this.navigate("/paysuccess", { backtovideo_id: this.params.video_id, id: ret.result });
-    //             //window.location.href = "/paysuccess?id=" + ret.result;
-    //           }
-    //           else {
-    //             this.navigate("/order");
-
-    //           }
-    //           console.log(result); // Success
-    //         })
-    //         .catch(error => {
-    //           alert("error");
-    //           alert(error);
-    //           console.log(error); // Failed
-    //         });
-    //     }
-    //   });
-
-    // }
-    // if (this.zhifufanshi == 2) {
-    //   this.orderApi.pay({ pay_amount: this.zhifuinfo.pay_amount, orders: this.zhifuinfo.orders }).then((info) => {
-
-    //     console.log(info);
-    //     this.navigate("/paysuccess", { id: info });
-    //     //window.location.href = "/paysuccess?id=" + info;
-    //     //  this.navigate("/paysuccess",{id:info});
-
-
-    //   })
-    // }
+                this.memberApi.updateismember({id:this.user_id,ismember:"Y",startmember_time:this.starttime,endmenber_time:this.endtime}).then((updateismember:any)=>{
+                  console.log(updateismember,'updateismember')
+                  if(updateismember.code == '0'){
+                    this.ismember = '是'
+            
+                    this.centerApi.addnotification({user_id: this.user_id,membermoney:this.paymoney,starttime:this.starttime,endtime:this.endtime,status:'A'}).then((addnotification:any)=>{
+                      console.log(addnotification)
+                    })
+            
+                    this.centerApi.addmemberrecord({member_id:this.user_id,payment_time:this.starttime,price:this.paymoney,endtime:this.endtime}).then((addintegration:any)=>{
+                      console.log(addintegration,'addintegration')
+                      if(addintegration.code){
+                        this.router.navigate(['paysuccess'],{
+                          queryParams: {
+                            paydate: this.paydate,
+                            paymoney: this.paymoney,
+                            starttime: this.starttime,
+                            endtime: this.endtime
+                          }
+                        })
+                      }
+                    })
+                  }
+                  
+              })
+          
+                // Example sandbox response
+                //
+                // {
+                //   "client": {
+                //     "environment": "sandbox",
+                //     "product_name": "PayPal iOS SDK",
+                //     "paypal_sdk_version": "2.16.0",
+                //     "platform": "iOS"
+                //   },
+                //   "response_type": "payment",
+                //   "response": {
+                //     "id": "PAY-1AB23456CD789012EF34GHIJ",
+                //     "state": "approved",
+                //     "create_time": "2016-10-03T13:33:33Z",
+                //     "intent": "sale"
+                //   }
+                // }
+              }, () => {
+                // Error or render dialog closed without being successful
+              });
+            }, () => {
+              // Error in configuration
+            });
+          }, () => {
+            // Error in initialization, maybe PayPal isn't supported or something else
+          });
+       }
   }
 
 

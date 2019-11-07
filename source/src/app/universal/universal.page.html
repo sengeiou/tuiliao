@@ -28,6 +28,8 @@
       <div style="" class="text-center txt-white clear h5" *ngIf="clearpg>0">{{lang.cleared}}{{(clearpg*100).toFixed()}}%</div>
     </div>
 
+
+    <div style="width:90vw;background:#D6D7D9;" *ngIf="clearpg>0"  class="margin-top-12 height-1 margin-bottom-24"></div>
     <div class="padding-top-12 " *ngIf="clearpg>0">
       <ion-progress-bar [value]="clearpg" [buffer]="1-clearpg"></ion-progress-bar>
     </div>

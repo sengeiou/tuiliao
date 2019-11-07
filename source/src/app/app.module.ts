@@ -21,7 +21,7 @@ import { HTTP } from '@ionic-native/http/ngx';
   providers: [
     StatusBar,
     HTTP,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
 })
