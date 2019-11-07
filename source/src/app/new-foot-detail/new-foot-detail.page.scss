@@ -44,6 +44,9 @@ ul{
         font-weight: bold;
         border-left: rpx(1) solid #000;
         position: relative;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
         img {
             position: absolute;
             left: 80%;

@@ -7,12 +7,14 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
+import { CenterApi } from 'src/providers/center.api';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-tab4',
   templateUrl: './tab4.page.html',
   styleUrls: ['./tab4.page.scss'],
-  providers:[MemberApi,ProjectApi]
+  providers:[MemberApi,ProjectApi,CenterApi]
 })
 export class Tab4Page extends AppBase {
 
@@ -25,6 +27,7 @@ export class Tab4Page extends AppBase {
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
+    public centerApi:CenterApi,
     public cd: ChangeDetectorRef
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
@@ -42,11 +45,32 @@ export class Tab4Page extends AppBase {
   info=null;
   
   onMyShow(){
-    // if(this.memberInfo!=null){
-    //   this.info=this.memberInfo
-    //   console.log(this.info.photo,'kkkkk')
-    // }
-    
+    this.getmsgread()
     AppBase.LASTTAB=this;
   }
+
+  notread="Y"
+  notificationlist=null
+  getmsgread(){
+      console.log(this.notread,'user_id')
+      this.centerApi.notificationlist({user_id:this.user_id}).then((notificationlist:any)=>{
+          console.log(notificationlist)
+          this.notificationlist = notificationlist.filter(item=>{
+              if(this.isread(item)){
+                  this.notread="N"
+              }
+          })
+      })
+  }
+
+
+  isread(item){
+    if(item.isread=="N"){
+      return true
+    }else {
+      return false
+    }
+
+  }
+
 }

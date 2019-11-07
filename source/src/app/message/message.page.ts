@@ -96,7 +96,9 @@ export class MessagePage extends AppBase {
   }
 
   isRead(ID){
-    this.centerApi.editisread({id:ID,isRead:'Y',status:"A"}).then((editisread)=>{
+    console.log(ID)
+  
+    this.centerApi.editisread({id:ID,isread:'Y'}).then((editisread)=>{
         console.log(editisread)
     })
   }
@@ -121,6 +123,10 @@ export class MessagePage extends AppBase {
       this.isRead(item.id)
       this.navigate('/members')
     }
+  }
+
+  fanhui(){
+    this.router.navigate(['/tabs/tab4'],{})
   }
   
 }
