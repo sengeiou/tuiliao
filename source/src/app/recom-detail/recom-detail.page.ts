@@ -231,7 +231,7 @@ export class RecomDetailPage extends AppBase {
   }
 
   async gotcharge(msg) {
-
+    var that = this
     const alert = await this.alertCtrl.create({
         header: "提示",
         subHeader: msg,
@@ -246,7 +246,7 @@ export class RecomDetailPage extends AppBase {
             text: "去充值",
             handler: () => {
                 // confirmcallback(true);
-                this.navigate('/chongzhi')
+                that.navigate('/chongzhi');
             }
         }]
     });

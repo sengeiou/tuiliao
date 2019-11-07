@@ -14,7 +14,7 @@ import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal
   selector: 'app-chongzhi',
   templateUrl: './chongzhi.page.html',
   styleUrls: ['./chongzhi.page.scss'],
-  providers:[MemberApi,ProjectApi,CenterApi,AlipayApi,PayPal ]
+  providers:[MemberApi,ProjectApi,CenterApi,PayPal ]
 })
 export class ChongzhiPage extends AppBase {
 
