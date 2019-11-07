@@ -246,7 +246,7 @@ export class RecomDetailPage extends AppBase {
             text: "去充值",
             handler: () => {
                 // confirmcallback(true);
-                this.navigate('chongzhi')
+                this.navigate('/chongzhi')
             }
         }]
     });
