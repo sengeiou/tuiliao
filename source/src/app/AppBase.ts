@@ -201,6 +201,8 @@ export class AppBase implements OnInit {
             }
         }
     }
+
+   
     onMyLoad() {
     }
     getInstInfo() {
@@ -530,8 +532,7 @@ export class AppBase implements OnInit {
     tryLogin() {
         this.showModal("LoginPage", {});
     }
-
-
+  
 
     backHome() {
         this.navCtrl.navigateBack('tabs/tab1');

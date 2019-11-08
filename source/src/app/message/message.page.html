@@ -1,7 +1,7 @@
 <ion-header>
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
-          <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+          <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)="fanhui()"/>
       <ion-title>{{lang.message}}</ion-title>
     </div>
   </ion-header>
@@ -23,6 +23,7 @@
         <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.membermoney>0 && item.isshow==false'>{{lang.noti2}}{{item.starttime_dateformat}}到{{item.endtime_dateformat}}，{{lang.noti4}}{{item.membermoney}}{{lang.noti5}}。</div>
       </div>
       <div class="time text-right h6 margin-right-20">{{getdate(item.msgtime)}}</div>
+      <div class="box" *ngIf='item.isread=="N"'></div>
     </div>
   </div>
 </ion-content>
