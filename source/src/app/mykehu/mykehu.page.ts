@@ -84,6 +84,15 @@ export class MykehuPage extends AppBase {
 
  }
 
+ fanhui(){
+   this.centerApi.updatecomread({user_id:this.user_id,isread:'Y'}).then((updatecomread)=>{
+    console.log(updatecomread)
+    if(updatecomread){
+      this.back()
+    }
+   })
+ }
+
  copy(mycode){
   this.clipboard.copy(mycode);
   this.toast('已复制')

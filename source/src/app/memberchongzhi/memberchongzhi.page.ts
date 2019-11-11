@@ -150,7 +150,7 @@ export class MemberchongzhiPage extends AppBase {
 
     
 
-   
+   var that = this;
 
       if (this.zhifufanshi == 2) {
           console.log('pppppppp')
@@ -166,29 +166,29 @@ export class MemberchongzhiPage extends AppBase {
               //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
             })).then(() => {
               console.log('yyyyyyyyyy')
-              let payment = new PayPalPayment('0.01', 'USD', 'Description', 'sale');
+              let payment = new PayPalPayment('0.01',  that.InstInfo.currency_name, 'Description', 'sale');
               this.payPal.renderSinglePaymentUI(payment).then(() => {
                 console.log('PayPalPayPalPayPalPayPalPayPal')
                 // Successfully paid
 
-                this.memberApi.updateismember({id:this.user_id,ismember:"Y",startmember_time:this.starttime,endmenber_time:this.endtime}).then((updateismember:any)=>{
+                that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
                   console.log(updateismember,'updateismember')
                   if(updateismember.code == '0'){
-                    this.ismember = '是'
+                    that.ismember = '是'
             
-                    this.centerApi.addnotification({user_id: this.user_id,membermoney:this.paymoney,starttime:this.starttime,endtime:this.endtime,status:'A'}).then((addnotification:any)=>{
+                    that.centerApi.addnotification({user_id: that.user_id,membermoney:that.paymoney,starttime:that.starttime,endtime:that.endtime,status:'A'}).then((addnotification:any)=>{
                       console.log(addnotification)
                     })
             
-                    this.centerApi.addmemberrecord({member_id:this.user_id,payment_time:this.starttime,price:this.paymoney,endtime:this.endtime}).then((addintegration:any)=>{
+                    that.centerApi.addmemberrecord({member_id:that.user_id,payment_time:that.starttime,price:that.paymoney,endtime:that.endtime}).then((addintegration:any)=>{
                       console.log(addintegration,'addintegration')
                       if(addintegration.code){
-                        this.router.navigate(['paysuccess'],{
+                        that.router.navigate(['paysuccess'],{
                           queryParams: {
-                            paydate: this.paydate,
-                            paymoney: this.paymoney,
-                            starttime: this.starttime,
-                            endtime: this.endtime
+                            paydate: that.paydate,
+                            paymoney: that.paymoney,
+                            starttime: that.starttime,
+                            endtime: that.endtime
                           }
                         })
                       }

@@ -15,7 +15,7 @@
         <div  class="money"  *ngFor='let item of ballcoinlist'>
             <div class="flex-row" (click)='choose($event,item)'>
                 <div class="flex-4 h5 margin-left-20 txt-bold">{{item.ballnum}}{{lang.ballcoin}}</div>
-                <div class="flex-2 h5 txt-gray-bf txt-bold">￥{{item.money}}</div>
+                <div class="flex-4 h5 txt-gray-bf txt-bold">{{lang.gang}} {{item.money}}</div>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
   <div class="h4 txt-bold text-center margin-bottom-60" style="color:#262626">{{lang.orderpayment}}</div>
   <div class="flex-row flex-bottom  ">
     <div class="flex-1 h5  " style="color:#262626;opacity: 0.5;">{{lang.ordernumber}}：24587290857239</div>
-    <div class="f22" style="color:#E50303;">￥</div>
+    <div class="f22" style="color:#E50303;">{{lang.gang}}</div>
     <div class="f32 txt-bold" style="color:#E50303;">{{paymoney}}</div>
     <div class="f22" style="color:#E50303;">元</div>
   </div>

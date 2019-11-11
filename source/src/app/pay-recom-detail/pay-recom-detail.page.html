@@ -6,82 +6,82 @@
   </div>
 </ion-header>
 <ion-content>
-<div *ngFor='let list of recommenddetail'>
-<div class=" margin-left-20 margin-bottom-30">
- 
-  <div class="f18 txt-black-10 txt-bold margin-top-30">{{list.biaoti}}</div>
-  <div class="flex-row txt-gray-b9 margin-top-30 h5 txt-bold margin-bottom-30">
-    <span class="flex-1">{{list.pub_time}}&nbsp;{{lang.publish}}</span>
-    <span class="flex-2 shoucang">
-      <img src="{{uploadpath}}resource/{{res.shoucang}}" *ngIf='isshow' (click)='shoucang(list)' class="icon-20"/>
-      <img src="{{uploadpath}}resource/{{res.shoucang2}}" *ngIf='isshow==false'  (click)='shoucang(list)' class="icon-20"/>
-      <span class="">{{lang.shoucang}}</span>
-    </span>
-  </div>
-  <img src="{{uploadpath}}resource/{{res.mingzhong}}" class="icon-60 imgfixed" *ngIf='list.zongjieguo=="Y"'/>
-  <img src="{{uploadpath}}resource/{{res.weizhong}}" class="icon-60 imgfixed" *ngIf='list.zongjieguo=="N"'/>
-  <div class="bg-gray content" *ngIf='list.latelycom.length>0'>
-    <div class="padding-left-20 padding-bottom-20 h5" *ngFor='let item of list.latelycom'>
-      <span class="">{{item.name_name}}</span>
-      <span class="">{{item.hostteam_name}}VS{{item.guestteam_name}}</span>
-      <span class="texu">{{item.com_time}}</span>
+<div *ngFor='let list of recommenddetail' style="background: #ECECEC;height:100vh;">
+  <div class="bg-white padding-left-20 padding-bottom-30">
+  
+    <div class="f18 txt-black-10 txt-bold margin-top-30">{{list.biaoti}}</div>
+    <div class="flex-row txt-gray-b9 margin-top-30 h5 txt-bold margin-bottom-30">
+      <span class="flex-1">{{list.pub_time}}&nbsp;{{lang.publish}}</span>
+      <span class="flex-2 shoucang">
+        <img src="{{uploadpath}}resource/{{res.shoucang}}" *ngIf='isshow' (click)='shoucang(list)' class="icon-20"/>
+        <img src="{{uploadpath}}resource/{{res.shoucang2}}" *ngIf='isshow==false'  (click)='shoucang(list)' class="icon-20"/>
+        <span class="">{{lang.shoucang}}</span>
+      </span>
+    </div>
+    <img src="{{uploadpath}}resource/{{res.mingzhong}}" class="icon-60 imgfixed" *ngIf='list.zongjieguo=="Y"'/>
+    <img src="{{uploadpath}}resource/{{res.weizhong}}" class="icon-60 imgfixed" *ngIf='list.zongjieguo=="N"'/>
+    <div class="bg-gray content" *ngIf='list.latelycom.length>0'>
+      <div class="padding-left-20 padding-bottom-20 h5" *ngFor='let item of list.latelycom'>
+        <span class="">{{item.name_name}}</span>
+        <span class="">{{item.hostteam_name}}VS{{item.guestteam_name}}</span>
+        <span class="texu">{{item.com_time}}</span>
+      </div>
     </div>
   </div>
-</div>
-<div class="bg-gray-ec">
-    <div class="flex-row person">
-        <div class="flex-1 text-center touxiang">
-            <img src="{{uploadpath}}member/{{list.member_photo}}" *ngIf='list.member_photo!=""' class="icon-60 radius-50">
-            <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='list.member_photo==""' class="icon-60 radius-50">
-        </div>
-        <div class="flex-2 txt-bold margin-top">
-              <div class="h4-5 txt-bold margin-bottom-20">{{list.user_id_name}}</div>
-              <span class="h6 success">{{list.success}}</span>
-              <span class="h6 winningnum">{{list.winningnum}}</span>
-        </div>
-        <div class="flex-1 text-center "  *ngIf='guanzushow' (click)='guanzu(list.user_id)'>
-            <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
-            <span  class="guanzu">{{lang.focus}}</span>
-        </div>
-        <div class="flex-1 text-center "  *ngIf='guanzushow==false' (click)='guanzu(list.user_id)'>
-            <img src="{{uploadpath}}resource/{{res.jian}}" class="jia"/>
-            <span  class="quguan">{{lang.notfocus}}</span>
-        </div>
-    </div>
-    <div class="zhifu">
-      <div *ngFor='let item of list.latelycom' class='margin-top margin-left-20 margin-bottom-30'>
-        <div class="flex-row h5 txt-gray-8a txt-bold">
-            <span class="flex-2">{{item.name_name}}</span>
-            <span class="flex-5">{{item.hostteam_name}}VS{{item.guestteam_name}}</span>
-            <span class="flex-3">{{item.com_time}}</span>
-        </div>
-        <div class="h5 flex-row txt-bold margin-top-10">
-          <span class="flex-1">{{lang.recom}}：</span>
-          <span class="flex-3">{{item.recom_content}}</span>
-          <span class="flex-1" >{{lang.saiguo}}：</span>
-          <span class="flex-2 txt-red-ec" *ngIf='item.saiguo!=""'>{{item.saiguo}}</span>
-          <span class="flex-2 txt-red-ec" *ngIf='item.saiguo==""'>{{lang.waited}}...</span>
-        </div>
-        <div class="h5 txt-bold margin-top-10" *ngIf='item.result!=""'>
-            <span class="flex-1">{{lang.recresult}}：</span>
-            <span class="flex-5 " *ngIf='item.result=="U"'>{{lang.weizhi}}</span>
-            <span class="flex-5 txt-red-ec" *ngIf='item.result=="Y"'>{{lang.hit}}</span> 
-            <span class="flex-5 txt-red-ec" *ngIf='item.result=="N"'>{{lang.missed}}</span>
+  <div class="bg-gray-ec">
+      <div class="flex-row person">
+          <div class="flex-1 text-center touxiang">
+              <img src="{{uploadpath}}member/{{list.member_photo}}" *ngIf='list.member_photo!=""' class="icon-60 radius-50">
+              <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='list.member_photo==""' class="icon-60 radius-50">
+          </div>
+          <div class="flex-2 txt-bold margin-top">
+                <div class="h4-5 txt-bold margin-bottom-20">{{list.user_id_name}}</div>
+                <span class="h6 success">{{list.success}}</span>
+                <span class="h6 winningnum">{{list.winningnum}}</span>
+          </div>
+          <div class="flex-1 text-center "  *ngIf='guanzushow' (click)='guanzu(list.user_id)'>
+              <img src="{{uploadpath}}resource/{{res.jia}}" class="jia"/>
+              <span  class="guanzu">{{lang.focus}}</span>
+          </div>
+          <div class="flex-1 text-center "  *ngIf='guanzushow==false' (click)='guanzu(list.user_id)'>
+              <img src="{{uploadpath}}resource/{{res.jian}}" class="jia"/>
+              <span  class="quguan">{{lang.notfocus}}</span>
           </div>
       </div>
-    </div>
-    <div class="fixedzhifucon">
-       <div class="h5 txt-gray-b9 weizhi text-center" *ngIf='coincount!=0'>{{lang.reccontent2}}</div>
-      <div class="flex-row fixedzhifu" *ngIf='coincount!=0'>
-        <div class="flex-2 txt-bold">
-          <span>{{lang.needpay}}:</span>
-          <span class="margin-left-20 txt-y-ff ">{{list.coincount}}{{lang.ballcoin}}</span>
-        </div>
-        <div class="flex-1">
-          <button disabled>{{lang.payed}}</button>
+      <div class="zhifu">
+        <div *ngFor='let item of list.latelycom' class='margin-top margin-left-20 margin-bottom-30'>
+          <div class="flex-row h5 txt-gray-8a txt-bold">
+              <span class="flex-2">{{item.name_name}}</span>
+              <span class="flex-5">{{item.hostteam_name}}VS{{item.guestteam_name}}</span>
+              <span class="flex-3">{{item.com_time}}</span>
+          </div>
+          <div class="h5 flex-row txt-bold margin-top-10">
+            <span class="flex-1">{{lang.recom}}：</span>
+            <span class="flex-3">{{item.recom_content}}</span>
+            <span class="flex-1" >{{lang.saiguo}}：</span>
+            <span class="flex-2 txt-red-ec" *ngIf='item.saiguo!=""'>{{item.saiguo}}</span>
+            <span class="flex-2 txt-red-ec" *ngIf='item.saiguo==""'>{{lang.waited}}...</span>
+          </div>
+          <div class="h5 txt-bold margin-top-10" *ngIf='item.result!=""'>
+              <span class="flex-1">{{lang.recresult}}：</span>
+              <span class="flex-5 " *ngIf='item.result=="U"'>{{lang.weizhi}}</span>
+              <span class="flex-5 txt-red-ec" *ngIf='item.result=="Y"'>{{lang.hit}}</span> 
+              <span class="flex-5 txt-red-ec" *ngIf='item.result=="N"'>{{lang.missed}}</span>
+            </div>
         </div>
       </div>
-    </div>
+      <div class="fixedzhifucon"  *ngIf='coincount!=0'>
+        <div class="h5 txt-gray-b9 weizhi text-center">{{lang.reccontent2}}</div>
+        <div class="flex-row fixedzhifu">
+          <div class="flex-2 txt-bold">
+            <span>{{lang.needpay}}:</span>
+            <span class="margin-left-20 txt-y-ff ">{{list.coincount}}{{lang.ballcoin}}</span>
+          </div>
+          <div class="flex-1">
+            <button disabled>{{lang.payed}}</button>
+          </div>
+        </div>
+      </div>
    
 </div>
 </div>

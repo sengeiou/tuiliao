@@ -69,12 +69,21 @@
   }
 
   .box {
-    width: rpx(10);
-    height: rpx(10);
-    background: red;
-    border-radius: 50%;
     position: relative;
-    left: 61%;
-    top: 45%;
+    .images {
+
+      position: absolute;
+      right: 14%;
+      top: 32%;
+    }
+    div {
+      position: absolute;
+      left: 61%;
+      top: 45%;
+      width: rpx(10);
+      height: rpx(10);
+      background: red;
+      border-radius: 50%;
+    }
 }
   

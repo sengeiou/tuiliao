@@ -176,7 +176,7 @@ export class RecomDetailPage extends AppBase {
     if(Number(this.payinfo.money) < this.ballnum){
       this.ballnum = this.ballnum - this.payinfo.money
 
-      let yongjin =  this.payinfo.money * 0.1;
+      let yongjin =  this.payinfo.money * this.InstInfo.comrate;
     
       console.log(yongjin)
       console.log(this.code,'code')
@@ -185,7 +185,7 @@ export class RecomDetailPage extends AppBase {
           for(let i=0;i<memberlist.length;i++){
             if(memberlist[i].mycode == this.code){
               console.log(memberlist[i].mycode,'mycode')
-              this.centerApi.addcommission({user_id:memberlist[i].id,yongjin:yongjin,yongjin_name:this.username,yongjin_time:nowtime,status: 'A'}).then((addintegration:any)=>{
+              this.centerApi.addcommission({user_id:memberlist[i].id,yongjin:yongjin,yongjin_name:this.username,}).then((addintegration:any)=>{
                 console.log(addintegration,'8989898989898')
               })
             }

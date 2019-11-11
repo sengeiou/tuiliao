@@ -81,8 +81,9 @@
         <img src="{{uploadpath}}resource/{{res.kehu}}" class="icon-20 margin-left-30 margin-right-20">
         <span class="h5">{{lang.guest}}</span>
       </div>
-      <div class="flex-2 text-center">
-        <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
+      <div class="flex-2 text-center box">
+        <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 images" />
+        <div class="" *ngIf='conread=="N"'></div>
       </div>
     </li>
     <li class="flex-row info" routerLink='/message'>
@@ -90,9 +91,9 @@
         <img src="{{uploadpath}}resource/{{res.xiaoxi}}" class="icon-20 margin-left-30 margin-right-20">
         <span class="h5">{{lang.message}}</span>
       </div>
-      <div class="flex-2 text-center">
-        <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 imgs" />
-        <div class="box" *ngIf='notread=="N"'></div>
+      <div class="flex-2 text-center box">
+        <img src="{{uploadpath}}resource/{{res.arrow}}" class="icon-25 images" />
+        <div class="" *ngIf='notread=="N"'></div>
       </div>
       
     </li>

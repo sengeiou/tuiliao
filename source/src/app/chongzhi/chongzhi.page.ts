@@ -131,7 +131,7 @@ export class ChongzhiPage extends AppBase {
 
   lijizhifu() {
     this.d = false;
-
+    var that = this
     this.ballnum = Number(this.ballnum) + Number(this.ballnum2)
     console.log(typeof this.ballnum,'222')
     console.log(this.ballnum,'3333')
@@ -148,7 +148,7 @@ export class ChongzhiPage extends AppBase {
     let nowtime = year + '-' + month +'-'+day+" "+hh+":"+mm
 
     
-    console.log(this.zhifufanshi,'this.zhifufanshi')
+    console.log(that.InstInfo.currency_name,'this.InstInfo')
     if (this.zhifufanshi == 2) {
       console.log('pppppppp')
 
@@ -163,25 +163,25 @@ export class ChongzhiPage extends AppBase {
           //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
         })).then(() => {
           console.log('yyyyyyyyyy')
-          let payment = new PayPalPayment('0.01', 'USD', 'Description', 'sale');
+          let payment = new PayPalPayment('0.01', that.InstInfo.currency_name, 'Description', 'sale');
           this.payPal.renderSinglePaymentUI(payment).then(() => {
             console.log('PayPalPayPalPayPalPayPalPayPal')
             // Successfully paid
 
 
-            this.centerApi.memberpayment({member_id:this.member_id,chongzhi:this.ballnum2,chong_time:nowtime,money:this.paymoney,status: 'A'}).then((addintegration:any)=>{
+            that.centerApi.memberpayment({member_id:that.member_id,chongzhi:that.ballnum2,chong_time:nowtime,money:that.paymoney,status: 'A'}).then((addintegration:any)=>{
               console.log(addintegration)
               if(addintegration.code=='0'){
-                this.centerApi.addnotification({user_id: this.member_id,chongmoney:this.paymoney,ballcoins:this.ballnum2,status:'A'}).then((addnotification:any)=>{
+                that.centerApi.addnotification({user_id: that.member_id,chongmoney:that.paymoney,ballcoins:that.ballnum2,status:'A'}).then((addnotification:any)=>{
                   console.log(addnotification)
                 })
-                this.memberApi.editballnum({id:this.member_id,ballnum: this.ballnum}).then((editballnum:any)=>{
+                that.memberApi.editballnum({id:that.member_id,ballnum: that.ballnum}).then((editballnum:any)=>{
                   console.log(editballnum,'家私电话')
                   if(editballnum.code=='0'){
-                    this.router.navigate(['chongzhisuccess'],{
+                    that.router.navigate(['chongzhisuccess'],{
                       queryParams: {
-                        money: this.paymoney,
-                        ballnum: this.ballnum2
+                        money: that.paymoney,
+                        ballnum: that.ballnum2
                       }
                     })
                   }

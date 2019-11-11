@@ -41,7 +41,7 @@ export class Tab1Page extends AppBase {
 
  imgs = null;
  horselist = null;
-
+check='a'
   onMyShow(){
     AppBase.LASTTAB=this;
 
@@ -76,7 +76,7 @@ export class Tab1Page extends AppBase {
  
 
   newRecom(event){
-    
+    this.check='a'
     this.horselist = null
     console.log(event)
     event.target.classList.add('new-active')
@@ -88,6 +88,7 @@ export class Tab1Page extends AppBase {
 
 
   oldRecom(event){
+    this.check='b'
     // this.horselist = []
     console.log(event)
     event.target.classList.add('new-active')
@@ -106,41 +107,41 @@ export class Tab1Page extends AppBase {
         for(let i=0;i<item.horse.length;i++){
 
           if(item.horse[i].onenum==item.horse[i].winner || item.horse[i].onenum==item.horse[i].second ||item.horse[i].onenum==item.horse[i].third ){
-            item.horse[i].onenumcolor='#E51C23'
+            item.horse[i].onenumcolor='red'
           }
           if(item.horse[i].twonum==item.horse[i].winner || item.horse[i].twonum==item.horse[i].second ||item.horse[i].twonum==item.horse[i].third ){
-            item.horse[i].twonumcolor='#E51C23'
+            item.horse[i].twonumcolor='red'
           }
           if(item.horse[i].threenum==item.horse[i].winner || item.horse[i].threenum==item.horse[i].second ||item.horse[i].threenum==item.horse[i].third ){
-            item.horse[i].threenumcolor='#E51C23'
+            item.horse[i].threenumcolor='red'
           }
           if(item.horse[i].fournum==item.horse[i].winner || item.horse[i].fournum==item.horse[i].second ||item.horse[i].fournum==item.horse[i].third ){
-            item.horse[i].fournumcolor='#E51C23'
+            item.horse[i].fournumcolor='red'
           }
           if(item.horse[i].fivenum==item.horse[i].winner || item.horse[i].fivenum==item.horse[i].second ||item.horse[i].fivenum==item.horse[i].third ){
-            item.horse[i].fivenumcolor='#E51C23'
+            item.horse[i].fivenumcolor='red'
           }
           if(item.horse[i].sixnum==item.horse[i].winner || item.horse[i].sixnum==item.horse[i].second ||item.horse[i].sixnum==item.horse[i].third ){
-            item.horse[i].sixnumcolor='#E51C23'
+            item.horse[i].sixnumcolor='red'
           }
 
           if(item.horse[i].onenum==item.horse[i].fourth ){
-            item.horse[i].onenumcolor='#FF9800'
+            item.horse[i].onenumcolor='black'
           }
           if(item.horse[i].twonum==item.horse[i].fourth ){
-            item.horse[i].twonumcolor='#FF9800'
+            item.horse[i].twonumcolor='black'
           }
           if(item.horse[i].threenum==item.horse[i].fourth ){
-            item.horse[i].threenumcolor='#FF9800'
+            item.horse[i].threenumcolor='black'
           }
           if(item.horse[i].fournum==item.horse[i].fourth ){
-            item.horse[i].fournumcolor='#FF9800'
+            item.horse[i].fournumcolor='black'
           }
           if(item.horse[i].fivenum==item.horse[i].fourth ){
-            item.horse[i].fivenumcolor='#FF9800'
+            item.horse[i].fivenumcolor='black'
           }
           if(item.horse[i].sixnum==item.horse[i].fourth ){
-            item.horse[i].sixnumcolor='#FF9800'
+            item.horse[i].sixnumcolor='black'
           }
 
         }

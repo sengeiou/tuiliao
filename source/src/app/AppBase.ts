@@ -40,7 +40,7 @@ export class AppBase implements OnInit {
     public res = null;
     public static InstInfo = null;
     public static MemberInfo = null;
-    public InstInfo = {  h5sharelogo: "", h5sharetitle: "", h5sharedesc: "", tel: "", h5appid: "", kf: "", openning: "", successtips: "", orderneedknow: "", name: "", logo: "", memberlogo: "", undershipping: 0, shippingfee: 0, about1: "", about2: "", about3: "", about4: "", about5: "" ,customerservicemobile: ""};
+    public InstInfo = {  h5sharelogo: "", h5sharetitle: "", h5sharedesc: "", tel: "", h5appid: "", kf: "", openning: "", successtips: "", orderneedknow: "", name: "", logo: "", memberlogo: "", undershipping: 0, shippingfee: 0, about1: "", about2: "", about3: "", about4: "", about5: "" ,customerservicemobile: "",currency_name:"HKD",comrate:0};
     
     public static MYBABY = [];
     public mybaby = [];
@@ -211,7 +211,7 @@ export class AppBase implements OnInit {
                 AppBase.InstInfo = instinfo;
                 this.InstInfo = instinfo;
                 console.log(instinfo);
-                console.log(instinfo.tip1);
+                
                 console.log("aaabbbccc", AppBase.STATICRAND);
                 
             });

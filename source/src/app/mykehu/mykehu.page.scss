@@ -37,3 +37,13 @@
 .txt-green-25 {
     color: #259B24;
 }
+
+.box {
+    width: rpx(10);
+    height: rpx(10);
+    background: red;
+    border-radius: 50%;
+    position: relative;
+    left: -2%;
+    top: 19%;
+}

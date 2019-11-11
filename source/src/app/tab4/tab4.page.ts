@@ -45,7 +45,8 @@ export class Tab4Page extends AppBase {
   info=null;
   
   onMyShow(){
-    this.getmsgread()
+    this.getmsgread();
+    this.getkehu();
     AppBase.LASTTAB=this;
   }
 
@@ -61,6 +62,18 @@ export class Tab4Page extends AppBase {
               }
           })
       })
+  }
+  conread='Y'
+  commissionlist=null
+  getkehu(){
+    this.centerApi.commissionlist({user_id:this.user_id}).then((commissionlist:any)=>{
+      console.log(commissionlist,'嘻嘻')
+      this.commissionlist = commissionlist.filter(item=>{
+        if(this.isread(item)){
+            this.conread="N"
+        }
+    })
+    })
   }
 
 
