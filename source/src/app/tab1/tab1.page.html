@@ -17,8 +17,8 @@
   </div>
 
   <div class="flex-row text-center bor_bot-b">
-    <button class="flex-1 new-active padding-tb txt-blue-14 h4"  (click)='newRecom($event)'>{{lang.newrecom}}</button>
-    <button class="flex-1 padding-tb txt-blue-14 h4" (click)='oldRecom($event)'> {{lang.oldrecom}}</button>
+    <button class="flex-1   padding-tb txt-blue-14 h4 " [class.new-active]="aa==1"  (click)='newRecom(1)'>{{lang.newrecom}}</button>
+    <button class="flex-1 padding-tb txt-blue-14 h4 " [class.new-active]="aa==2" (click)='newRecom(2)'> {{lang.oldrecom}}</button>
   </div>
   
   
@@ -27,7 +27,7 @@
     <div *ngFor='let list of horselist'>
         <div class="time-box h4-5 bor_bot-b"  *ngIf='list.isnew=="是"'>
           <div class="h4-5 txt-white txt-bold padding-top-20 padding-bottom-20 text-center">{{lang.horseday}}：{{list.horse_time}}</div>
-          <div class="h6 txt-white txt-bold padding-left-30">{{lang.note2_1}}<span style="color: green;">{{lang.green}}</span>{{lang.note2_2}}<span style="color: yellow;">{{lang.yellow}}</span>{{lang.note1_1}}</div>
+          <div class="h6 txt-white txt-bold padding-left-30">{{lang.note2_1}}<span style="color: green;">{{lang.green}}</span>{{lang.note2_2}}<span style="color: yellow;">{{lang.yellow}}</span>{{lang.note2_3}}</div>
         </div>
         <div class="time-box2 h4-5 bor_bot-b" *ngIf='list.isnew=="否"'>
           <div class="h4-5 txt-white txt-bold padding-top-20 padding-bottom-20 text-center">{{lang.horseday}}：{{list.horse_time}}</div>

@@ -49,17 +49,43 @@ export class UpdatepasswordPage extends AppBase {
     })
 
   }
-
   checkold(){
     console.log(this.password)
     if(this.password!=""){
-      if(this.password==this.oldpassword){
-        console.log("kkkkk")
-      }else {
-        this.toast('旧密码不正确！')
-      }
+      this.memberApi.editpassword({id:this.user_id,password:this.password}).then((editpassword:any)=>{
+        console.log(editpassword)
+        if(editpassword){
+
+        }else if(editpassword==undefined){
+          this.toast('旧密码不正确！')
+        }
+      })
     }else {
       this.toast('请输入旧密码！')
+    }
+  }
+
+  save(){
+    var that = this
+    if(this.password1==this.password2){
+      this.memberApi.editpassword({id:this.user_id,password:this.password}).then((editpassword:any)=>{
+        console.log(editpassword)
+        if(editpassword){
+          that.memberApi.updatepwd({id:this.user_id,password:this.password1}).then((updatepwd:any)=>{
+            console.log(updatepwd)
+            if(updatepwd.code=="0"){
+              that.navigate('/login')
+            }else {
+              that.toast('修改失败！')
+            }
+          })
+        }else if(editpassword==undefined){
+          this.toast('旧密码不正确！')
+        }
+      })
+      
+    }else {
+      this.toast('两个密码不相同！')
     }
   }
 

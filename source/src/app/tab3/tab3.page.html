@@ -17,8 +17,8 @@
   <div *ngFor='let list of recomlist' class="margin-top-30" (click)='tiaozhuan(list.id,list.user_id,list.coincount)'>
     <div class="flex-row">
       <div class="flex-1">
-        <img src="{{uploadpath}}member/{{list.member_photo}}" *ngIf='list.member_photo!=""' class="icon-60 radius-50  margin-20">
-        <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='list.member_photo==""' class="icon-60 radius-50  margin-20">
+        <!-- <img src="{{uploadpath}}member/{{list.member_photo}}" *ngIf='list.member_photo!=""' class="icon-60 radius-50  margin-20"> -->
+        <img src="{{uploadpath}}resource/{{res.touxiang}}" class="icon-60 radius-50  margin-20">
       </div>
       <div class="flex-2 txt-bold">
         <div class="h4-5 txt-bold margin-bottom-20">{{list.user_id_name}}</div>

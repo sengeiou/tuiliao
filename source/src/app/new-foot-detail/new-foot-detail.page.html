@@ -30,8 +30,8 @@
               <li>{{lang.xinshui}}</li>
               <li>{{lang.peilv}}</li>
               <li>{{lang.twoxone}}</li>
-              <li *ngIf='new=="N"'>{{lang.saiguo}}</li>
-              <li *ngIf='new=="N"'>{{lang.result}}</li>
+              <li *ngIf='new=="否"'>{{lang.saiguo}}</li>
+              <li *ngIf='new=="否"'>{{lang.result}}</li>
             </ul>
           </div>
           <div>
@@ -49,12 +49,13 @@
                 <li class="txt-14">{{item.xinshui_name}}</li>
                 <li>{{item.odds}}</li>
                 <li><div class="texu">{{item.txo}}</div></li>
-                <li *ngIf='new=="N"'>{{item.com_result}}</li>
-                <li *ngIf='new=="N"'>
+                <li *ngIf='new=="否"'>{{item.com_result}}</li>
+                <li *ngIf='new=="否"'>
                   <span *ngIf='item.result=="Y"' class="txt-red">{{lang.hit}}</span>
                   <span *ngIf='item.result=="N"' class="txt-9">{{lang.missed}}</span>
                   <img *ngIf='item.zongresult=="Y"' src="{{uploadpath}}resource/{{res.mingzhong}}" class="icon-60"/>
                   <img *ngIf='item.zongresult=="N"' src="{{uploadpath}}resource/{{res.weizhong}}" class="icon-60" />
+                  <img *ngIf='item.zongresult=="W"' src="{{uploadpath}}resource/{{res.weizhong}}" class="icon-60" />
                 </li>
               </ul>
             </div>
@@ -71,8 +72,8 @@
                   <li class="txt-14">{{item.xinshui2_name}}</li>
                   <li >{{item.odds2}}</li>
                   <li class="texu-bor"></li>
-                  <li *ngIf='new=="N"'>{{item.com_result2}}</li>
-                  <li *ngIf='new=="N"'>
+                  <li *ngIf='new=="否"'>{{item.com_result2}}</li>
+                  <li *ngIf='new=="否"'>
                     <span *ngIf='item.result2=="Y"' class="txt-red">{{lang.hit}}</span>
                     <span *ngIf='item.result2=="N"' class="txt-9">{{lang.missed}}</span>
                   </li>

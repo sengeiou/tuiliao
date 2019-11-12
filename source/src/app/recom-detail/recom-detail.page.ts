@@ -194,7 +194,7 @@ export class RecomDetailPage extends AppBase {
       }
       
 
-      this.centerApi.addintegration({user_id:this.member_id,zhifu:this.payinfo.money,pay_time:nowtime,status: 'A'}).then((addintegration:any)=>{
+      this.centerApi.addintegration({user_id:this.member_id,zhifu:this.payinfo.money,status: 'A'}).then((addintegration:any)=>{
         console.log(addintegration)
         if(addintegration.code == '0'){
 

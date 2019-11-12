@@ -42,9 +42,15 @@ export class Tab1Page extends AppBase {
  imgs = null;
  horselist = null;
 check='a'
+aa=1
   onMyShow(){
     AppBase.LASTTAB=this;
+   // event.target.classList.add('new-active');
+  this.aa = 1
+    this.getmsg()
+  }
 
+  getmsg(){
     this.projectApi.lunbolist({name:'赛马'}).then((lunbolist:any)=>{
       console.log(lunbolist)
       for(let j=0;j<lunbolist.length;j++){
@@ -55,6 +61,7 @@ check='a'
 
       console.log(this.imgs)
     })
+
 
     this.projectApi.horselist({}).then((horselist:any)=>{
       console.log(horselist)
@@ -70,29 +77,24 @@ check='a'
       console.log(this.horselist,'llll')
     
     })
-
   }
 
  
 
-  newRecom(event){
-    this.check='a'
-    this.horselist = null
-    console.log(event)
-    event.target.classList.add('new-active')
-    event.target.parentElement.childNodes[1].classList.remove('new-active')
-    
-    this.onMyShow()
+  newRecom(a){
+    console.log(a,'a')
+    if(a==1){
+      this.aa=1
+      this.getmsg()
+    }else if(a==2){
+      this.aa=2
+      this.oldRecom()
+    }
 
   }
 
 
-  oldRecom(event){
-    this.check='b'
-    // this.horselist = []
-    console.log(event)
-    event.target.classList.add('new-active')
-    event.target.parentElement.childNodes[0].classList.remove('new-active')
+  oldRecom(){
 
     this.projectApi.horselist({}).then((horselist:any)=>{
       console.log(horselist)

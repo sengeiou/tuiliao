@@ -44,7 +44,12 @@ export class MessagePage extends AppBase {
   onMyShow(){
     AppBase.LASTTAB=this;
     console.log(this.memberInfo,'kkkkkk')
-    this.messagelists=[]
+    this.getmsg()
+
+
+  }
+
+  getmsg(){
     this.centerApi.messagelist({}).then((messagelist:any)=>{
       console.log(messagelist)
       this.messagelist = messagelist.filter(item=>{
@@ -69,7 +74,7 @@ export class MessagePage extends AppBase {
           item.isshow = false
           if(item.paycoins>0){
             this.memberApi.info({id:item.recom_user}).then((info)=>{
-              console.log(info)
+              console.log(info,'info')
               item.recommend_user_id = info.name
             })
             
@@ -83,10 +88,6 @@ export class MessagePage extends AppBase {
      
            
     })
-
-   
-
-
   }
 
   compare(pro){

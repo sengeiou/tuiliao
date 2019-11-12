@@ -46,51 +46,56 @@ export class Tab2Page extends AppBase {
   imgs = null
 
   ishuiyuan=false
-
+  aa=1
   onMyShow(){
 
     // this.autoPlay()
     console.log(this.langcode,'lang')
-    
-    this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
-     console.log(footlist,'footlist')
-      this.footlist = footlist.filter((item)=>{
-        // console.log(item)
-        // item.new = 'Y'
-        if(item.isnew=='是'){
-
-          if(item.com_date.length>5){
-            item.com_date.splice(5,item.com_date.length-5)
-          }
+    this.aa = 1
+    this.getmsg()
   
-          // for(let i=0;i<item.com_date.length;i++){
-          //   return item.com_date[i].zongresult=='W'
-          // }
-          return  item
 
-        }
-        
+  }
 
-
+  getmsg(){
+    this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
+      console.log(footlist,'footlist')
+       this.footlist = footlist.filter((item)=>{
+         // console.log(item)
+         // item.new = 'Y'
+         if(item.isnew=='是'){
+ 
+           if(item.com_date.length>5){
+             item.com_date.splice(5,item.com_date.length-5)
+           }
+   
+           // for(let i=0;i<item.com_date.length;i++){
+           //   return item.com_date[i].zongresult=='W'
+           // }
+           return  item
+ 
+         }
+         
+ 
+ 
+       
+       })
+ 
+       this.projectApi.lunbolist({name:'足智彩'}).then((lunbolist:any)=>{
+         console.log(lunbolist)
+         for(let j=0;j<lunbolist.length;j++){
+           this.imgs = lunbolist[j].banner
+         }
+ 
+         this.autoPlay()
+ 
+         console.log(this.imgs)
+       })
+       
       
-      })
-
-      this.projectApi.lunbolist({name:'足智彩'}).then((lunbolist:any)=>{
-        console.log(lunbolist)
-        for(let j=0;j<lunbolist.length;j++){
-          this.imgs = lunbolist[j].banner
-        }
-
-        this.autoPlay()
-
-        console.log(this.imgs)
-      })
-      
-     
-      console.log(this.footlist)
-
-    })
-
+       console.log(this.footlist)
+ 
+     })
   }
 
   watchthis(list){
@@ -126,26 +131,25 @@ export class Tab2Page extends AppBase {
     this.ishuiyuan = false
   }
 
-  newRecom(event){
-    this.footlist=null
-    this.isshow = false
-    console.log(event)
-    event.target.classList.add('new-active')
-    event.target.parentElement.childNodes[1].classList.remove('new-active')
+  newRecom(a){
     
-    this.onMyShow()
+    if(a==1){
+      this.aa=1
+      this.getmsg()
+    }else if(a==2){
+      this.aa=2
+      this.oldRecom()
+    }
 
   }
 
 
-  oldRecom(event){
+  oldRecom(){
     this.isshow = true
     this.teams = []
     this.footlist =null
     console.log(event)
-    event.target.classList.add('new-active')
-    event.target.parentElement.childNodes[0].classList.remove('new-active')
-
+  
     this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
       console.log(footlist)
       // this.footlist = footlist

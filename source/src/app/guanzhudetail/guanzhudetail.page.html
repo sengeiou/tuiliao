@@ -40,8 +40,8 @@
 
 
     <div class="flex-row text-center border-gray bg-white">
-      <button class="flex-1 new-active padding-tb h4-5 txt-blue-14" (click)='newRecom($event)'>{{lang.newrecom}}</button>
-      <button class="flex-1 padding-tb h4-5 txt-blue-14" (click)='oldRecom($event)'> {{lang.oldrecom}}</button>
+      <button class="flex-1 new-active padding-tb h4-5 txt-blue-14"  [class.new-active]="aa==1" (click)='newRecom(1)'>{{lang.newrecom}}</button>
+      <button class="flex-1 padding-tb h4-5 txt-blue-14" [class.new-active]="aa==2" (click)='newRecom(2)'> {{lang.oldrecom}}</button>
     </div>
     
 

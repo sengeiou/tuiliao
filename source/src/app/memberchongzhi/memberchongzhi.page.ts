@@ -152,6 +152,34 @@ export class MemberchongzhiPage extends AppBase {
 
    var that = this;
 
+   if(this.zhifufanshi == 0){
+    that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
+      console.log(updateismember,'updateismember')
+      if(updateismember.code == '0'){
+        that.ismember = '是'
+
+        that.centerApi.addnotification({user_id: that.user_id,membermoney:that.paymoney,starttime:that.starttime,endtime:that.endtime,status:'A'}).then((addnotification:any)=>{
+          console.log(addnotification)
+        })
+
+        that.centerApi.addmemberrecord({member_id:that.user_id,payment_time:that.starttime,price:that.paymoney,endtime:that.endtime}).then((addintegration:any)=>{
+          console.log(addintegration,'addintegration')
+          if(addintegration.code){
+            that.router.navigate(['paysuccess'],{
+              queryParams: {
+                paydate: that.paydate,
+                paymoney: that.paymoney,
+                starttime: that.starttime,
+                endtime: that.endtime
+              }
+            })
+          }
+        })
+      }
+      
+  })
+   }
+
       if (this.zhifufanshi == 2) {
           console.log('pppppppp')
 

@@ -237,6 +237,44 @@ export class AppBase implements OnInit {
         this.navigate("/tabs/tab1");
 
     }
+
+    
+    notread="Y"
+    notificationlist=null
+    getmsgread(){
+        console.log(this.notread,'user_id')
+        AppBase.centerApi.notificationlist({user_id:this.user_id}).then((notificationlist:any)=>{
+            console.log(notificationlist)
+            this.notificationlist = notificationlist.filter(item=>{
+                if(this.isread(item)){
+                    this.notread="N"
+                }
+            })
+        })
+    }
+    conread='Y'
+    commissionlist=null
+    getkehu(){
+    AppBase.centerApi.commissionlist({user_id:this.user_id}).then((commissionlist:any)=>{
+        console.log(commissionlist,'嘻嘻')
+        this.commissionlist = commissionlist.filter(item=>{
+        if(this.isread(item)){
+            this.conread="N"
+        }
+    })
+    })
+    }
+
+
+    isread(item){
+    if(item.isread=="N"){
+        return true
+    }else {
+        return false
+    }
+
+    }
+
     getResources() {
         if (AppBase.Resources == null) {
             AppBase.instapi.resources({}, false).then((res) => {
@@ -284,6 +322,7 @@ export class AppBase implements OnInit {
         this.refreshLang();
         this.getaboutus();
         this.onMyShow();
+       
         
     }
 
@@ -656,5 +695,7 @@ Simplized(cc){
     }
     return str;
 }
+
+
 
 }

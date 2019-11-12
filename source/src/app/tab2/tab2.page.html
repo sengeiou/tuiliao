@@ -22,8 +22,8 @@
 
 
     <div class="flex-row text-center bor_bot-b">
-      <button class="flex-1 new-active padding-tb txt-t-g h4" (click)='newRecom($event)'>{{lang.newrecom}}</button>
-      <button class="flex-1 padding-tb txt-t-g h4" (click)='oldRecom($event)'> {{lang.oldrecom}}</button>
+      <button class="flex-1 padding-tb txt-t-g h4"  [class.new-active]="aa==1" (click)='newRecom(1)'>{{lang.newrecom}}</button>
+      <button class="flex-1 padding-tb txt-t-g h4"  [class.new-active]="aa==2" (click)='newRecom(2)'> {{lang.oldrecom}}</button>
     </div>
 
     <div *ngFor='let list of footlist'>
