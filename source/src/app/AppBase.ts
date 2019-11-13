@@ -3,7 +3,7 @@ import { AppUtil } from "./app.util";
 import { NavController, ModalController, ToastController, NavParams, AlertController }
     from "@ionic/angular";
 import { InstApi } from "../providers/inst.api";
-import { MemberApi } from "../providers/member.api";
+import { MemberApi } from "../providers/member.api"; 
 import { CenterApi } from "../providers/center.api";
 import { WechatApi } from "../providers/wechat.api";
 import { AppComponent } from "./app.component";
@@ -15,6 +15,7 @@ import { OnInit } from '@angular/core';
 import { TabsPage } from './tabs/tabs.page';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { AppPage } from 'e2e/src/app.po';
+import { from } from 'rxjs';
 
 declare let wx: any;
 
@@ -126,6 +127,8 @@ export class AppBase implements OnInit {
         this.onMyLoad();
         this.setStatusBar();
         this.getaboutus();
+        
+
     }
 
     CheckPermission() {
@@ -185,6 +188,7 @@ export class AppBase implements OnInit {
                                     if(updateismember.code=='0'){
                                         this.ismember = '否'
                                         this.memberInfo = memberinfo
+                                        
                                     }
                                 })
                             }
@@ -194,7 +198,8 @@ export class AppBase implements OnInit {
                             this.ismember = memberinfo.ismember
                         }
                        
-                       
+                        // this.getmsgread();
+                        // this.getkehu();
                     }
                     // console.log(this.memberInfo,'oooo')
                 })
@@ -210,7 +215,7 @@ export class AppBase implements OnInit {
             AppBase.instapi.info({}, false).then((instinfo) => {
                 AppBase.InstInfo = instinfo;
                 this.InstInfo = instinfo;
-                console.log(instinfo);
+                console.log(instinfo,'instinfo');
                 
                 console.log("aaabbbccc", AppBase.STATICRAND);
                 
@@ -239,41 +244,7 @@ export class AppBase implements OnInit {
     }
 
     
-    notread="Y"
-    notificationlist=null
-    getmsgread(){
-        console.log(this.notread,'user_id')
-        AppBase.centerApi.notificationlist({user_id:this.user_id}).then((notificationlist:any)=>{
-            console.log(notificationlist)
-            this.notificationlist = notificationlist.filter(item=>{
-                if(this.isread(item)){
-                    this.notread="N"
-                }
-            })
-        })
-    }
-    conread='Y'
-    commissionlist=null
-    getkehu(){
-    AppBase.centerApi.commissionlist({user_id:this.user_id}).then((commissionlist:any)=>{
-        console.log(commissionlist,'嘻嘻')
-        this.commissionlist = commissionlist.filter(item=>{
-        if(this.isread(item)){
-            this.conread="N"
-        }
-    })
-    })
-    }
-
-
-    isread(item){
-    if(item.isread=="N"){
-        return true
-    }else {
-        return false
-    }
-
-    }
+  
 
     getResources() {
         if (AppBase.Resources == null) {
@@ -322,13 +293,15 @@ export class AppBase implements OnInit {
         this.refreshLang();
         this.getaboutus();
         this.onMyShow();
-       
+      
         
     }
 
     onMyShow() {
        
     }
+
+   
     onPullRefresh(ref) {
         this.onMyShow();
         ref.complete();

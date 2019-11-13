@@ -39,7 +39,7 @@
           <th  width="15%">{{lang.recommendation}}</th>
         </thead>
         <tbody  *ngFor='let item of list.com_date;let i=index'>
-          <tr  class="tr-border h5 txt-bold text-center">
+          <tr  class="tr-border h5  text-center">
             <td  width="10%" class="h5">NO.{{i+1}}</td>
             <td  width="20%">
                 <div>{{item.com_name_name}}</div>
@@ -54,20 +54,21 @@
                 <div>{{item.guest2_name}}</div>
             </td>
             <td  width="10%" *ngIf='isshow==false'>
-              <span><a  class="txt-red">{{lang.waiting}}<br>{{lang.result}}</a></span>
-              <!-- <div *ngIf='isshow'>
-                  <a  class="txt-red" (click)='watchthis(list)'>{{item.result}}</a>
-                  <a  class="txt-red" (click)='watchthis(list)'>{{item.result2}}</a>
-              </div> -->
+              <span><a  class="txt-red"  *ngIf='item.result=="W"'>{{lang.waiting}}<br>{{lang.result}}</a></span>
+             
             </td>
             <td  width="10%" *ngIf='isshow'>
                 <div>
                     <a  *ngIf='item.result=="Y"' class="txt-red">{{lang.hit}}</a>
                     <a  *ngIf='item.result=="N"'  class="txt-9">{{lang.missed}}</a>
+                    <a  *ngIf='item.result=="H"'  class="txt-9">走水</a>
+                    <a  *ngIf='item.result=="W"'  class="txt-9" >{{lang.waitingresult}}</a>
                 </div>
                 <div>
                     <a  *ngIf='item.result2=="Y"'  class="txt-red">{{lang.hit}}</a>
                     <a  *ngIf='item.result2=="N"' class="txt-9">{{lang.missed}}</a>
+                    <a  *ngIf='item.result2=="H"' class="txt-9">走水</a>
+                    <a  *ngIf='item.result2=="W"' class="txt-9">{{lang.waitingresult}}</a>
                 </div>
               </td>
         </tbody>

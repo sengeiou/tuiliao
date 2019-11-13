@@ -17,20 +17,20 @@
   <div *ngFor='let list of recomlist' class="margin-top-30" (click)='tiaozhuan(list.id,list.user_id,list.coincount)'>
     <div class="flex-row">
       <div class="flex-1">
-        <!-- <img src="{{uploadpath}}member/{{list.member_photo}}" *ngIf='list.member_photo!=""' class="icon-60 radius-50  margin-20"> -->
-        <img src="{{uploadpath}}resource/{{res.touxiang}}" class="icon-60 radius-50  margin-20">
+        <img src="{{uploadpath}}user/{{list.member_photo}}" *ngIf='list.member_photo!=""' class="icon-60 radius-50  margin-20">
+        <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='list.member_photo==""' class="icon-60 radius-50  margin-20">
       </div>
-      <div class="flex-2 txt-bold">
-        <div class="h4-5 txt-bold margin-bottom-20">{{list.user_id_name}}</div>
+      <div class="flex-2 ">
+        <div class="h4-5  margin-bottom-20">{{list.user_id_name}}</div>
         <span class="h6 success">{{list.success}}</span>
         <span class="h6 winningnum">{{list.winningnum}}</span>
       </div>
       <div class="flex-1 text-right margin-right-20">
-        <div class="h2 txt-red-r txt-bold">{{list.success_result}}</div>
-        <span class="h6 txt-gray-d text-right txt-bold">{{lang.recentachi}}</span>
+        <div class="h2 txt-red-r ">{{list.success_result}}</div>
+        <span class="h6 txt-gray-d text-right ">{{lang.recentachi}}</span>
       </div>
     </div>
-    <div class="margin-left-20 margin-bottom-20 h5 txt-bold">{{list.biaoti}}</div>
+    <div class="margin-left-20 margin-bottom-20 h5 ">{{list.biaoti}}</div>
     <div class="bg-gray margin-left-20 content" *ngIf='list.latelycom.length>0'>
       <div class="padding-left-20 padding-bottom-20 h5" *ngFor='let item of list.latelycom'>
         <span class="">{{item.name_name}}</span>
@@ -38,7 +38,7 @@
         <span class="texu">{{item.com_time}}</span>
       </div>
     </div>
-    <div class="margin-left-20 h5 flex-row margin-top-20 txt-bold  margin-bottom-20">
+    <div class="margin-left-20 h5 flex-row margin-top-20   margin-bottom-20">
       <span class="flex-3">{{list.pub_time_formatting}}</span>
       <span class="flex-1 h4-5 txt-b-14 text-center">{{list.coincount}}{{lang.ballcoin}}</span>
     </div>

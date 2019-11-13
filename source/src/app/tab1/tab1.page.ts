@@ -46,8 +46,9 @@ aa=1
   onMyShow(){
     AppBase.LASTTAB=this;
    // event.target.classList.add('new-active');
-  this.aa = 1
+    this.aa = 1
     this.getmsg()
+    console.log(this.horselist,'horselist')
   }
 
   getmsg(){
@@ -65,16 +66,18 @@ aa=1
 
     this.projectApi.horselist({}).then((horselist:any)=>{
       console.log(horselist)
-
-      this.horselist = horselist.filter(item=>{
-        item.horse_time = this.getDate(item.horse_time)
-        if(item.horse.length>10){
-          item.horse.splice(10,item.horse.length-10)
-        }
-        return item.isnew == '是'
-      })
+      if(horselist){
+        this.horselist = horselist.filter(item=>{
+          item.horse_time = this.getDate(item.horse_time)
+          if(item.horse.length>10){
+            item.horse.splice(10,item.horse.length-10)
+          }
+          return item.isnew == '是'
+        })
+        
+        console.log(this.horselist,'llll')
+      }
       
-      console.log(this.horselist,'llll')
     
     })
   }

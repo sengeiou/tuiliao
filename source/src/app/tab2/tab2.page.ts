@@ -6,6 +6,7 @@ import { NavController, ModalController, ToastController, AlertController, NavPa
 import { DomSanitizer } from '@angular/platform-browser';
 import { InstApi } from 'src/providers/inst.api';
 import { ProjectApi } from 'src/providers/project.api';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-tab2',
@@ -58,8 +59,9 @@ export class Tab2Page extends AppBase {
   }
 
   getmsg(){
+    this.isshow=false
     this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
-      console.log(footlist,'footlist')
+     
        this.footlist = footlist.filter((item)=>{
          // console.log(item)
          // item.new = 'Y'
@@ -69,15 +71,11 @@ export class Tab2Page extends AppBase {
              item.com_date.splice(5,item.com_date.length-5)
            }
    
-           // for(let i=0;i<item.com_date.length;i++){
-           //   return item.com_date[i].zongresult=='W'
-           // }
+         
            return  item
  
          }
-         
- 
- 
+         console.log(this.footlist,'footlist')
        
        })
  
@@ -132,8 +130,9 @@ export class Tab2Page extends AppBase {
   }
 
   newRecom(a){
-    
+   
     if(a==1){
+      
       this.aa=1
       this.getmsg()
     }else if(a==2){

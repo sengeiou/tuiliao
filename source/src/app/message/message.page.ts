@@ -73,9 +73,9 @@ export class MessagePage extends AppBase {
           item.times = date.getTime();  
           item.isshow = false
           if(item.paycoins>0){
-            this.memberApi.info({id:item.recom_user}).then((info)=>{
+            this.memberApi.userinfo({id:item.recom_user}).then((info)=>{
               console.log(info,'info')
-              item.recommend_user_id = info.name
+              item.recommend_user_id = info.login_id
             })
             
           }
@@ -127,7 +127,24 @@ export class MessagePage extends AppBase {
   }
 
   fanhui(){
-    this.router.navigate(['/tabs/tab4'],{})
+
+    this.centerApi.yanzheng({user_id:this.user_id}).then((yanzheng:any)=>{
+      console.log(yanzheng,'nnnn')
+      if(yanzheng.code=='0'){
+        this.router.navigate(['/tabs/tab4'],{queryParams:{
+          notread:'Y'
+        }})
+        // this.notread='Y'
+      }else {
+        this.router.navigate(['/tabs/tab4'],{queryParams:{
+          notread:'N'
+        }})
+        // this.notread='N'
+      }
+      
+  })
+
+   
   }
   
 }

@@ -1,22 +1,22 @@
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="tab1"  class="tab_footer">
+    <ion-tab-button   class="tab_footer" [class.bg]='bb==1'  (click)='opensaima(InstInfo.saima_value)'>
       <img src="{{uploadpath}}resource/{{res.saima}}" class="icon-25"/>
       <ion-label>{{lang.horse}}</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab2" class="tab_footer">
+    <ion-tab-button class="tab_footer" [class.bg]='bb==2' (click)='openfoot(InstInfo.foot_value)'>
       <img src="{{uploadpath}}resource/{{res.zuzhicai}}" class="icon-25"/>
       <ion-label>{{lang.foot}}</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab3" class="tab_footer">
+    <ion-tab-button class="tab_footer"  [class.bg]='bb==3'  (click)='openrecom(InstInfo.recommend_value)'>
       <img src="{{uploadpath}}resource/{{res.tuijian}}" class="icon-25"/>
       <ion-label>{{lang.recommendation}}</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab4" class="tab_footer">
+    <ion-tab-button tab="tab4" class="tab_footer" (click)='mine()'>
       <img src="{{uploadpath}}resource/{{res.mine}}" class="icon-25"/>
       <ion-label>{{lang.mine}}</ion-label>
     </ion-tab-button>

@@ -48,7 +48,59 @@ export class Tab4Page extends AppBase {
   onMyShow(){
     
     AppBase.LASTTAB=this;
+
+    console.log('0000000000000000');
+     
+   this.getmsgread();
+
+    this.getkehu();
+    this.notread="Y"
+    this.conread="Y"
   }
+
+
+  notread="Y"
+  notificationlist=[]
+  getmsgread(){
+      console.log(this.notread,'user_id')
+      console.log(this.user_id,'user_id')
+     //var api=AppBase.centerApi;
+     this.centerApi.yanzheng({user_id:this.user_id}).then((yanzheng:any)=>{
+          console.log(yanzheng,'nnnn')
+          if(yanzheng.code=='0'){
+            this.notread='Y'
+          }else {
+            this.notread='N'
+          }
+          
+      })
+  }
+  conread='Y'
+  commissionlist=null
+  getkehu(){
+      this.centerApi.commissionlist({user_id:this.user_id}).then((commissionlist:any)=>{
+          console.log(commissionlist,'嘻嘻')
+          if(commissionlist){
+              this.commissionlist = commissionlist.filter(item=>{
+                  if(this.isread(item)){
+                      this.conread="N"
+                  }
+              })
+          }
+          
+      })
+  }
+
+
+  isread(item){
+  if(item.isread=="N"){
+      return true
+  }else {
+      return false
+  }
+
+  }
+
 
 
 

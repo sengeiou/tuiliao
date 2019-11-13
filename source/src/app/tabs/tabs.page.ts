@@ -40,7 +40,8 @@ export class TabsPage extends AppBase {
   onMyShow(){
 
     AppBase.LASTTAB=this;
-
+    console.log(this.InstInfo,'tabs')
+    this.bb=0
   }
 
   hidetab=false;
@@ -54,6 +55,47 @@ currentpage="";
       
       AppBase.LASTTAB.ionViewDidEnter();
      
+    }
+  }
+
+  mine(){
+    this.bb=0
+  }
+bb=0;
+  openrecom(flag){
+    console.log(flag,'recom')
+    if(flag=="N"){
+      this.confirm('暂未开放，敬请期待',function(ret){
+      
+      })
+    }else if(flag=="Y"){
+      this.navigate('/tabs/tab3')
+      this.bb=3
+    }
+  }
+
+  openfoot(flag){
+    console.log(flag,'foot')
+    if(flag=="N"){
+      this.confirm('暂未开放，敬请期待',function(ret){
+        
+      })
+      }else if(flag=="Y"){
+        this.navigate('/tabs/tab2')
+        this.bb=2
+      }
+  }
+  
+  opensaima(flag){
+    var that = this
+    console.log(flag,'saim')
+    if(flag=="N"){
+        this.confirm('暂未开放，敬请期待',function(ret){
+          
+        })
+    }else if(flag=="Y"){
+      this.navigate('/tabs/tab1')
+      this.bb=1
     }
   }
 
