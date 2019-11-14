@@ -12,7 +12,7 @@
       <div class="yigou" *ngFor='let list of focuslist'>
         <div class="flex-row" *ngFor='let item of list.befocus'>
           <div class="flex-2 text-right"  (click)='focusper(item.user_id)'>
-            <img src="{{uploadpath}}member/{{list.befocus_id_photo}}" *ngIf='list.befocus_id_photo!=""' class="icon-60 margin-top-20 radius-50" />
+            <img src="{{uploadpath}}user/{{list.befocus_id_photo}}" *ngIf='list.befocus_id_photo!=""' class="icon-60 margin-top-20 radius-50" />
             <img src="{{uploadpath}}resource/{{res.touxiang}}" *ngIf='list.befocus_id_photo==""' class="icon-60 margin-top-20 radius-50" />
             <img src="{{uploadpath}}resource/{{res.new}}" *ngIf='list.isnew' class="icon-42"/>
           </div>

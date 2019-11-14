@@ -44,9 +44,34 @@ export class MessagePage extends AppBase {
   onMyShow(){
     AppBase.LASTTAB=this;
     console.log(this.memberInfo,'kkkkkk')
-    this.getmsg()
+    // this.getmsg()
+    this.getmymsg();
 
+  }
 
+  getmymsg(){
+    var that = this
+    this.memberApi.usermsg({id:this.user_id}).then((usermsg)=>{
+      console.log(usermsg,'getmymsg')
+      this.messagelists = usermsg.filter(item=>{
+        let date = new Date(item.msgtime)
+        item.times = date.getTime();  
+        
+        
+        if(item.systype!=""){
+          that.centerApi.mokuai({id:item.systype}).then((mokuai:any)=>{
+            console.log(mokuai,'mokuai')
+            if(mokuai){
+              item.systype_name = mokuai.name
+            }
+          })
+        }else if(item.systype==""){
+          item.isshow==false
+        }
+        return item
+      })
+      this.messagelists =this.messagelists.sort(this.compare('times'))
+    })
   }
 
   getmsg(){
@@ -106,12 +131,18 @@ export class MessagePage extends AppBase {
 
   detail(item){
     console.log(item)
-    if(item.mokuai_name=="赛马"){
+    if(item.systype_name=="赛马"){
+      this.isRead(item.id)
       this.navigate('/tabs/tab1')
-    }else if(item.mokuai_name=='足智彩') {
+    }else if(item.systype_name=='足智彩') {
+      this.isRead(item.id)
       this.navigate('/tabs/tab2')
-    }else if(item.mokuai_name=="推介"){
+    }else if(item.systype_name=="推介"){
+      this.isRead(item.id)
       this.navigate('/tabs/tab3')
+    }else if(item.systype_name=="系统"){
+      this.isRead(item.id)
+      this.getmymsg();
     }else if(item.paycoins>0){
       this.isRead(item.id)
       this.navigate('/pay-recom-detail',{

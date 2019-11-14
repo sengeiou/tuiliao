@@ -49,13 +49,13 @@ export class YigouPage extends AppBase {
       if(purchasedlist.length>0){
         this.purchasedlist = purchasedlist.filter(item=>{
 
-          this.memberApi.info({id:item.recom_id}).then((info)=>{
+          this.memberApi.userinfo({id:item.recom_id}).then((info)=>{
             console.log(info,'info')
             // item.befocus_id_name = info.name
             if(this.langcode=='tc'){
-              item.befocus_id_name = this.Traditionalized(info.name)
+              item.befocus_id_name = this.Traditionalized(info.login_id)
             }else if(this.langcode=='sc'){
-              item.befocus_id_name = this.Simplized(info.name)
+              item.befocus_id_name = this.Simplized(info.login_id)
             }
             item.befocus_id_photo = info.photo
          })

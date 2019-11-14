@@ -43,19 +43,24 @@ export class GuanzhuPage extends AppBase {
   recom_user_id = ''
   onMyShow(){
 
+    this.getmsg();
+
+  }
+
+  getmsg(){
     this.centerApi.focuslist({focus_member_id:this.user_id}).then((focuslist:any)=>{
       console.log(focuslist,'focuslist')
       if(focuslist.length!=0){
           this.focuslist = focuslist.filter(item=>{
             console.log(item.befocus.length,'item.befocus.length')
             
-            this.memberApi.info({id:item.befocus_id}).then((info)=>{
+            this.memberApi.userinfo({id:item.befocus_id}).then((info)=>{
               console.log(info,'info')
     
               if(this.langcode=='tc'){
-                item.befocus_id_name = this.Traditionalized(info.name)
+                item.befocus_id_name = this.Traditionalized(info.login_id)
               }else if(this.langcode=='sc'){
-                item.befocus_id_name = this.Simplized(info.name)
+                item.befocus_id_name = this.Simplized(info.login_id)
               }
     
               // item.befocus_id_name = info.name
@@ -82,7 +87,6 @@ export class GuanzhuPage extends AppBase {
       }
       
     })
-
   }
 
   // guanzushow = false

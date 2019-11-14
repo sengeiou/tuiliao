@@ -10,17 +10,18 @@
   <div class="bg-gray-f0" >
     <div class="msg" *ngFor='let item of messagelists' (click)='detail(item)'>
       <div class="content flex-row">
-        <div class="flex-1 text-center margin-top-10">
-          <img *ngIf='item.mokuai_name=="赛马"  && item.isshow==true' src="{{uploadpath}}resource/{{res.saima}}" class="icon-25"/>
-          <img *ngIf='item.mokuai_name=="足智彩"  && item.isshow==true' src="{{uploadpath}}resource/{{res.zuzhicai}}" class="icon-25"/>
-          <img *ngIf='item.mokuai_name=="推介"  && item.isshow==true' src="{{uploadpath}}resource/{{res.tuijian}}" class="icon-25"/>
-          <img *ngIf='item.mokuai_name=="" && item.isshow==true' src="{{uploadpath}}resource/{{res.message}}" class="icon-25"/>
-          <img *ngIf='item.isshow==false' src="{{uploadpath}}resource/{{res.tongzhi}}" class="icon-25"/>
+        <div class="flex-1 text-center margin-top-10" >
+          <img *ngIf='item.systype_name=="赛马"  ' src="{{uploadpath}}resource/{{res.saima}}" class="icon-25"/>
+          <img *ngIf='item.systype_name=="足智彩" ' src="{{uploadpath}}resource/{{res.zuzhicai}}" class="icon-25"/>
+          <img *ngIf='item.systype_name=="推介"  ' src="{{uploadpath}}resource/{{res.tuijian}}" class="icon-25"/>
+          <img *ngIf='item.systype_name=="系统" ' src="{{uploadpath}}resource/{{res.message}}" class="icon-25"/>
+          <img *ngIf='item.systype==""' src="{{uploadpath}}resource/{{res.tongzhi}}" class="icon-25"/>
         </div>
-        <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.isshow==true'>{{item.content}}</div>
-        <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.ballcoins>0 && item.isshow==false'>{{lang.noti3}}{{item.ballcoins}}，{{lang.noti4}}{{item.chongmoney}}{{lang.noti5}}。</div>
-        <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.paycoins>0 && item.isshow==false'>{{lang.noti1}}{{item.recommend_user_id}}{{lang.noti1_1}}，{{lang.noti4}}{{item.paycoins}}{{lang.ballcoin}}。</div>
-        <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.membermoney>0 && item.isshow==false'>{{lang.noti2}}{{item.starttime_dateformat}}到{{item.endtime_dateformat}}，{{lang.noti4}}{{item.membermoney}}{{lang.noti5}}。</div>
+        
+        <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.syscont!=""'>{{item.syscont}}</div>
+        <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.ballcoins>0 '>{{lang.noti3}}{{item.ballcoins}}，{{lang.noti4}}{{item.chongmoney}}{{lang.noti5}}。</div>
+        <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.paycoins>0 '>{{lang.noti1}}{{item.recommend_user_id}}{{lang.noti1_1}}，{{lang.noti4}}{{item.paycoins}}{{lang.ballcoin}}。</div>
+        <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.membermoney>0 '>{{lang.noti2}}{{item.starttime_dateformat}}到{{item.endtime_dateformat}}，{{lang.noti4}}{{item.membermoney}}{{lang.noti5}}。</div>
       </div>
       <div class="time text-right h6 margin-right-20">{{getdate(item.msgtime)}}</div>
       <div class="box" *ngIf='item.isread=="N"'></div>

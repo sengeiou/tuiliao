@@ -107,31 +107,36 @@ export class Tab3Page extends AppBase {
   }
 
   tiaozhuan(itemID,user_id,coincount){
+    var that = this
     console.log(itemID,user_id,coincount)
     if(coincount>0){
-      this.centerApi.purchasedlist({recom_id:user_id,pur_id:this.member_id}).then((purchasedlist:any)=>{
-        console.log(purchasedlist)
+      this.centerApi.purchasedlist({recom_id:user_id,pur_id:this.member_id,rec_id:itemID}).then((purchasedlist:any)=>{
+        console.log(purchasedlist,'maimai')
         if(purchasedlist.length>0){
+          console.log('eeeee')
           for(let i=0;i<purchasedlist.length;i++){
-            for(let j=0;j<purchasedlist[i].recom.length;j++){
-              if(purchasedlist[i].recom[j].id == itemID){
-                this.router.navigate(['pay-recom-detail'],{
+           
+              console.log('买了，无')
+              console.log(purchasedlist[i].rec_id,'买了，无',itemID)
+              if(purchasedlist[i].rec_id==itemID){
+                that.router.navigate(['/pay-recom-detail'],{
                   queryParams: {
                     id: itemID
                   }
                 })
-             }else {
-              this.router.navigate(['recomdetail'],{
-                queryParams: {
-                  id: itemID
-                }
-              })
-             }
-          }
-          
+              }else {
+                that.router.navigate(['/recomdetail'],{
+                  queryParams: {
+                    id: itemID
+                  }
+                })
+              }
+
+              
           }
         }else {
-          this.router.navigate(['recomdetail'],{
+          console.log('eeeee')
+          that.router.navigate(['/recomdetail'],{
             queryParams: {
               id: itemID
             }
@@ -142,7 +147,7 @@ export class Tab3Page extends AppBase {
       })
   
     }else {
-      this.router.navigate(['pay-recom-detail'],{
+      that.router.navigate(['/pay-recom-detail'],{
         queryParams: {
           id: itemID,
           coincount: coincount
@@ -150,6 +155,15 @@ export class Tab3Page extends AppBase {
       })
     }
    
+  }
+
+  check(arr,id){
+    for(let item of arr){
+      if(item.id == id){
+        return true
+      }
+    }
+    return false
   }
 
  
