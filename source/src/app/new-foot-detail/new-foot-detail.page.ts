@@ -66,6 +66,7 @@ export class NewFootDetailPage  extends AppBase {
                   item.com_date[i].foot_time = this.getchangedatetime(item.com_date[i].foot_time)
                   item.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
                 }
+                item.com_date = item.com_date.sort(this.compare("seq"))
                 return item
               })
             this.shouqi(this.id)
@@ -95,7 +96,7 @@ export class NewFootDetailPage  extends AppBase {
                         footdetail.com_date[i].foot_time2 = this.getchangedatetime(item.com_date[i].foot_time2)
                         
                       }
-
+                      footdetail.com_date = footdetail.com_date.sort(this.compare("seq"))
                       if(this.id!=footdetail.id){
                         footdetail.isshow=false
                         footdetail.show = false
@@ -117,7 +118,11 @@ export class NewFootDetailPage  extends AppBase {
 
   }
 
-
+compare(pro){
+  return function(a,b){
+    return a[pro]-b[pro]
+  }
+}
 
   shouqi(id){
 

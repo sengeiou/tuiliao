@@ -53,13 +53,14 @@ export class Tab2Page extends AppBase {
     // this.autoPlay()
     console.log(this.langcode,'lang')
     this.aa = 1
-    this.getmsg()
+    this.getmsg();
   
 
   }
 
   getmsg(){
     this.isshow=false
+    this.imgs=[]
     this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
      
        this.footlist = footlist.filter((item)=>{

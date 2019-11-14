@@ -65,8 +65,8 @@ bb=0;
   openrecom(flag){
     console.log(flag,'recom')
     if(flag=="N"){
-      this.confirm('暂未开放，敬请期待',function(ret){
-      
+      this.confirm2('暂未开放，敬请期待',function(ret){
+          
       })
     }else if(flag=="Y"){
       this.navigate('/tabs/tab3')
@@ -77,8 +77,8 @@ bb=0;
   openfoot(flag){
     console.log(flag,'foot')
     if(flag=="N"){
-      this.confirm('暂未开放，敬请期待',function(ret){
-        
+      this.confirm2('暂未开放，敬请期待',function(ret){
+          
       })
       }else if(flag=="Y"){
         this.navigate('/tabs/tab2')
@@ -90,7 +90,7 @@ bb=0;
     var that = this
     console.log(flag,'saim')
     if(flag=="N"){
-        this.confirm('暂未开放，敬请期待',function(ret){
+        this.confirm2('暂未开放，敬请期待',function(ret){
           
         })
     }else if(flag=="Y"){
@@ -98,5 +98,22 @@ bb=0;
       this.bb=1
     }
   }
+
+
+  async confirm2(msg, confirmcallback) {
+
+    const alert = await this.alertCtrl.create({
+        header: "提示",
+        subHeader: msg,
+        buttons: [{
+            text: "确认",
+            handler: () => {
+                confirmcallback(true);
+            }
+        }]
+    });
+    alert.present();
+}
+
 
 }
