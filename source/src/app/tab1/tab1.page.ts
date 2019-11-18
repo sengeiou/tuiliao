@@ -72,6 +72,7 @@ aa=1
           if(item.horse.length>10){
             item.horse.splice(10,item.horse.length-10)
           }
+        
           return item.isnew == '是'
         })
         
@@ -108,7 +109,7 @@ aa=1
         if(item.horse.length>10){
           item.horse.splice(10,item.horse.length-10)
         }
-
+        // var allrate=0
         for(let i=0;i<item.horse.length;i++){
 
           if(item.horse[i].onenum==item.horse[i].winner || item.horse[i].onenum==item.horse[i].second ||item.horse[i].onenum==item.horse[i].third ){
@@ -148,8 +149,11 @@ aa=1
           if(item.horse[i].sixnum==item.horse[i].fourth ){
             item.horse[i].sixnumcolor='black'
           }
-
+          
+          // allrate += Number(item.horse[i].hitrate) 
         }
+        // item.overallhitrate=allrate/item.horse.length
+        // console.log(allrate,'kkkkkk')
         return item.isnew == '否'
       })
       

@@ -30,16 +30,16 @@
     <div *ngFor='let list of horselist'>
         <div class="time-box h4-5 bor_bot-b"  *ngIf='list.isnew=="是"'>
           <div class="h4-5 txt-white txt-bold padding-top-20 padding-bottom-20 text-center">{{lang.horseday}}：{{list.horse_time}}</div>
-          <div class="h6 txt-white txt-bold padding-left-30">{{lang.note2_1}}<span style="color: green;">{{lang.green}}</span>{{lang.note2_2}}<span style="color: yellow;">{{lang.yellow}}</span>{{lang.note2_3}}</div>
+          <div class="h5 txt-white txt-bold padding-left-30">{{lang.note2_1}}<span style="color: green;">{{lang.green}}</span>{{lang.note2_2}}<span style="color: yellow;">{{lang.yellow}}</span>{{lang.note2_3}}</div>
         </div>
         <div class="time-box2 h4-5 bor_bot-b" *ngIf='list.isnew=="否"'>
           <div class="h4-5 txt-white txt-bold padding-top-20 padding-bottom-20 text-center">{{lang.horseday}}：{{list.horse_time}}</div>
-          <div class="h6 txt-white txt-bold padding-left-30">{{lang.note2_1}}<span style="color: green;">{{lang.green}}</span>{{lang.note2_2}}<span style="color: yellow;">{{lang.yellow}}</span>{{lang.note2_3}}</div>
-          <div class="h6 txt-white txt-bold padding-left-100"><span style="color: red;">{{lang.red}}</span>{{lang.note3_1}}<span style="color: black;">{{lang.black}}</span>{{lang.note3_2}}</div>
+          <div class="h5 txt-white txt-bold padding-left-30">{{lang.note2_1}}<span style="color: green;">{{lang.green}}</span>{{lang.note2_2}}<span style="color: yellow;">{{lang.yellow}}</span>{{lang.note2_3}}</div>
+          <div class="h5 txt-white txt-bold padding-left-100"><span style="color: red;">{{lang.red}}</span>{{lang.note3_1}}<span style="color: black;">{{lang.black}}</span>{{lang.note3_2}}</div>
         </div>
 
       <table class="" width='100%'>
-        <thead class="biaotou bor-bot-a h5">
+        <thead class="biaotou bor-bot-a ">
           <th>{{lang.changci}}</th>
           <th>{{lang.horses}}</th>
           <th>{{lang.mingzhonglv}}</th>
@@ -48,22 +48,25 @@
           <tr class="saima">
             <td>{{lang.di}}&nbsp;{{item.changci}}&nbsp;{{lang.chang}}</td>
             <td class="flex-row">
-              <div class="icon-20 bg-green bor_bak txt-white h5 " [ngStyle]="{'color':item.onenumcolor}">{{item.onenum}}</div>
-              <div class="icon-20 bg-green bor_bak txt-white h5 " [ngStyle]="{'color':item.twonumcolor}">{{item.twonum}}</div>
-              <div class="icon-20 bg-green bor_bak txt-white h5 " [ngStyle]="{'color':item.threenumcolor}">{{item.threenum}}</div>
-              <div class="icon-20 bg-green bor_bak txt-white h5"  [ngStyle]="{'color':item.fournumcolor}">{{item.fournum}}</div>
-              <div class="icon-20 bg-orange bor_bak txt-white h5" [ngStyle]="{'color':item.fivenumcolor}">{{item.fivenum}}</div>
-              <div class="icon-20 bg-orange bor_bak txt-white h5" [ngStyle]="{'color':item.sixnumcolor}">{{item.sixnum}}</div>
+              <div class="icon-box bg-green bor_bak txt-white " [ngStyle]="{'color':item.onenumcolor}">{{item.onenum}}</div>
+              <div class="icon-box bg-green bor_bak txt-white " [ngStyle]="{'color':item.twonumcolor}">{{item.twonum}}</div>
+              <div class="icon-box bg-green bor_bak txt-white" [ngStyle]="{'color':item.threenumcolor}">{{item.threenum}}</div>
+              <div class="icon-box bg-green bor_bak txt-white"  [ngStyle]="{'color':item.fournumcolor}">{{item.fournum}}</div>
+              <div class="icon-box bg-orange bor_bak txt-white" [ngStyle]="{'color':item.fivenumcolor}">{{item.fivenum}}</div>
+              <div class="icon-box bg-orange bor_bak txt-white" [ngStyle]="{'color':item.sixnumcolor}">{{item.sixnum}}</div>
             </td>
             <td *ngIf='item.hitrate!==""' class="txt-red">{{item.hitrate}}%</td>
-            <td *ngIf='item.hitrate==""' class="h6 txt-gray-8a">{{lang.waitingresult}}</td>
+            <td *ngIf='item.hitrate==""' class="txt-gray-8a">{{lang.waitingresult}}</td>
           </tr>
         </tbody>
         <tfoot>
           <tr class="footed">
-            <td>{{lang.total10}}</td>
+            <td>共{{list.horse.length}}{{lang.total10}}</td>
             <td>{{lang.overall}}</td>
-            <td>{{list.overallhitrate}}%</td>
+            <td>
+              <div *ngIf='list.overallhitrate!="0"' class="txt-white">{{list.overallhitrate}}%</div>
+              <div *ngIf='list.overallhitrate=="0"' class="txt-white">{{lang.waitingresult}}</div>
+            </td>
           </tr>
         </tfoot>
       </table>
