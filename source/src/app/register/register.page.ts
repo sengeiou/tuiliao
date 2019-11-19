@@ -111,7 +111,7 @@ export class RegisterPage extends AppBase {
               var verifycode =this.yanzhenma;
               this.aliyunApi.verifycode({
                   mobile: codemobiles,
-                  verifycode,
+                  verifycode:this.yanzhenma,
                   type: "register"
                 }).then(ret => {
                   console.log(ret,'ret')
@@ -135,7 +135,7 @@ export class RegisterPage extends AppBase {
             var verifycode =this.yanzhenma;
             this.aliyunApi.verifycode({
                 mobile: codemobiles,
-                verifycode,
+                verifycode:this.yanzhenma,
                 type: "register"
               }).then(ret => {
                 console.log(ret,'ret')
@@ -160,7 +160,7 @@ export class RegisterPage extends AppBase {
               var verifycode =this.yanzhenma2;
               this.aliyunApi.emailverifycodes({
                   email: this.email,
-                  verifycode,
+                  verifycode:this.yanzhenma2,
                   type: "register"
                 }).then(ret => {
                   console.log(ret,'ret')
@@ -181,7 +181,7 @@ export class RegisterPage extends AppBase {
             var verifycode =this.yanzhenma2;
             this.aliyunApi.emailverifycodes({
                 email: this.email,
-                verifycode,
+                verifycode:this.yanzhenma2,
                 type: "register"
               }).then(ret => {
                 console.log(ret,'ret')

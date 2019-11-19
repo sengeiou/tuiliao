@@ -232,7 +232,7 @@ export class ForgetpwdPage extends AppBase {
 
   sendVerifyCode() {
 
-    this.memberApi.checkcanreg({ mobile: this.mobile}).then(ret => {
+    this.memberApi.checkmoileemail({ mobile: this.mobile}).then(ret => {
       console.log(ret);
 
       if (ret.code == "0") {
@@ -273,13 +273,13 @@ export class ForgetpwdPage extends AppBase {
             this.toast('手机号码错误，请重新输入！')
           }
       } else {
-        this.toast("手机号码已经被使用");
+        this.toast("手机号码没有注册");
       }
     });
   }
 
   sendVerifyCode2(){
-    this.memberApi.checkcanreg({ email: this.email }).then(ret => {
+    this.memberApi.checkmoileemail({ email: this.email }).then(ret => {
       console.log(ret);
 
       if (ret.code == "0") {
@@ -310,7 +310,7 @@ export class ForgetpwdPage extends AppBase {
           }
         });
       } else {
-        this.toast("邮箱已经被使用");
+        this.toast("邮箱没有注册");
       }
     });
   }

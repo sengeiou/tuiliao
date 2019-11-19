@@ -2,7 +2,7 @@
     <div class="bg-nav txt-white">
           <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
           <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
-      <ion-title>{{lang.register}}</ion-title>
+      <ion-title>{{lang.forget}}</ion-title>
     </div>
   </ion-header>
 
@@ -10,8 +10,8 @@
   <div>
 
     <div class="flex-row zhuce">
-      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak" [class.zhuce-active]='aa==1' (click)='telzhuce(1)'>{{lang.phoneregister}}</div>
-      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak" [class.zhuce-active]='aa==2' (click)='telzhuce(2)'>{{lang.emailregister}}</div>
+      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak" [class.zhuce-active]='aa==1' (click)='telzhuce(1)'>{{lang.forgetphone}}</div>
+      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak" [class.zhuce-active]='aa==2' (click)='telzhuce(2)'>{{lang.forgetemail}}</div>
     </div>
 
     <div class="height-80"></div>

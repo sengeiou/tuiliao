@@ -717,4 +717,37 @@ export class MemberApi {
                 return ApiConfig.ErrorHandle('member/usermsg', data, err);
             });
     }
+
+    public checkmoileemail(data, showLoadingModal: boolean = true) {
+        var url = ApiConfig.getApiUrl() + 'member/checkmoileemail';
+        var headers = ApiConfig.GetHeader(url, data);
+        let options = new RequestOptions({ headers: headers });
+        let body = ApiConfig.ParamUrlencoded(data);
+        let loading = null;
+
+        if (showLoadingModal) {
+            loading = ApiConfig.GetLoadingModal();
+        }
+
+        return this.http.post(url, body, options).toPromise()
+            .then((res) => {
+                if (ApiConfig.DataLoadedHandle('member/checkmoileemail', data, res)) {
+                    if (showLoadingModal) {
+                        ApiConfig.DimissLoadingModal();
+                    }
+                    if (res==null) {
+                        return null;
+                    }
+                    return res.json();
+                } else {
+                    return Promise.reject(res);
+                }
+            })
+            .catch(err => {
+                if (showLoadingModal) {
+                    ApiConfig.DimissLoadingModal();
+                }
+                return ApiConfig.ErrorHandle('member/checkmoileemail', data, err);
+            });
+    }
 }
