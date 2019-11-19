@@ -38,8 +38,8 @@ ul{
         list-style: none;
         // background: #ffffff !important;
         width: 100%;
-        height: rpx(72);
-        line-height: rpx(72);
+        height: rpx(100);
+        line-height: rpx(100);
         border-bottom: rpx(1) solid #000;
         // font-weight: bold;
         border-left: rpx(1) solid #000;
@@ -54,10 +54,10 @@ ul{
         }
 
         .imgs {
-            width: rpx(80);
-            height: rpx(70);
+            width: rpx(160);
+            height: rpx(100);
             position: absolute;
-            left: 85%;
+            left: 70%;
             top: 0;
         }
     }
@@ -83,6 +83,7 @@ ul{
         width: 100%;
         height: rpx(72);
         line-height: rpx(72);
+        
     }
 }
 
@@ -110,9 +111,11 @@ span {
     border-left:none !important;
 }
 
-.texu {
+.bg-g-96 .texu {
+    height: rpx(100);
+    line-height: rpx(110);
     position: absolute;
-    left: 49%;
+    left: 45%;
 }
 
 .txt-14 {

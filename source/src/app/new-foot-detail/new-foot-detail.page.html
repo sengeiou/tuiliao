@@ -9,8 +9,8 @@
 <ion-content  >
   <div  *ngFor='let list of footdetail'>
     <div class="box1 flex-row bor_top-b"  (click)='shouqi(list.id)'>
-      <span class="flex-1 margin-left-20 h4-5 txt-white ">{{list.recom_time}}</span>
-      <span class="flex-1 h4-5 text-right margin-right-20 txt-white ">
+      <span class="flex-1 margin-left-20  txt-white ">{{list.recom_time}}</span>
+      <span class="flex-1  text-right margin-right-20 txt-white ">
         {{lang.shoudetail}}
           <img *ngIf='list.isshow==false && list.show==false' src="{{uploadpath}}resource/{{res.arrowright}}" class="icon-15 img-margin"/>
           <img *ngIf='list.isshow && list.show' src="{{uploadpath}}resource/{{res.arrowbottom}}" class="icon-15 img-margin"/>
@@ -18,10 +18,10 @@
     </div>
     <div *ngIf='list.isshow && list.show'>
       <div  *ngFor='let item of list.com_date;let i=index'>
-        <div class="flex-row text-center h4-5 ">
+        <div class="flex-row text-center  ">
           <div class="flex-1 bg-g-96">
             <span class="txt-white">NO.{{item.seq}}</span>
-            <ul class="bg-yy txt-4 h5 li-diyilie">
+            <ul class="bg-yy txt-4  li-diyilie">
               <li>{{lang.time}}</li>
               <li>{{lang.tournament}}</li>
               <li>{{lang.hometeam}}</li>
@@ -40,7 +40,7 @@
           <div class="flex-2 bg-g-96">
             <div >
               <span  class="txt-white bor-r-b" >{{lang.first}}</span>
-              <ul  class="bg-white h5">
+              <ul  class="bg-white ">
                 <li>{{item.foot_time}}</li>
                 <li>{{item.com_name_name}}</li>
                 <li class="sheng">{{item.hostteam_name}}</li>
@@ -48,7 +48,7 @@
                 <li>{{item.gamemethod_name}}</li>
                 <li class="txt-14">{{item.xinshui_name}}</li>
                 <li>{{item.odds}}</li>
-                <li><div style="position: relative;"><img src="{{uploadpath}}resource/{{res.bg}}" class="imgs"/><span  class="texu">{{item.txo}}</span></div></li>
+                <li class="yangshi"><div style="position: relative;"><img src="{{uploadpath}}resource/{{res.bg}}" class="imgs"/><span  class="texu">{{item.txo}}</span></div></li>
                 <li *ngIf='new=="否"'>{{item.com_result}}</li>
                 <li *ngIf='new=="否"'>
                   <span *ngIf='item.result=="Y"' class="txt-red">{{lang.hit}}</span>
@@ -63,7 +63,7 @@
           <div class="flex-2 bg-g-96" > 
             <div >
               <span  class="txt-white bor-r-b">{{lang.second}}</span>
-              <ul  class="bg-white h5">
+              <ul  class="bg-white ">
                   <li>{{item.foot_time2}}</li>
                   <li>{{item.com_name2_name}}</li>
                   <li>{{item.host2_name}}</li>
