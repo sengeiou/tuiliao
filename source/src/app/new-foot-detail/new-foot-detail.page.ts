@@ -78,7 +78,7 @@ export class NewFootDetailPage  extends AppBase {
 
             this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
               console.log(footlist,'footlist')
-
+              var list =[]
               footlist.filter((item,idx)=>{
 
                 if(item.isnew=='否'){
@@ -103,19 +103,31 @@ export class NewFootDetailPage  extends AppBase {
                       }
                     
           
-                      this.footdetail.push(footdetail)
+                      list.push(footdetail)
+                       this.footdetail = list.sort(this.comparetime("recom_time_timespan"))
+                        console.log( list,'list')
                   })
-                }
-              
-            })
 
-          
+                
+                
+                }
+               
+            })
+           
             })
       
           }
      
     })
 
+  }
+
+  comparetime(pro){
+    // pro = (new Date(pro)).getTime();
+    // let times = (new Date(pro)).getTime();
+    return function(a,b){
+      return b[pro]-a[pro]
+    }
   }
 
 compare(pro){
@@ -136,8 +148,6 @@ compare(pro){
       }
 
     }
-    console.log(this.footdetail)
-
 
   }
 

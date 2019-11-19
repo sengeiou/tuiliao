@@ -55,6 +55,7 @@
             </td>
             <td  width="10%" *ngIf='isshow==false'>
               <span><a  class="txt-red"  *ngIf='item.result=="W"'>{{lang.waiting}}<br>{{lang.result}}</a></span>
+              <span><a  class="txt-red"  *ngIf='item.result!="W"'>{{lang.waiting}}<br>{{lang.result}}</a></span>
              
             </td>
             <td  width="10%" *ngIf='isshow'>

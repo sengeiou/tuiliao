@@ -107,10 +107,10 @@ export class RegisterPage extends AppBase {
           
           if(this.code!=""){
             if(this.checkcode(this.memberlist,this.code)){
-
+              var codemobiles = this.areacode + this.mobile
               var verifycode =this.yanzhenma;
               this.aliyunApi.verifycode({
-                  mobile: this.mobile,
+                  mobile: codemobiles,
                   verifycode,
                   type: "register"
                 }).then(ret => {
@@ -131,9 +131,10 @@ export class RegisterPage extends AppBase {
               return
             }
           }else {
+            var codemobiles = this.areacode + this.mobile
             var verifycode =this.yanzhenma;
             this.aliyunApi.verifycode({
-                mobile: this.mobile,
+                mobile: codemobiles,
                 verifycode,
                 type: "register"
               }).then(ret => {
@@ -291,11 +292,12 @@ export class RegisterPage extends AppBase {
         console.log(5555)
         var reg = this.changcode()
         console.log(reg,'reg')
-        
+        let codemobile = this.areacode + this.mobile
+        console.log(codemobile,'llllll')
           if(reg.test(this.mobile)){
 
             this.aliyunApi.phoneverifycode({
-              mobile: this.mobile,
+              mobile: codemobile,
               type: "register"
             }).then(ret => {
               console.log(ret);

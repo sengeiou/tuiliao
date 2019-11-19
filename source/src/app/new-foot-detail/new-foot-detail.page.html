@@ -48,7 +48,7 @@
                 <li>{{item.gamemethod_name}}</li>
                 <li class="txt-14">{{item.xinshui_name}}</li>
                 <li>{{item.odds}}</li>
-                <li><div class="texu">{{item.txo}}</div></li>
+                <li><div style="position: relative;"><img src="{{uploadpath}}resource/{{res.bg}}" class="imgs"/><span  class="texu">{{item.txo}}</span></div></li>
                 <li *ngIf='new=="否"'>{{item.com_result}}</li>
                 <li *ngIf='new=="否"'>
                   <span *ngIf='item.result=="Y"' class="txt-red">{{lang.hit}}</span>

@@ -101,8 +101,9 @@ export class ForgetpwdPage extends AppBase {
       if(this.mobile!=""){
         
           var verifycode =this.yanzhenma;
+          var codemobiles = this.areacode + this.mobile
           this.aliyunApi.verifycode({
-              mobile: this.mobile,
+              mobile: codemobiles,
               verifycode,
               type: "register"
             }).then(ret => {
@@ -239,11 +240,11 @@ export class ForgetpwdPage extends AppBase {
         console.log(5555)
         var reg = this.changcode()
         console.log(reg,'reg')
-        
+        var codemobile = this.areacode + this.mobile
           if(reg.test(this.mobile)){
 
             this.aliyunApi.phoneverifycode({
-              mobile: this.mobile,
+              mobile: codemobile,
               type: "register"
             }).then(ret => {
               console.log(ret);
