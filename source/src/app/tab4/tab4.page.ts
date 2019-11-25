@@ -56,10 +56,20 @@ export class Tab4Page extends AppBase {
     this.getkehu();
     this.notread="Y"
     this.conread="Y"
+
+    setInterval(() => {
+        
+      this.getmsgread();
+
+      this.getkehu();
+      console.log('好几个')
+    }, 3000);
+
   }
 
 
   notread="Y"
+  nonum=""
   notificationlist=[]
   getmsgread(){
       console.log(this.notread,'user_id')
@@ -70,12 +80,14 @@ export class Tab4Page extends AppBase {
           if(yanzheng.code=='0'){
             this.notread='Y'
           }else {
+            this.nonum=yanzheng.code
             this.notread='N'
           }
           
       })
   }
   conread='Y'
+  connum=""
   commissionlist=null
   getkehu(){
       this.centerApi.commissionlist({user_id:this.user_id}).then((commissionlist:any)=>{
