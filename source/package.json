@@ -39,9 +39,11 @@
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-transfer": "1.7.1",
+    "cordova-plugin-stripe-google-pay": "0.0.8",
     "cordova-res": "^0.8.1",
     "cordova-sqlite-storage": "3.3.0",
     "core-js": "^2.5.4",
+    "es6-promise-plugin": "^4.1.0",
     "ionic-native": "^2.9.0",
     "node-sass": "^4.12.0",
     "rxjs": "~6.5.1",
@@ -96,7 +98,8 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-clipboard": {},
-      "com.paypal.cordova.mobilesdk": {}
+      "com.paypal.cordova.mobilesdk": {},
+      "cordova-plugin-stripe-google-pay": {}
     },
     "platforms": [
       "android",

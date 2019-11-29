@@ -9,6 +9,7 @@ import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 import { CenterApi } from 'src/providers/center.api';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
+declare let sgap: any;
 
 @Component({
   selector: 'app-memberchongzhi',
@@ -153,6 +154,21 @@ export class MemberchongzhiPage extends AppBase {
    var that = this;
 
    if(this.zhifufanshi == 0){
+
+    sgap.setKey('pk_test_Ldy7TLYtmnsv1VrI4ULriWSd').then(function(output) {
+      sgap.isReadyToPay().then(function() {
+        sgap.requestPayment(1000, 'AUD').then(function(token) {
+          alert(token);
+        }).catch(function(err) {
+          alert(err);
+        });
+      }).catch(function(err) {
+        alert(err);
+      });
+    }).catch(function(err) {
+      alert(err);
+    });
+
     that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
       console.log(updateismember,'updateismember')
       if(updateismember.code == '0'){
@@ -184,8 +200,8 @@ export class MemberchongzhiPage extends AppBase {
           console.log('pppppppp')
 
           this.payPal.init({
-            PayPalEnvironmentProduction: 'ASQTy5LpV5C-5MyA7UDcBl2RJouuE7tpr-ClZ6Pj5ajJyPz5aDC3IL9zhagRSNwknX83TroXIFtItrpq',
-            PayPalEnvironmentSandbox: 'Af0-D6daL8_ke1pqrGxlCt3mXh7md506DCOgra9m90uNKNexjAHq4FLL0giwCOhYx3eBy71tCcJV_6Yb'
+            PayPalEnvironmentProduction: that.InstInfo.pro_id,
+            PayPalEnvironmentSandbox: that.InstInfo.san_id
           }).then(() => {
             console.log('aaaaaaaa')
             // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction

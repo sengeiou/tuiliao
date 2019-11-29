@@ -17,7 +17,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { AppPage } from 'e2e/src/app.po';
 import { from } from 'rxjs';
 
-declare let wx: any;
+declare let sgap: any;
 
 export class AppBase implements OnInit {
     public needlogin = true;
@@ -41,8 +41,9 @@ export class AppBase implements OnInit {
     public res = null;
     public static InstInfo = null;
     public static MemberInfo = null;
-    public InstInfo = {  h5sharelogo: "", h5sharetitle: "", h5sharedesc: "", tel: "", h5appid: "", kf: "", openning: "", successtips: "", orderneedknow: "", name: "", logo: "", memberlogo: "", undershipping: 0, shippingfee: 0, about1: "", about2: "", about3: "", about4: "", about5: "" ,customerservicemobile: "",currency_name:"HKD",comrate:0};
-    
+    // public InstInfo = {  h5sharelogo: "", h5sharetitle: "", h5sharedesc: "", tel: "", h5appid: "", kf: "", openning: "", successtips: "", orderneedknow: "", name: "", logo: "", memberlogo: "", undershipping: 0, shippingfee: 0, about1: "", about2: "", about3: "", about4: "", about5: "" ,customerservicemobile: "",currency_name:"HKD",san_id: "",pro_id:"",comrate:0};
+    public InstInfo : any = {};
+    public static Lang=null;
     public static MYBABY = [];
     public mybaby = [];
     public options = null;
@@ -65,7 +66,8 @@ export class AppBase implements OnInit {
     static Current = null;
     currentpage = "";
     isLoginPage = false;
-    memberInfo={id:0,endmenber_time:""};
+    // memberInfo={id:0,endmenber_time:""};
+    memberInfo: any = {};
 
     public operatorinfo={id:0,name:"",photo:"",loginname:""};
 
@@ -256,8 +258,9 @@ export class AppBase implements OnInit {
             this.res = AppBase.Resources;
         }
     }
-    static Lang=null;
-    lang=[];
+    
+    lang: any = {};
+    
     langcode="tc";
     getLang() {
         if (AppBase.Lang == null) {
@@ -474,7 +477,7 @@ export class AppBase implements OnInit {
     }
 
     static aboutemail="";
-    about = [];
+    about: any = {};
     getaboutus(){
         AppBase.instapi.aboutus({id:1},false).then((res)=>{
             console.log(res,'是是是')
