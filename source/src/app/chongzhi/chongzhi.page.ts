@@ -153,8 +153,30 @@ export class ChongzhiPage extends AppBase {
 
       sgap.setKey('pk_test_Ldy7TLYtmnsv1VrI4ULriWSd').then(function(output) {
         sgap.isReadyToPay().then(function() {
-          sgap.requestPayment(1000, 'AUD').then(function(token) {
-            alert(token);
+          sgap.requestPayment(that.paymoney, that.InstInfo.currency_name).then(function(token) {
+            // alert(token);
+
+
+            that.centerApi.memberpayment({member_id:that.member_id,chongzhi:that.ballnum2,money:that.paymoney,status: 'A'}).then((addintegration:any)=>{
+              console.log(addintegration)
+              if(addintegration.code=='0'){
+                that.centerApi.addnotification({user_id: that.member_id,chongmoney:that.paymoney,ballcoins:that.ballnum2,status:'A'}).then((addnotification:any)=>{
+                  console.log(addnotification)
+                })
+                that.memberApi.editballnum({id:that.member_id,ballnum: that.ballnum}).then((editballnum:any)=>{
+                  console.log(editballnum,'家私电话')
+                  if(editballnum.code=='0'){
+                    that.router.navigate(['chongzhisuccess'],{
+                      queryParams: {
+                        money: that.paymoney,
+                        ballnum: that.ballnum2
+                      }
+                    })
+                  }
+                })
+              }
+            })
+            
           }).catch(function(err) {
             alert(err);
           });
@@ -167,29 +189,10 @@ export class ChongzhiPage extends AppBase {
 
       console.log(this.zhifufanshi,'1111111')
 
-      that.centerApi.memberpayment({member_id:that.member_id,chongzhi:that.ballnum2,money:that.paymoney,status: 'A'}).then((addintegration:any)=>{
-        console.log(addintegration)
-        if(addintegration.code=='0'){
-          that.centerApi.addnotification({user_id: that.member_id,chongmoney:that.paymoney,ballcoins:that.ballnum2,status:'A'}).then((addnotification:any)=>{
-            console.log(addnotification)
-          })
-          that.memberApi.editballnum({id:that.member_id,ballnum: that.ballnum}).then((editballnum:any)=>{
-            console.log(editballnum,'家私电话')
-            if(editballnum.code=='0'){
-              that.router.navigate(['chongzhisuccess'],{
-                queryParams: {
-                  money: that.paymoney,
-                  ballnum: that.ballnum2
-                }
-              })
-            }
-          })
-        }
-      })
 
     }
     if (this.zhifufanshi == 2) {
-      console.log('pppppppp')
+      console.log(that.InstInfo.currency_name,'pppppppp')
 
       this.payPal.init({
         PayPalEnvironmentProduction: that.InstInfo.pro_id,
