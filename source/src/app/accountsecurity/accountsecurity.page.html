@@ -8,7 +8,7 @@
 
 
 <ion-content>
-  <div *ngIf="MemberInfo!=null">
+  <div *ngIf="memberInfo!=null">
     <div class="margin-40">
 
       <div >
@@ -24,7 +24,7 @@
 
       <div class="flex-row flex-center" style="">
         <div class=" flex-1 h5 txt-a7">邮箱</div>
-        <div (click)="unbindwx()" class="txt_color h5">{{MemberInfo.appopenid}}</div>
+        <div (click)="unbindwx()" class="txt_color h5">{{memberInfo.appopenid}}</div>
         <img (click)="unbindwx()" [src]="uploadpath+'resource/'+res.arrow" class="icon-15 margin-left-20">
       </div>
       <div style="width:90vw;background:#D6D7D9;" class="margin-top-12 height-1"></div>
