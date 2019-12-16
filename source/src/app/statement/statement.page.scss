@@ -1,0 +1,29 @@
+@function rpx($px) {
+    @return ($px * 100vw) / 750;
+  }
+
+  .btn1 {
+    width: rpx(300);
+    height: rpx(80);
+    border: rpx(2) solid #cccccc !important;
+    background: #cccccc;
+    margin-right: rpx(20);
+    border-radius: rpx(20);
+    font-size: rpx(32);
+    color: #ffffff;
+  }
+
+  .btn2 {
+    width: rpx(300);
+    height: rpx(80);
+    border: rpx(2) solid #143779 !important;
+    margin-right: rpx(20);
+    border-radius: rpx(20);
+    background: #143779;
+    color: #ffffff;
+    font-size: rpx(32);
+  }
+
+  .height-30 {
+    height: rpx(30);
+  }

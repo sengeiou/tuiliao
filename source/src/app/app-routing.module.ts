@@ -32,6 +32,8 @@ const routes: Routes = [
   { path: 'agreement', loadChildren: './agreement/agreement.module#AgreementPageModule' },
   { path: 'updatepassword', loadChildren: './updatepassword/updatepassword.module#UpdatepasswordPageModule' },
   { path: 'forgetpwd', loadChildren: './forgetpwd/forgetpwd.module#ForgetpwdPageModule' },
+  { path: 'agreemember', loadChildren: './agreemember/agreemember.module#AgreememberPageModule' },
+  { path: 'statement', loadChildren: './statement/statement.module#StatementPageModule' },
 ];
 @NgModule({
   imports: [

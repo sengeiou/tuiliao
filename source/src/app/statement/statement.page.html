@@ -1,0 +1,17 @@
+<ion-header>
+  <div class="bg-nav txt-white">
+        <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+    <ion-title>{{lang.zhuce}}</ion-title>
+  </div>
+</ion-header>
+<ion-content>
+  <div [innerHtml]='decode(InstInfo.zhuce)' class="padding-30"></div>
+    <div class="flex-row flex-center">
+      <div class="flex-1"></div>
+      <button class="btn1" routerLink='/login'>{{lang.disagree}}</button>
+      <button  class="btn2" routerLink='/register'>{{lang.agree}}</button>
+      <div class="flex-1"></div>
+    </div>
+    <div class='height-30'></div>
+</ion-content>
