@@ -9,6 +9,7 @@ import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 import { CenterApi } from 'src/providers/center.api';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
+import { InAppPurchase } from '@ionic-native/in-app-purchase/ngx';
 declare let sgap: any;
 
 @Component({
@@ -29,7 +30,8 @@ export class MemberchongzhiPage extends AppBase {
     public memberApi:MemberApi,
     public projectApi:ProjectApi,
     public centerApi:CenterApi,
-    private payPal: PayPal
+    private payPal: PayPal,
+    private iap: InAppPurchase
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -155,21 +157,52 @@ export class MemberchongzhiPage extends AppBase {
 
    if(this.zhifufanshi == 0){
 
-    sgap.setKey('pk_test_Ldy7TLYtmnsv1VrI4ULriWSd').then(function(output) {
-      sgap.isReadyToPay().then(function() {
-        sgap.requestPayment(1000, 'AUD').then(function(token) {
-          alert(token);
-        }).catch(function(err) {
-          alert(err);
-        });
-      }).catch(function(err) {
-        alert(err);
-      });
-    }).catch(function(err) {
-      alert(err);
-    });
+  //   sgap.setKey('pk_test_Ldy7TLYtmnsv1VrI4ULriWSd').then(function(output) {
+  //     sgap.isReadyToPay().then(function() {
+  //       sgap.requestPayment(1000, 'AUD').then(function(token) {
+  //         alert(token);
+  //       }).catch(function(err) {
+  //         alert(err);
+  //       });
+  //     }).catch(function(err) {
+  //       alert(err);
+  //     });
+  //   }).catch(function(err) {
+  //     alert(err);
+  //   });
 
-    that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
+  //   that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
+  //     console.log(updateismember,'updateismember')
+  //     if(updateismember.code == '0'){
+  //       that.ismember = '是'
+
+  //       that.centerApi.addnotification({user_id: that.user_id,membermoney:that.paymoney,starttime:that.starttime,endtime:that.endtime,status:'A'}).then((addnotification:any)=>{
+  //         console.log(addnotification)
+  //       })
+
+  //       that.centerApi.addmemberrecord({member_id:that.user_id,payment_time:that.starttime,price:that.paymoney,endtime:that.endtime}).then((addintegration:any)=>{
+  //         console.log(addintegration,'addintegration')
+  //         if(addintegration.code){
+  //           that.router.navigate(['paysuccess'],{
+  //             queryParams: {
+  //               paydate: that.paydate,
+  //               paymoney: that.paymoney,
+  //               starttime: that.starttime,
+  //               endtime: that.endtime
+  //             }
+  //           })
+  //         }
+  //       })
+  //     }
+      
+  // })
+
+  this.iap
+  .buy('001')
+  .then((data) => {
+    alert(data);
+
+       that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
       console.log(updateismember,'updateismember')
       if(updateismember.code == '0'){
         that.ismember = '是'
@@ -194,6 +227,11 @@ export class MemberchongzhiPage extends AppBase {
       }
       
   })
+  })
+  .catch((err) => {
+    alert(err);
+  });
+
    }
 
       if (this.zhifufanshi == 2) {

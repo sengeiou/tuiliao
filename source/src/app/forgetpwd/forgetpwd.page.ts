@@ -105,7 +105,7 @@ export class ForgetpwdPage extends AppBase {
           this.aliyunApi.verifycode({
               mobile: codemobiles,
               verifycode,
-              type: "register"
+              type: "reset"
             }).then(ret => {
               console.log(ret,'ret')
             if (ret.code == 0) {
@@ -123,7 +123,7 @@ export class ForgetpwdPage extends AppBase {
           this.aliyunApi.emailverifycodes({
               email: this.email,
               verifycode,
-              type: "register"
+              type: "reset"
             }).then(ret => {
               console.log(ret,'ret')
             if (ret.code == 0) {
@@ -245,7 +245,7 @@ export class ForgetpwdPage extends AppBase {
 
             this.aliyunApi.phoneverifycode({
               mobile: codemobile,
-              type: "register"
+              type: "reset"
             }).then(ret => {
               console.log(ret);
               if (ret.code == 0) {
@@ -286,7 +286,7 @@ export class ForgetpwdPage extends AppBase {
         // this.inverify = true;
         this.aliyunApi.emailverifycode({
           email: this.email,
-          type: "register"
+          type: "reset"
         }).then(ret => {
           console.log(ret);
           if (ret.code == 0) {

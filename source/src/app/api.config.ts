@@ -5,13 +5,13 @@ export class ApiConfig {
 
 
     public static getApiUrl() {
-        return "https://cmsdev.app-link.org/alucard263096/tuiliao/api/";
+        return "https://api.bigwinner888.com/api/";
     }
     public static getUploadPath() {
         return "https://alioss.app-link.org/alucard263096/tuiliao/";
     }
     public static getFileUploadAPI() {
-        return "https://cmsdev.app-link.org/alucard263096/tuiliao/fileupload";
+        return "https://api.bigwinner888.com/fileupload";
     }
  
 
