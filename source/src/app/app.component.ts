@@ -50,8 +50,8 @@ export class AppComponent {
       // this.devicename = this.device.model;
 
 
-      this.statusBar.styleDefault();
-
+      this.statusBar.show();
+      this.statusBar.backgroundColorByName('white');
     });
   }
 

@@ -9,9 +9,9 @@
 
 .bg-gray-f0 {
     width: 100vw;
-    height: 100vh;
+    // height: 100vh;
     background: #F0F2F5;
-    padding-top: rpx(40);
+    // padding-top: rpx(40);
 }
 
 .yigou {
@@ -83,4 +83,26 @@
   height: rpx(42);
   position: absolute;
   left: 21%;
+}
+
+.zanwu {
+  width: 100vw;
+  // height: 100vh;
+  text-align: center;
+  margin-top: 30%;
+  img {
+      width: rpx(400);
+      height: rpx(247);
+  }
+  div{
+      color: #AAAAAA;
+  }
+}
+
+.height-100vh {
+  height: 100vh;
+  padding-top: rpx(40);
+}
+.height-0 {
+  height: 0;
 }

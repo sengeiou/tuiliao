@@ -1,13 +1,13 @@
 <ion-header>
   <div class="bg-nav txt-white">
         <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
-        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-40 margin-left-20 margin-top-20" (click)='back()'/>
     <ion-title>{{lang.collection}}</ion-title>
   </div>
 </ion-header>
 
 <ion-content>
-  <div class="bg-gray-f0" *ngIf='recomfavlist!=null'>
+  <div class="bg-gray-f0 {{recomfavlist.length!=0?'height-100vh':'height-0'}}" *ngIf='recomfavlist!=null'>
 
       <div class="yigou" *ngFor='let item of favlist'>
         
@@ -26,6 +26,13 @@
       </div>
 
       
+  </div>
+
+  <div *ngIf='recomfavlist==null || recomfavlist.length==0'  class="zanwu">
+    <img src="{{uploadpath}}resource/{{res.zanwuneirong}}"/>
+    <div>
+        {{lang.neirong}}
+    </div>
   </div>
   
 </ion-content>

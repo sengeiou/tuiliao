@@ -6,7 +6,7 @@
       <img *ngIf='memberInfo.ismember=="是"' src="{{uploadpath}}resource/{{res.vip}}" class="vip"/>
     </div>
     <div class="flex-3">
-      <div class="txt-white margin-top margin-bottom-10">{{memberInfo.name}}</div>
+      <div class="txt-white margin-top margin-bottom-10">{{memberInfo.name}}.</div>
       <div *ngIf='memberInfo.ismember=="否"' class="txt-gray-bf h6">{{lang.notmember}}</div>
       <div *ngIf='memberInfo.ismember=="是"' class="txt-yellow-c6 h6">{{lang.ismember}}</div>
     </div>

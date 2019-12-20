@@ -12,7 +12,7 @@ describe('AppComponent', () => {
   let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
 
   beforeEach(async(() => {
-    statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
+    statusBarSpy = jasmine.createSpyObj('StatusBar', ['show']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
     platformReadySpy = Promise.resolve();
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
@@ -38,7 +38,7 @@ describe('AppComponent', () => {
     TestBed.createComponent(AppComponent);
     expect(platformSpy.ready).toHaveBeenCalled();
     await platformReadySpy;
-    expect(statusBarSpy.styleDefault).toHaveBeenCalled();
+    expect(statusBarSpy.show).toHaveBeenCalled();
     expect(splashScreenSpy.hide).toHaveBeenCalled();
   });
 

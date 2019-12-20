@@ -1,13 +1,13 @@
 <ion-header>
   <div class="bg-nav txt-white">
         <!-- <ion-icon (click)='back()' class="h4 txt-white margin-left-20 margin-top-30" name="ios-arrow-back"></ion-icon> -->
-        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-20 margin-left-20 margin-top-30" (click)='back()'/>
+        <img src="{{uploadpath}}resource/{{res.fanhui}}" class="icon-40 margin-left-20 margin-top-20" (click)='back()'/>
     <ion-title>{{lang.Investment}}</ion-title>
   </div>
 </ion-header>
 
 <ion-content>
-  <div class="bg-gray-f0">
+  <div class="bg-gray-f0 {{investmentlist.length!=0?'height-100vh':'height-0'}}" *ngIf='investmentlist!=null'>
 
     <div class="touzi" *ngFor='let item of investmentlist'>
       <div class="txt-bold margin-left-30">{{item.name}}</div>
@@ -32,4 +32,13 @@
   <div class="editfixed" routerLink='/edittouzi'>
     <img src="{{uploadpath}}resource/{{res.edit}}" class="icon-60"/>
   </div>
+
+
+  <div *ngIf='investmentlist==null || investmentlist.length==0'  class="zanwu">
+    <img src="{{uploadpath}}resource/{{res.zanwuneirong}}"/>
+    <div>
+        {{lang.neirong}}
+    </div>
+  </div>
+
 </ion-content>
