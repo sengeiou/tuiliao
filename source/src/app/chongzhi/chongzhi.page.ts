@@ -203,7 +203,9 @@ export class ChongzhiPage extends AppBase {
       this.iap
         .buy('001')
         .then((data) => {
-          alert(data);
+          alert("入001");
+
+          alert(JSON.stringify(data));
 
           that.centerApi.memberpayment({ member_id: that.member_id, chongzhi: that.ballnum2, money: that.paymoney, status: 'A' }).then((addintegration: any) => {
             console.log(addintegration)
@@ -226,7 +228,7 @@ export class ChongzhiPage extends AppBase {
           })
         })
         .catch((err) => {
-          alert(err);
+          alert(JSON.stringify(err));
         });
 
 
