@@ -326,19 +326,34 @@ export class AppBase implements OnInit {
     }
     isbacking = false;
     back() {
+        // if (this.isbacking == true) {
+        //     return;
+        // }
+        // this.isbacking = true;
+        // //alert(this.Params.fromtab);
+        // if (history.length < 2) {
+        //     this.navCtrl.navigateBack('tabs/tab1');
+        //     return;
+        // }
+        // if (this.params.fromtab != undefined) {
+        //     this.navCtrl.navigateBack('tabs/' + this.params.fromtab);
+        // } else {
+        //     this.navCtrl.back();
+        // }
+
         if (this.isbacking == true) {
             return;
         }
         this.isbacking = true;
         //alert(this.Params.fromtab);
-        if (history.length < 2) {
-            this.navCtrl.navigateBack('tabs/tab1');
-            return;
-        }
         if (this.params.fromtab != undefined) {
-            this.navCtrl.navigateBack('tabs/' + this.params.fromtab);
+            this.navCtrl.navigateBack('tabs/' + this.params.fromtab).then((res) => {
+                console.log(res);
+                //this.inback=false;
+            });
         } else {
-            this.navCtrl.back();
+            this.navCtrl.back({});
+            //this.inback=false;
         }
     }
     backToUrl(url) {

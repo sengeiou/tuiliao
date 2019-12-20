@@ -15,7 +15,7 @@ declare let sgap: any;
   selector: 'app-chongzhi',
   templateUrl: './chongzhi.page.html',
   styleUrls: ['./chongzhi.page.scss'],
-  providers: [MemberApi, ProjectApi, CenterApi, PayPal]
+  providers: [MemberApi, ProjectApi, CenterApi, PayPal,InAppPurchase]
 })
 export class ChongzhiPage extends AppBase {
 
