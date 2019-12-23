@@ -35,7 +35,7 @@ export class UpdatepasswordPage extends AppBase {
     //参数
     this.params;
   }
-
+  needlogin=false;
   name=''
   oldpassword=''
   password=''

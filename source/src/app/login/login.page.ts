@@ -32,7 +32,7 @@ export class LoginPage extends AppBase {
     //参数
     this.params;
   }
-
+  needlogin=false;
   username = ''
   password=""
   onMyShow(){

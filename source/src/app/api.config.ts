@@ -13,8 +13,7 @@ export class ApiConfig {
     public static getFileUploadAPI() {
         return "https://api.bigwinner888.com/fileupload";
     }
- 
-
+   
 
 
     public static ParamUrlencoded(json) {

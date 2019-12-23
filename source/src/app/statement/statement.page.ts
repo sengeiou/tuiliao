@@ -30,7 +30,7 @@ export class StatementPage extends AppBase {
     this.headerscroptshow = 480;
       
   }
-
+  needlogin=false;
   onMyLoad(){
     //参数
     this.params;

@@ -151,12 +151,12 @@ export class AppBase implements OnInit {
 
         console.log(AppBase.IsLogin,'5555')
 
-        if (this.isLoginPage==false) {
+        // if (this.isLoginPage==false) {
             var token = window.localStorage.getItem("UserToken");
-            this.user_id = window.localStorage.getItem("user_id");
+           
             var isregister = window.localStorage.getItem("isregister");
             console.log(token,'2222')
-
+            console.log(this.needlogin,'33333')
             if (token == null) {
                 if(isregister!=null){
                     console.log('kkkkkk')
@@ -164,25 +164,41 @@ export class AppBase implements OnInit {
                     // this.router.navigate(["login"]);
                     window.localStorage.removeItem("isregister");
                 }else {
-                    this.router.navigate(["login"]);
-                    AppBase.IsLogin = false;
+
+                    if (this.needlogin == true) {
+
+                        this.navigate("login");
+        
+                    } else {
+                        this.onMyShow();
+                    }
+                    // this.router.navigate(["login"]);
+                    // AppBase.IsLogin = false;
                 }
+
+               
                 
             } else {
                 ApiConfig.SetToken(token);
+                console.log(token,'hhah')
 
-                AppBase.memberapi.info({id:this.user_id}).then((memberinfo) => {
+                AppBase.memberapi.info({}).then((memberinfo) => {
                     AppBase.IsLogin = memberinfo == null ? false : true;
                     console.log(memberinfo,'memberinfo')
-                    if(memberinfo == null){
-                        this.router.navigate(['login'])
+                    if(memberinfo == null || memberinfo.mobile==''){
+                        if(this.needlogin==true){
+                            this.router.navigate(['login']);
+                            return
+                        }
                     }else{
                         if(memberinfo.endmenber_time!=""){
                             if(memberinfo.endmenber_time>nowtime){
                                 console.log('jjjjjjj')
                                 this.memberInfo = memberinfo;
+                                this.user_id=memberinfo.id
                                 this.ismember = memberinfo.ismember
                             }else {
+                                this.user_id=memberinfo.id
                                 console.log('哈哈哈哈哈哈')
                                 console.log(memberinfo.endmenber_time,nowtime)
                                 AppBase.memberapi.updateismember({id:this.user_id,ismember:'N'}).then((updateismember:any)=>{
@@ -195,7 +211,7 @@ export class AppBase implements OnInit {
                                 })
                             }
                         }else {
-
+                            this.user_id=memberinfo.id
                             this.memberInfo = memberinfo;
                             this.ismember = memberinfo.ismember
                         }
@@ -205,7 +221,7 @@ export class AppBase implements OnInit {
                     }
                     // console.log(this.memberInfo,'oooo')
                 })
-            }
+            // }
         }
     }
 
@@ -229,11 +245,16 @@ export class AppBase implements OnInit {
     }
     getMemberInfo() {
 
-        AppBase.memberapi.info({id:this.user_id}).then((memberinfo) => {
+        AppBase.memberapi.info({}).then((memberinfo) => {
             if (memberinfo.id == 0 || memberinfo.mobile == undefined || memberinfo.mobile == "") {
                 //alert("?");
                 memberinfo = null;
+                if (this.needlogin == true) {
+                    this.navigate("login");
+                    return;
+                }
             }
+            this.user_id=memberinfo.id
             this.memberInfo = memberinfo;
 
         });
@@ -326,20 +347,7 @@ export class AppBase implements OnInit {
     }
     isbacking = false;
     back() {
-        // if (this.isbacking == true) {
-        //     return;
-        // }
-        // this.isbacking = true;
-        // //alert(this.Params.fromtab);
-        // if (history.length < 2) {
-        //     this.navCtrl.navigateBack('tabs/tab1');
-        //     return;
-        // }
-        // if (this.params.fromtab != undefined) {
-        //     this.navCtrl.navigateBack('tabs/' + this.params.fromtab);
-        // } else {
-        //     this.navCtrl.back();
-        // }
+        
 
         if (this.isbacking == true) {
             return;

@@ -40,7 +40,7 @@ export class RegisterPage extends AppBase {
     //参数
     this.params;
   }
-
+  needlogin=false;
   istelzhuce = true;
 
   username = "";

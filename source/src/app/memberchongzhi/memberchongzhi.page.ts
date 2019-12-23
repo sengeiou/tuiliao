@@ -200,7 +200,9 @@ export class MemberchongzhiPage extends AppBase {
   this.iap
   .buy('001')
   .then((data) => {
-    alert(data);
+    alert("入001");
+
+          alert(JSON.stringify(data));
 
        that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
       console.log(updateismember,'updateismember')
@@ -229,7 +231,7 @@ export class MemberchongzhiPage extends AppBase {
   })
   })
   .catch((err) => {
-    alert(err);
+    alert(JSON.stringify(err));
   });
 
    }
