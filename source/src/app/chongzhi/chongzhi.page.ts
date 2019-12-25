@@ -15,7 +15,7 @@ declare let sgap: any;
   selector: 'app-chongzhi',
   templateUrl: './chongzhi.page.html',
   styleUrls: ['./chongzhi.page.scss'],
-  providers: [MemberApi, ProjectApi, CenterApi, PayPal,InAppPurchase]
+  providers: [MemberApi, ProjectApi, CenterApi, PayPal, InAppPurchase]
 })
 export class ChongzhiPage extends AppBase {
 
@@ -198,39 +198,45 @@ export class ChongzhiPage extends AppBase {
       // .catch((err) => {
       //   console.log(err);
       // });
-
-
       this.iap
-        .buy('001')
-        .then((data) => {
-          alert("入001");
+        .getProducts(['001'])
+        .then((products) => {
+          alert(JSON.stringify(products));
 
-          alert(JSON.stringify(data));
+          this.iap
+            .buy('001')
+            .then((data) => {
+              alert("入001");
 
-          that.centerApi.memberpayment({ member_id: that.member_id, chongzhi: that.ballnum2, money: that.paymoney, status: 'A' }).then((addintegration: any) => {
-            console.log(addintegration)
-            if (addintegration.code == '0') {
-              that.centerApi.addnotification({ user_id: that.member_id, chongmoney: that.paymoney, ballcoins: that.ballnum2, status: 'A' }).then((addnotification: any) => {
-                console.log(addnotification)
-              })
-              that.memberApi.editballnum({ id: that.member_id, ballnum: that.ballnum }).then((editballnum: any) => {
-                console.log(editballnum, '家私电话')
-                if (editballnum.code == '0') {
-                  that.router.navigate(['chongzhisuccess'], {
-                    queryParams: {
-                      money: that.paymoney,
-                      ballnum: that.ballnum2
+              alert(JSON.stringify(data));
+
+              that.centerApi.memberpayment({ member_id: that.member_id, chongzhi: that.ballnum2, money: that.paymoney, status: 'A' }).then((addintegration: any) => {
+                console.log(addintegration)
+                if (addintegration.code == '0') {
+                  that.centerApi.addnotification({ user_id: that.member_id, chongmoney: that.paymoney, ballcoins: that.ballnum2, status: 'A' }).then((addnotification: any) => {
+                    console.log(addnotification)
+                  })
+                  that.memberApi.editballnum({ id: that.member_id, ballnum: that.ballnum }).then((editballnum: any) => {
+                    console.log(editballnum, '家私电话')
+                    if (editballnum.code == '0') {
+                      that.router.navigate(['chongzhisuccess'], {
+                        queryParams: {
+                          money: that.paymoney,
+                          ballnum: that.ballnum2
+                        }
+                      })
                     }
                   })
                 }
               })
-            }
-          })
+            })
+            .catch((err) => {
+              alert(JSON.stringify(err));
+            });
         })
         .catch((err) => {
-          alert(JSON.stringify(err));
+          console.log(err);
         });
-
 
       console.log(this.zhifufanshi, '1111111')
 

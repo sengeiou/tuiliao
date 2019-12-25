@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { AppBase } from '../AppBase';
 import { Router } from '@angular/router';
-import {  ActivatedRoute, Params } from '@angular/router';
-import { NavController, ModalController, ToastController, AlertController, NavParams,IonSlides } from '@ionic/angular';
+import { ActivatedRoute, Params } from '@angular/router';
+import { NavController, ModalController, ToastController, AlertController, NavParams, IonSlides } from '@ionic/angular';
 import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
@@ -16,7 +16,7 @@ declare let sgap: any;
   selector: 'app-memberchongzhi',
   templateUrl: './memberchongzhi.page.html',
   styleUrls: ['./memberchongzhi.page.scss'],
-  providers:[MemberApi,ProjectApi,CenterApi,PayPal,InAppPurchase]
+  providers: [MemberApi, ProjectApi, CenterApi, PayPal, InAppPurchase]
 })
 export class MemberchongzhiPage extends AppBase {
 
@@ -27,52 +27,52 @@ export class MemberchongzhiPage extends AppBase {
     public alertCtrl: AlertController,
     public activeRoute: ActivatedRoute,
     public sanitizer: DomSanitizer,
-    public memberApi:MemberApi,
-    public projectApi:ProjectApi,
-    public centerApi:CenterApi,
+    public memberApi: MemberApi,
+    public projectApi: ProjectApi,
+    public centerApi: CenterApi,
     private payPal: PayPal,
     private iap: InAppPurchase
-    ) {
-    super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
+  ) {
+    super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl, activeRoute);
     this.headerscroptshow = 480;
-      
+
   }
 
-  onMyLoad(){
+  onMyLoad() {
     //参数
     this.params;
   }
 
-  endmenbertime=null
+  endmenbertime = null
   huiyuanlist = null
-  onMyShow(){
+  onMyShow() {
 
-    this.memberApi.info({id:this.user_id}).then((info)=>{
+    this.memberApi.info({ id: this.user_id }).then((info) => {
       this.endmenbertime = info.endmenber_time
     })
-    
-    this.centerApi.huiyuanlist({}).then((huiyuanlist)=>{
+
+    this.centerApi.huiyuanlist({}).then((huiyuanlist) => {
       this.huiyuanlist = huiyuanlist.sort(this.compare("seq"))
     })
   }
 
-  compare(pro){
-    return function(a,b){
-      return a[pro]-b[pro]
+  compare(pro) {
+    return function (a, b) {
+      return a[pro] - b[pro]
     }
   }
 
   paydate = 0
-  paymoney=0
-  d=false
-  choose(e,item){
+  paymoney = 0
+  d = false
+  choose(e, item) {
     console.log(e)
 
     var current = e.target.parentElement.parentElement
-    if(current.classList.contains('member')){
+    if (current.classList.contains('member')) {
       console.log('ooooo')
       current.classList.add('member-active')
-    }else {
+    } else {
       return
     }
     this.paydate = item.days
@@ -80,8 +80,8 @@ export class MemberchongzhiPage extends AppBase {
     var others = current.parentElement.childNodes
     console.log(others)
     console.log(this.paymoney)
-    for(let i=1;i<others.length; i++){
-      if(current != others[i]){
+    for (let i = 1; i < others.length; i++) {
+      if (current != others[i]) {
         others[i].classList.remove('member-active')
       }
     }
@@ -99,14 +99,14 @@ export class MemberchongzhiPage extends AppBase {
     // })
   }
 
-  zhifufanshi=2
+  zhifufanshi = 2
 
-  zhifu(id){
+  zhifu(id) {
     this.zhifufanshi = id;
 
   }
 
-  
+
   gbzf() {
     this.d = false;
     this.onMyShow();
@@ -114,35 +114,35 @@ export class MemberchongzhiPage extends AppBase {
     // this.navigate("/order");
   }
 
-  starttime=null
-  endtime=null
+  starttime = null
+  endtime = null
 
   lijizhifu() {
     this.d = false;
 
-   
-    if(this.ismember=="是"){
-      console.log(this.endmenbertime,'endmenbertime')
+
+    if (this.ismember == "是") {
+      console.log(this.endmenbertime, 'endmenbertime')
 
       let date3 = new Date(this.endmenbertime)
       let date4 = new Date(date3)
-      date4.setDate(date3.getDate()+Number(this.paydate))
+      date4.setDate(date3.getDate() + Number(this.paydate))
 
-      console.log(date3.getFullYear() + "-" + (date3.getMonth() + 1) + "-" + date3.getDate() + " " + date3.getHours() +  ":"  +date3.getMinutes() +":"+ date3.getSeconds(),'3333')
-      console.log(date4.getFullYear() + "-" + (date4.getMonth() + 1) + "-" + date4.getDate() + " " + date4.getHours() +  ":"  +date4.getMinutes() +":"+ date4.getSeconds(),'444')
+      console.log(date3.getFullYear() + "-" + (date3.getMonth() + 1) + "-" + date3.getDate() + " " + date3.getHours() + ":" + date3.getMinutes() + ":" + date3.getSeconds(), '3333')
+      console.log(date4.getFullYear() + "-" + (date4.getMonth() + 1) + "-" + date4.getDate() + " " + date4.getHours() + ":" + date4.getMinutes() + ":" + date4.getSeconds(), '444')
 
-      this.starttime = date3.getFullYear() + "-" + (date3.getMonth() + 1) + "-" + date3.getDate() + " " + date3.getHours() +  ":"  +date3.getMinutes() +":"+ date3.getSeconds()
-      this.endtime = date4.getFullYear() + "-" + (date4.getMonth() + 1) + "-" + date4.getDate() + " " + date4.getHours() +  ":"  +date4.getMinutes()+":"+ date4.getSeconds()
+      this.starttime = date3.getFullYear() + "-" + (date3.getMonth() + 1) + "-" + date3.getDate() + " " + date3.getHours() + ":" + date3.getMinutes() + ":" + date3.getSeconds()
+      this.endtime = date4.getFullYear() + "-" + (date4.getMonth() + 1) + "-" + date4.getDate() + " " + date4.getHours() + ":" + date4.getMinutes() + ":" + date4.getSeconds()
 
-    
-    }else {
+
+    } else {
 
       var date1 = new Date();
       var date2 = new Date(date1);
       date2.setDate(date1.getDate() + Number(this.paydate));
-       this.starttime = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate() + " " + date1.getHours() + ":"  +date1.getMinutes() +":"+ date1.getSeconds()
-       this.endtime =  date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() + " " + date2.getHours() + ":" +date2.getMinutes() +":"+ date1.getSeconds()
-      console.log(date1,date2,'uuuuu')
+      this.starttime = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate() + " " + date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds()
+      this.endtime = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate() + " " + date2.getHours() + ":" + date2.getMinutes() + ":" + date1.getSeconds()
+      console.log(date1, date2, 'uuuuu')
 
     }
 
@@ -151,163 +151,171 @@ export class MemberchongzhiPage extends AppBase {
     console.log(this.endtime)
 
 
-    
 
-   var that = this;
 
-   if(this.zhifufanshi == 0){
+    var that = this;
 
-  //   sgap.setKey('pk_test_Ldy7TLYtmnsv1VrI4ULriWSd').then(function(output) {
-  //     sgap.isReadyToPay().then(function() {
-  //       sgap.requestPayment(1000, 'AUD').then(function(token) {
-  //         alert(token);
-  //       }).catch(function(err) {
-  //         alert(err);
-  //       });
-  //     }).catch(function(err) {
-  //       alert(err);
-  //     });
-  //   }).catch(function(err) {
-  //     alert(err);
-  //   });
+    if (this.zhifufanshi == 0) {
 
-  //   that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
-  //     console.log(updateismember,'updateismember')
-  //     if(updateismember.code == '0'){
-  //       that.ismember = '是'
+      //   sgap.setKey('pk_test_Ldy7TLYtmnsv1VrI4ULriWSd').then(function(output) {
+      //     sgap.isReadyToPay().then(function() {
+      //       sgap.requestPayment(1000, 'AUD').then(function(token) {
+      //         alert(token);
+      //       }).catch(function(err) {
+      //         alert(err);
+      //       });
+      //     }).catch(function(err) {
+      //       alert(err);
+      //     });
+      //   }).catch(function(err) {
+      //     alert(err);
+      //   });
 
-  //       that.centerApi.addnotification({user_id: that.user_id,membermoney:that.paymoney,starttime:that.starttime,endtime:that.endtime,status:'A'}).then((addnotification:any)=>{
-  //         console.log(addnotification)
-  //       })
+      //   that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
+      //     console.log(updateismember,'updateismember')
+      //     if(updateismember.code == '0'){
+      //       that.ismember = '是'
 
-  //       that.centerApi.addmemberrecord({member_id:that.user_id,payment_time:that.starttime,price:that.paymoney,endtime:that.endtime}).then((addintegration:any)=>{
-  //         console.log(addintegration,'addintegration')
-  //         if(addintegration.code){
-  //           that.router.navigate(['paysuccess'],{
-  //             queryParams: {
-  //               paydate: that.paydate,
-  //               paymoney: that.paymoney,
-  //               starttime: that.starttime,
-  //               endtime: that.endtime
-  //             }
-  //           })
-  //         }
-  //       })
-  //     }
-      
-  // })
+      //       that.centerApi.addnotification({user_id: that.user_id,membermoney:that.paymoney,starttime:that.starttime,endtime:that.endtime,status:'A'}).then((addnotification:any)=>{
+      //         console.log(addnotification)
+      //       })
 
-  this.iap
-  .buy('001')
-  .then((data) => {
-    alert("入001");
+      //       that.centerApi.addmemberrecord({member_id:that.user_id,payment_time:that.starttime,price:that.paymoney,endtime:that.endtime}).then((addintegration:any)=>{
+      //         console.log(addintegration,'addintegration')
+      //         if(addintegration.code){
+      //           that.router.navigate(['paysuccess'],{
+      //             queryParams: {
+      //               paydate: that.paydate,
+      //               paymoney: that.paymoney,
+      //               starttime: that.starttime,
+      //               endtime: that.endtime
+      //             }
+      //           })
+      //         }
+      //       })
+      //     }
 
-          alert(JSON.stringify(data));
+      // })
+      this.iap
+        .getProducts(['001'])
+        .then((products) => {
+          alert(JSON.stringify(products));
 
-       that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
-      console.log(updateismember,'updateismember')
-      if(updateismember.code == '0'){
-        that.ismember = '是'
+          this.iap
+            .buy('001')
+            .then((data) => {
+              alert("入001");
 
-        that.centerApi.addnotification({user_id: that.user_id,membermoney:that.paymoney,starttime:that.starttime,endtime:that.endtime,status:'A'}).then((addnotification:any)=>{
-          console.log(addnotification)
-        })
+              alert(JSON.stringify(data));
 
-        that.centerApi.addmemberrecord({member_id:that.user_id,payment_time:that.starttime,price:that.paymoney,endtime:that.endtime}).then((addintegration:any)=>{
-          console.log(addintegration,'addintegration')
-          if(addintegration.code){
-            that.router.navigate(['paysuccess'],{
-              queryParams: {
-                paydate: that.paydate,
-                paymoney: that.paymoney,
-                starttime: that.starttime,
-                endtime: that.endtime
-              }
+              that.memberApi.updateismember({ id: that.user_id, ismember: "Y", startmember_time: that.starttime, endmenber_time: that.endtime }).then((updateismember: any) => {
+                console.log(updateismember, 'updateismember')
+                if (updateismember.code == '0') {
+                  that.ismember = '是'
+
+                  that.centerApi.addnotification({ user_id: that.user_id, membermoney: that.paymoney, starttime: that.starttime, endtime: that.endtime, status: 'A' }).then((addnotification: any) => {
+                    console.log(addnotification)
+                  })
+
+                  that.centerApi.addmemberrecord({ member_id: that.user_id, payment_time: that.starttime, price: that.paymoney, endtime: that.endtime }).then((addintegration: any) => {
+                    console.log(addintegration, 'addintegration')
+                    if (addintegration.code) {
+                      that.router.navigate(['paysuccess'], {
+                        queryParams: {
+                          paydate: that.paydate,
+                          paymoney: that.paymoney,
+                          starttime: that.starttime,
+                          endtime: that.endtime
+                        }
+                      })
+                    }
+                  })
+                }
+
+              })
             })
-          }
+            .catch((err) => {
+              alert(JSON.stringify(err));
+            });
+
         })
-      }
-      
-  })
-  })
-  .catch((err) => {
-    alert(JSON.stringify(err));
-  });
+        .catch((err) => {
+          console.log(err);
+        });
+    }
 
-   }
+    if (this.zhifufanshi == 2) {
+      console.log('pppppppp')
 
-      if (this.zhifufanshi == 2) {
-          console.log('pppppppp')
+      this.payPal.init({
+        PayPalEnvironmentProduction: that.InstInfo.pro_id,
+        PayPalEnvironmentSandbox: that.InstInfo.san_id
+      }).then(() => {
+        console.log('aaaaaaaa')
+        // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
+        this.payPal.prepareToRender('PayPalEnvironmentProduction', new PayPalConfiguration({
+          // Only needed if you get an "Internal Service Error" after PayPal login!
+          //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
+        })).then(() => {
+          console.log('yyyyyyyyyy')
+          let payment = new PayPalPayment(that.paymoney.toString(), that.InstInfo.currency_name, 'Description', 'sale');
+          this.payPal.renderSinglePaymentUI(payment).then(() => {
+            console.log('PayPalPayPalPayPalPayPalPayPal')
+            // Successfully paid
 
-          this.payPal.init({
-            PayPalEnvironmentProduction: that.InstInfo.pro_id,
-            PayPalEnvironmentSandbox: that.InstInfo.san_id
-          }).then(() => {
-            console.log('aaaaaaaa')
-            // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
-            this.payPal.prepareToRender('PayPalEnvironmentProduction', new PayPalConfiguration({
-              // Only needed if you get an "Internal Service Error" after PayPal login!
-              //payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
-            })).then(() => {
-              console.log('yyyyyyyyyy')
-              let payment = new PayPalPayment( that.paymoney.toString(),  that.InstInfo.currency_name, 'Description', 'sale');
-              this.payPal.renderSinglePaymentUI(payment).then(() => {
-                console.log('PayPalPayPalPayPalPayPalPayPal')
-                // Successfully paid
+            that.memberApi.updateismember({ id: that.user_id, ismember: "Y", startmember_time: that.starttime, endmenber_time: that.endtime }).then((updateismember: any) => {
+              console.log(updateismember, 'updateismember')
+              if (updateismember.code == '0') {
+                that.ismember = '是'
 
-                that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
-                  console.log(updateismember,'updateismember')
-                  if(updateismember.code == '0'){
-                    that.ismember = '是'
-            
-                    that.centerApi.addnotification({user_id: that.user_id,membermoney:that.paymoney,starttime:that.starttime,endtime:that.endtime,status:'A'}).then((addnotification:any)=>{
-                      console.log(addnotification)
-                    })
-            
-                    that.centerApi.addmemberrecord({member_id:that.user_id,payment_time:that.starttime,price:that.paymoney,endtime:that.endtime}).then((addintegration:any)=>{
-                      console.log(addintegration,'addintegration')
-                      if(addintegration.code){
-                        that.router.navigate(['paysuccess'],{
-                          queryParams: {
-                            paydate: that.paydate,
-                            paymoney: that.paymoney,
-                            starttime: that.starttime,
-                            endtime: that.endtime
-                          }
-                        })
+                that.centerApi.addnotification({ user_id: that.user_id, membermoney: that.paymoney, starttime: that.starttime, endtime: that.endtime, status: 'A' }).then((addnotification: any) => {
+                  console.log(addnotification)
+                })
+
+                that.centerApi.addmemberrecord({ member_id: that.user_id, payment_time: that.starttime, price: that.paymoney, endtime: that.endtime }).then((addintegration: any) => {
+                  console.log(addintegration, 'addintegration')
+                  if (addintegration.code) {
+                    that.router.navigate(['paysuccess'], {
+                      queryParams: {
+                        paydate: that.paydate,
+                        paymoney: that.paymoney,
+                        starttime: that.starttime,
+                        endtime: that.endtime
                       }
                     })
                   }
-                  
-              })
-          
-                // Example sandbox response
-                //
-                // {
-                //   "client": {
-                //     "environment": "sandbox",
-                //     "product_name": "PayPal iOS SDK",
-                //     "paypal_sdk_version": "2.16.0",
-                //     "platform": "iOS"
-                //   },
-                //   "response_type": "payment",
-                //   "response": {
-                //     "id": "PAY-1AB23456CD789012EF34GHIJ",
-                //     "state": "approved",
-                //     "create_time": "2016-10-03T13:33:33Z",
-                //     "intent": "sale"
-                //   }
-                // }
-              }, () => {
-                // Error or render dialog closed without being successful
-              });
-            }, () => {
-              // Error in configuration
-            });
+                })
+              }
+
+            })
+
+            // Example sandbox response
+            //
+            // {
+            //   "client": {
+            //     "environment": "sandbox",
+            //     "product_name": "PayPal iOS SDK",
+            //     "paypal_sdk_version": "2.16.0",
+            //     "platform": "iOS"
+            //   },
+            //   "response_type": "payment",
+            //   "response": {
+            //     "id": "PAY-1AB23456CD789012EF34GHIJ",
+            //     "state": "approved",
+            //     "create_time": "2016-10-03T13:33:33Z",
+            //     "intent": "sale"
+            //   }
+            // }
           }, () => {
-            // Error in initialization, maybe PayPal isn't supported or something else
+            // Error or render dialog closed without being successful
           });
-       }
+        }, () => {
+          // Error in configuration
+        });
+      }, () => {
+        // Error in initialization, maybe PayPal isn't supported or something else
+      });
+    }
   }
 
 
