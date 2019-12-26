@@ -198,6 +198,8 @@ export class ChongzhiPage extends AppBase {
       // .catch((err) => {
       //   console.log(err);
       // });
+
+      alert('001');
       this.iap
         .getProducts(['001'])
         .then((products) => {
@@ -244,7 +246,7 @@ export class ChongzhiPage extends AppBase {
     }
     if (this.zhifufanshi == 2) {
       console.log(that.InstInfo.currency_name, 'pppppppp')
-
+      alert('paypal');
       this.payPal.init({
         PayPalEnvironmentProduction: that.InstInfo.pro_id,
         PayPalEnvironmentSandbox: that.InstInfo.san_id

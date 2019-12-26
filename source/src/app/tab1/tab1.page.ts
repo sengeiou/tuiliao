@@ -99,7 +99,7 @@ aa=1
 
 
   oldRecom(){
-
+    var that = this;
     this.projectApi.horselist({}).then((horselist:any)=>{
       console.log(horselist)
 
@@ -113,41 +113,41 @@ aa=1
         for(let i=0;i<item.horse.length;i++){
 
           if(item.horse[i].onenum==item.horse[i].winner || item.horse[i].onenum==item.horse[i].second ||item.horse[i].onenum==item.horse[i].third ){
-            item.horse[i].onenumcolor='red'
+            item.horse[i].onenumcolor=that.InstInfo.threecolor;
           }
           if(item.horse[i].twonum==item.horse[i].winner || item.horse[i].twonum==item.horse[i].second ||item.horse[i].twonum==item.horse[i].third ){
-            item.horse[i].twonumcolor='red'
+            item.horse[i].twonumcolor=that.InstInfo.threecolor;
           }
           if(item.horse[i].threenum==item.horse[i].winner || item.horse[i].threenum==item.horse[i].second ||item.horse[i].threenum==item.horse[i].third ){
-            item.horse[i].threenumcolor='red'
+            item.horse[i].threenumcolor=that.InstInfo.threecolor;
           }
           if(item.horse[i].fournum==item.horse[i].winner || item.horse[i].fournum==item.horse[i].second ||item.horse[i].fournum==item.horse[i].third ){
-            item.horse[i].fournumcolor='red'
+            item.horse[i].fournumcolor=that.InstInfo.threecolor;
           }
           if(item.horse[i].fivenum==item.horse[i].winner || item.horse[i].fivenum==item.horse[i].second ||item.horse[i].fivenum==item.horse[i].third ){
-            item.horse[i].fivenumcolor='red'
+            item.horse[i].fivenumcolor=that.InstInfo.threecolor;
           }
           if(item.horse[i].sixnum==item.horse[i].winner || item.horse[i].sixnum==item.horse[i].second ||item.horse[i].sixnum==item.horse[i].third ){
-            item.horse[i].sixnumcolor='red'
+            item.horse[i].sixnumcolor=that.InstInfo.threecolor;
           }
 
           if(item.horse[i].onenum==item.horse[i].fourth ){
-            item.horse[i].onenumcolor='black'
+            item.horse[i].onenumcolor=that.InstInfo.fourcolor;
           }
           if(item.horse[i].twonum==item.horse[i].fourth ){
-            item.horse[i].twonumcolor='black'
+            item.horse[i].twonumcolor=that.InstInfo.fourcolor;
           }
           if(item.horse[i].threenum==item.horse[i].fourth ){
-            item.horse[i].threenumcolor='black'
+            item.horse[i].threenumcolor=that.InstInfo.fourcolor;
           }
           if(item.horse[i].fournum==item.horse[i].fourth ){
-            item.horse[i].fournumcolor='black'
+            item.horse[i].fournumcolor=that.InstInfo.fourcolor;
           }
           if(item.horse[i].fivenum==item.horse[i].fourth ){
-            item.horse[i].fivenumcolor='black'
+            item.horse[i].fivenumcolor=that.InstInfo.fourcolor;
           }
           if(item.horse[i].sixnum==item.horse[i].fourth ){
-            item.horse[i].sixnumcolor='black'
+            item.horse[i].sixnumcolor=that.InstInfo.fourcolor;
           }
           
           // allrate += Number(item.horse[i].hitrate) 
