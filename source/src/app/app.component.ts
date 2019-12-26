@@ -51,7 +51,7 @@ export class AppComponent {
 
 
       this.statusBar.show();
-      this.statusBar.backgroundColorByName('white');
+      this.statusBar.backgroundColorByName('transparent');
     });
   }
 
