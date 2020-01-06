@@ -185,7 +185,7 @@ export class AppBase implements OnInit {
                 AppBase.memberapi.info({}).then((memberinfo) => {
                     AppBase.IsLogin = memberinfo == null ? false : true;
                     console.log(memberinfo,'memberinfo')
-                    if(memberinfo == null || memberinfo.mobile==''){
+                    if(memberinfo == null ){
                         if(this.needlogin==true){
                             this.router.navigate(['login']);
                             return

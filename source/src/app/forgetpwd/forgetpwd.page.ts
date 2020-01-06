@@ -207,7 +207,8 @@ export class ForgetpwdPage extends AppBase {
     if(e==2){
       this.aa=2
     }else if(e==1){
-      this.aa=1
+      this.aa=1;
+     this.onMyShow();
     }
 
   }

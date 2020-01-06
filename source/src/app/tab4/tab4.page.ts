@@ -72,11 +72,11 @@ export class Tab4Page extends AppBase {
   nonum=""
   notificationlist=[]
   getmsgread(){
-      console.log(this.notread,'user_id')
-      console.log(this.user_id,'user_id')
+      // console.log(this.notread,'user_id')
+      // console.log(this.user_id,'user_id')
      //var api=AppBase.centerApi;
      this.centerApi.yanzheng({user_id:this.user_id}).then((yanzheng:any)=>{
-          console.log(yanzheng,'nnnn')
+          // console.log(yanzheng,'nnnn')
           if(yanzheng.code=='0'){
             this.notread='Y'
           }else {
@@ -91,7 +91,7 @@ export class Tab4Page extends AppBase {
   commissionlist=null
   getkehu(){
       this.centerApi.commissionlist({user_id:this.user_id}).then((commissionlist:any)=>{
-          console.log(commissionlist,'嘻嘻')
+          // console.log(commissionlist,'嘻嘻')
           if(commissionlist){
               this.commissionlist = commissionlist.filter(item=>{
                   if(this.isread(item)){
