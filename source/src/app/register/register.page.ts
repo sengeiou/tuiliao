@@ -254,6 +254,20 @@ export class RegisterPage extends AppBase {
   
     }, 1000);
   }
+  reminder2=0;
+  setInVerify2() {
+
+
+    var k = this.timer = setInterval(() => {
+      if (this.reminder2 >= 0) {
+        this.reminder2--;
+      }
+      if (this.reminder2 < 0) {
+        clearInterval(k);
+      }
+  
+    }, 1000);
+  }
 
   telzhuce(e){
     this.istelzhuce = true
@@ -267,15 +281,15 @@ export class RegisterPage extends AppBase {
   changcode(){
     console.log()
     console.log(this.areacode,'aaa')
-    if(this.areacode=="+852"){
+    if(this.areacode=="852"){
      
       return  /^(5|6|8|9)\d{7}$/
      
-    }else if(this.areacode == "+86") {
+    }else if(this.areacode == "86") {
       
      return  /^[1][3-8]\d{9}$/
 
-    }else if(this.areacode == "+853"){
+    }else if(this.areacode == "853"){
      
       return /^[6]([8|6])\d{5}/
 
@@ -283,7 +297,7 @@ export class RegisterPage extends AppBase {
    }
 
   sendVerifyCode() {
-
+    alert(1);
     this.memberApi.checkcanreg({ mobile: this.mobile}).then(ret => {
       console.log(ret);
 
@@ -300,6 +314,7 @@ export class RegisterPage extends AppBase {
               mobile: codemobile,
               type: "register"
             }).then(ret => {
+              alert(JSON.stringify(ret) )
               console.log(ret);
               if (ret.code == 0) {
                 this.reminder = 60;
@@ -343,7 +358,7 @@ export class RegisterPage extends AppBase {
         }).then(ret => {
           console.log(ret);
           if (ret.code == 0) {
-            this.reminder = 60;
+            this.reminder2 = 60;
             this.show = 1;
 
             this.c1 = "";
@@ -357,7 +372,7 @@ export class RegisterPage extends AppBase {
 
             this.toast("验证码已发送，请注意查收");
             this.diyici = true;
-            this.setInVerify();
+            this.setInVerify2();
           } else {
             this.toast("验证码发送失败，请稍后重试");
           }
@@ -368,11 +383,20 @@ export class RegisterPage extends AppBase {
     });
   }
   
-
+  aa=1;
   emailzhuce(e){
-    this.istelzhuce = false
-    e.target.classList.add('zhuce-active')
-    e.target.parentElement.childNodes[0].classList.remove('zhuce-active')
+    console.log(e,'eee')
+   
+    // e.target.classList.add('zhuce-active');
+    // e.target.parentElement.childNodes[0].classList.remove('zhuce-active');
+    if(e==1){
+      this.aa = 1;
+      this.onMyShow();
+      this.istelzhuce = true;
+    }else if(e==2) {
+      this.aa=2;
+      this.istelzhuce = false;
+    }
   }
 
 }

@@ -199,6 +199,20 @@ export class ForgetpwdPage extends AppBase {
   
     }, 1000);
   }
+  reminder2=0;
+  setInVerify2() {
+
+
+    var k = this.timer = setInterval(() => {
+      if (this.reminder2 >= 0) {
+        this.reminder2--;
+      }
+      if (this.reminder2 < 0) {
+        clearInterval(k);
+      }
+  
+    }, 1000);
+  }
   aa=1
   showshow=1
   telzhuce(e){
@@ -216,11 +230,11 @@ export class ForgetpwdPage extends AppBase {
   changcode(){
     console.log()
     console.log(this.areacode,'aaa')
-    if(this.areacode=="+852"){
+    if(this.areacode=="852"){
      
       return  /^(5|6|8|9)\d{7}$/
      
-    }else if(this.areacode == "+86") {
+    }else if(this.areacode == "86") {
       
      return  /^[1][3-8]\d{9}$/
 
@@ -291,7 +305,7 @@ export class ForgetpwdPage extends AppBase {
         }).then(ret => {
           console.log(ret);
           if (ret.code == 0) {
-            this.reminder = 60;
+            this.reminder2 = 60;
             this.show = 1;
 
             this.c1 = "";
@@ -305,7 +319,7 @@ export class ForgetpwdPage extends AppBase {
 
             this.toast("验证码已发送，请注意查收");
             this.diyici = true;
-            this.setInVerify();
+            this.setInVerify2();
           } else {
             this.toast("验证码发送失败，请稍后重试");
           }

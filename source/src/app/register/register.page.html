@@ -10,8 +10,8 @@
   <div>
 
     <div class="flex-row zhuce">
-      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak zhuce-active" (click)='telzhuce($event)'>{{lang.phoneregister}}</div>
-      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak" (click)='emailzhuce($event)'>{{lang.emailregister}}</div>
+      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak  {{aa==1?'zhuce-active':''}}" (click)='emailzhuce(1)'>{{lang.phoneregister}}</div>
+      <div class="flex-1 text-center txt-blue-14 txt-bold bor_bak {{aa==2?'zhuce-active':''}}" (click)='emailzhuce(2)'>{{lang.emailregister}}</div>
     </div>
 
     <div class="height-80"></div>
@@ -87,8 +87,8 @@
                     ></ion-input>
                   <div *ngIf="!diyici" (click)="sendVerifyCode2()" class="h5" style="color:#143779">{{lang.getyanzhengma}}</div>
       
-                  <div class="h5 txt-gray" *ngIf="reminder>0">{{reminder}}{{lang.sendyanzhengma}}</div>
-                  <div class="h5 txt-primary" *ngIf="reminder<0" (click)="sendVerifyCode2()">{{lang.resetyanzhengma}}</div>
+                  <div class="h5 txt-gray" *ngIf="reminder2>0">{{reminder2}}{{lang.sendyanzhengma}}</div>
+                  <div class="h5 txt-primary" *ngIf="reminder2<0" (click)="sendVerifyCode2()">{{lang.resetyanzhengma}}</div>
       
       
                 </div>
