@@ -159,10 +159,10 @@ export class MessagePage extends AppBase {
       })
     }else if(item.ballcoins>0){
       this.isRead(item.id)
-      this.navigate('/chongzhi')
+      // this.navigate('/chongzhi')
     }else if(item.membermoney>0){
       this.isRead(item.id)
-      this.navigate('/members')
+      // this.navigate('/members')
     }
   }
 
