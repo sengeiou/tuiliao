@@ -61,7 +61,7 @@ export class Tab2Page extends AppBase {
   getmsg(){
     this.isshow=false
     this.imgs=[]
-    this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
+    this.projectApi.footlist({lang: this.langcode,orderby:'r_main.recom_time desc'}).then((footlist:any)=>{
      
        this.footlist = footlist.filter((item)=>{
          // console.log(item)
@@ -150,7 +150,7 @@ export class Tab2Page extends AppBase {
     this.footlist =null
     console.log(event)
   
-    this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
+    this.projectApi.footlist({lang: this.langcode,orderby:'r_main.recom_time desc'}).then((footlist:any)=>{
       console.log(footlist)
       // this.footlist = footlist
       
