@@ -65,7 +65,7 @@ export class RegisterPage extends AppBase {
 
   memberlist=null
   areacodelist=null
-  areacode="+852"
+  areacode="852"
   onMyShow(){
 
       this.memberApi.memberlist({}).then((memberlist:any)=>{
@@ -297,7 +297,7 @@ export class RegisterPage extends AppBase {
    }
 
   sendVerifyCode() {
-    alert(1);
+    // alert(1);
     this.memberApi.checkcanreg({ mobile: this.mobile}).then(ret => {
       console.log(ret);
 
@@ -314,7 +314,7 @@ export class RegisterPage extends AppBase {
               mobile: codemobile,
               type: "register"
             }).then(ret => {
-              alert(JSON.stringify(ret) )
+              // alert(JSON.stringify(ret) )
               console.log(ret);
               if (ret.code == 0) {
                 this.reminder = 60;
