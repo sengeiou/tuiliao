@@ -35,6 +35,7 @@ export class Tab1Page extends AppBase {
   onMyLoad(){
     //参数
     this.params;
+    this.getmsg()
   }
 
   @ViewChild('slide01',{static:true}) slides: IonSlides; 

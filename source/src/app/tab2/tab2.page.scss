@@ -125,7 +125,7 @@ td:last-of-type {
      div {
          position: absolute;
          left: 0;
-         top: 95%;
+         top: 120%;
          text-align: center;
          .btn1 {
             width: rpx(400);
@@ -135,13 +135,13 @@ td:last-of-type {
             border: rpx(2) solid #F7E3B0;
             background: #F7E3B0;
             font-weight: bold;
-            margin: rpx(50) 0 rpx(30);
+            margin: rpx(30) 0 rpx(30);
             outline: none;
          }
          .btn2 {
             color:#fff;
             font-weight: bold;
-            padding: rpx(20) rpx(40);
+            padding: rpx(10) rpx(40);
             outline: none;
          }
      }
