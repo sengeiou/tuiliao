@@ -35,6 +35,17 @@ export class Tab3Page extends AppBase {
   onMyLoad(){
     //参数
     this.params;
+    this.projectApi.lunbolist({name:'推介'}).then((lunbolist:any)=>{
+      console.log(lunbolist)
+      for(let j=0;j<lunbolist.length;j++){
+        this.imgs = lunbolist[j].banner
+      }
+
+      this.autoPlay()
+
+      console.log(this.imgs)
+    })
+    
   }
 
   imgs = null
@@ -49,17 +60,7 @@ export class Tab3Page extends AppBase {
       this.member_id = memberinfo.id
     })
 
-    this.projectApi.lunbolist({name:'推介'}).then((lunbolist:any)=>{
-      console.log(lunbolist)
-      for(let j=0;j<lunbolist.length;j++){
-        this.imgs = lunbolist[j].banner
-      }
-
-      this.autoPlay()
-
-      console.log(this.imgs)
-    })
-    
+  
 
     this.projectApi.recomlist({lang: this.langcode}).then((recomlist:any)=>{
       // console.log(recomlist)

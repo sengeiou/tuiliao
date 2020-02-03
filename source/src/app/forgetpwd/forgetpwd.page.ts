@@ -64,7 +64,7 @@ export class ForgetpwdPage extends AppBase {
 
   memberlist=null
   areacodelist=null
-  areacode="+852"
+  areacode="852"
   onMyShow(){
 
       this.memberApi.memberlist({}).then((memberlist:any)=>{
@@ -238,7 +238,7 @@ export class ForgetpwdPage extends AppBase {
       
      return  /^[1][3-8]\d{9}$/
 
-    }else if(this.areacode == "+853"){
+    }else if(this.areacode == "853"){
      
       return /^[6]([8|6])\d{5}/
 

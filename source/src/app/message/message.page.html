@@ -7,7 +7,7 @@
   </ion-header>
 
 <ion-content>
-  <div class="bg-gray-f0" >
+  <div class="bg-gray-f0" style="height: 100vh;" >
     <div class="msg" *ngFor='let item of messagelists' (click)='detail(item)'>
       <div class="content flex-row">
         <div class="flex-1 text-center margin-top-10" >
@@ -19,7 +19,7 @@
         </div>
         
         <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.syscont!=""'>{{item.syscont}}</div>
-        <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.ballcoins>0 '>{{lang.noti3}}{{item.ballcoins}}，{{lang.noti4}}{{item.chongmoney}}{{lang.noti5}}。</div>
+        <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.ballcoins>0 '>{{lang.noti3}}{{item.ballcoins}}{{lang.ballcoin}}，{{lang.noti4}}{{item.chongmoney}}{{lang.noti5}}。</div>
         <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.paycoins>0 '>{{lang.noti1}}{{item.recommend_user_id}}{{lang.noti1_1}}，{{lang.noti4}}{{item.paycoins}}{{lang.ballcoin}}。</div>
         <div class="flex-5 h5 txt-bold margin-top-10" *ngIf='item.membermoney>0 '>{{lang.noti2}}{{item.starttime_dateformat}}到{{item.endtime_dateformat}}，{{lang.noti4}}{{item.membermoney}}{{lang.noti5}}。</div>
       </div>

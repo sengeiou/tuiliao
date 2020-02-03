@@ -35,6 +35,7 @@ export class Tab1Page extends AppBase {
   onMyLoad(){
     //参数
     this.params;
+    this.getmsg()
   }
 
   @ViewChild('slide01',{static:true}) slides: IonSlides; 
@@ -64,7 +65,7 @@ aa=1
     })
 
 
-    this.projectApi.horselist({}).then((horselist:any)=>{
+    this.projectApi.horselist({orderby:'r_main.horse_time desc'}).then((horselist:any)=>{
       console.log(horselist)
       if(horselist){
         this.horselist = horselist.filter(item=>{
@@ -100,7 +101,7 @@ aa=1
 
   oldRecom(){
     var that = this;
-    this.projectApi.horselist({}).then((horselist:any)=>{
+    this.projectApi.horselist({orderby:'r_main.horse_time desc'}).then((horselist:any)=>{
       console.log(horselist)
 
       this.horselist = horselist.filter(item=>{

@@ -38,6 +38,7 @@ export class Tab2Page extends AppBase {
     //参数
     this.params;
     AppBase.LASTTAB=this;
+    this.getmsg();
   }
 
   footlist = null
@@ -61,7 +62,19 @@ export class Tab2Page extends AppBase {
   getmsg(){
     this.isshow=false
     this.imgs=[]
-    this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
+
+    this.projectApi.lunbolist({name:'足智彩'}).then((lunbolist:any)=>{
+      console.log(lunbolist)
+      for(let j=0;j<lunbolist.length;j++){
+        this.imgs = lunbolist[j].banner
+      }
+
+      this.autoPlay()
+
+      console.log(this.imgs)
+    })
+
+    this.projectApi.footlist({lang: this.langcode,orderby:'r_main.recom_time desc'}).then((footlist:any)=>{
      
        this.footlist = footlist.filter((item)=>{
          // console.log(item)
@@ -80,16 +93,7 @@ export class Tab2Page extends AppBase {
        
        })
  
-       this.projectApi.lunbolist({name:'足智彩'}).then((lunbolist:any)=>{
-         console.log(lunbolist)
-         for(let j=0;j<lunbolist.length;j++){
-           this.imgs = lunbolist[j].banner
-         }
- 
-         this.autoPlay()
- 
-         console.log(this.imgs)
-       })
+     
        
       
        console.log(this.footlist)
@@ -150,7 +154,7 @@ export class Tab2Page extends AppBase {
     this.footlist =null
     console.log(event)
   
-    this.projectApi.footlist({lang: this.langcode}).then((footlist:any)=>{
+    this.projectApi.footlist({lang: this.langcode,orderby:'r_main.recom_time desc'}).then((footlist:any)=>{
       console.log(footlist)
       // this.footlist = footlist
       

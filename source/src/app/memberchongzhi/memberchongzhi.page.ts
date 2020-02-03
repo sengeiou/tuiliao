@@ -116,7 +116,20 @@ export class MemberchongzhiPage extends AppBase {
 
   starttime = null
   endtime = null
+  async confirm2(msg, confirmcallback) {
 
+    const alert = await this.alertCtrl.create({
+        header: "提示",
+        subHeader: msg,
+        buttons: [{
+            text: "确认",
+            handler: () => {
+                confirmcallback(true);
+            }
+        }]
+    });
+    alert.present();
+}
   lijizhifu() {
     this.d = false;
 
@@ -150,7 +163,12 @@ export class MemberchongzhiPage extends AppBase {
     console.log(this.starttime)
     console.log(this.endtime)
 
-
+      if(this.paymoney<=0){
+        this.confirm2('您沒有選擇充值的數額',function(ret){
+          
+        })
+        return
+      }
 
 
     var that = this;
@@ -242,6 +260,49 @@ export class MemberchongzhiPage extends AppBase {
         .catch((err) => {
           console.log(err);
         });
+    }
+    if (this.zhifufanshi == 1) {
+
+      //   sgap.setKey('pk_test_Ldy7TLYtmnsv1VrI4ULriWSd').then(function(output) {
+      //     sgap.isReadyToPay().then(function() {
+      //       sgap.requestPayment(1000, 'AUD').then(function(token) {
+      //         alert(token);
+      //       }).catch(function(err) {
+      //         alert(err);
+      //       });
+      //     }).catch(function(err) {
+      //       alert(err);
+      //     });
+      //   }).catch(function(err) {
+      //     alert(err);
+      //   });
+
+        that.memberApi.updateismember({id:that.user_id,ismember:"Y",startmember_time:that.starttime,endmenber_time:that.endtime}).then((updateismember:any)=>{
+          console.log(updateismember,'updateismember')
+          if(updateismember.code == '0'){
+            that.ismember = '是'
+
+            that.centerApi.addnotification({user_id: that.user_id,membermoney:that.paymoney,starttime:that.starttime,endtime:that.endtime,status:'A'}).then((addnotification:any)=>{
+              console.log(addnotification)
+            })
+
+            that.centerApi.addmemberrecord({member_id:that.user_id,payment_time:that.starttime,price:that.paymoney,endtime:that.endtime}).then((addintegration:any)=>{
+              console.log(addintegration,'addintegration')
+              if(addintegration.code){
+                that.router.navigate(['paysuccess'],{
+                  queryParams: {
+                    paydate: that.paydate,
+                    paymoney: that.paymoney,
+                    starttime: that.starttime,
+                    endtime: that.endtime
+                  }
+                })
+              }
+            })
+          }
+
+      })
+     
     }
 
     if (this.zhifufanshi == 2) {

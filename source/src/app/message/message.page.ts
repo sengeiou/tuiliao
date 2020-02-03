@@ -38,20 +38,29 @@ export class MessagePage extends AppBase {
     this.params;
   }
 
-  messagelist=[]
-  notificationlist=[]
-  messagelists = []
+  messagelist=[];
+  notificationlist=[];
+  messagelists = [];
+  member_id='';
   onMyShow(){
     AppBase.LASTTAB=this;
-    console.log(this.memberInfo,'kkkkkk')
+
+    console.log(this.memberInfo,'kkkkkk');
+    
+    this.memberApi.info({}).then((memberinfo) => {
+      console.log(memberinfo,'ooo')
+      this.member_id=memberinfo.id;
+      this.getmymsg();
+    })
     // this.getmsg()
-    this.getmymsg();
+   
 
   }
 
   getmymsg(){
+    console.log(this.member_id,'usr')
     var that = this
-    this.memberApi.usermsg({id:this.user_id}).then((usermsg)=>{
+    this.memberApi.usermsg({id:this.member_id}).then((usermsg)=>{
       console.log(usermsg,'getmymsg')
       this.messagelists = usermsg.filter(item=>{
         let date = new Date(item.msgtime)
@@ -150,10 +159,10 @@ export class MessagePage extends AppBase {
       })
     }else if(item.ballcoins>0){
       this.isRead(item.id)
-      this.navigate('/chongzhi')
+      // this.navigate('/chongzhi')
     }else if(item.membermoney>0){
       this.isRead(item.id)
-      this.navigate('/members')
+      // this.navigate('/members')
     }
   }
 

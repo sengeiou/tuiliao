@@ -129,7 +129,20 @@ export class ChongzhiPage extends AppBase {
     this.zhifufanshi = id;
 
   }
+  async confirm2(msg, confirmcallback) {
 
+    const alert = await this.alertCtrl.create({
+        header: "提示",
+        subHeader: msg,
+        buttons: [{
+            text: "确认",
+            handler: () => {
+                confirmcallback(true);
+            }
+        }]
+    });
+    alert.present();
+}
 
   lijizhifu() {
     this.d = false;
@@ -148,6 +161,13 @@ export class ChongzhiPage extends AppBase {
     let mm = date.getMinutes()
 
     let nowtime = year + '-' + month + '-' + day + " " + hh + ":" + mm
+
+    if(this.paymoney<=0){
+      this.confirm2('您沒有選擇充值的數額',function(ret){
+        
+      })
+      return
+    }
 
 
     console.log(that.InstInfo.currency_name, 'this.InstInfo')
@@ -244,9 +264,39 @@ export class ChongzhiPage extends AppBase {
 
 
     }
+    if (this.zhifufanshi == 1) {
+
+
+
+            that.centerApi.memberpayment({member_id:that.member_id,chongzhi:that.ballnum2,money:that.paymoney,status: 'A'}).then((addintegration:any)=>{
+              console.log(addintegration)
+              if(addintegration.code=='0'){
+                that.centerApi.addnotification({user_id: that.member_id,chongmoney:that.paymoney,ballcoins:that.ballnum2,status:'A'}).then((addnotification:any)=>{
+                  console.log(addnotification)
+                })
+                that.memberApi.editballnum({id:that.member_id,ballnum: that.ballnum}).then((editballnum:any)=>{
+                  console.log(editballnum,'家私电话')
+                  if(editballnum.code=='0'){
+                    that.router.navigate(['chongzhisuccess'],{
+                      queryParams: {
+                        money: that.paymoney,
+                        ballnum: that.ballnum2
+                      }
+                    })
+                  }
+                })
+              }
+            })
+
+      
+
+
+      
+
+    }
     if (this.zhifufanshi == 2) {
       console.log(that.InstInfo.currency_name, 'pppppppp')
-      alert('paypal');
+      // alert('paypal');
       this.payPal.init({
         PayPalEnvironmentProduction: that.InstInfo.pro_id,
         PayPalEnvironmentSandbox: that.InstInfo.san_id

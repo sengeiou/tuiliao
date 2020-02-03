@@ -39,7 +39,7 @@ export class AgreementPage extends AppBase {
 
   onMyShow(){
 
-    
+    console.log(this.InstInfo.chongzhixieyi,'ruhui')
 
   }
 }
