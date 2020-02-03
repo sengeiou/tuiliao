@@ -141,7 +141,6 @@ export class RegisterPage extends AppBase {
                 console.log(ret,'ret')
               if (ret.code == 0) {
         
-                // this.checkcanregs("mobile",this.mobile)
                 this.checkcanregs("name",this.username)
                 this.show = 2;
               } else {
@@ -165,7 +164,6 @@ export class RegisterPage extends AppBase {
                 }).then(ret => {
                   console.log(ret,'ret')
                 if (ret.code == 0) {
-                  // this.checkcanregs("email",this.email)
                   this.checkcanregs("name",this.username)
                   this.show = 2;
                 } else {
@@ -217,6 +215,7 @@ export class RegisterPage extends AppBase {
       if(checkcanreg.code=='0'){
 
         this.memberApi.adduser({
+          email:this.email,
           mobile: this.mobile,
           name: this.username,
           password: this.password,
