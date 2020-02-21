@@ -63,12 +63,16 @@
                     <a  *ngIf='item.result=="Y"' class="txt-red">{{lang.hit}}</a>
                     <a  *ngIf='item.result=="N"'  class="txt-9">{{lang.missed}}</a>
                     <a  *ngIf='item.result=="H"'  class="txt-9">走水</a>
+                    <a  *ngIf='item.result=="A"'  class="txt-9">{{langcode=="sc"?"赢半":"贏半"}}</a>
+                    <a  *ngIf='item.result=="B"'  class="txt-9">{{langcode=="sc"?"输半":"輸半"}}</a>
                     <a  *ngIf='item.result=="W"'  class="txt-9" >{{lang.waitingresult}}</a>
                 </div>
                 <div>
                     <a  *ngIf='item.result2=="Y"'  class="txt-red">{{lang.hit}}</a>
                     <a  *ngIf='item.result2=="N"' class="txt-9">{{lang.missed}}</a>
                     <a  *ngIf='item.result2=="H"' class="txt-9">走水</a>
+                    <a  *ngIf='item.result2=="A"' class="txt-9">{{langcode=="sc"?"赢半":"贏半"}}</a>
+                    <a  *ngIf='item.result2=="B"' class="txt-9">{{langcode=="sc"?"输半":"輸半"}}</a>
                     <a  *ngIf='item.result2=="W"' class="txt-9">{{lang.waitingresult}}</a>
                 </div>
               </td>
