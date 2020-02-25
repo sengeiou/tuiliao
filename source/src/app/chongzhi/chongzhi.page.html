@@ -14,8 +14,11 @@
       
         <div  class="money"  *ngFor='let item of ballcoinlist'>
             <div class="flex-row" (click)='choose($event,item)'>
-                <div class="flex-4 h5 margin-left-20 txt-bold">{{item.ballnum}}{{lang.ballcoin}}</div>
-                <div class="flex-4 h5 txt-gray-bf txt-bold">{{lang.gang}} {{item.money}}</div>
+              <div class="flex-1"></div>
+                <div class="h5 txt-bold">{{item.ballnum}}{{lang.ballcoin}}</div>
+                <div class="flex-1"></div>
+                <div class="h5 txt-gray-bf txt-bold ">{{lang.gang}} {{item.money}}</div>
+                <div class="flex-1"></div>
             </div>
         </div>
 
