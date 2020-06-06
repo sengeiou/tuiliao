@@ -79,7 +79,7 @@ export class ChongzhiPage extends AppBase {
     }
   }
 
-
+  googlepayid="";
   paymoney = 0;
   ballnum2 = 0;
   d = false;
@@ -99,6 +99,7 @@ export class ChongzhiPage extends AppBase {
 
     this.paymoney = item.money
     this.ballnum2 = item.ballnum
+    this.googlepayid=item.googlepayid;
     var others = current.parentElement.childNodes
     console.log(others)
     console.log(current)
@@ -219,18 +220,19 @@ export class ChongzhiPage extends AppBase {
       //   console.log(err);
       // });
 
-      alert('001');
+      //alert(this.googlepayid);
+      
       this.iap
-        .getProducts(['001'])
+        .getProducts([this.googlepayid])
         .then((products) => {
-          alert(JSON.stringify(products));
+          //alert(JSON.stringify(products));
 
           this.iap
-            .buy('001')
+            .buy(this.googlepayid)
             .then((data) => {
-              alert("入001");
+              //alert("入001");
 
-              alert(JSON.stringify(data));
+              //alert(JSON.stringify(data));
 
               that.centerApi.memberpayment({ member_id: that.member_id, chongzhi: that.ballnum2, money: that.paymoney, status: 'A' }).then((addintegration: any) => {
                 console.log(addintegration)
@@ -253,7 +255,7 @@ export class ChongzhiPage extends AppBase {
               })
             })
             .catch((err) => {
-              alert(JSON.stringify(err));
+              this.toast("支付失败");
             });
         })
         .catch((err) => {

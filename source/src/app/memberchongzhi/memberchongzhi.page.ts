@@ -61,7 +61,7 @@ export class MemberchongzhiPage extends AppBase {
       return a[pro] - b[pro]
     }
   }
-
+  googlepayid="";
   paydate = 0
   paymoney = 0
   d = false
@@ -77,6 +77,7 @@ export class MemberchongzhiPage extends AppBase {
     }
     this.paydate = item.days
     this.paymoney = item.money
+    this.googlepayid = item.googlepayid
     var others = current.parentElement.childNodes
     console.log(others)
     console.log(this.paymoney)
@@ -215,16 +216,16 @@ export class MemberchongzhiPage extends AppBase {
 
       // })
       this.iap
-        .getProducts(['001'])
+        .getProducts([this.googlepayid])
         .then((products) => {
-          alert(JSON.stringify(products));
+          //alert(JSON.stringify(products));
 
           this.iap
-            .buy('001')
+            .buy(this.googlepayid)
             .then((data) => {
-              alert("入001");
+              //alert("入001");
 
-              alert(JSON.stringify(data));
+              //alert(JSON.stringify(data));
 
               that.memberApi.updateismember({ id: that.user_id, ismember: "Y", startmember_time: that.starttime, endmenber_time: that.endtime }).then((updateismember: any) => {
                 console.log(updateismember, 'updateismember')
@@ -253,7 +254,8 @@ export class MemberchongzhiPage extends AppBase {
               })
             })
             .catch((err) => {
-              alert(JSON.stringify(err));
+              //alert(JSON.stringify(err));
+              this.toast("支付失败");
             });
 
         })
