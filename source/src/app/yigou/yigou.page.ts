@@ -43,7 +43,8 @@ export class YigouPage extends AppBase {
   onMyShow(){
 
     // this.user_id = this.memberInfo.id
-
+    console.log(this.user_id,'wwwwww')
+    this.memberApi.info({ id: this.user_id }).then((memberinfo) => {
     this.centerApi.purchasedlist({pur_id:this.user_id}).then((purchasedlist:any)=>{
       console.log(purchasedlist,'purchasedlist')
       if(purchasedlist.length>0){
@@ -73,6 +74,7 @@ export class YigouPage extends AppBase {
       }
       console.log(this.purchasedlist,'purchasedlist')
     })
+  })
   }
 
   tiaozhuan(id) {
