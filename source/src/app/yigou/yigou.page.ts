@@ -44,8 +44,9 @@ export class YigouPage extends AppBase {
 
     // this.user_id = this.memberInfo.id
     console.log(this.user_id,'wwwwww')
-    this.memberApi.info({ id: this.user_id }).then((memberinfo) => {
-    this.centerApi.purchasedlist({pur_id:this.user_id}).then((purchasedlist:any)=>{
+    this.memberApi.info({ id: this.user_id }).then((memberinfo:any) => {
+      console.log(memberinfo,'wwwww2222')
+    this.centerApi.purchasedlist({pur_id:memberinfo.id}).then((purchasedlist:any)=>{
       console.log(purchasedlist,'purchasedlist')
       if(purchasedlist.length>0){
         this.purchasedlist = purchasedlist.filter(item=>{
