@@ -53,9 +53,9 @@
                 <li *ngIf='new=="否"'>
                   <span *ngIf='item.result=="Y"' class="txt-red">{{lang.hit}}</span>
                   <span *ngIf='item.result=="N"' class="txt-9">{{lang.missed}}</span>
-                  <span *ngIf='item.result=="A"' class="txt-9">{{langcode=="sc"?"赢半":"贏半"}}</span>
-                  <span *ngIf='item.result=="B"' class="txt-9">{{langcode=="sc"?"输半":"輸半"}}</span>
-                  <span *ngIf='item.result=="H"' class="txt-9">走水</span>
+                  <span *ngIf='item.result=="A"' class="txt-red">{{langcode=="sc"?"赢半":"贏半"}}</span>
+                  <span *ngIf='item.result=="B"' class="txt-green">{{langcode=="sc"?"输半":"輸半"}}</span>
+                  <span *ngIf='item.result=="H"' style="color:#3880ff;">走水</span>
                   <img *ngIf='item.zongresult=="Y"' src="{{uploadpath}}resource/{{res.mingzhong}}" class="icon-60"/>
                   <img *ngIf='item.zongresult=="N"' src="{{uploadpath}}resource/{{res.weizhong}}" class="icon-60" />
                   <img *ngIf='item.zongresult=="W"' src="{{uploadpath}}resource/{{res.weizhong}}" class="icon-60" />
@@ -79,9 +79,9 @@
                   <li *ngIf='new=="否"'>
                     <span *ngIf='item.result2=="Y"' class="txt-red">{{lang.hit}}</span>
                     <span *ngIf='item.result2=="N"' class="txt-9">{{lang.missed}}</span>
-                    <span *ngIf='item.result2=="A"' class="txt-9">{{langcode=="sc"?"赢半":"贏半"}}</span>
-                    <span *ngIf='item.result2=="B"' class="txt-9">{{langcode=="sc"?"输半":"輸半"}}</span>
-                    <span *ngIf='item.result2=="H"' class="txt-9">走水</span>
+                    <span *ngIf='item.result2=="A"' class="txt-red">{{langcode=="sc"?"赢半":"贏半"}}</span>
+                    <span *ngIf='item.result2=="B"' class="txt-green">{{langcode=="sc"?"输半":"輸半"}}</span>
+                    <span *ngIf='item.result2=="H"' style="color:#3880ff;">走水</span>
                   </li>
               </ul>
             </div>

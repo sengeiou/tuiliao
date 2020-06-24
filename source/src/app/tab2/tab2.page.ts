@@ -71,7 +71,6 @@ export class Tab2Page extends AppBase {
 
       this.autoPlay()
 
-      console.log(this.imgs)
     })
 
     this.projectApi.footlist({lang: this.langcode,orderby:'r_main.recom_time desc'}).then((footlist:any)=>{
@@ -89,14 +88,12 @@ export class Tab2Page extends AppBase {
            return  item
  
          }
-         console.log(this.footlist,'footlist')
        
        })
  
      
        
       
-       console.log(this.footlist)
  
      })
   }
@@ -152,7 +149,6 @@ export class Tab2Page extends AppBase {
     this.isshow = true
     this.teams = []
     this.footlist =null
-    console.log(event)
   
     this.projectApi.footlist({lang: this.langcode,orderby:'r_main.recom_time desc'}).then((footlist:any)=>{
       console.log(footlist)

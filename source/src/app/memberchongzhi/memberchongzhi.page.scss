@@ -62,7 +62,7 @@
     left: 0;
     z-index: 9999;
     background: #ffffff;
-    height: 50vh;
+    height: 60vh;
     border-radius: rpx(40) rpx(40) 0 0;
   }
   .xx {
@@ -159,4 +159,6 @@
       width: rpx(44);
       height: rpx(44);
   }
-  
+  .margin-top-50 {
+    margin-top: rpx(50);
+  }
