@@ -71,7 +71,7 @@ export class AppBase implements OnInit {
 
     public operatorinfo={id:0,name:"",photo:"",loginname:""};
 
-    user_id=''
+    user_id='0'
     ismember='否'
 
     static STATICRAND = "";
@@ -215,6 +215,8 @@ export class AppBase implements OnInit {
                             this.memberInfo = memberinfo;
                             this.ismember = memberinfo.ismember
                         }
+                        
+                        this.onMyShow();
                        
                         // this.getmsgread();
                         // this.getkehu();
@@ -300,6 +302,8 @@ export class AppBase implements OnInit {
         if(AppBase.Lang!=null){
 
             var langcode=window.localStorage.getItem("langcode");
+            langcode="tc";
+            console.log("langcode",langcode);
             if(langcode!=null){
                 this.langcode=langcode;
             }
@@ -316,7 +320,7 @@ export class AppBase implements OnInit {
         this.CheckPermission();
         this.refreshLang();
         this.getaboutus();
-        this.onMyShow();
+        //this.onMyShow();
       
         
     }

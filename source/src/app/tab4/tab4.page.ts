@@ -38,7 +38,13 @@ export class Tab4Page extends AppBase {
   onMyLoad(){
     //参数
     this.params;
-    
+    setInterval(() => {
+        
+      this.getmsgread();
+
+      this.getkehu();
+      console.log('好几个')
+    }, 3000);
   }
 
   // 会员
@@ -57,13 +63,7 @@ export class Tab4Page extends AppBase {
     this.notread="Y"
     this.conread="Y"
 
-    setInterval(() => {
-        
-      this.getmsgread();
-
-      this.getkehu();
-      console.log('好几个')
-    }, 3000);
+    
 
   }
 
@@ -75,6 +75,9 @@ export class Tab4Page extends AppBase {
       // console.log(this.notread,'user_id')
       // console.log(this.user_id,'user_id')
      //var api=AppBase.centerApi;
+     if(this.user_id=="0"){
+        return;
+     }
      this.centerApi.yanzheng({user_id:this.user_id}).then((yanzheng:any)=>{
           // console.log(yanzheng,'nnnn')
           if(yanzheng.code=='0'){
@@ -90,6 +93,9 @@ export class Tab4Page extends AppBase {
   connum=""
   commissionlist=null
   getkehu(){
+    if(this.user_id=="0"){
+       return;
+    }
       this.centerApi.commissionlist({user_id:this.user_id}).then((commissionlist:any)=>{
           // console.log(commissionlist,'嘻嘻')
           if(commissionlist){

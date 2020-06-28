@@ -54,6 +54,15 @@ export class MemberchongzhiPage extends AppBase {
     this.centerApi.huiyuanlist({}).then((huiyuanlist) => {
       this.huiyuanlist = huiyuanlist.sort(this.compare("seq"))
     })
+
+
+
+    this.iap.restorePurchases().then((list)=>{
+      console.log("restorePurchases",list);
+      for(var data of list){
+        this.iap.consume(data.productType,data.receipt,data.signature);
+      }
+    });
   }
 
   compare(pro) {
@@ -226,6 +235,9 @@ export class MemberchongzhiPage extends AppBase {
               //alert("入001");
 
               //alert(JSON.stringify(data));
+
+
+              this.iap.consume(data.productType,data.receipt,data.signature);
 
               that.memberApi.updateismember({ id: that.user_id, ismember: "Y", startmember_time: that.starttime, endmenber_time: that.endtime }).then((updateismember: any) => {
                 console.log(updateismember, 'updateismember')
