@@ -7,7 +7,6 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
-import { AdMobPro } from '@ionic-native/admob-pro/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -25,8 +24,7 @@ export class Tab1Page extends AppBase {
     public activeRoute: ActivatedRoute,
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
-    public projectApi:ProjectApi,
-    private admob: AdMobPro
+    public projectApi:ProjectApi
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -52,8 +50,7 @@ aa=1
     this.getmsg()
     console.log(this.horselist,'horselist');
 
-    this.admob.prepareInterstitial({adId: "ca-app-pub-3420076049296599/3391594024"})
-    .then(() => { this.admob.showInterstitial(); });
+  
   }
 
   getmsg(){

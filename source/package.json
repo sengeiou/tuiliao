@@ -21,7 +21,6 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
-    "@ionic-native/admob-pro": "^5.27.0",
     "@ionic-native/camera": "^5.15.0",
     "@ionic-native/clipboard": "^5.16.0",
     "@ionic-native/core": "^5.0.0",
@@ -38,7 +37,6 @@
     "cordova-android": "^8.1.0",
     "cordova-browser": "6.0.0",
     "cordova-clipboard": "^1.3.0",
-    "cordova-plugin-admobpro": "^2.49.0",
     "cordova-plugin-advanced-http": "2.1.1",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-extension": "^1.5.4",
@@ -110,11 +108,7 @@
       "cordova-clipboard": {},
       "com.paypal.cordova.mobilesdk": {},
       "cordova-plugin-stripe-google-pay": {},
-      "cordova-plugin-inapppurchase": {},
-      "cordova-plugin-admobpro": {
-        "ADMOB_APP_ID": "ca-app-pub-3420076049296599~3796231783",
-        "PLAY_SERVICES_VERSION": "16.0.0"
-      }
+      "cordova-plugin-inapppurchase": {}
     },
     "platforms": [
       "android",
