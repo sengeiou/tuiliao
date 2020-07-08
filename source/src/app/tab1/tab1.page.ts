@@ -8,7 +8,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
 
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -25,7 +24,7 @@ export class Tab1Page extends AppBase {
     public activeRoute: ActivatedRoute,
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
-    public projectApi:ProjectApi,
+    public projectApi:ProjectApi
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -49,7 +48,9 @@ aa=1
    // event.target.classList.add('new-active');
     this.aa = 1
     this.getmsg()
-    console.log(this.horselist,'horselist')
+    console.log(this.horselist,'horselist');
+
+  
   }
 
   getmsg(){
