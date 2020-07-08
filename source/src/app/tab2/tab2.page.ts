@@ -6,7 +6,6 @@ import { NavController, ModalController, ToastController, AlertController, NavPa
 import { DomSanitizer } from '@angular/platform-browser';
 import { InstApi } from 'src/providers/inst.api';
 import { ProjectApi } from 'src/providers/project.api';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-tab2',

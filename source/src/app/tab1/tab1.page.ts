@@ -7,6 +7,8 @@ import { AppUtil } from '../app.util';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MemberApi } from 'src/providers/member.api';
 import { ProjectApi } from 'src/providers/project.api';
+import { AdMobPro } from '@ionic-native/admob-pro/ngx';
+import { AdMobFree, AdMobFreeBannerConfig,AdMobFreeInterstitialConfig } from '@ionic-native/admob-free/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -24,7 +26,9 @@ export class Tab1Page extends AppBase {
     public activeRoute: ActivatedRoute,
     public sanitizer: DomSanitizer,
     public memberApi:MemberApi,
-    public projectApi:ProjectApi
+    public projectApi:ProjectApi,
+    private admob: AdMobPro,
+    private admobFree: AdMobFree
     ) {
     super(router, navCtrl, modalCtrl, toastCtrl, alertCtrl,activeRoute);
     this.headerscroptshow = 480;
@@ -34,7 +38,37 @@ export class Tab1Page extends AppBase {
   onMyLoad(){
     //参数
     this.params;
-    this.getmsg()
+    this.getmsg();
+    setTimeout(()=>{
+      this.showad();
+    },5000);
+  }
+
+  showad(){
+    // alert(1);
+
+    // this.admob.prepareInterstitial({adId: "ca-app-pub-3420076049296599/3391594024"})
+    // .then(() => { 
+    //   alert(2);
+    //   this.admob.showInterstitial(); 
+    //   alert(3);
+    // });
+
+    const bannerConfig: AdMobFreeInterstitialConfig = {
+      // add your config here
+      // for the sake of this example we will just use the test config
+      //id:"ca-app-pub-3420076049296599/3391594024",
+      isTesting:false,
+      autoShow: true
+     };
+     this.admobFree.banner.config(bannerConfig);
+     
+     this.admobFree.banner.prepare()
+       .then(() => {
+         // banner Ad is ready
+         // if we set autoShow to false, then we will need to call the show method here
+       })
+       .catch(e => console.log(e));
   }
 
   @ViewChild('slide01',{static:true}) slides: IonSlides; 

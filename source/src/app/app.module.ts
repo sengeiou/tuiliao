@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http';
 import { HTTP } from '@ionic-native/http/ngx';
+import { AdMobPro } from '@ionic-native/admob-pro/ngx';
+import { AdMobFree, AdMobFreeBannerConfig } from '@ionic-native/admob-free/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +23,8 @@ import { HTTP } from '@ionic-native/http/ngx';
   providers: [
     StatusBar,
     HTTP,
+    AdMobPro,
+    AdMobFree,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
   ],
   bootstrap: [AppComponent]
