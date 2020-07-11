@@ -39,9 +39,6 @@ export class Tab1Page extends AppBase {
     //参数
     this.params;
     this.getmsg();
-    setTimeout(()=>{
-      this.showad();
-    },5000);
   }
 
   showad(){
@@ -57,16 +54,19 @@ export class Tab1Page extends AppBase {
     const bannerConfig: AdMobFreeInterstitialConfig = {
       // add your config here
       // for the sake of this example we will just use the test config
-      //id:"ca-app-pub-3420076049296599/3391594024",
+      id:"ca-app-pub-3420076049296599/1855048787",
       isTesting:false,
       autoShow: true
      };
-     this.admobFree.banner.config(bannerConfig);
+
+     this.admobFree.interstitial.config(bannerConfig);
      
-     this.admobFree.banner.prepare()
-       .then(() => {
+     this.admobFree.interstitial.prepare()
+       .then((val) => {
+        // alert(val);
          // banner Ad is ready
          // if we set autoShow to false, then we will need to call the show method here
+         
        })
        .catch(e => console.log(e));
   }
@@ -85,6 +85,9 @@ aa=1
     console.log(this.horselist,'horselist');
 
   
+    setTimeout(()=>{
+      this.showad();
+    },5000);
   }
 
   getmsg(){
